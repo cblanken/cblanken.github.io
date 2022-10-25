@@ -2,7 +2,6 @@
 title = "PicoCTF 2022 - Operation Orchid"
 date = 2022-05-29
 +++
-# PicoCTF 2022 - Operation Orchid
 The challenge description goes as follows:
 > Download this disk image and find the flag.
 
