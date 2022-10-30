@@ -35,12 +35,12 @@ $ python guesser.pyc
 Guess: test
 Invalid
 
-↪ ~/.pyenv/shims/python guesser.pyc
+$ python guesser.pyc
 Guess: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Invalid
 ```
 
-Okay it look's like the program is checking our input. Perhaps it is checking against the challenge's flag value, but we can't really be sure just yet.
+Okay it look's like the program is checking our input. Perhaps it is checking against the challenge's flag.
 
 Referring to the challenge title we know that this is a reversing challenge, so the next logical step is to try decompiling the python binary.
 One popular python decompiler is [decompyle3](https://pypi.org/project/decompyle3/#:~:text=Python%20version%203.7%20on), which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.
@@ -108,21 +108,21 @@ if not re.match('^' + hashes[i].replace('.', '[0-9a-f]') + '$', hashlib.md5(gues
     exit('Invalid')
 ```
 
-And finally, if our guess passes both of those checks it is appened to the `guesses` list.
+And finally, if our guess passes both of those checks it is appended to the `guesses` list.
 ```python
 else:
     guesses.append(guess)
 ```
 
-This `guesses` list is joined and printed as the flag output provided the program doesn't exit prematurely by receiving an invalid flag portion.
+This `guesses` list is joined and printed as the flag output provided the program doesn't exit prematurely by receiving an incorrect guess.
 ```python
 else:
     print(f"Flag: {guesses[0]}" + '{' + ''.join(guesses[1:]) + '}')
 ```
 
-One important part of the last line, is that the first element of `guesses` is used as the beginning of our flag which, according to the flag format should correspond to `cvctf`. With that in mind we should be able to confirm our understanding of the program is correct by finding the md5 hash of `cvctf` which should match the first hash in `hashes`.
+One important part of the last line, is that the first element of `guesses` is used as the beginning of our flag which, according to the flag format should correspond to `cvctf`. With that in mind we should be able to confirm our understanding of the program by finding the md5 hash of `cvctf` which should match the first hash in `hashes`.
 
-We can get the md5 hash by running `echo -n cvctf | md5sum` in the terminal. This gives us an md5 hash of `d70146aef5a8e5364791d3006ccd9c00`
+We can get the md5 hash by running `echo -n cvctf | md5sum` in our terminal. This gives us an md5 hash of `d70146aef5a8e5364791d3006ccd9c00`
 
 Placing the hashes side by side we can see that they match.
 ```
@@ -182,7 +182,7 @@ for regex in hash_regexes:
     else:
         print(f"FOUND: {found}, MD5: {hashlib.md5(found.encode()).hexdigest()}")
 ```
-The program uses [pwntools](https://docs.pwntools.com/en/stable/util/iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce) to generate all the possible combiniation given our set of lowercase alphabetic characters. It then generates the md5 hash using the [`hashlib`](https://docs.python.org/3/library/hashlib.html#module-hashlib) library and compare it against the hash from the `hashes` list.
+The program uses [pwntools](https://docs.pwntools.com/en/stable/util/iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce) to generate all the possible combinations given our set of lowercase alphabetic characters. It then generates the md5 hash using the [`hashlib`](https://docs.python.org/3/library/hashlib.html#module-hashlib) library and compares it against the hash from the `hashes` list.
 
 ```
 $ python brute.py
