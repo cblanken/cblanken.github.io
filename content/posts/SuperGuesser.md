@@ -140,7 +140,8 @@ Invalid
 
 We can see that the program only exited after the guess of "again", meaning the guess of "cvctf" was correct. That's great but you may have noticed this seems to contradict a bit of our analysis. Recall that the first `if` check appeared to exclude any guesses that were 5 characters in length or all lowercase and alphabetic. This exactly matches our guess of "cvctf"!
 
-Now I tried several decompilers, and as far as I can tell this is an error in the decompilation process. That line in particular should actually have decompiled to this:
+### Bad Decompilation?
+As we can see, the behavior of the program when running the decompiled code does not match the behavior of the original `guesser.pyc`. Now I tried several decompilers, and as far as I can tell this is an error in the decompilation process. That line in particular should actually have decompiled to this:
 ```python
 if not(len(guess) <= 4 or len(guess) >= 6 or re.match('^[a-z]+$', guess)):
     exit('Invalid')
@@ -151,10 +152,11 @@ if len(guess) <= 4 or len(guess) >= 6 or re.match('^[a-z]+$', guess):
     exit('Invalid')
 ```
 
-In this case, the program would exit if the guess is _NOT_ 5 alphabetic characters. This matches the behavior we've seen when running compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
+In this case, the program would exit if the guess is __NOT__ 5 alphabetic characters. This matches the behavior we've seen when running compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
 
 ## Solution
 ```python
+# brute.py
 import hashlib
 import re
 from pwnlib.util.iters import bruteforce, mbruteforce
