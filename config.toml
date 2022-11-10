@@ -53,7 +53,7 @@ webmanifest = "/icons/site.webmanifest"
 # Author details
 [extra.author]
 name = "Cameron Blankenbuehler"
-avatar = "/images/avatar.png"
+avatar = "/images/profile.jpg"
 
 # Social links
 [extra.social]
