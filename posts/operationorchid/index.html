@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+
+  
+  <link href='&#x2F;icons&#x2F;site.webmanifest' rel="manifest" />
+  
+  
+  <link color="#5bbad5" href='&#x2F;icons&#x2F;safari-pinned-tab.svg' rel="mask-icon" />
+  
+  
+  <link href='&#x2F;icons&#x2F;favicon-16x16.png' rel="icon" sizes="16x16" type="image/png" />
+  
+  
+  <link href='&#x2F;icons&#x2F;favicon-32x32.png' rel="icon" sizes="32x32" type="image/png" />
+  
+  
+  <link href='&#x2F;icons&#x2F;apple-touch-icon.png' rel="apple-touch-icon" sizes="180x180" />
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.css" integrity="sha384-+rY0QD+LRnTOquDMzGa9lXU6jIwdiQuwCJQ2cdcW0qeP/0UbjQCZlXnRsUMA+9pH" crossorigin="anonymous">
+  
+
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.1/css/academicons.min.css" integrity="sha384-FIue+PI4SsI9XfHCz8dBLg33b0c1fMJgNU3X//L26FYbGnlSEfWmNT7zgWc2N9b6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link href="https://www.cblanken.dev/deep-thought.css" rel="stylesheet" />
+  
+  
+
+  <title>
+    
+ | PicoCTF 2022 - Operation Orchid
+
+  </title>
+
+  
+  
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mathtex-script-type.min.js" integrity="sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT" crossorigin="anonymous"></script>
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+  
+  
+</head>
+
+<body class="has-background-white">
+  <nav aria-label="section navigation" class="navbar is-light" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-size-5 has-text-weight-bold" href="https:&#x2F;&#x2F;www.cblanken.dev"></a>
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+          
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;">
+            Home
+          </a>
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;posts">
+            Posts
+          </a>
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">
+            Projects
+          </a>
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">
+            Tags
+          </a>
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;categories">
+            Categories
+          </a>
+          
+          
+          
+          <a class="navbar-item" id="nav-search" title="Search" data-target="#search-modal">
+            <span class="icon">
+              <i class="fas fa-search"></i>
+            </span>
+          </a>
+          <a class="navbar-item" id="dark-mode" title="Switch to dark theme">
+            <span class="icon">
+              <i class="fas fa-adjust"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-12 is-offset-0">
+        <article class="box">
+          <h1 class="title">
+            PicoCTF 2022 - Operation Orchid
+          </h1>
+          <p class="subtitle"></p>
+          <div class="columns is-multiline is-gapless">
+            <div class="column is-8">
+              
+<span class="icon-text has-text-grey">
+  <span class="icon">
+    <i class="fas fa-user"></i>
+  </span>
+  <span>Cameron Blankenbuehler published on</span>
+  <span class="icon">
+    <i class="far fa-calendar-alt"></i>
+  </span>
+  <span><time datetime="2022-05-29">May 29, 2022</time></span>
+</span>
+
+            </div>
+            <div class="column is-4 has-text-right-desktop">
+              
+<span class="icon-text has-text-grey">
+  <span class="icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span>5 min,</span>
+  <span class="icon">
+    <i class="fas fa-pencil-alt"></i>
+  </span>
+  <span>910 words</span>
+</span>
+
+            </div>
+            <div class="column">
+              
+              
+<p>
+  Categories:
+  
+  <a class="has-text-info-dark has-text-weight-semibold" href="https://www.cblanken.dev/categories/ctf-writeup/">
+    <span class="icon-text">
+      <span class="icon">
+        <i class="fas fa-cube"></i>
+      </span>
+      <span>CTF Writeup</span>
+    </span>
+  </a>
+  
+</p>
+
+              
+            </div>
+            <div class="column has-text-right-desktop">
+              
+              
+<p>
+  Tags:
+  
+  <a class="has-text-info-dark has-text-weight-semibold" href="https://www.cblanken.dev/tags/ctf/">
+    <span class="icon-text">
+      <span class="icon">
+        <i class="fas fa-tag"></i>
+      </span>
+      <span>ctf</span>
+    </span>
+  </a>
+  
+  <a class="has-text-info-dark has-text-weight-semibold" href="https://www.cblanken.dev/tags/infosec/">
+    <span class="icon-text">
+      <span class="icon">
+        <i class="fas fa-tag"></i>
+      </span>
+      <span>infosec</span>
+    </span>
+  </a>
+  
+  <a class="has-text-info-dark has-text-weight-semibold" href="https://www.cblanken.dev/tags/forensics/">
+    <span class="icon-text">
+      <span class="icon">
+        <i class="fas fa-tag"></i>
+      </span>
+      <span>forensics</span>
+    </span>
+  </a>
+  
+</p>
+
+              
+            </div>
+          </div>
+          <div class="content mt-2">
+            <p>The challenge description goes as follows:</p>
+<blockquote>
+<p>Download this disk image and find the flag.</p>
+</blockquote>
+<p>We're then given an option to download the mentioned compressed disk image (disk.flag.img.gz). Decompress the archive with <code>gunzip disk.flag.img.gz</code>.</p>
+<p>Let's check what kind of disk image this is:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ file disk.flag.img
+</span><span>disk.flag.img: DOS/MBR boot sector; partition 1 : ID=0x83, active, start-CHS (0x0,32,33), end-CHS (0xc,223,19), startsector 2048, 204800 sectors; partition 2 : ID=0x82, start-CHS (0xc,223,20), end-CHS (0x19,159,6), startsector 206848, 204800 sectors; partition 3 : ID=0x83, start-CHS (0x19,159,7), end-CHS (0x32,253,11), startsector 411648, 407552 sectors
+</span></code></pre>
+<p>Okay at the very least the system recognizes <code>disk.flag.img</code> as a valid image. Let's try to mount the image to see if we can access the files.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ mkdir ./mnt
+</span><span>$ sudo mount disk.flag.img ./mnt/
+</span><span>mount: /home/cameron/notes/ctf/picoCTF_2022/Forensics/OperationOrchid/mnt: wrong fs type, bad option, bad superblock on /dev/loop0, missing codepage or helper program, or other error.
+</span></code></pre>
+<p>Well that didn't work. It's important to know that, while the <code>mount</code> command can often automatically detect the filesystem of a device or disk image, it doesn't automatically detect the offset.</p>
+<p>We can get some more information about the image, by viewing the partition table with the <code>mmls</code> command.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ mmls disk.flag.img
+</span><span>DOS Partition Table
+</span><span>Offset Sector: 0
+</span><span>Units are in 512-byte sectors
+</span><span>
+</span><span>      Slot      Start        End          Length       Description
+</span><span>000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+</span><span>001:  -------   0000000000   0000002047   0000002048   Unallocated
+</span><span>002:  000:000   0000002048   0000206847   0000204800   Linux (0x83)
+</span><span>003:  000:001   0000206848   0000411647   0000204800   Linux Swap / Solaris x86 (0x82)
+</span><span>004:  000:002   0000411648   0000819199   0000407552   Linux (0x83)
+</span></code></pre>
+<p>Here we have all the information we need to calculate the offset in bytes.
+The <code>mmls</code> output lists each section by a count of sectors. So in this case, we can see the first Linux partition starts at sector <code>2048</code>. To calculate the offset we just need to multiply the number of sectors by the bytes per sector listed above as </p>
+<blockquote>
+<p>Units are in 512-byte sectors</p>
+</blockquote>
+<p>So, our <strong>offset</strong> = 512 x 2048 = 1048576 bytes. Let's try to mount the image again with the appropriate offset.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo mount -o offset=1048576 disk.flag.img ./mnt/
+</span></code></pre>
+<p>Nice, we didn't get any errors this time. Let's check the <code>./mnt/</code> directory</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ tree ./mnt/
+</span><span>./mnt/
+</span><span>├── boot -&gt; .
+</span><span>├── config-virt
+</span><span>├── extlinux.conf
+</span><span>├── initramfs-virt
+</span><span>├── ldlinux.c32
+</span><span>├── ldlinux.sys
+</span><span>├── libcom32.c32
+</span><span>├── libutil.c32
+</span><span>├── lost+found [error opening dir]
+</span><span>├── mboot.c32
+</span><span>├── menu.c32
+</span><span>├── System.map-virt
+</span><span>├── vesamenu.c32
+</span><span>└── vmlinuz-virt
+</span><span>
+</span><span>2 directories, 12 files
+</span></code></pre>
+<p>Okay, doesn't look like there is much here. This just seems to be the boot partition.
+We can check out the <code>extlinux.conf</code></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ cat extlinux.conf
+</span><span># Generated by update-extlinux 6.04_pre1-r9
+</span><span>DEFAULT menu.c32
+</span><span>PROMPT 0
+</span><span>MENU TITLE Alpine/Linux Boot Menu
+</span><span>MENU HIDDEN
+</span><span>MENU AUTOBOOT Alpine will be booted automatically in # seconds.
+</span><span>TIMEOUT 30
+</span><span>LABEL virt
+</span><span>  MENU LABEL Linux virt
+</span><span>  LINUX vmlinuz-virt
+</span><span>  INITRD initramfs-virt
+</span><span>  APPEND root=UUID=7b688671-b1b5-4e64-830d-36ebc2d4259e modules=sd-mod,usb-storage,ext4 quiet rootfstype=ext4
+</span><span>
+</span><span>MENU SEPARATOR
+</span></code></pre>
+<p>It looks like this is an Alpine Linux image which is neat but isn't particularly helpful here. Let's look at the next partition we saw in the partition table. </p>
+<p>The 2nd partition started at sector 206848, but it says it's a swap partition which is essentially a file that acts as extra memory to keep your system from crashing if it is using too much RAM. We'll skip this partition for now and look at the last partition which should contain the files for the system this image was pulled from.</p>
+<p>The last partition starts at sector 411648, so 512 x 411648 = 210763776 bytes is our new offset. Let's unmount the first partition and remount with the new offset.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo umount ./mnt
+</span><span>$ sudo mount -o offset=210763776 disk.flag.img ./mnt/
+</span><span>$ tree -L 1 ./mnt/
+</span><span>./mnt/
+</span><span>├── bin
+</span><span>├── boot
+</span><span>├── dev
+</span><span>├── etc
+</span><span>├── home
+</span><span>├── lib
+</span><span>├── lost+found
+</span><span>├── media
+</span><span>├── mnt
+</span><span>├── opt
+</span><span>├── proc
+</span><span>├── root
+</span><span>├── run
+</span><span>├── sbin
+</span><span>├── srv
+</span><span>├── swap
+</span><span>├── sys
+</span><span>├── tmp
+</span><span>├── usr
+</span><span>└── var
+</span></code></pre>
+<p>Nice, that looks like a standard Linux system to me. Let's see if we can find that flag.
+A good first step is to search for any files with &quot;flag&quot; in the name since this <em>is</em> a CTF after all. We can do that with the <code>find</code> command.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo find ./mnt/ -iname &quot;*flag*&quot;
+</span><span>./mnt/root/flag.txt.enc
+</span></code></pre>
+<p>Well that looks promising. Let's check what kind of file that is.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo file ./mnt/root/flag.txt.enc
+</span><span>./mnt/root/flag.txt.enc: openssl enc&#39;d data with salted password
+</span></code></pre>
+<p>Let's also check if <code>flag.txt.enc</code> shows up in any logs, scripts or other files on the image.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo grep -r flag.txt.enc ./mnt
+</span><span>./mnt/root/.ash_history:openssl aes256 -salt -in flag.txt -out flag.txt.enc -k unbreakablepassword1234567
+</span></code></pre>
+<p>It looks like the <code>openssl</code> command was used to encrypt the <code>flag.txt</code> with a password of <code>unbreakablepassword1234567</code>. The command we saw in <code>/mnt/root/.ash_history</code> uses the <a href="https://www.openssl.org/docs/man1.1.1/man1/enc.html"><code>openssl-enc</code></a> function of <code>openssl</code> to encrypt the data. If we look through the man page, we'll notice that <code>openssl-enc</code> has an option for decryption.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>-e  Encrypt the input data: this is the default.
+</span><span>-d  Decrypt the input data.
+</span></code></pre>
+<p>Let's try decrypting <code>flag.txt.enc</code> with the password we found.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ openssl aes256 -d -salt -in flag.txt.enc -out flag.txt -k unbreakablepassword1234567
+</span><span>*** WARNING : deprecated key derivation used.
+</span><span>Using -iter or -pbkdf2 would be better.
+</span><span>bad decrypt
+</span><span>140027284948288:error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt:../crypto/evp/evp_enc.c:610:
+</span></code></pre>
+<p>We got some warnings, but it looks like the command still output a decrypted file <code>flag.txt</code>. Let's see what it says.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ cat flag.txt
+</span><span>picoCTF{h4un71ng_p457_5113beab}
+</span></code></pre>
+<p>And there's our flag.</p>
+<p>Don't forget to unmount the image once you're done!</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo umount ./mnt/
+</span></code></pre>
+
+          </div>
+        </article>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+  
+  <section class="modal" id="search-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Search</p>
+      </header>
+      <section class="modal-card-body">
+        <div class="field mb-2">
+          <div class="control">
+            <input class="input" id="search" placeholder="Search this website." type="search" />
+          </div>
+        </div>
+        <div class="search-results">
+          <div class="search-results__items"></div>
+        </div>
+      </section>
+    </div>
+    <button aria-label="close" class="modal-close is-large"></button>
+  </section>
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+  <footer class="footer py-4">
+    <div class="content has-text-centered">
+      <p>
+        Built with
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-code"></i>
+          </span>
+          <span>code</span>
+        </span>
+        and
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-heart"></i>
+          </span>
+          <span>love</span>
+        </span>
+      </p>
+      <p>
+        Powered by
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-power-off"></i>
+          </span>
+          <span>zola</span>
+        </span>
+      </p>
+    </div>
+  </footer>
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/galleria.min.js" integrity="sha384-QSfwGT8/EU536DKdtyP2D6SLlh8zBaZ0cVkwfrwhqzIU9VCfJT00CLVP5t+HAiYg" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.js" integrity="sha384-DwpKI+deZB267+hPKwiOIc5Y2GKsVL0mR6hgz7GgIu7AgAMYqJwcJKY1YBNfhWcY" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.5/dist/mermaid.min.js" integrity="sha384-0yWn54pSGtfKCU+skfA69l25VsCw+MZt4LQov3xNRoS7YkAMrFokGgSBnAWSK4pv" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.1.13/dist/chart.xkcd.min.js" integrity="sha384-xC3h1+IHXK8seA+8KfT79Z4e0GPsznjXBoMa5nd8ooWKplPyXx92NOmljWxLC/cs" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://www.cblanken.dev/elasticlunr.min.js"></script>
+  <script src="https://www.cblanken.dev/search_index.en.js"></script><script src="https://www.cblanken.dev/js/site.js"></script>
+
+  
+
+
+
+
+
+  
+  
+</body>
+
+</html>

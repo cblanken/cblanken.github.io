@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title> - infosec</title>
+        <link>https://www.cblanken.dev</link>
+        <description></description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="https://www.cblanken.dev/tags/infosec/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate>
+        <item>
+            <title>KitCTFCTF 2022 - ein-pfund-mails</title>
+            <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
+            <link>https://www.cblanken.dev/posts/einpfundmails/</link>
+            <guid>https://www.cblanken.dev/posts/einpfundmails/</guid>
+            <description>&lt;h2 id=&quot;problem-description&quot;&gt;Problem Description&lt;&#x2F;h2&gt;
+&lt;p&gt;The &lt;code&gt;ein-pfund-mails&lt;&#x2F;code&gt; challenge is a &lt;em&gt;baby&lt;&#x2F;em&gt; rated challenge in the Misc category for KitCTFCTF 2022. The title &lt;em&gt;ein pfund mails&lt;&#x2F;em&gt; is actually German for &lt;em&gt;&amp;quot;A pound of mail&amp;quot;&lt;&#x2F;em&gt;. Which makes sense since we are given an archive (&lt;code&gt;mails.tar.gz&lt;&#x2F;code&gt;) containing 3993 &lt;code&gt;.eml&lt;&#x2F;code&gt; files. We&#x27;re told one of these leaked email files contains our flag, but we&#x27;re unable to determine which file contains the correct flag.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;analysis&quot;&gt;Analysis&lt;&#x2F;h2&gt;
+&lt;p&gt;First off, let&#x27;s take a look at one of the email files.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;Return-Path: &amp;lt;mawalu98@gmail.com&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Delivered-To: martin@mawalabs.de
+&lt;&#x2F;span&gt;&lt;span&gt;Received: from mail.mawalabs.de ([fd4d:6169:6c63:6f77::e])
+&lt;&#x2F;span&gt;&lt;span&gt;	by a0818493a1af with LMTP
+&lt;&#x2F;span&gt;&lt;span&gt;	id Oa&#x2F;3IrxGq2JiaTIAoqc0QA
+&lt;&#x2F;span&gt;&lt;span&gt;	(envelope-from &amp;lt;mawalu98@gmail.com&amp;gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;	for &amp;lt;martin@mawalabs.de&amp;gt;; Thu, 16 Jun 2022 17:05:32 +0200
+&lt;&#x2F;span&gt;&lt;span&gt;Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+&lt;&#x2F;span&gt;&lt;span&gt;	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256&#x2F;256 bits)
+&lt;&#x2F;span&gt;&lt;span&gt;	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+&lt;&#x2F;span&gt;&lt;span&gt;	(No client certificate requested)
+&lt;&#x2F;span&gt;&lt;span&gt;	by mail.mawalabs.de (Postcow) with ESMTPS id 5BA84A2171
+&lt;&#x2F;span&gt;&lt;span&gt;	for &amp;lt;martin@mawalabs.de&amp;gt;; Thu, 16 Jun 2022 17:05:27 +0200 (CEST)
+&lt;&#x2F;span&gt;&lt;span&gt;Received: by mail-pj1-f42.google.com with SMTP id k12-20020a17090a404c00b001eaabc1fe5dso2079659pjg.1
+&lt;&#x2F;span&gt;&lt;span&gt;        for &amp;lt;martin@mawalabs.de&amp;gt;; Thu, 16 Jun 2022 08:05:27 -0700 (PDT)
+&lt;&#x2F;span&gt;&lt;span&gt;DKIM-Signature: v=1; a=rsa-sha256; c=relaxed&#x2F;relaxed;
+&lt;&#x2F;span&gt;&lt;span&gt;        d=gmail.com; s=20210112;
+&lt;&#x2F;span&gt;&lt;span&gt;        h=mime-version:from:date:message-id:subject:to;
+&lt;&#x2F;span&gt;&lt;span&gt;        bh=Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=;
+&lt;&#x2F;span&gt;&lt;span&gt;        b=R1TrM58fPxWGqqUpauME4wQbljhoUlMEpPpf2NWBP1Hy8WrZH0MMkrqurXHAMNNx&#x2F;H
+&lt;&#x2F;span&gt;&lt;span&gt;         I3QHbOEeHm8GjQ9GbUWHWTYt8oFutzcBiCN8+5xFbuuDoYgxyAQWpbuKcWM3h3LpkFbC
+&lt;&#x2F;span&gt;&lt;span&gt;         IN4ps9rF3ANb&#x2F;DOTxYFf0TUGvTOSqXuwe1UBFnOwckfUFVwvh&#x2F;FYPDzOvGiXE683jxXq
+&lt;&#x2F;span&gt;&lt;span&gt;         4GrAKzDDdbyyeKzUSyeV4ndqkTGGODLWULrUbBT&#x2F;ihyNq5Nomc5QCiw61UIflwVndFdE
+&lt;&#x2F;span&gt;&lt;span&gt;         h1ufkxX2FEUJ2fpS9KbV8mfEqN+roncsHzXvVdo+ersxg4jQXA&#x2F;aYOf9XoaPz48Sb9qf
+&lt;&#x2F;span&gt;&lt;span&gt;         MsMg==
+&lt;&#x2F;span&gt;&lt;span&gt;X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed&#x2F;relaxed;
+&lt;&#x2F;span&gt;&lt;span&gt;        d=1e100.net; s=20210112;
+&lt;&#x2F;span&gt;&lt;span&gt;        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+&lt;&#x2F;span&gt;&lt;span&gt;        bh=Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=;
+&lt;&#x2F;span&gt;&lt;span&gt;        b=AwM4jiAdlpSKBy7IZ3nfQsHnYeQp1gvVpI&#x2F;Bpnoer&#x2F;mkdv75drjydquL+ZXUmOaySW
+&lt;&#x2F;span&gt;&lt;span&gt;         k9jKtb&#x2F;haWXRx6TCvoAFrO&#x2F;ZN2tmDknI7r9yoKWdLP37Er4thOhniv0mKAPBeL47i&#x2F;95
+&lt;&#x2F;span&gt;&lt;span&gt;         GG3Kfu4eMuNx&#x2F;NzhqxKPIPb6Mc+tGAfe2VisvxOk&#x2F;l5vbR8U4bWNiBwmF9Q4kLyFYMnb
+&lt;&#x2F;span&gt;&lt;span&gt;         gPx1ZhsxQWqFIn+hr6D9vUFxiz5cAe0m2Bq6V4e24akQrLjMrBjwY94vXzZJlb4VW6cG
+&lt;&#x2F;span&gt;&lt;span&gt;         2pffywU5CDks4qLPYnI1bkImrQJrOR3KEZSYppSm3vkBSvgJ06aTzvGRrLE18Hwmtxmv
+&lt;&#x2F;span&gt;&lt;span&gt;         5Vnw==
+&lt;&#x2F;span&gt;&lt;span&gt;X-Gm-Message-State: AJIora9DCvU5UatGInjShXcoDXp0abItZgRUoXxhwA+0+fDgg4Jv+3l8
+&lt;&#x2F;span&gt;&lt;span&gt;	jr6KvtgQZpxKkN+zFS&#x2F;vejX8L1MA57H5+1ZjOis2QxR6&#x2F;&#x2F;w=
+&lt;&#x2F;span&gt;&lt;span&gt;X-Google-Smtp-Source: AGRyM1tXZeDE5&#x2F;ppkeaIx2YE297NIvPpikDXV+2nwHlgPl646MSCkIdSwtEBFkznNZNqV1uMfJsEq98wjv3m&#x2F;KYd3Vc=
+&lt;&#x2F;span&gt;&lt;span&gt;X-Received: by 2002:a17:903:244a:b0:164:2880:4df1 with SMTP id
+&lt;&#x2F;span&gt;&lt;span&gt; l10-20020a170903244a00b0016428804df1mr5108675pls.120.1655391924792; Thu, 16
+&lt;&#x2F;span&gt;&lt;span&gt; Jun 2022 08:05:24 -0700 (PDT)
+&lt;&#x2F;span&gt;&lt;span&gt;MIME-Version: 1.0
+&lt;&#x2F;span&gt;&lt;span&gt;From: Martin Wagner &amp;lt;mawalu98@gmail.com&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Date: Thu, 16 Jun 2022 17:05:13 +0200
+&lt;&#x2F;span&gt;&lt;span&gt;Message-ID: &amp;lt;CAA2ev=GHMZn2+6vgHv9kEQV5h4ZWcOapubMOJtg2BTM7VsgOAw@mail.gmail.com&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Subject: Flag
+&lt;&#x2F;span&gt;&lt;span&gt;To: martin@mawalabs.de
+&lt;&#x2F;span&gt;&lt;span&gt;Content-Type: multipart&#x2F;alternative; boundary=&amp;quot;000000000000a433c905e191f775&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;ARC-Seal: i=1; s=dkim; d=mawalabs.de; t=1655391927; a=rsa-sha256; cv=none;
+&lt;&#x2F;span&gt;&lt;span&gt;	b=qiV2rtXrZGucJcxohmzBoIzrGijMaDnXMKViSQCoub6PgUBRu9dXIo2JbqjIvVG3RiAsB5
+&lt;&#x2F;span&gt;&lt;span&gt;	x2y79l2rnSzipM62UfVfdnv7&#x2F;bHXC0oxlHtIqYVDK&#x2F;NqOBasDYzkgkmkAmUFIeyh7qcJ8A
+&lt;&#x2F;span&gt;&lt;span&gt;	i50585Fm1I58zMYi88Nnlq4Ou+whuc8=
+&lt;&#x2F;span&gt;&lt;span&gt;ARC-Authentication-Results: i=1;
+&lt;&#x2F;span&gt;&lt;span&gt;	mail.mawalabs.de;
+&lt;&#x2F;span&gt;&lt;span&gt;	dkim=pass header.d=gmail.com header.s=20210112 header.b=R1TrM58f;
+&lt;&#x2F;span&gt;&lt;span&gt;	spf=pass (mail.mawalabs.de: domain of mawalu98@gmail.com designates 209.85.216.42 as permitted sender) smtp.mailfrom=mawalu98@gmail.com;
+&lt;&#x2F;span&gt;&lt;span&gt;	dmarc=pass (policy=none) header.from=gmail.com
+&lt;&#x2F;span&gt;&lt;span&gt;ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed&#x2F;relaxed; d=mawalabs.de;
+&lt;&#x2F;span&gt;&lt;span&gt;	s=dkim; t=1655391927;
+&lt;&#x2F;span&gt;&lt;span&gt;	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+&lt;&#x2F;span&gt;&lt;span&gt;	 to:to:cc:mime-version:mime-version:content-type:content-type:
+&lt;&#x2F;span&gt;&lt;span&gt;	 dkim-signature; bh=Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=;
+&lt;&#x2F;span&gt;&lt;span&gt;	b=oiuiewyUJBkwDRfqclseGFj1hYEfF0kN+UD7pdWf&#x2F;wun&#x2F;Sccb1T9bP6a9DGS&#x2F;liipuXPhS
+&lt;&#x2F;span&gt;&lt;span&gt;	DayxqKgsuRqvB5c1WSxQXIc2iXdKkTttQt1LgaXE1d+wSo6Hap502RMji4aZVcMM6owh&#x2F;T
+&lt;&#x2F;span&gt;&lt;span&gt;	1fhY0QCzzNrw2JCYoeMCtcZ0LNWvtTY=
+&lt;&#x2F;span&gt;&lt;span&gt;X-Last-TLS-Session-Version: TLSv1.3
+&lt;&#x2F;span&gt;&lt;span&gt;Authentication-Results: mail.mawalabs.de;
+&lt;&#x2F;span&gt;&lt;span&gt;	dkim=pass header.d=gmail.com header.s=20210112 header.b=R1TrM58f;
+&lt;&#x2F;span&gt;&lt;span&gt;	spf=pass (mail.mawalabs.de: domain of mawalu98@gmail.com designates 209.85.216.42 as permitted sender) smtp.mailfrom=mawalu98@gmail.com;
+&lt;&#x2F;span&gt;&lt;span&gt;	dmarc=pass (policy=none) header.from=gmail.com
+&lt;&#x2F;span&gt;&lt;span&gt;X-Spamd-Result: default: False [1.79 &#x2F; 15.00];
+&lt;&#x2F;span&gt;&lt;span&gt;	RBL_SORBS_RECENT(2.00)[209.85.216.42:from];
+&lt;&#x2F;span&gt;&lt;span&gt;	BAD_REP_POLICIES(2.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	NEURAL_HAM_SHORT(-2.00)[-1.000];
+&lt;&#x2F;span&gt;&lt;span&gt;	MIME_GOOD(-0.10)[multipart&#x2F;alternative,text&#x2F;plain];
+&lt;&#x2F;span&gt;&lt;span&gt;	RWL_MAILSPIKE_GOOD(-0.10)[209.85.216.42:from];
+&lt;&#x2F;span&gt;&lt;span&gt;	MX_GOOD(-0.01)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	IP_REPUTATION_HAM(-0.00)[asn: 15169(0.00), country: US(-0.00), ip: 209.85.216.42(0.00)];
+&lt;&#x2F;span&gt;&lt;span&gt;	FROM_HAS_DN(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	R_DKIM_ALLOW(0.00)[gmail.com:s=20210112];
+&lt;&#x2F;span&gt;&lt;span&gt;	BCC(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	DWL_DNSWL_NONE(0.00)[gmail.com:dkim];
+&lt;&#x2F;span&gt;&lt;span&gt;	TO_MATCH_ENVRCPT_ALL(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	RCPT_COUNT_ONE(0.00)[1];
+&lt;&#x2F;span&gt;&lt;span&gt;	ARC_NA(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	CLAM_VIRUS_FAIL(0.00)[failed to scan and retransmits exceed];
+&lt;&#x2F;span&gt;&lt;span&gt;	PREVIOUSLY_DELIVERED(0.00)[martin@mawalabs.de];
+&lt;&#x2F;span&gt;&lt;span&gt;	RCPT_MAILCOW_DOMAIN(0.00)[mawalabs.de];
+&lt;&#x2F;span&gt;&lt;span&gt;	FREEMAIL_ENVFROM(0.00)[gmail.com];
+&lt;&#x2F;span&gt;&lt;span&gt;	RCVD_IN_DNSWL_NONE(0.00)[209.85.216.42:from];
+&lt;&#x2F;span&gt;&lt;span&gt;	ARC_SIGNED(0.00)[mawalabs.de:s=dkim:i=1];
+&lt;&#x2F;span&gt;&lt;span&gt;	R_SPF_ALLOW(0.00)[+ip4:209.85.128.0&#x2F;17];
+&lt;&#x2F;span&gt;&lt;span&gt;	TO_DN_NONE(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	FREEMAIL_FROM(0.00)[gmail.com];
+&lt;&#x2F;span&gt;&lt;span&gt;	ASN(0.00)[asn:15169, ipnet:209.85.128.0&#x2F;17, country:US];
+&lt;&#x2F;span&gt;&lt;span&gt;	MID_RHS_MATCH_FROMTLD(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+&lt;&#x2F;span&gt;&lt;span&gt;	MIME_TRACE(0.00)[0:+,1:+,2:~];
+&lt;&#x2F;span&gt;&lt;span&gt;	DKIM_TRACE(0.00)[gmail.com:+];
+&lt;&#x2F;span&gt;&lt;span&gt;	RCVD_TLS_LAST(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	FROM_EQ_ENVFROM(0.00)[];
+&lt;&#x2F;span&gt;&lt;span&gt;	RCVD_COUNT_TWO(0.00)[2]
+&lt;&#x2F;span&gt;&lt;span&gt;X-Rspamd-Queue-Id: 5BA84A2171
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;--000000000000a433c905e191f775
+&lt;&#x2F;span&gt;&lt;span&gt;Content-Type: text&#x2F;plain; charset=&amp;quot;UTF-8&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;Hi,
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;LG
+&lt;&#x2F;span&gt;&lt;span&gt;Martin
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;--000000000000a433c905e191f775
+&lt;&#x2F;span&gt;&lt;span&gt;Content-Type: text&#x2F;html; charset=&amp;quot;UTF-8&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;&amp;lt;div dir=&amp;quot;ltr&amp;quot;&amp;gt;Hi,&amp;lt;div&amp;gt;&amp;lt;br&amp;gt;&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;&amp;lt;br&amp;gt;&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;LG&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;Martin&amp;lt;&#x2F;div&amp;gt;&amp;lt;&#x2F;div&amp;gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;--000000000000a433c905e191f775--
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Of note, are several &lt;em&gt;signatures&lt;&#x2F;em&gt; and a possible flag (&lt;code&gt;KCTF{1d2fa1ed91a0310dad83242abc3f8a92}&lt;&#x2F;code&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;If we take a &lt;code&gt;diff&lt;&#x2F;code&gt; of the two different emails (e.g. &lt;code&gt;diff fffc5.eml ffdef.eml&lt;&#x2F;code&gt;), only the flag is changed.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;diff&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-diff &quot;&gt;&lt;code class=&quot;language-diff&quot; data-lang=&quot;diff&quot;&gt;&lt;span&gt;110c110
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;&amp;lt; die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}
+&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#4f5b66;color:#c0c5ce;&quot;&gt;---
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;gt; die Flag ist KCTF{a3afe0043bf7736216bc7ace6efac886}
+&lt;&#x2F;span&gt;&lt;span&gt;118c118
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;&amp;lt; &amp;lt;div dir=&amp;quot;ltr&amp;quot;&amp;gt;Hi,&amp;lt;div&amp;gt;&amp;lt;br&amp;gt;&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;&amp;lt;br&amp;gt;&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;LG&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;Martin&amp;lt;&#x2F;div&amp;gt;&amp;lt;&#x2F;div&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#4f5b66;color:#c0c5ce;&quot;&gt;---
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;gt; &amp;lt;div dir=&amp;quot;ltr&amp;quot;&amp;gt;Hi,&amp;lt;div&amp;gt;&amp;lt;br&amp;gt;&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;die Flag ist KCTF{a3afe0043bf7736216bc7ace6efac886}&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;&amp;lt;br&amp;gt;&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;LG&amp;lt;&#x2F;div&amp;gt;&amp;lt;div&amp;gt;Martin&amp;lt;&#x2F;div&amp;gt;&amp;lt;&#x2F;div&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This confirms what the prompt told us, so we can&#x27;t identify the correct flag by any differences between the files. Instead we&#x27;ll have to utilize the signatures provided in the emails to verify a valid &lt;code&gt;.eml&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;The first signature we see in the file is a &lt;code&gt;DKIM-Signature&lt;&#x2F;code&gt;. There is a useful &lt;a href=&quot;https:&#x2F;&#x2F;mailtrap.io&#x2F;blog&#x2F;dkim&#x2F;&quot;&gt;explainer&lt;&#x2F;a&gt; over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that&#x27;s used to verify the sender and &lt;strong&gt;content&lt;&#x2F;strong&gt; of an email have not been altered. That should be perfect to find the original, unaltered email in our &lt;em&gt;ein pfund mails&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Luckily, there are several DKIM verification libraries available on &lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;search&#x2F;?q=dkim&quot;&gt;PyPI&lt;&#x2F;a&gt;. I chose &lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;check-dkim&#x2F;&quot;&gt;check-dkim&lt;&#x2F;a&gt; since it was at the top of the list for my search. In the case of &lt;code&gt;check-dkim&lt;&#x2F;code&gt;, it&#x27;s actually a CLI script. So, after installing (&lt;code&gt;pip install check-dkim&lt;&#x2F;code&gt;), we can verify that it works for one of our &lt;code&gt;.eml&lt;&#x2F;code&gt; files.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;console&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-console &quot;&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span&gt;$ check-dkim mail&#x2F;fffc5.eml 
+&lt;&#x2F;span&gt;&lt;span&gt;Error verifying DKIM
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;SHy1AAdR&#x2F;+J5fTOT5HqeEr23p+JmXnlXWdr1QxcFqcU=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now let&#x27;s write a simple bash script to verify every email file.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#!&#x2F;bin&#x2F;bash
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# dkim_verify.sh
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;find &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -iname &lt;&#x2F;span&gt;&lt;span&gt;*.eml&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -type&lt;&#x2F;span&gt;&lt;span&gt; f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -exec&lt;&#x2F;span&gt;&lt;span&gt; echo&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -ne &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;FILE: {} --- &lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -exec&lt;&#x2F;span&gt;&lt;span&gt; check-dkim {} &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Execute the script to start checking.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;.&#x2F;dkim_verify.sh&lt;&#x2F;span&gt;&lt;span&gt; .&#x2F;mail&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here is the output from our first few files.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;FILE: mail&#x2F;c9f01.eml --- Error verifying DKIM                                                                                                                                               
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;KSjh&#x2F;SWf9CoOfANlP1JwziULd7TJwo2jAXdS6WxxiXk=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)                                                          
+&lt;&#x2F;span&gt;&lt;span&gt;FILE: mail&#x2F;483c0.eml --- Error verifying DKIM                                                                                                                                               
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;NPfXTjlgeHmYX3XL505Y9ZlDsWR&#x2F;nKofQRnlX2Eg+Vk=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;FILE: mail&#x2F;e1262.eml --- Error verifying DKIM
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;IwEUYGwkRHvyIUocHDTn1mq653UyllFukFAsC7&#x2F;bewY=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;FILE: mail&#x2F;a9331.eml --- Error verifying DKIM
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;2kwfDpgExCVsPaquMn2PMAqKf&#x2F;UEuOQneY6YpVutQ+U=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;FILE: mail&#x2F;c65c1.eml --- Error verifying DKIM
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;GGvQpfeY8Vzvfms3TWn1TsYW2Ws4CKhenm26CVZ7kCs=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;After a few minutes we get a hit. Here is the output leading up to the valid &lt;code&gt;.eml&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;FILE: mail&#x2F;3c586.eml --- Error verifying DKIM                                                                                                                                               
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;DopvYFdcPVYCj2nGEr3Jdll+EK7xiVVk33K&#x2F;6xRJp90=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;FILE: mail&#x2F;06570.eml --- Error verifying DKIM                                                                                                                                               
+&lt;&#x2F;span&gt;&lt;span&gt;body hash mismatch (got b&amp;#39;uJ&#x2F;mmb0346p2GMzAqGnz&#x2F;6hn5G0cL&#x2F;jiotY2dl2tBJk=&amp;#39;, expected b&amp;#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp&#x2F;nBHaexg4xOWtk=&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;FILE: mail&#x2F;438b5.eml --- DKIM verified successfully                                                                                                                                         
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now we can check which flag is in &lt;code&gt;438b5.eml&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;grep -oP &amp;quot;(KCTF{.*})&amp;quot; mail&#x2F;438b5.eml 
+&lt;&#x2F;span&gt;&lt;span&gt;KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
+&lt;&#x2F;span&gt;&lt;span&gt;KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we have our flag! &lt;code&gt;KCTF{1f8e659e892f2b2a05a54b8448ccbff9}&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>Cryptoverse 2022 - Super Guesser</title>
+            <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
+            <link>https://www.cblanken.dev/posts/superguesser/</link>
+            <guid>https://www.cblanken.dev/posts/superguesser/</guid>
+            <description>&lt;h2 id=&quot;problem-description&quot;&gt;Problem Description&lt;&#x2F;h2&gt;
+&lt;p&gt;Super Guesser is an &lt;em&gt;easy&lt;&#x2F;em&gt; rated reversing challenge for the Crytoverse 2022 CTF.
+We are given a short challenge description:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Only the true guessing &lt;em&gt;king&lt;&#x2F;em&gt; can solve this challenge.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;analysis&quot;&gt;Analysis&lt;&#x2F;h2&gt;
+&lt;p&gt;We are provided a link to download &lt;code&gt;guesser.pyc&lt;&#x2F;code&gt;, a compiled python binary.
+Just to confirm there aren&#x27;t any shenangins with the file extension, let&#x27;s check the file type.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ file guesser.pyc
+&lt;&#x2F;span&gt;&lt;span&gt;guesser.pyc: Byte-compiled Python module for CPython 3.8, timestamp-based, .py timestamp: Sun Sep 11 18:00:05 2022 UTC, .py size: 682 bytes
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;file&lt;&#x2F;code&gt; utility tells us that we are, in fact, dealing with a compiled python binary. In this case CPython 3.8 is the version.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;&#x2F;em&gt;: it&#x27;s important that we use the correct version of python when running the compiled &lt;code&gt;.pyc&lt;&#x2F;code&gt; file otherwise we might get a &lt;em&gt;magic number&lt;&#x2F;em&gt; error as shown below and be unable to execute the program.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ python guesser.pyc
+&lt;&#x2F;span&gt;&lt;span&gt;RuntimeError: Bad magic number in .pyc file
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If your system has an incompatible version of Python, I&#x27;d recommend installing a tool like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pyenv&#x2F;pyenv&quot;&gt;&lt;code&gt;pyenv&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; to install and manage other python versions side by side on your system.&lt;&#x2F;p&gt;
+&lt;p&gt;Now let&#x27;s try running this program to see what we get as output.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ python guesser.pyc
+&lt;&#x2F;span&gt;&lt;span&gt;Guess: test
+&lt;&#x2F;span&gt;&lt;span&gt;Invalid
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;$ python guesser.pyc
+&lt;&#x2F;span&gt;&lt;span&gt;Guess: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+&lt;&#x2F;span&gt;&lt;span&gt;Invalid
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay it look&#x27;s like the program is checking our input. Perhaps it is checking against the challenge&#x27;s flag.&lt;&#x2F;p&gt;
+&lt;p&gt;Referring to the challenge title we know that this is a reversing challenge, so the next logical step is to try decompiling the python binary.
+One popular python decompiler is &lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;decompyle3&#x2F;#:~:text=Python%20version%203.7%20on&quot;&gt;decompyle3&lt;&#x2F;a&gt;, which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.&lt;&#x2F;p&gt;
+&lt;p&gt;We can decompile &lt;code&gt;guesser.pyc&lt;&#x2F;code&gt; with the command:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;decompyle3 guesser.pyc
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This gets us the source code &lt;code&gt;guesser.py&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# decompyle3 version 3.9.0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Python bytecode version base 3.8.0 (3413)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Decompiled from: Python 3.8.0 (default, Oct 29 2022, 20:02:52)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# [GCC 12.2.0]
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Embedded file name: &#x2F;home&#x2F;guesser.py
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Compiled at: 2022-09-11 14:00:05
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Size of source mod 2**32: 682 bytes
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;hashlib, re
+&lt;&#x2F;span&gt;&lt;span&gt;hashes = [
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;d.0.....f5...5.6.7.1.30.6c.d9..0&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;1b.8.1.c........09.30.....64aa9.&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;c.d.1.53..66.4.43bd.......59...8&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.d.d.076........eae.3.6.85.a2...&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;():
+&lt;&#x2F;span&gt;&lt;span&gt;    guesses = []
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(hashes)):
+&lt;&#x2F;span&gt;&lt;span&gt;        guess = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Guess: &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;lt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;or &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;6 &lt;&#x2F;span&gt;&lt;span&gt;or re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^[a-z]+$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, guess):
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Invalid&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;not re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; + hashes[i].&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;replace&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;[0-9a-f]&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;) + &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, hashlib.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;md5&lt;&#x2F;span&gt;&lt;span&gt;(guess.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encode&lt;&#x2F;span&gt;&lt;span&gt;()).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hexdigest&lt;&#x2F;span&gt;&lt;span&gt;()):
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Invalid&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;            guesses.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;append&lt;&#x2F;span&gt;&lt;span&gt;(guess)
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Flag: &lt;&#x2F;span&gt;&lt;span&gt;{guesses[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;]}&amp;quot; + &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; + &amp;#39;&amp;#39;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;join&lt;&#x2F;span&gt;&lt;span&gt;(guesses[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;:]) + &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;__name__ == &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;__main__&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# okay decompiling guesser.pyc
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At first glance, this seems to be a fairly simple python script, but let&#x27;s break it down line by line.
+First we have the declaration of a list of &lt;code&gt;hashes&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span&gt;hashes = [
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;d.0.....f5...5.6.7.1.30.6c.d9..0&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;1b.8.1.c........09.30.....64aa9.&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;c.d.1.53..66.4.43bd.......59...8&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.d.d.076........eae.3.6.85.a2...&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These will be important in a moment, but for now let&#x27;s follow the logic to see what the &lt;em&gt;guesser&lt;&#x2F;em&gt; is checking for.&lt;&#x2F;p&gt;
+&lt;p&gt;We can see in the main function, we&#x27;re iterating over the list of hashes, and for each hash, we take a string as user input and check if it&#x27;s length is equal to 5 &lt;strong&gt;AND&lt;&#x2F;strong&gt; if it matches the regex string &lt;code&gt;^[a-z]+$&lt;&#x2F;code&gt; which would be interpreted as a string of exclusively lowercase alphabetic letters with a length greater than or equal to one. If this condition is met, the program exits and outputs &#x27;Invalid&#x27; just as we saw in initial test.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span&gt;guess = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Guess: &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;lt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;or &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;6 &lt;&#x2F;span&gt;&lt;span&gt;or re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^[a-z]+$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, guess):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Invalid&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The second &lt;code&gt;if&lt;&#x2F;code&gt; statement is taking an md5 hash of our guess string and checking that it matches the hash from our hashes list. The hash converts each &lt;code&gt;.&lt;&#x2F;code&gt; (dot) character to &lt;code&gt;[0-9a-f]&lt;&#x2F;code&gt;. This is necessary to only match on valid md5 hashes, otherwise we exit just as before.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;not re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; + hashes[i].&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;replace&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;[0-9a-f]&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;) + &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, hashlib.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;md5&lt;&#x2F;span&gt;&lt;span&gt;(guess.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encode&lt;&#x2F;span&gt;&lt;span&gt;()).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hexdigest&lt;&#x2F;span&gt;&lt;span&gt;()):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Invalid&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And finally, if our guess passes both of those checks it is appended to the &lt;code&gt;guesses&lt;&#x2F;code&gt; list.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    guesses.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;append&lt;&#x2F;span&gt;&lt;span&gt;(guess)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This &lt;code&gt;guesses&lt;&#x2F;code&gt; list is joined and printed as the flag output provided the program doesn&#x27;t exit prematurely by receiving an incorrect guess.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Flag: &lt;&#x2F;span&gt;&lt;span&gt;{guesses[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;]}&amp;quot; + &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; + &amp;#39;&amp;#39;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;join&lt;&#x2F;span&gt;&lt;span&gt;(guesses[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;:]) + &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;One important part of the last line, is that the first element of &lt;code&gt;guesses&lt;&#x2F;code&gt; is used as the beginning of our flag which, according to the flag format should correspond to &lt;code&gt;cvctf&lt;&#x2F;code&gt;. With that in mind we should be able to confirm our understanding of the program by finding the md5 hash of &lt;code&gt;cvctf&lt;&#x2F;code&gt; which should match the first hash in &lt;code&gt;hashes&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We can get the md5 hash by running &lt;code&gt;echo -n cvctf | md5sum&lt;&#x2F;code&gt; in our terminal. This gives us an md5 hash of &lt;code&gt;d70146aef5a8e5364791d3006ccd9c00&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Placing the hashes side by side we can see that they match.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;d.0.....f5...5.6.7.1.30.6c.d9..0
+&lt;&#x2F;span&gt;&lt;span&gt;d70146aef5a8e5364791d3006ccd9c00
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We should be able to test this by entering &lt;code&gt;cvctf&lt;&#x2F;code&gt; as our first guess when running the challenge binary.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; python guesser.pyc
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Guess:&lt;&#x2F;span&gt;&lt;span&gt; cvctf
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Guess:&lt;&#x2F;span&gt;&lt;span&gt; again
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Invalid
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can see that the program only exited after the guess of &amp;quot;again&amp;quot;, meaning the guess of &amp;quot;cvctf&amp;quot; was correct. That&#x27;s great but you may have noticed this seems to contradict a bit of our analysis. Recall that the first &lt;code&gt;if&lt;&#x2F;code&gt; check appeared to exclude any guesses that were 5 characters in length or all lowercase and alphabetic. This exactly matches our guess of &amp;quot;cvctf&amp;quot;!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;bad-decompilation&quot;&gt;Bad Decompilation?&lt;&#x2F;h3&gt;
+&lt;p&gt;As we can see, the behavior of the program when running the decompiled code does not match the behavior of the original &lt;code&gt;guesser.pyc&lt;&#x2F;code&gt;. Now I tried several decompilers, and as far as I can tell this is an error in the decompilation process. That line in particular should actually have decompiled to this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;not(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;lt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;or &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;6 &lt;&#x2F;span&gt;&lt;span&gt;or re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^[a-z]+$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, guess)):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Invalid&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Instead of this&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;lt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;4 &lt;&#x2F;span&gt;&lt;span&gt;or &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(guess) &amp;gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;6 &lt;&#x2F;span&gt;&lt;span&gt;or re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^[a-z]+$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, guess):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Invalid&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this case, the program would exit if the guess is &lt;strong&gt;NOT&lt;&#x2F;strong&gt; 5 alphabetic characters. This matches the behavior we&#x27;ve seen when running compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter &lt;code&gt;brute.py&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# brute.py
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;hashlib
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;re
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span&gt;pwnlib.util.iters &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;bruteforce, mbruteforce
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;hash_patterns = [
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^d.0.....f5...5.6.7.1.30.6c.d9..0$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^1b.8.1.c........09.30.....64aa9.$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^c.d.1.53..66.4.43bd.......59...8$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;^.d.d.076........eae.3.6.85.a2...$&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]
+&lt;&#x2F;span&gt;&lt;span&gt; 
+&lt;&#x2F;span&gt;&lt;span&gt;hash_regexes = [re.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;compile&lt;&#x2F;span&gt;&lt;span&gt;(x) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;x &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;hash_patterns]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;guess_len = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;5
+&lt;&#x2F;span&gt;&lt;span&gt;charset = &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;abcdefghijklmnopqrstuvwxyz&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;regex &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;hash_regexes:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Searching for match for &lt;&#x2F;span&gt;&lt;span&gt;{regex}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;...&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;    found = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;mbruteforce&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;lambda &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;guess&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        regex.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;match&lt;&#x2F;span&gt;&lt;span&gt;(hashlib.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;md5&lt;&#x2F;span&gt;&lt;span&gt;(guess.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encode&lt;&#x2F;span&gt;&lt;span&gt;()).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hexdigest&lt;&#x2F;span&gt;&lt;span&gt;()),
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;alphabet&lt;&#x2F;span&gt;&lt;span&gt;=charset,
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;length&lt;&#x2F;span&gt;&lt;span&gt;=guess_len
+&lt;&#x2F;span&gt;&lt;span&gt;    )
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;found is &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;None&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;No matches found&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;FOUND: &lt;&#x2F;span&gt;&lt;span&gt;{found}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;, MD5: &lt;&#x2F;span&gt;&lt;span&gt;{hashlib.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;md5&lt;&#x2F;span&gt;&lt;span&gt;(found.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encode&lt;&#x2F;span&gt;&lt;span&gt;()).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;hexdigest&lt;&#x2F;span&gt;&lt;span&gt;()}&amp;quot;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The program uses &lt;a href=&quot;https:&#x2F;&#x2F;docs.pwntools.com&#x2F;en&#x2F;stable&#x2F;util&#x2F;iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce&quot;&gt;pwntools&lt;&#x2F;a&gt; to generate all the possible combinations given our set of lowercase alphabetic characters. It then generates the md5 hash using the &lt;a href=&quot;https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;hashlib.html#module-hashlib&quot;&gt;&lt;code&gt;hashlib&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; library and compares it against the hash from the &lt;code&gt;hashes&lt;&#x2F;code&gt; list.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ python brute.py
+&lt;&#x2F;span&gt;&lt;span&gt;Searching for match for re.compile(&amp;#39;^d.0.....f5...5.6.7.1.30.6c.d9..0$&amp;#39;)...
+&lt;&#x2F;span&gt;&lt;span&gt;FOUND: cvctf, MD5: d70146aef5a8e5364791d3006ccd9c00
+&lt;&#x2F;span&gt;&lt;span&gt;Searching for match for re.compile(&amp;#39;^1b.8.1.c........09.30.....64aa9.$&amp;#39;)...
+&lt;&#x2F;span&gt;&lt;span&gt;FOUND: hashi, MD5: 1bd8d1fc2b9ad2bb0943056ecf64aa97
+&lt;&#x2F;span&gt;&lt;span&gt;Searching for match for re.compile(&amp;#39;^c.d.1.53..66.4.43bd.......59...8$&amp;#39;)...
+&lt;&#x2F;span&gt;&lt;span&gt;FOUND: snotg, MD5: cdd01c536d66a4943bd8bf6f5d59c0c8
+&lt;&#x2F;span&gt;&lt;span&gt;Searching for match for re.compile(&amp;#39;^.d.d.076........eae.3.6.85.a2...$&amp;#39;)...
+&lt;&#x2F;span&gt;&lt;span&gt;FOUND: uessy, MD5: 8d1d70762f431cd9eaec3967859a2b4b
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Et voilà, we have our flag! &lt;code&gt;cvctf{hashisnotguessy}&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+</description>
+        </item>
+        <item>
+            <title>PicoCTF 2022 - Operation Orchid</title>
+            <pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate>
+            <link>https://www.cblanken.dev/posts/operationorchid/</link>
+            <guid>https://www.cblanken.dev/posts/operationorchid/</guid>
+            <description>&lt;p&gt;The challenge description goes as follows:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Download this disk image and find the flag.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;We&#x27;re then given an option to download the mentioned compressed disk image (disk.flag.img.gz). Decompress the archive with &lt;code&gt;gunzip disk.flag.img.gz&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s check what kind of disk image this is:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ file disk.flag.img
+&lt;&#x2F;span&gt;&lt;span&gt;disk.flag.img: DOS&#x2F;MBR boot sector; partition 1 : ID=0x83, active, start-CHS (0x0,32,33), end-CHS (0xc,223,19), startsector 2048, 204800 sectors; partition 2 : ID=0x82, start-CHS (0xc,223,20), end-CHS (0x19,159,6), startsector 206848, 204800 sectors; partition 3 : ID=0x83, start-CHS (0x19,159,7), end-CHS (0x32,253,11), startsector 411648, 407552 sectors
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay at the very least the system recognizes &lt;code&gt;disk.flag.img&lt;&#x2F;code&gt; as a valid image. Let&#x27;s try to mount the image to see if we can access the files.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ mkdir .&#x2F;mnt
+&lt;&#x2F;span&gt;&lt;span&gt;$ sudo mount disk.flag.img .&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;mount: &#x2F;home&#x2F;cameron&#x2F;notes&#x2F;ctf&#x2F;picoCTF_2022&#x2F;Forensics&#x2F;OperationOrchid&#x2F;mnt: wrong fs type, bad option, bad superblock on &#x2F;dev&#x2F;loop0, missing codepage or helper program, or other error.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Well that didn&#x27;t work. It&#x27;s important to know that, while the &lt;code&gt;mount&lt;&#x2F;code&gt; command can often automatically detect the filesystem of a device or disk image, it doesn&#x27;t automatically detect the offset.&lt;&#x2F;p&gt;
+&lt;p&gt;We can get some more information about the image, by viewing the partition table with the &lt;code&gt;mmls&lt;&#x2F;code&gt; command.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ mmls disk.flag.img
+&lt;&#x2F;span&gt;&lt;span&gt;DOS Partition Table
+&lt;&#x2F;span&gt;&lt;span&gt;Offset Sector: 0
+&lt;&#x2F;span&gt;&lt;span&gt;Units are in 512-byte sectors
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;      Slot      Start        End          Length       Description
+&lt;&#x2F;span&gt;&lt;span&gt;000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+&lt;&#x2F;span&gt;&lt;span&gt;001:  -------   0000000000   0000002047   0000002048   Unallocated
+&lt;&#x2F;span&gt;&lt;span&gt;002:  000:000   0000002048   0000206847   0000204800   Linux (0x83)
+&lt;&#x2F;span&gt;&lt;span&gt;003:  000:001   0000206848   0000411647   0000204800   Linux Swap &#x2F; Solaris x86 (0x82)
+&lt;&#x2F;span&gt;&lt;span&gt;004:  000:002   0000411648   0000819199   0000407552   Linux (0x83)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Here we have all the information we need to calculate the offset in bytes.
+The &lt;code&gt;mmls&lt;&#x2F;code&gt; output lists each section by a count of sectors. So in this case, we can see the first Linux partition starts at sector &lt;code&gt;2048&lt;&#x2F;code&gt;. To calculate the offset we just need to multiply the number of sectors by the bytes per sector listed above as &lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Units are in 512-byte sectors&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;So, our &lt;strong&gt;offset&lt;&#x2F;strong&gt; = 512 x 2048 = 1048576 bytes. Let&#x27;s try to mount the image again with the appropriate offset.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ sudo mount -o offset=1048576 disk.flag.img .&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Nice, we didn&#x27;t get any errors this time. Let&#x27;s check the &lt;code&gt;.&#x2F;mnt&#x2F;&lt;&#x2F;code&gt; directory&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ tree .&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;├── boot -&amp;gt; .
+&lt;&#x2F;span&gt;&lt;span&gt;├── config-virt
+&lt;&#x2F;span&gt;&lt;span&gt;├── extlinux.conf
+&lt;&#x2F;span&gt;&lt;span&gt;├── initramfs-virt
+&lt;&#x2F;span&gt;&lt;span&gt;├── ldlinux.c32
+&lt;&#x2F;span&gt;&lt;span&gt;├── ldlinux.sys
+&lt;&#x2F;span&gt;&lt;span&gt;├── libcom32.c32
+&lt;&#x2F;span&gt;&lt;span&gt;├── libutil.c32
+&lt;&#x2F;span&gt;&lt;span&gt;├── lost+found [error opening dir]
+&lt;&#x2F;span&gt;&lt;span&gt;├── mboot.c32
+&lt;&#x2F;span&gt;&lt;span&gt;├── menu.c32
+&lt;&#x2F;span&gt;&lt;span&gt;├── System.map-virt
+&lt;&#x2F;span&gt;&lt;span&gt;├── vesamenu.c32
+&lt;&#x2F;span&gt;&lt;span&gt;└── vmlinuz-virt
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;2 directories, 12 files
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay, doesn&#x27;t look like there is much here. This just seems to be the boot partition.
+We can check out the &lt;code&gt;extlinux.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ cat extlinux.conf
+&lt;&#x2F;span&gt;&lt;span&gt;# Generated by update-extlinux 6.04_pre1-r9
+&lt;&#x2F;span&gt;&lt;span&gt;DEFAULT menu.c32
+&lt;&#x2F;span&gt;&lt;span&gt;PROMPT 0
+&lt;&#x2F;span&gt;&lt;span&gt;MENU TITLE Alpine&#x2F;Linux Boot Menu
+&lt;&#x2F;span&gt;&lt;span&gt;MENU HIDDEN
+&lt;&#x2F;span&gt;&lt;span&gt;MENU AUTOBOOT Alpine will be booted automatically in # seconds.
+&lt;&#x2F;span&gt;&lt;span&gt;TIMEOUT 30
+&lt;&#x2F;span&gt;&lt;span&gt;LABEL virt
+&lt;&#x2F;span&gt;&lt;span&gt;  MENU LABEL Linux virt
+&lt;&#x2F;span&gt;&lt;span&gt;  LINUX vmlinuz-virt
+&lt;&#x2F;span&gt;&lt;span&gt;  INITRD initramfs-virt
+&lt;&#x2F;span&gt;&lt;span&gt;  APPEND root=UUID=7b688671-b1b5-4e64-830d-36ebc2d4259e modules=sd-mod,usb-storage,ext4 quiet rootfstype=ext4
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;MENU SEPARATOR
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It looks like this is an Alpine Linux image which is neat but isn&#x27;t particularly helpful here. Let&#x27;s look at the next partition we saw in the partition table. &lt;&#x2F;p&gt;
+&lt;p&gt;The 2nd partition started at sector 206848, but it says it&#x27;s a swap partition which is essentially a file that acts as extra memory to keep your system from crashing if it is using too much RAM. We&#x27;ll skip this partition for now and look at the last partition which should contain the files for the system this image was pulled from.&lt;&#x2F;p&gt;
+&lt;p&gt;The last partition starts at sector 411648, so 512 x 411648 = 210763776 bytes is our new offset. Let&#x27;s unmount the first partition and remount with the new offset.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ sudo umount .&#x2F;mnt
+&lt;&#x2F;span&gt;&lt;span&gt;$ sudo mount -o offset=210763776 disk.flag.img .&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;$ tree -L 1 .&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;span&gt;├── bin
+&lt;&#x2F;span&gt;&lt;span&gt;├── boot
+&lt;&#x2F;span&gt;&lt;span&gt;├── dev
+&lt;&#x2F;span&gt;&lt;span&gt;├── etc
+&lt;&#x2F;span&gt;&lt;span&gt;├── home
+&lt;&#x2F;span&gt;&lt;span&gt;├── lib
+&lt;&#x2F;span&gt;&lt;span&gt;├── lost+found
+&lt;&#x2F;span&gt;&lt;span&gt;├── media
+&lt;&#x2F;span&gt;&lt;span&gt;├── mnt
+&lt;&#x2F;span&gt;&lt;span&gt;├── opt
+&lt;&#x2F;span&gt;&lt;span&gt;├── proc
+&lt;&#x2F;span&gt;&lt;span&gt;├── root
+&lt;&#x2F;span&gt;&lt;span&gt;├── run
+&lt;&#x2F;span&gt;&lt;span&gt;├── sbin
+&lt;&#x2F;span&gt;&lt;span&gt;├── srv
+&lt;&#x2F;span&gt;&lt;span&gt;├── swap
+&lt;&#x2F;span&gt;&lt;span&gt;├── sys
+&lt;&#x2F;span&gt;&lt;span&gt;├── tmp
+&lt;&#x2F;span&gt;&lt;span&gt;├── usr
+&lt;&#x2F;span&gt;&lt;span&gt;└── var
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Nice, that looks like a standard Linux system to me. Let&#x27;s see if we can find that flag.
+A good first step is to search for any files with &amp;quot;flag&amp;quot; in the name since this &lt;em&gt;is&lt;&#x2F;em&gt; a CTF after all. We can do that with the &lt;code&gt;find&lt;&#x2F;code&gt; command.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ sudo find .&#x2F;mnt&#x2F; -iname &amp;quot;*flag*&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;mnt&#x2F;root&#x2F;flag.txt.enc
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Well that looks promising. Let&#x27;s check what kind of file that is.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ sudo file .&#x2F;mnt&#x2F;root&#x2F;flag.txt.enc
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;mnt&#x2F;root&#x2F;flag.txt.enc: openssl enc&amp;#39;d data with salted password
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s also check if &lt;code&gt;flag.txt.enc&lt;&#x2F;code&gt; shows up in any logs, scripts or other files on the image.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ sudo grep -r flag.txt.enc .&#x2F;mnt
+&lt;&#x2F;span&gt;&lt;span&gt;.&#x2F;mnt&#x2F;root&#x2F;.ash_history:openssl aes256 -salt -in flag.txt -out flag.txt.enc -k unbreakablepassword1234567
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It looks like the &lt;code&gt;openssl&lt;&#x2F;code&gt; command was used to encrypt the &lt;code&gt;flag.txt&lt;&#x2F;code&gt; with a password of &lt;code&gt;unbreakablepassword1234567&lt;&#x2F;code&gt;. The command we saw in &lt;code&gt;&#x2F;mnt&#x2F;root&#x2F;.ash_history&lt;&#x2F;code&gt; uses the &lt;a href=&quot;https:&#x2F;&#x2F;www.openssl.org&#x2F;docs&#x2F;man1.1.1&#x2F;man1&#x2F;enc.html&quot;&gt;&lt;code&gt;openssl-enc&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; function of &lt;code&gt;openssl&lt;&#x2F;code&gt; to encrypt the data. If we look through the man page, we&#x27;ll notice that &lt;code&gt;openssl-enc&lt;&#x2F;code&gt; has an option for decryption.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;-e  Encrypt the input data: this is the default.
+&lt;&#x2F;span&gt;&lt;span&gt;-d  Decrypt the input data.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s try decrypting &lt;code&gt;flag.txt.enc&lt;&#x2F;code&gt; with the password we found.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ openssl aes256 -d -salt -in flag.txt.enc -out flag.txt -k unbreakablepassword1234567
+&lt;&#x2F;span&gt;&lt;span&gt;*** WARNING : deprecated key derivation used.
+&lt;&#x2F;span&gt;&lt;span&gt;Using -iter or -pbkdf2 would be better.
+&lt;&#x2F;span&gt;&lt;span&gt;bad decrypt
+&lt;&#x2F;span&gt;&lt;span&gt;140027284948288:error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt:..&#x2F;crypto&#x2F;evp&#x2F;evp_enc.c:610:
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We got some warnings, but it looks like the command still output a decrypted file &lt;code&gt;flag.txt&lt;&#x2F;code&gt;. Let&#x27;s see what it says.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ cat flag.txt
+&lt;&#x2F;span&gt;&lt;span&gt;picoCTF{h4un71ng_p457_5113beab}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And there&#x27;s our flag.&lt;&#x2F;p&gt;
+&lt;p&gt;Don&#x27;t forget to unmount the image once you&#x27;re done!&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ sudo umount .&#x2F;mnt&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</description>
+        </item>
+        <item>
+            <title>PicoCTF 2022 - SideChannel</title>
+            <pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate>
+            <link>https://www.cblanken.dev/posts/sidechannel/</link>
+            <guid>https://www.cblanken.dev/posts/sidechannel/</guid>
+            <description>&lt;p&gt;The name itself &amp;quot;SideChannel&amp;quot; seems to indicate a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Side-channel_attack&quot;&gt;side-channel attack&lt;&#x2F;a&gt;, so we should keep that in mind going forward.&lt;&#x2F;p&gt;
+&lt;p&gt;To start, we&#x27;re given a short description&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There&#x27;s something fishy about this PIN-code checker, can you figure out the PIN and get the flag?&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;We&#x27;re then offered a download for a program called &lt;code&gt;pin_checker&lt;&#x2F;code&gt;.
+Running the &lt;code&gt;pin_checker&lt;&#x2F;code&gt; binary will give us the following output:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ .&#x2F;pin_checker
+&lt;&#x2F;span&gt;&lt;span&gt;Please enter your 8-digit PIN code:
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Let&#x27;s try entering a PIN &lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ .&#x2F;pin_checker
+&lt;&#x2F;span&gt;&lt;span&gt;Please enter your 8-digit PIN code:
+&lt;&#x2F;span&gt;&lt;span&gt;00000000
+&lt;&#x2F;span&gt;&lt;span&gt;8
+&lt;&#x2F;span&gt;&lt;span&gt;Checking PIN...
+&lt;&#x2F;span&gt;&lt;span&gt;Access denied.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay, so it looks like a classic PIN entry. The program will tell us if we&#x27;ve found the correct PIN. It also requires an 8-digit PIN as you might expect. Anything longer or shorter will give an error. For example:&lt;&#x2F;p&gt;
+&lt;p&gt;Short PIN&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ .&#x2F;pin_checker
+&lt;&#x2F;span&gt;&lt;span&gt;Please enter your 8-digit PIN code:
+&lt;&#x2F;span&gt;&lt;span&gt;12345
+&lt;&#x2F;span&gt;&lt;span&gt;5
+&lt;&#x2F;span&gt;&lt;span&gt;Incorrect length.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Long PIN&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ .&#x2F;pin_checker
+&lt;&#x2F;span&gt;&lt;span&gt;Please enter your 8-digit PIN code:
+&lt;&#x2F;span&gt;&lt;span&gt;123456789
+&lt;&#x2F;span&gt;&lt;span&gt;9
+&lt;&#x2F;span&gt;&lt;span&gt;Incorrect length.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;brute-force&quot;&gt;Brute-force&lt;&#x2F;h3&gt;
+&lt;p&gt;At this point, I decided to try a simple brute-force attack on the PIN, just to see if it was feasible, so I wrote a python script to do just that.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# pins.py
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;sys
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;from &lt;&#x2F;span&gt;&lt;span&gt;subprocess &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;Popen, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PIPE
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;pins = (&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;{:08}&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;format&lt;&#x2F;span&gt;&lt;span&gt;(x) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;x &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;99999999&lt;&#x2F;span&gt;&lt;span&gt;))
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;try&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;pin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;pins:
+&lt;&#x2F;span&gt;&lt;span&gt;        proc = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;Popen&lt;&#x2F;span&gt;&lt;span&gt;([&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&#x2F;pin_checker&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;], &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;stdout&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PIPE&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;stdin&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PIPE&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;stderr&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PIPE&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;        stdout_data = proc.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;communicate&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;input&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bytes&lt;&#x2F;span&gt;&lt;span&gt;(pin, &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;utf-8&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;))[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;        stdout_string = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;str&lt;&#x2F;span&gt;&lt;span&gt;(stdout_data)
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;granted&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; in stdout_string:
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;FOUND PIN! PIN: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;{}&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;, pin)
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;break
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;PIN: &lt;&#x2F;span&gt;&lt;span&gt;{pin}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;str&lt;&#x2F;span&gt;&lt;span&gt;(stdout_data).&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;strip&lt;&#x2F;span&gt;&lt;span&gt;()}&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;except &lt;&#x2F;span&gt;&lt;span&gt;KeyboardInterrupt:
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Program interrupted.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;    sys.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;exit&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;pin.py&lt;&#x2F;code&gt; output&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ time python pins.py
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000000, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000001, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000002, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000003, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000004, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000005, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;...
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000095, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000096, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000097, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000098, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;PIN: 00000099, b&amp;#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;real    0m12.780s
+&lt;&#x2F;span&gt;&lt;span&gt;user    0m12.311s
+&lt;&#x2F;span&gt;&lt;span&gt;sys     0m0.435s
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Unfortunately timing just the first 100 PINs, my system took over 12 seconds.
+No let&#x27;s see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.&lt;&#x2F;p&gt;
+&lt;p&gt;$$
+total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;This is, of course, assuming the time to check each PIN is consistent (we&#x27;ll find out shortly that&#x27;s not the case). Regardless, it&#x27;s safe to say brute forcing the PIN doesn&#x27;t look like a good path forward.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;timing-attack&quot;&gt;Timing attack&lt;&#x2F;h3&gt;
+&lt;p&gt;Okay, now that we&#x27;ve ruled out a brute-force attempt, let&#x27;s go back to the title of the challenge, &lt;em&gt;SideChannel&lt;&#x2F;em&gt;. Side-channel attacks are essentially observing a process and gleaning information from it based on timing, power consumption, or even sound. They can get very complicated, but in our case the only path that really makes sense for our program is a timing-based attack.&lt;&#x2F;p&gt;
+&lt;p&gt;So, let&#x27;s start by fuzzing &lt;code&gt;pin_checker&lt;&#x2F;code&gt; with a few different PINs and monitoring the execution time to see where that gets us.&lt;&#x2F;p&gt;
+&lt;p&gt;Just to highlight a few things I&#x27;ll be using the following pipeline to clean up the output and just focus on the real elapsed time by the process. You can see an in depth breakdown of the &lt;a href=&quot;https:&#x2F;&#x2F;explainshell.com&#x2F;explain?cmd=%24+%2Fusr%2Fbin%2Ftime+-f+2%3E%261+%22%5Cn%25E%22+.%2Fpin_checker+%3C%3C%3C+00000000+%7C+tail+-n1+0%3A00.13&quot;&gt;pipeline&lt;&#x2F;a&gt; on &lt;a href=&quot;https:&#x2F;&#x2F;explainshell.com&#x2F;&quot;&gt;explainshell.com&lt;&#x2F;a&gt;. Just know that we&#x27;re sending a PIN code (&lt;code&gt;00000000&lt;&#x2F;code&gt; in this case) to &lt;code&gt;.&#x2F;pin_checker&lt;&#x2F;code&gt; and getting back the elapsed time in &lt;code&gt;hours:minutes:seconds&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 00000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Following are all the permutations of the first digit of the PIN while leaving the remaining digits as zero.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 00000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.12
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 10000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 20000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 30000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 40000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 50000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 60000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 70000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.14
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 80000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 90000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.13
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you look carefully, you&#x27;ll see that when we sent the PIN &lt;code&gt;40000000&lt;&#x2F;code&gt;, the elapsed time seemed to double. That&#x27;s certainly interesting. We know that &lt;code&gt;pin_checker&lt;&#x2F;code&gt; must be checking the PIN code for a valid entry. Maybe it takes longer to verify the PIN when some of the digits are correct? Let&#x27;s keep going.&lt;&#x2F;p&gt;
+&lt;p&gt;Keeping the first digit as 4, lets check the second digit.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 40000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 41000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 42000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 43000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 44000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 45000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 46000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 47000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 48000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.37
+&lt;&#x2F;span&gt;&lt;span&gt;$ &#x2F;usr&#x2F;bin&#x2F;time -f 2&amp;gt;&amp;amp;1 &amp;quot;\n%E&amp;quot; .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; 49000000 | tail -n1
+&lt;&#x2F;span&gt;&lt;span&gt;0:00.25
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We notice that the elapsed time has increased again when sending the PIN &lt;code&gt;48000000&lt;&#x2F;code&gt;. It hasn&#x27;t doubled this time, but it has markedly increased while the elapsed time for the others remained the same.&lt;&#x2F;p&gt;
+&lt;p&gt;I won&#x27;t go through each step here, but each digit can be deduced from the above process. After checking each digit for an increased elapsed time we can find the correct PIN. I&#x27;ll leave that up to the reader though =)&lt;&#x2F;p&gt;
+&lt;p&gt;Once you determine the correct PIN you can check it against &lt;code&gt;pin_checker&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;$ .&#x2F;pin_checker &amp;lt;&amp;lt;&amp;lt; XXXXXXXX
+&lt;&#x2F;span&gt;&lt;span&gt;Please enter your 8-digit PIN code:
+&lt;&#x2F;span&gt;&lt;span&gt;8
+&lt;&#x2F;span&gt;&lt;span&gt;Checking PIN...
+&lt;&#x2F;span&gt;&lt;span&gt;Access granted. You may use your PIN to log into the master server.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</description>
+        </item>
+    </channel>
+</rss>
