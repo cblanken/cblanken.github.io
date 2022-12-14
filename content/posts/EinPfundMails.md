@@ -8,7 +8,7 @@ tags = ["ctf", "infosec", "python"]
 +++
 
 ## Problem Description
-The `ein-pfund-mails` challenge is a _baby_ rated challenge in the Misc category for KitCTFCTF 2022. The title _ein pfund mails_ is actually German for _"A pound of mail"_. Which makes sense since we are given an archive (`mails.targ.gz`) containing 3993 `.eml` files. We're told one of these leaked email files contains our flag, but we're unable to determine which file contains the correct flag.
+The `ein-pfund-mails` challenge is a _baby_ rated challenge in the Misc category for KitCTFCTF 2022. The title _ein pfund mails_ is actually German for _"A pound of mail"_. Which makes sense since we are given an archive (`mails.tar.gz`) containing 3993 `.eml` files. We're told one of these leaked email files contains our flag, but we're unable to determine which file contains the correct flag.
 
 ## Analysis
 First off, let's take a look at one of the email files.
@@ -152,9 +152,9 @@ If we take a `diff` of the two different emails (e.g. `diff fffc5.eml ffdef.eml`
 This confirms what the prompt told us, so we can't identify the correct flag by any differences between the files. Instead we'll have to utilize the signatures provided in the emails to verify a valid `.eml`.
 
 ## Solution
-The first signature we see in the file is a `DKIM-Signature`. There is a useful [explainer](https://mailtrap.io/blog/dkim/) over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that's used to verify the sender and that the __content__ of an email has not been altered. That's perfect for us to find the original, unaltered email in our _ein pfund mails_.
+The first signature we see in the file is a `DKIM-Signature`. There is a useful [explainer](https://mailtrap.io/blog/dkim/) over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that's used to verify the sender and __content__ of an email have not been altered. That should be perfect to find the original, unaltered email in our _ein pfund mails_.
 
-Luckily, there are several DKIM verification libraries available on [PyPI](https://pypi.org/search/?q=dkim). I chose [check-dkim](https://pypi.org/project/check-dkim/) as it was the top of the list for my search. In the case of `check-dkim`, it's actually a CLI script. So, after installing (`pip install check-dkim`), we can verify that it works for one of our `.eml` files.
+Luckily, there are several DKIM verification libraries available on [PyPI](https://pypi.org/search/?q=dkim). I chose [check-dkim](https://pypi.org/project/check-dkim/) since it was at the top of the list for my search. In the case of `check-dkim`, it's actually a CLI script. So, after installing (`pip install check-dkim`), we can verify that it works for one of our `.eml` files.
 ```console
 $ check-dkim mail/fffc5.eml 
 Error verifying DKIM
@@ -168,7 +168,7 @@ Now let's write a simple bash script to verify every email file.
 find "$1" -iname *.eml -type f -exec echo -ne "FILE: {} --- " \; -exec check-dkim {} \;
 ```
 
-Execute the script to start checking each file.
+Execute the script to start checking.
 ```bash
 ./dkim_verify.sh ./mail/
 ```
@@ -188,7 +188,7 @@ body hash mismatch (got b'GGvQpfeY8Vzvfms3TWn1TsYW2Ws4CKhenm26CVZ7kCs=', expecte
 ```
 ----
 
-And after a few minutes we get a hit. Here is our output leading up to the valid `.eml`.
+After a few minutes we get a hit. Here is the output leading up to the valid `.eml`.
 ```
 FILE: mail/3c586.eml --- Error verifying DKIM                                                                                                                                               
 body hash mismatch (got b'DopvYFdcPVYCj2nGEr3Jdll+EK7xiVVk33K/6xRJp90=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
@@ -197,7 +197,7 @@ body hash mismatch (got b'uJ/mmb0346p2GMzAqGnz/6hn5G0cL/jiotY2dl2tBJk=', expecte
 FILE: mail/438b5.eml --- DKIM verified successfully                                                                                                                                         
 ```
 
-Now we can simply check which flag is in `438b5.eml`.
+Now we can check which flag is in `438b5.eml`.
 ```
 grep -oP "(KCTF{.*})" mail/438b5.eml 
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
