@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title> - C</title>
+      <link>https://www.cblanken.dev</link>
+      <description></description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://www.cblanken.dev/tags/c/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Sat, 25 Mar 2023 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>HTB Apocalypse 2023 - Janken</title>
+          <pubDate>Sat, 25 Mar 2023 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://www.cblanken.dev/posts/janken/</link>
+          <guid>https://www.cblanken.dev/posts/janken/</guid>
+          <description>&lt;h2 id=&quot;problem-description&quot;&gt;Problem Description&lt;&#x2F;h2&gt;
+&lt;p&gt;Janken is an &lt;em&gt;easy&lt;&#x2F;em&gt; rated Misc challenge.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As you approach an ancient tomb, you&#x27;re met with a wise guru who guards its entrance. In order to proceed, he challenges you to a game of Janken, a variation of rock paper scissors with a unique twist. But there&#x27;s a catch: you must win 100 rounds in a row to pass. Fail to do so, and you&#x27;ll be denied entry.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;analysis&quot;&gt;Analysis&lt;&#x2F;h2&gt;
+&lt;p&gt;Analyzing the decompilation of the binary (&lt;code&gt;janken&lt;&#x2F;code&gt;), we find a loop for the 100 rounds mentioned in the prompt running the following &lt;code&gt;game&lt;&#x2F;code&gt; function.&lt;br&gt;
+&lt;img src=&quot;..&#x2F;..&#x2F;images&#x2F;janken_ghidra_1.png&quot; alt=&quot;ghidra-1&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Here&#x27;s an excerpt of the pwntools script used to solve the challenge.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span&gt;io = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;start&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;info&lt;&#x2F;span&gt;&lt;span&gt;(io.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;recvuntil&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;b&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# prompt
+&lt;&#x2F;span&gt;&lt;span&gt;io.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sendline&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;b&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;rps = [&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;rock&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;scissors&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;paper&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;rps_win = {
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;rock&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;: &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;paper&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;paper&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;: &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;scissors&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;scissors&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;: &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;rock&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;,
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;wait_for_next_second&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;epoch_time&lt;&#x2F;span&gt;&lt;span&gt;):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;while &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt;(time.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;time&lt;&#x2F;span&gt;&lt;span&gt;()) &amp;lt;= epoch_time:
+&lt;&#x2F;span&gt;&lt;span&gt;        time.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sleep&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.05&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;_i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;range&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;99&lt;&#x2F;span&gt;&lt;span&gt;):
+&lt;&#x2F;span&gt;&lt;span&gt;    epoch_time = epoch_time = time.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;time&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# time before asking for prompt
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;epoch_time - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt;(epoch_time) &amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.8&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;wait_for_next_second&lt;&#x2F;span&gt;&lt;span&gt;(epoch_time)
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;info&lt;&#x2F;span&gt;&lt;span&gt;(io.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;recvuntil&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;b&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;)) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# wait for prompt
+&lt;&#x2F;span&gt;&lt;span&gt;    time2 = time.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;time&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;    rand_io = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;process&lt;&#x2F;span&gt;&lt;span&gt;([&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&#x2F;rand&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;{epoch_time}&amp;quot;])
+&lt;&#x2F;span&gt;&lt;span&gt;    r = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;int&lt;&#x2F;span&gt;&lt;span&gt;(rand_io.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;readline&lt;&#x2F;span&gt;&lt;span&gt;().&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;strip&lt;&#x2F;span&gt;&lt;span&gt;())
+&lt;&#x2F;span&gt;&lt;span&gt;    enemy_answer = rps[r % &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;    answer = rps_win[enemy_answer]
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;info&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Sending result: &lt;&#x2F;span&gt;&lt;span&gt;{answer}&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;    time3 = time.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;time&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# time before sending response
+&lt;&#x2F;span&gt;&lt;span&gt;    io.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sendline&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bytes&lt;&#x2F;span&gt;&lt;span&gt;(answer, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;encoding&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;utf-8&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;))
+&lt;&#x2F;span&gt;&lt;span&gt;    time4 = time.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;time&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# time after sending response
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;print&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;{_i}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;: Time delta: &lt;&#x2F;span&gt;&lt;span&gt;{epoch_time&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;:.3f&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;{time2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;:.3f&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;{(time2 - epoch_time)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;:.3f&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;{(time4-time3)&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;:3f&lt;&#x2F;span&gt;&lt;span&gt;}&amp;quot;)
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;io.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;interactive&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;flag&quot;&gt;Flag&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;img src=&quot;..&#x2F;..&#x2F;images&#x2F;janken_get_flag.png&quot; alt=&quot;get-flag&quot; &#x2F;&gt;&lt;br&gt;
+We have our flag! &lt;code&gt;HTB{r0ck_p4p3R_5tr5tr_l0g1c_buG}&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>
