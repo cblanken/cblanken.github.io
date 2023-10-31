@@ -8,7 +8,6 @@ compile_sass = true
 build_search_index = true
 
 theme = "DeepThought"
-#compile_sass = true
 minify_html = false
 generate_feed = true
 feed_filename = "rss.xml"
@@ -53,7 +52,6 @@ webmanifest = "/icons/site.webmanifest"
 # Author details
 [extra.author]
 name = "Cameron"
-avatar = "/images/profile.jpg"
 
 # Social links
 [extra.social]
