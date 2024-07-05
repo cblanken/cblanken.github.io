@@ -1,9 +1,12 @@
 +++
 title = "PicoCTF 2022 - SideChannel"
 date = 2022-05-29
+description = "Writeup of a solution for the SideChannel challenge from PicoCTF 2022"
+
+[extra]
+show_only_description = true
 
 [taxonomies]
-categories = ["CTF Writeup"]
 tags = ["ctf", "infosec", "python"]
 +++
 The name itself "SideChannel" seems to indicate a [side-channel attack](https://en.wikipedia.org/wiki/Side-channel_attack), so we should keep that in mind going forward.
@@ -96,9 +99,7 @@ sys     0m0.435s
 Unfortunately timing just the first 100 PINs, my system took over 12 seconds.
 No let's see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.
 
-$$
-total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs
-$$
+\$ total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs \$
 
 This is, of course, assuming the time to check each PIN is consistent (we'll find out shortly that's not the case). Regardless, it's safe to say brute forcing the PIN doesn't look like a good path forward.
 

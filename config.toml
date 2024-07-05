@@ -1,21 +1,20 @@
 # The URL the site will be built for
 base_url = "https://www.cblanken.dev"
-
-# Whether to automatically compile all Sass files in the sass directory
+title = "cblanken"
 compile_sass = true
-
-# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
+theme = "terminimal"
+# minify_html = false
+default_language = "en"
 
-theme = "DeepThought"
-minify_html = false
-generate_feed = true
-feed_filename = "rss.xml"
+#generate_feed = true
+#feed_filename = "rss.xml"
 
 taxonomies = [
-    {name = "categories", feed = true, paginate_by = 10},
+    # {name = "tags", feed = true, paginate_by = 10, render = false},
     {name = "tags", feed = true, paginate_by = 10},
 ]
+
 
 [markdown]
 # Whether to do syntax highlighting
@@ -23,23 +22,19 @@ taxonomies = [
 highlight_code = true
 
 [extra]
-katex.enabled = true
-katex.auto_render = true
+enable_post_view_navigation = true
+post_view_navigation_prompt = "Read more"
+logo_text = "cblanken.dev"
+accent_color = "orange"
 
-chart.enabled = true
-mermaid.enabled = true
-galleria.enabled = true
+menu_items = [
+    {name = "About me", url = "$BASE_URL/about"},
+    {name = "Posts", url = "$BASE_URL"},
+    {name = "Archive", url = "$BASE_URL/archive"},
+    {name = "Tags", url = "$BASE_URL/tags"},
 
-navbar_items = [
- { code = "en", nav_items = [
-  { url = "$BASE_URL/", name = "Home" },
-  { url = "$BASE_URL/posts", name = "Posts" },
-  { url = "$BASE_URL/projects", name = "Projects" },
-  { url = "$BASE_URL/tags", name = "Tags" },
-  { url = "$BASE_URL/categories", name = "Categories" },
- ]},
+    {name = "github", url = "https://github.com/cblanken", newtab = true},
 ]
-
 
 # Add links to favicon, you can use https://realfavicongenerator.net/ to generate favicon for your site
 [extra.favicon]
@@ -58,4 +53,3 @@ name = "Cameron"
 email = "cameron.blankenbuehler@gmail.com"
 github = "cblanken"
 linkedin = "cameron-blankenbuehler-508409239"
-twitter = "CBlankenbuehler"

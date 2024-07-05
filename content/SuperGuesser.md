@@ -1,9 +1,12 @@
 +++
 title = "Cryptoverse 2022 - Super Guesser"
 date = "2022-10-26"
+description = "Writeup of a solution for the Super Guesser challenge from the Cryptoverse 2022 CTF"
+
+[extra]
+show_only_description = true
 
 [taxonomies]
-categories = ["CTF Writeup"]
 tags = ["ctf", "infosec", "python"]
 +++
 
@@ -152,7 +155,7 @@ if len(guess) <= 4 or len(guess) >= 6 or re.match('^[a-z]+$', guess):
     exit('Invalid')
 ```
 
-In this case, the program would exit if the guess is __NOT__ 5 alphabetic characters. This matches the behavior we've seen when running compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
+In this case, the program would exit if the guess is __NOT__ 5 alphabetic characters. This matches the behavior we've seen when running the compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
 
 ## Solution
 ```python

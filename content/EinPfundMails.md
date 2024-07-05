@@ -1,9 +1,12 @@
 +++
-title = "KitCTFCTF 2022 - ein-pfund-mails"
+title = "KitCTF 2022 - ein-pfund-mails"
 date = "2022-10-26"
+description = "Writeup of a solution for the ein-pfund-mails challenge from the KitCTF 2022 CTF"
+
+[extra]
+show_only_description = true
 
 [taxonomies]
-categories = ["CTF Writeup"]
 tags = ["ctf", "infosec", "python"]
 +++
 

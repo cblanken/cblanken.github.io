@@ -1,9 +1,12 @@
 +++
 title = "HTB Apocalypse 2023 - Janken"
 date = "2023-03-25"
+description = "Writeup of a solution for the Janken challenge from the HTB Apocalypse 2023 CTF"
+
+[extra]
+show_only_description = true
 
 [taxonomies]
-categories = ["CTF Writeup"]
 tags = ["ctf", "infosec", "python", "C"]
 +++
 
