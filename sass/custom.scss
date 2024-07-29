@@ -1,0 +1,14 @@
+div.post {
+  a {
+    padding: 0.25rem !important;
+  }
+
+  a:hover {
+    background: var(--accent);
+    color: var(--background);
+    
+    .post-date {
+      color: var(--background);
+    }
+  }
+}
