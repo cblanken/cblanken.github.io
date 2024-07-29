@@ -1,7 +1,7 @@
 +++
 title = "Cryptoverse 2022 - Super Guesser"
 date = "2022-10-26"
-description = "Writeup of a solution for the Super Guesser challenge from the Cryptoverse 2022 CTF"
+description = "Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF"
 
 [extra]
 show_only_description = true

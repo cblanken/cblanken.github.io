@@ -1,7 +1,7 @@
 +++
 title = "PicoCTF 2022 - SideChannel"
 date = 2022-05-29
-description = "Writeup of a solution for the SideChannel challenge from PicoCTF 2022"
+description = "Writeup for the SideChannel challenge from PicoCTF 2022"
 
 [extra]
 show_only_description = true
@@ -11,7 +11,7 @@ tags = ["ctf", "infosec", "python"]
 +++
 The name itself "SideChannel" seems to indicate a [side-channel attack](https://en.wikipedia.org/wiki/Side-channel_attack), so we should keep that in mind going forward.
 
-To start, we're given a short description
+To start, we're given a short description.
 > There's something fishy about this PIN-code checker, can you figure out the PIN and get the flag?
 
 
@@ -97,7 +97,7 @@ sys     0m0.435s
 ```
 
 Unfortunately timing just the first 100 PINs, my system took over 12 seconds.
-No let's see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.
+Now let's see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.
 
 \$ total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs \$
 

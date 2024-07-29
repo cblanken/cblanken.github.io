@@ -1,7 +1,7 @@
 +++
 title = "PicoCTF 2022 - Operation Orchid"
 date = 2022-05-29
-description = "Writeup of a solution for the Operation Orchid challenge from PicoCTF 2022"
+description = "Writeup for the Operation Orchid challenge from PicoCTF 2022"
 
 [extra]
 show_only_description = true
