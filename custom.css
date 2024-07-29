@@ -1,0 +1,1 @@
+div.post a{padding:.25rem !important}div.post a:hover{background:var(--accent);color:var(--background)}div.post a:hover .post-date{color:var(--background)}
