@@ -16,7 +16,7 @@ Janken is an _easy_ rated Misc challenge.
 
 ## Analysis
 Analyzing the decompilation of the binary (`janken`), we find a loop for the 100 rounds mentioned in the prompt running the following `game` function.<br>
-![ghidra-1](../../images/janken_ghidra_1.png)
+![ghidra-1](/images/janken_ghidra_1.png)
 
 ## Solution
 Here's an excerpt of the pwntools script used to solve the challenge.
@@ -59,6 +59,6 @@ io.interactive()
 ```
 
 # Flag
-![get-flag](../../images/janken_get_flag.png)<br>
+![get-flag](/images/janken_get_flag.png)<br>
 We have our flag! `HTB{r0ck_p4p3R_5tr5tr_l0g1c_buG}`
 
