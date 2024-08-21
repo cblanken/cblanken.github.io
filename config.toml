@@ -36,7 +36,7 @@ menu_items = [
     {name = "github", url = "https://github.com/cblanken", newtab = true},
 ]
 
-favicon = "/icons/android-chrome-192x192.png"
-favicon_mimetype = "image/png"
+favicon = "favicon.svg"
+favicon_mimetype = "image/svg"
 
 author = "Cameron Blankenbuehler"
