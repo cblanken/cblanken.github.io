@@ -1,8 +1,9 @@
-div.post {
-  a {
-    padding: 0.25rem !important;
-  }
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url('/fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.otf') format('opentype');
+}
 
+div.post {
   a:hover {
     background: var(--accent);
     color: var(--background);
@@ -11,4 +12,20 @@ div.post {
       color: var(--background);
     }
   }
+}
+
+.post-date,
+.post-list {
+  font-family: "Hack";
+}
+
+.post,
+.post-list-title {
+  font-family: "Atkinson Hyperlegible";
+  line-height: 1.5rem;
+}
+
+.post-content::selection,
+.post-content *::selection {
+  background: var(--accent-alpha-70);
 }
