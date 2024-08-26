@@ -3,7 +3,7 @@ base_url = "https://www.cblanken.dev"
 title = "cblanken"
 compile_sass = true
 build_search_index = true
-theme = "terminimal"
+theme = "terminimal-custom"
 # minify_html = false
 default_language = "en"
 

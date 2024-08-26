@@ -1,0 +1,3 @@
+[submodule "themes/terminimal-custom"]
+	path = themes/terminimal-custom
+	url = git@github.com:cblanken/zola-theme-terminimal.git
