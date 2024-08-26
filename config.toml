@@ -36,7 +36,7 @@ menu_items = [
     {name = "github", url = "https://github.com/cblanken", newtab = true},
 ]
 
-favicon = "favicon.svg"
+favicon = "/favicon.svg"
 favicon_mimetype = "image/svg"
 
 author = "Cameron Blankenbuehler"
