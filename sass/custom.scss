@@ -25,6 +25,17 @@ div.post {
   line-height: 1.5rem;
 }
 
+.post-content {
+  a {
+    color: rgb(138, 219, 254);
+  }
+
+  a:visited {
+    color: rgb(205, 161, 255);
+  }
+
+}
+
 .post-content::selection,
 .post-content *::selection {
   background: var(--accent-alpha-70);
