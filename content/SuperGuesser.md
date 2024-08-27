@@ -155,7 +155,9 @@ if len(guess) <= 4 or len(guess) >= 6 or re.match('^[a-z]+$', guess):
     exit('Invalid')
 ```
 
-In this case, the program would exit if the guess is __NOT__ 5 alphabetic characters. This matches the behavior we've seen when running the compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
+{{ mathjax() }}
+
+In this case, the program would exit if the guess is __NOT__ 5 alphabetic characters. This matches the behavior we've seen when running the compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have \$ 26^5 \$ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
 
 ## Solution
 ```python

@@ -99,6 +99,9 @@ sys     0m0.435s
 Unfortunately timing just the first 100 PINs, my system took over 12 seconds.
 Now let's see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.
 
+
+{{ mathjax() }}
+
 \$ total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs \$
 
 This is, of course, assuming the time to check each PIN is consistent (we'll find out shortly that's not the case). Regardless, it's safe to say brute forcing the PIN doesn't look like a good path forward.
