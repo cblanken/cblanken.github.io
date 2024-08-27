@@ -4,21 +4,12 @@ title = "cblanken"
 compile_sass = true
 build_search_index = true
 theme = "terminimal-custom"
-# minify_html = false
 default_language = "en"
-
-#generate_feed = true
-#feed_filename = "rss.xml"
-
 taxonomies = [
-    # {name = "tags", feed = true, paginate_by = 10, render = false},
     {name = "tags", feed = true, paginate_by = 10},
 ]
 
-
 [markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
 
 [extra]
