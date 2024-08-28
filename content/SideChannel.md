@@ -5,6 +5,7 @@ description = "Writeup for the SideChannel challenge from PicoCTF 2022"
 
 [extra]
 show_only_description = true
+mathjax = true
 
 [taxonomies]
 tags = ["ctf", "infosec", "python"]
@@ -98,9 +99,6 @@ sys     0m0.435s
 
 Unfortunately timing just the first 100 PINs, my system took over 12 seconds.
 Now let's see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.
-
-
-{{ mathjax() }}
 
 \$ total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs \$
 
