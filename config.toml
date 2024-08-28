@@ -2,11 +2,13 @@
 base_url = "https://www.cblanken.dev"
 title = "cblanken"
 compile_sass = true
+#generate_feeds = true
+feed_filenames = ["rss.xml", "atom.xml"]
 build_search_index = true
 theme = "terminimal-custom"
 default_language = "en"
 taxonomies = [
-    {name = "tags", feed = true, paginate_by = 10},
+    {name = "tags", paginate_by = 10},
 ]
 
 [markdown]
@@ -20,10 +22,11 @@ accent_color = "orange"
 
 menu_items = [
     {name = "About me", url = "$BASE_URL/about"},
-    {name = "Posts", url = "$BASE_URL"},
+    {name = "Blog", url = "$BASE_URL/blog"},
+    {name = "Journal", url = "$BASE_URL/journal"},
+    {name = "Projects", url = "$BASE_URL/projects"},
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "Tags", url = "$BASE_URL/tags"},
-
     {name = "github", url = "https://github.com/cblanken", newtab = true},
 ]
 
