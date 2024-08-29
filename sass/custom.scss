@@ -3,14 +3,38 @@
   src: url('/fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.otf') format('opentype');
 }
 
-div.post {
+.post {
   font-size: 1.2rem;
+  a {
+    text-decoration: none;
+    color: var(--accent);
+  }
+
+  a:link {
+    color: var(--accent);
+  }
+
   a:hover {
     background: var(--accent);
     color: var(--background);
     
     .post-date {
       color: var(--background);
+    }
+  }
+
+  a.zola-anchor {
+    display: inline-block;
+    padding-right: 0.5rem;
+  }
+
+  a.zola-anchor:hover {
+    background: var(--accent);
+    color: var(--background);
+
+    &:before {
+      content: "#";
+      margin: 0 0.5rem 0 0.2rem;
     }
   }
 }
@@ -24,17 +48,6 @@ div.post {
 .post-list-title {
   font-family: "Atkinson Hyperlegible";
   line-height: 1.5rem;
-}
-
-.post-content {
-  a {
-    color: rgb(138, 219, 254);
-  }
-
-  a:visited {
-    color: rgb(205, 161, 255);
-  }
-
 }
 
 .post-content::selection,
