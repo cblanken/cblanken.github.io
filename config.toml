@@ -2,7 +2,6 @@
 base_url = "https://www.cblanken.dev"
 title = "cblanken"
 compile_sass = true
-#generate_feeds = true
 feed_filenames = ["rss.xml", "atom.xml"]
 build_search_index = true
 theme = "terminimal-custom"
