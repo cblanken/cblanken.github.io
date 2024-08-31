@@ -10,6 +10,11 @@
     color: var(--accent);
   }
 
+  a.post-tag,
+  .tag-list a {
+    color: #66c8ff;
+  }
+
   a:link {
     color: var(--accent);
   }
