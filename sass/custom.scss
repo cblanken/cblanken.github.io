@@ -31,12 +31,17 @@
   }
 
   a.zola-anchor:hover {
+    display: inline-block;
+    position: relative;
     background: var(--accent);
     color: var(--background);
 
     &:before {
+      position: absolute;
+      left: -1.5rem;
       content: "#";
-      margin: 0 0.5rem 0 0.2rem;
+      color: var(--accent);
+      font-weight: normal;
     }
   }
 }
