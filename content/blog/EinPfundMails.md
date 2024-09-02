@@ -5,6 +5,7 @@ description = "Writeup for the ein-pfund-mails challenge from the KitCTF 2022 CT
 
 [extra]
 show_only_description = true
+toc = true
 
 [taxonomies]
 tags = ["ctf", "infosec", "python"]

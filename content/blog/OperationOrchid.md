@@ -5,6 +5,7 @@ description = "Writeup for the Operation Orchid challenge from PicoCTF 2022"
 
 [extra]
 show_only_description = true
+toc = true
 
 [taxonomies]
 tags = ["ctf", "infosec", "forensics"]

@@ -5,6 +5,7 @@ description = "Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF
 
 [extra]
 show_only_description = true
+toc = true
 
 [taxonomies]
 tags = ["ctf", "infosec", "python", "C"]
