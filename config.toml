@@ -2,6 +2,7 @@
 base_url = "https://www.cblanken.dev"
 title = "cblanken"
 compile_sass = true
+generate_feeds = true
 feed_filenames = ["rss.xml", "atom.xml"]
 build_search_index = true
 theme = "terminimal-custom"
@@ -26,6 +27,7 @@ menu_items = [
     {name = "Projects", url = "$BASE_URL/projects"},
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "Tags", url = "$BASE_URL/tags"},
+    {name = "Feeds", url = "$BASE_URL/feeds"},
     {name = "github", url = "https://github.com/cblanken", newtab = true},
 ]
 
