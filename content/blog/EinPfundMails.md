@@ -11,7 +11,7 @@ toc = true
 tags = ["ctf", "infosec", "python", "dkim"]
 +++
 
-## Problem Description
+## Problem description
 The `ein-pfund-mails` challenge is a _baby_ rated challenge in the Misc category for KitCTFCTF 2022. The title _ein pfund mails_ is actually German for _"A pound of mail"_. Which makes sense since we are given an archive (`mails.tar.gz`) containing 3993 `.eml` files. We're told one of these leaked email files contains our flag, but we're unable to determine which file contains the correct flag.
 
 ## Analysis
@@ -207,5 +207,7 @@ grep -oP "(KCTF{.*})" mail/438b5.eml
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 ```
+
+# Flag
 Here we have our flag! `KCTF{1f8e659e892f2b2a05a54b8448ccbff9}`
 

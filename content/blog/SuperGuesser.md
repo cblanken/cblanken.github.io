@@ -12,7 +12,7 @@ toc = true
 tags = ["ctf", "infosec", "python"]
 +++
 
-## Problem Description
+## Problem description
 Super Guesser is an _easy_ rated reversing challenge for the Crytoverse 2022 CTF.
 We are given a short challenge description:
 > Only the true guessing _king_ can solve this challenge.
@@ -203,5 +203,6 @@ Searching for match for re.compile('^.d.d.076........eae.3.6.85.a2...$')...
 FOUND: uessy, MD5: 8d1d70762f431cd9eaec3967859a2b4b
 ```
 
+# Flag
 Et voilà, we have our flag! `cvctf{hashisnotguessy}`
 
