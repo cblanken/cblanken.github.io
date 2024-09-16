@@ -7,7 +7,7 @@ description = "Learning how DMARC is used to secure email."
 toc = true
 
 [taxonomies]
-tags = ["email", "infosec", "dmarc", "dkim", "spf"]
+tags = ["email", "infosec", "DMARC", "DKIM", "SPF"]
 +++
 
 I've recently been trying to get a better handle on how email works and how
