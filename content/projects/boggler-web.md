@@ -34,7 +34,7 @@ application at [boggler.cblanken.dev](https://boggler.cblanken.dev). Have fun!
 # Features
 The Boggler is first and foremost an application for solving Boggle boards.
 Just enter all the letters from your game board and click "solve". The
-application will will check several dictionaries to provide you with a
+application will check several dictionaries to provide you with a
 searchable table of all the available words from the board. This is great for
 finding the longest words or words that used a particular set of letters that
 you're interested in.
