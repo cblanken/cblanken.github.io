@@ -3,6 +3,11 @@
   src: url('/fonts/AtkinsonHyperlegible/AtkinsonHyperlegible-Regular.otf') format('opentype');
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url('/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
 .post {
   font-size: 1.2rem;
   padding: 0;
@@ -19,7 +24,7 @@
   a:hover {
     background: var(--accent);
     color: var(--background);
-    
+
     .post-date {
       color: var(--background);
     }
@@ -38,7 +43,7 @@
 
     &:before {
       position: absolute;
-      left: -1.5rem;
+      right: -1em;
       content: "#";
       color: var(--accent);
       font-weight: normal;
