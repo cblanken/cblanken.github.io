@@ -16,7 +16,7 @@ The `ein-pfund-mails` challenge is a _baby_ rated challenge in the Misc category
 
 ## Analysis
 First off, let's take a look at one of the email files.
-```
+```eml
 Return-Path: <mawalu98@gmail.com>
 Delivered-To: martin@mawalabs.de
 Received: from mail.mawalabs.de ([fd4d:6169:6c63:6f77::e])
@@ -166,7 +166,7 @@ body hash mismatch (got b'SHy1AAdR/+J5fTOT5HqeEr23p+JmXnlXWdr1QxcFqcU=', expecte
 ```
 
 Now let's write a simple bash script to verify every email file.
-```bash
+```bash, linenos
 #!/bin/bash
 # dkim_verify.sh
 find "$1" -iname *.eml -type f -exec echo -ne "FILE: {} --- " \; -exec check-dkim {} \;
@@ -178,7 +178,7 @@ Execute the script to start checking.
 ```
 
 Here is the output from our first few files.
-```
+```terminal
 FILE: mail/c9f01.eml --- Error verifying DKIM                                                                                                                                               
 body hash mismatch (got b'KSjh/SWf9CoOfANlP1JwziULd7TJwo2jAXdS6WxxiXk=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')                                                          
 FILE: mail/483c0.eml --- Error verifying DKIM                                                                                                                                               
@@ -193,7 +193,7 @@ body hash mismatch (got b'GGvQpfeY8Vzvfms3TWn1TsYW2Ws4CKhenm26CVZ7kCs=', expecte
 ----
 
 After a few minutes we get a hit. Here is the output leading up to the valid `.eml`.
-```
+```term, hl_lines=5
 FILE: mail/3c586.eml --- Error verifying DKIM                                                                                                                                               
 body hash mismatch (got b'DopvYFdcPVYCj2nGEr3Jdll+EK7xiVVk33K/6xRJp90=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
 FILE: mail/06570.eml --- Error verifying DKIM                                                                                                                                               
@@ -202,7 +202,7 @@ FILE: mail/438b5.eml --- DKIM verified successfully
 ```
 
 Now we can check which flag is in `438b5.eml`.
-```
+```term
 grep -oP "(KCTF{.*})" mail/438b5.eml 
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
@@ -211,3 +211,15 @@ KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 # Flag
 Here we have our flag! `KCTF{1f8e659e892f2b2a05a54b8448ccbff9}`
 
+```http
+GET http://natas14.natas.labs.overthewire.org/index-source.html HTTP/1.1
+host: natas14.natas.labs.overthewire.org
+Proxy-Connection: keep-alive
+Authorization: Basic bmF0YXMxNDp6M1VZY3I0djR1QnBlWDhmN0VaYk1IbHpLNFVSMlh0UQ==
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://natas14.natas.labs.overthewire.org/index.php
+Accept-Language: en-US,en;q=0.9
+Cookie: _ga=GA1.1.1753924260.1729208772; _ga_RD0K2239G0=GS1.1.1729257147.2.1.1729258416.0.0.0
+```

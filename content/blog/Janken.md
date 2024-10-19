@@ -21,7 +21,7 @@ Analyzing the decompilation of the binary (`janken`), we find a loop for the 100
 
 ## Solution
 Here's an excerpt of the pwntools script used to solve the challenge.
-```python
+```python, linenos
 io = start()
 info(io.recvuntil(b'>> ')) # prompt
 io.sendline(b'1')

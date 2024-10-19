@@ -20,14 +20,14 @@ We are given a short challenge description:
 ## Analysis
 We are provided a link to download `guesser.pyc`, a compiled python binary.
 Just to confirm there aren't any shenangins with the file extension, let's check the file type.
-```
+```terminal
 $ file guesser.pyc
 guesser.pyc: Byte-compiled Python module for CPython 3.8, timestamp-based, .py timestamp: Sun Sep 11 18:00:05 2022 UTC, .py size: 682 bytes
 ```
 The `file` utility tells us that we are, in fact, dealing with a compiled python binary. In this case CPython 3.8 is the version.
 
 _Note_: it's important that we use the correct version of python when running the compiled `.pyc` file otherwise we might get a _magic number_ error as shown below and be unable to execute the program.
-```
+```terminal
 $ python guesser.pyc
 RuntimeError: Bad magic number in .pyc file
 ```
@@ -35,7 +35,7 @@ RuntimeError: Bad magic number in .pyc file
 If your system has an incompatible version of Python, I'd recommend installing a tool like [`pyenv`](https://github.com/pyenv/pyenv) to install and manage other python versions side by side on your system.
 
 Now let's try running this program to see what we get as output.
-```
+```terminal
 $ python guesser.pyc
 Guess: test
 Invalid
@@ -51,11 +51,11 @@ Referring to the challenge title we know that this is a reversing challenge, so 
 One popular python decompiler is [decompyle3](https://pypi.org/project/decompyle3/#:~:text=Python%20version%203.7%20on), which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.
 
 We can decompile `guesser.pyc` with the command:
-```
-decompyle3 guesser.pyc
+```terminal
+$ decompyle3 guesser.pyc
 ```
 This gets us the source code `guesser.py`
-```python
+```python, linenos, hl_lines=18-20
 # decompyle3 version 3.9.0
 # Python bytecode version base 3.8.0 (3413)
 # Decompiled from: Python 3.8.0 (default, Oct 29 2022, 20:02:52)
@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
 At first glance, this seems to be a fairly simple python script, but let's break it down line by line.
 First we have the declaration of a list of `hashes`
-```python
+```python, linenos
 hashes = [
  'd.0.....f5...5.6.7.1.30.6c.d9..0',
  '1b.8.1.c........09.30.....64aa9.',
@@ -101,26 +101,26 @@ hashes = [
 These will be important in a moment, but for now let's follow the logic to see what the _guesser_ is checking for.
 
 We can see in the main function, we're iterating over the list of hashes, and for each hash, we take a string as user input and check if it's length is equal to 5 __AND__ if it matches the regex string `^[a-z]+$` which would be interpreted as a string of exclusively lowercase alphabetic letters with a length greater than or equal to one. If this condition is met, the program exits and outputs 'Invalid' just as we saw in initial test.
-```python
+```python, linenos, linenostart=18
 guess = input('Guess: ')
 if len(guess) <= 4 or len(guess) >= 6 or re.match('^[a-z]+$', guess):
     exit('Invalid')
 ```
 
 The second `if` statement is taking an md5 hash of our guess string and checking that it matches the hash from our hashes list. The hash converts each `.` (dot) character to `[0-9a-f]`. This is necessary to only match on valid md5 hashes, otherwise we exit just as before.
-```python
+```python, linenos, linenostart=21
 if not re.match('^' + hashes[i].replace('.', '[0-9a-f]') + '$', hashlib.md5(guess.encode()).hexdigest()):
     exit('Invalid')
 ```
 
 And finally, if our guess passes both of those checks it is appended to the `guesses` list.
-```python
+```python, linenos, linenostart=23
 else:
     guesses.append(guess)
 ```
 
 This `guesses` list is joined and printed as the flag output provided the program doesn't exit prematurely by receiving an incorrect guess.
-```python
+```python, linenos, linenostart=25
 else:
     print(f"Flag: {guesses[0]}" + '{' + ''.join(guesses[1:]) + '}')
 ```
@@ -136,7 +136,7 @@ d70146aef5a8e5364791d3006ccd9c00
 ```
 
 We should be able to test this by entering `cvctf` as our first guess when running the challenge binary.
-```bash
+```terminal
 $ python guesser.pyc
 Guess: cvctf
 Guess: again
@@ -160,7 +160,7 @@ if len(guess) <= 4 or len(guess) >= 6 or re.match('^[a-z]+$', guess):
 In this case, the program would exit if the guess is __NOT__ 5 alphabetic characters. This matches the behavior we've seen when running the compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have \$ 26^5 \$ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter `brute.py`.
 
 ## Solution
-```python
+```python, linenos
 # brute.py
 import hashlib
 import re
@@ -191,7 +191,7 @@ for regex in hash_regexes:
 ```
 The program uses [pwntools](https://docs.pwntools.com/en/stable/util/iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce) to generate all the possible combinations given our set of lowercase alphabetic characters. It then generates the md5 hash using the [`hashlib`](https://docs.python.org/3/library/hashlib.html#module-hashlib) library and compares it against the hash from the `hashes` list.
 
-```
+```terminal
 $ python brute.py
 Searching for match for re.compile('^d.0.....f5...5.6.7.1.30.6c.d9..0$')...
 FOUND: cvctf, MD5: d70146aef5a8e5364791d3006ccd9c00

@@ -13,6 +13,11 @@ taxonomies = [
 
 [markdown]
 highlight_code = true
+highlight_theme = "kronuz"
+extra_syntaxes_and_themes = [ 
+    "syntaxes/",
+    "syntaxes/http/"
+]
 
 [extra]
 enable_post_view_navigation = true
@@ -35,3 +40,4 @@ favicon = "/favicon.svg"
 favicon_mimetype = "image/svg"
 
 author = "Cameron Blankenbuehler"
+
