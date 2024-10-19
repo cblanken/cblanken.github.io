@@ -2,6 +2,7 @@
 title = "cblanken.dev"
 description = "Software Developer | Cybersecurity Enthusiast | Lifelong Learner"
 path = "about"
+no_post_stats = true
 +++
 
 Hello there! My name is Cameron and this is my little slice of the internet where I post about computer science, tech, and my current projects.
