@@ -100,9 +100,11 @@ In this example, the letter "I" in the first row is selected, which is
 indicated by the red background color and blue border around the selected
 letter. The word table reflects all the words that pass through that "I".
 
-{{ callout(type="note" text="Only a single letter can be filtered with this
+{% callout(type="note") %}
+Only a single letter can be filtered with this
 method. To find more complex letter combinations, you'll need to resort to
-using the table's search bar. However, they can be used in tandem.") }}
+using the table's search bar. However, they can be used in tandem.
+{% end %}
 
 ## Path tracing
 Each word has a unique path on the board and __clicking a word in the table__ will

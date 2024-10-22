@@ -210,16 +210,3 @@ KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 
 # Flag
 Here we have our flag! `KCTF{1f8e659e892f2b2a05a54b8448ccbff9}`
-
-```http
-GET http://natas14.natas.labs.overthewire.org/index-source.html HTTP/1.1
-host: natas14.natas.labs.overthewire.org
-Proxy-Connection: keep-alive
-Authorization: Basic bmF0YXMxNDp6M1VZY3I0djR1QnBlWDhmN0VaYk1IbHpLNFVSMlh0UQ==
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Referer: http://natas14.natas.labs.overthewire.org/index.php
-Accept-Language: en-US,en;q=0.9
-Cookie: _ga=GA1.1.1753924260.1729208772; _ga_RD0K2239G0=GS1.1.1729257147.2.1.1729258416.0.0.0
-```

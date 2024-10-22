@@ -37,14 +37,15 @@ The code can be found at [https://github.com/cblanken/wandering-inn-stats](https
 
 Check out the live deployment at [https://twi-stats.cblanken.dev](https://twi-stats.cblanken.dev)
 
-{{ callout(type="warning", text="At the time of this writing, the application
+{% callout(type="warning") %}
+At the time of this writing, the application
 only includes statistics up through volume 9. No chapters of volume 10 have
 been analyzed yet. During development, the wiki underwent significant changes
 and development which broke much of the web scraping required to keep the
 database current with all the characters, [Classes], and [Skills] etc. The wiki
 data collection modules are currently being refactored to accommodate the new
-wiki and extract data via the MediaWiki API to be more robust in the future.")
-}}
+wiki and extract data via the MediaWiki API to be more robust in the future.
+{% end %}
 
 
 # Word counts
@@ -85,9 +86,11 @@ There are several important reference types that warrant tracking mentions. Thes
 5. [Locations]
 
 
-{{ callout(type="note", text="There are some other types that would be
+{% callout(type="note") %}
+There are some other types that would be
 interesting to track as well, but they're still under development. These will
-include things like named magical items and monsters.") }}
+include things like named magical items and monsters.
+{% end %}
 
 
 Here's an example of the chart for the most referenced [Classes].
