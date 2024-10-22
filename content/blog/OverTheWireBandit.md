@@ -23,15 +23,20 @@ In this walkthrough I'm going to show the process for solving each challenge
 while also providing some insight into what each challenge is trying to teach
 and why it's useful, so keep an eye out for callouts like those below.
 
-{{ callout(type="note" text="Access to each Bandit level is made over SSH. The
-username will correspond to the index of the level starting at 0. Always make
-sure you're logging into the correct Bandit level!") }}
+{% callout(type="note") %}
 
-{{ callout(type="warning" text="If you're looking for the solution of a
-particular level, you are highly encouraged to attempt it on your own before
-following this walkthrough. You will learn some useful things regardless, but
-attempting it on your own first will help the knowledge stick better. I
-promise.") }}
+text="Access to each Bandit level is made over SSH. The username will
+correspond to the index of the level starting at 0. Always make sure you're
+logging into the correct Bandit level!")
+
+{% end %}
+
+{% callout(type="warning") %} 
+If you're looking for the solution of a particular level, you are highly
+encouraged to attempt it on your own before following this walkthrough. You
+will learn some useful things regardless, but attempting it on your own first
+will help the knowledge stick better. I promise.
+{% end %}
 
 I have a few recommendations before getting started. Most of the OverTheWire
 Bandit levels provide links to (potentially) usefal manual pages. Unfortunately
@@ -82,14 +87,15 @@ physically present. Except in this case it's another system accessible over the
 network. This is how it will be used over the course of the Bandit wargame as
 well as some of the other wargames by OverTheWire.
 
-{{ callout(type="note", text="It's worth mentioning that SSH is usually (and
-preferably) used with an SSH key. More specifically a key-pair. A public key
-and a private key which are both needed to take advantage of the aforementioned
-public-key cryptography. I won't go into detail here, but don't worry there are
-a couple later levels that do utilize SSH keys, so I'll discuss them in more
-detail when we reach them.") }}
+{% callout(type="note") %}
+It's worth mentioning that SSH is usually (and preferably) used with an SSH
+key. More specifically a key-pair. A public key and a private key which are
+both needed to take advantage of the aforementioned public-key cryptography. I
+won't go into detail here, but don't worry there are a couple later levels that
+do utilize SSH keys, so I'll discuss them in more detail when we reach them.
+{% end %}
 
-### Log in - Solution
+### Solution
 
 The prompt tells us that both the `username` and `password` are `bandit0`.
 
@@ -132,10 +138,12 @@ You should be greeted by a banner for the Bandit wargame and a prompt
 requesting entry of the `bandit0` password. Enter `bandit0` and you're ready to
 get started.
 
-{{ callout(type="note", text="It isn't necessary to solve any of the Bandit
-levels, but I highly recommend researching DNS. It's intrinsic to how the
-internet operates and you'll likely encounter it again and again if you pursue
-any area of IT, software, or cybersecurity.") }}
+{% callout(type="note") %}
+It isn't necessary to solve any of the Bandit levels, but I highly recommend
+researching DNS. It's intrinsic to how the internet operates and you'll likely
+encounter it again and again if you pursue any area of IT, software, or
+cybersecurity.
+{% end %}
 
 ## Level 0
 
@@ -153,22 +161,25 @@ any Linux user who wants to effectively use the command line.
 
 |Command|Description|
 |-------|-----------|
-[`ls`](https://manpages.ubuntu.com/manpages/noble/man1/ls.1.html)|list the files in a directory
-[`cd`](https://manpages.ubuntu.com/manpages/noble/man1/cd.1posix.html)|change your current directory
-[`cat`](https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html)|display the contents of a file
-[`file`](https://manpages.ubuntu.com/manpages/noble/man1/file.1.html)|display information about the content of a file
-[`du`](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)|display the disk space used by files
-[`find`](https://manpages.ubuntu.com/manpages/noble/man1/find.1.html)|search the file system for files with various parameters such as filename, file type, file size, etc.
+|[`ls`](https://manpages.ubuntu.com/manpages/noble/man1/ls.1.html)|list the files in a directory|
+|[`cd`](https://manpages.ubuntu.com/manpages/noble/man1/cd.1posix.html)|change your current directory|
+|[`cat`](https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html)|display the contents of a file|
+|[`file`](https://manpages.ubuntu.com/manpages/noble/man1/file.1.html)|display information about the content of a file|
+|[`du`](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)|display the disk space used by files|
+|[`find`](https://manpages.ubuntu.com/manpages/noble/man1/find.1.html)|search the file system for files with various parameters such as filename, file type, file size, etc.|
 
 You are _highly_ encouraged to review each of the commands. At the very least
 check out the `cheat.sh` page for each. Regardless these are all pretty common,
 so you'll get plenty of experience with these commands in later levels.
 
+### Solution
+
 For now, it should be apparent the one of the above commands should serve to
 show us the contents of the `readme` file mentioned in the prompt. The humble
 `cat` command.
 
-It takes a filename as a parameter. So providing it with the filename `readme` should print it's contents.
+It takes a filename as a parameter. So providing it with the filename `readme`
+should print it's contents.
 
 ```terminal
 $ cat readme
@@ -212,7 +223,9 @@ hello there
 hello there
 ```
 
-The reason for this will become clear if you read the description from the `cat` man page.
+The reason for this will become clear if you read the description from the
+`cat` man page.
+
 ```hl_lines=7-9
 NAME
    cat - concatenate files and print on the standard output
@@ -237,6 +250,8 @@ STDIO or standard input and output. If you'd like to read more, there is an
 [excellent article by
 freeCodeCamp](https://www.freecodecamp.org/news/introduction-to-linux/#heading-standard-file-streams)
 explaining more about it and many other useful concepts.
+
+### Solution
 
 There will be opportunities to demonstrate STDIO and IO redirection later, but
 for this level, all you need to recognize is that `-` is a special character
@@ -302,6 +317,7 @@ command will print all files in the current working directory.
 
 ## To be continued
 
-{{ callout(type="note",text="I hope you enjoyed the walkthrough. When time
-permits, I intend to expand this post to include every level of OverTheWire
-Bandit.") }}
+{% callout(type="note") %}
+I hope you enjoyed the walkthrough. When time permits, I intend to expand this
+post to include every level of OverTheWire Bandit.
+{% end %}
