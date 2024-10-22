@@ -189,6 +189,109 @@ to continue to level 1.
 
 ## Level 1
 
+> The password for the next level is stored in a file called `-` located in the
+> home directory
+
+The prompt also provides links to the man pages for the same commands as level 0.
+
+Naturally, you might think to try the `cat` command again. Afterall, we're told
+the password in in the file called `-`. Let's try it and see what happens.
+
+```terminal
+$ cat -
+█
+```
+
+Strange, you're left with a blank line on the terminal now. And, if you type
+some text and press the `Enter` key, the text is repeated back to the
+terminal like so.
+
+```terminal, hl_lines=3
+$ cat -
+hello there
+hello there
+```
+
+The reason for this will become clear if you read the description from the `cat` man page.
+```hl_lines=7-9
+NAME
+   cat - concatenate files and print on the standard output
+
+SYNOPSIS
+   cat [OPTION]... [FILE]...
+
+DESCRIPTION
+   Concatenate FILE(s) to standard output.
+   With no FILE, or when FILE is -, read standard input.
+```
+
+So, according to the description, the parameter `-`, makes `cat` read from
+standard input. You may have guessed this already, but standard input or STDIN
+is usually what's entered by the user in the terminal; however, STDIN doesn't
+explicitly refer to input from a user. Rather, it refers to a _stream_ of data
+that is being sent to a program, so it may also refer to files or even the
+output of other programs that is being passed to other programs.
+
+You'll most likely hear of this concept of input and output referred to as
+STDIO or standard input and output. If you'd like to read more, there is an
+[excellent article by
+freeCodeCamp](https://www.freecodecamp.org/news/introduction-to-linux/#heading-standard-file-streams)
+explaining more about it and many other useful concepts.
+
+There will be opportunities to demonstrate STDIO and IO redirection later, but
+for this level, all you need to recognize is that `-` is a special character
+that tells cat to read input from STDIN instead of a file as we saw before. So
+to properly refer to the `-` file, it's necessary to reference it by some other
+means than just the simple filename. There are several ways to accomplish that.
+
+1. Use `./<filename>` where `<filename>` would be `-` for this example. The `.`
+   is a special character that is interpreted as the current directory. This is
+usually implied when we just enter a file by it's name. However, stating it
+explicitly allows us to circumvent the special case of using `-` as an argument
+to `cat`.
+
+   ```terminal
+   $ cat ./-
+   [REDACTED PASSWORD]
+   ```
+
+2. Use the full path. On Linux and other Unix-based systems the [root of the
+   file system](https://en.wikipedia.org/wiki/Root_directory) can be specified
+with a `/`. To use this method though we'll need to know the full path of the
+`-` file. To get that we can use the `pwd` command, which is short for "print
+working directory".
+
+   ```terminal
+   $ pwd
+   /home/bandit1
+   ```
+
+   To complete the full path for `-` we just need to append `/<filename>`.
+
+   ```terminimal
+   $ cat /home/bandit1/-
+   [REDACTED PASSWORD]
+   ```
+
+3. We can also use what is called a glob (`*`). The glob can be used to execute
+   commands over multiple files at once. For example using the following
+command will print all files in the current working directory.
+
+   ```terminal
+   $ cat ./*
+   [REDACTED PASSWORD]
+   ```
+
+   In this example the only file in our current directory is the password file
+   `-`. But just like the other examples it circumvents the special `-`
+   argument to `cat`.
+
+   The glob can be quite useful and is actually a part of a larger set of
+   [filename
+   expansion](https://www.gnu.org/software/bash/manual/bash.html#Filename-Expansion)
+   features available in Bash. They're quite useful and we may see more of them
+   in future levels.
+
 ## Level 2
 
 ## Level 3
@@ -200,5 +303,5 @@ to continue to level 1.
 ## To be continued
 
 {{ callout(type="note",text="I hope you enjoyed the walkthrough. When time
-permits, I intend to expand this it to include every level of OverTheWire
+permits, I intend to expand this post to include every level of OverTheWire
 Bandit.") }}
