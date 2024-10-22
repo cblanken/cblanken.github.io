@@ -15,9 +15,9 @@ tags = ["ctf", "infosec", "wargame", "OverTheWire", "Linux"]
 
 [Bandit](https://overthewire.org/wargames/bandit/) is just one of several
 [wargames](https://en.wikipedia.org/wiki/Wargame_(hacking)) available at
-[overthewire.org](https://overthewire.org/). It's is aimed at beginners to
-Linux and CTFs and provides an excellent introduction to the basics of the
-Linux command line.
+[overthewire.org](https://overthewire.org/). It's aimed at beginners to Linux
+and CTFs and provides an excellent introduction to the basics of the Linux
+command line.
 
 In this walkthrough I'm going to show the process for solving each challenge
 while also providing some insight into what each challenge is trying to teach
@@ -143,6 +143,15 @@ It isn't necessary to solve any of the Bandit levels, but I highly recommend
 researching DNS. It's intrinsic to how the internet operates and you'll likely
 encounter it again and again if you pursue any area of IT, software, or
 cybersecurity.
+
+Resources:
+
+- [What is DNS?](https://www.freecodecamp.org/news/what-is-dns-for-beginners/):
+an excellent intro to the basics of DNS by freeCodeCamp
+- [Implement DNS in a weekend](https://implement-dns.wizardzines.com): if you
+have some programming experience, I highly recommend following the exercises by
+Julia Evans
+
 {% end %}
 
 ## Level 0
@@ -307,7 +316,78 @@ command will print all files in the current working directory.
    features available in Bash. They're quite useful and we may see more of them
    in future levels.
 
+{% callout(type="tip") %}
+
+The main takeway from this level is that there are special characters that may
+change how commands are interpreted on the command line. Some of them will be
+built-in to whatever shell you're using, but some may just be conventions like
+the `-` character for STDIN and won't apply to every program. Here is a
+breakdown of the special characters used in the Bash shell.
+[https://mywiki.wooledge.org/BashGuide/SpecialCharacters](https://mywiki.wooledge.org/BashGuide/SpecialCharacters)
+
+{% end %}
+
 ## Level 2
+
+> The password for the next level is stored in a file called `spaces in this filename`
+> located in the home directory
+
+This level is similar to Level 1, except that the file is not a special
+character. Instead it contains special characters, the space `█`. The space
+character is essential for the shell to interpret the input text.
+
+```terminal
+$ cat spaces in this filename
+cat: spaces: No such file or directory
+cat: in: No such file or directory
+cat: this: No such file or directory
+cat: filename: No such file or directory
+```
+
+As you can see from above, entering the name as it's written will cause the
+`cat` command to interpret each word in the file as a separate filename.
+
+Just as before, there are a few ways to get around this.
+
+### Solution
+1. Escape the space characters. In Bash, the backslash `\` is used as an
+   [escape
+character](https://www.gnu.org/software/bash/manual/bash.html#Escape-Character). When the `\` is used, the following character is interpreted literally. This allows the space characters of the filename to be "escaped".
+
+   ```terminal
+   $ cat spaces\ in\ this\ filename
+   [REDACTED PASSWORD]
+   ```
+
+2. Instead of escaping the spaces individually, the filename can also be
+   surrounded by [single
+quotes](https://www.gnu.org/software/bash/manual/bash.html#Single-Quotes).
+Every character between two single quotes is interpreted literally.
+
+   ```terminal
+   $ cat 'spaces in this filename'
+   [REDACTED PASSWORD]
+   ```
+
+3. Similarly, [double
+   quotes](https://www.gnu.org/software/bash/manual/bash.html#Double-Quotes)
+can also be used to interpret the surrounded characters literally. However,
+there are some exceptions, and double quotes allows some special characters to
+be interpreted as they usually are. But the space character is not one those,
+so it is functionally the same as the above example.
+
+   ```terminal
+   $ cat "spaces in this filename"
+   [REDACTED PASSWORD]
+   ```
+
+{% callout(type="tip") %}
+Recognize that it's sometimes necessary to escape characters within arguments.
+Most Linux users will avoid naming any files with special characters, but
+sometimes you'll still run into them. This is especially true with files
+originally created on Windows where spaces inside file and directory names are
+much more common.
+{% end %}
 
 ## Level 3
 
