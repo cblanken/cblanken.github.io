@@ -24,11 +24,9 @@ while also providing some insight into what each challenge is trying to teach
 and why it's useful, so keep an eye out for callouts like those below.
 
 {% callout(type="note") %}
-
-text="Access to each Bandit level is made over SSH. The username will
-correspond to the index of the level starting at 0. Always make sure you're
-logging into the correct Bandit level!")
-
+Access to each Bandit level is made over SSH. The username will correspond to
+the index of the level starting at 0. Always make sure you're logging into the
+correct Bandit level!
 {% end %}
 
 {% callout(type="warning") %} 
@@ -149,8 +147,8 @@ Resources:
 - [What is DNS?](https://www.freecodecamp.org/news/what-is-dns-for-beginners/):
 an excellent intro to the basics of DNS by freeCodeCamp
 - [Implement DNS in a weekend](https://implement-dns.wizardzines.com): if you
-have some programming experience, I highly recommend following the exercises by
-Julia Evans
+have some programming experience, I highly recommend following this walkthrough
+by Julia Evans
 
 {% end %}
 
@@ -204,8 +202,8 @@ The password you are looking for is: [REDACTED PASSWORD]
 I won't be providing any of the passwords throughout this walkthrough per the
 OverTheWire [rules](https://overthewire.org/rules/). So get out your notepad
 and copy those passwords. You'll need them to return to the last level you've
-completed without completing each level again. Once you've done that it's time
-to continue to level 1.
+completed without completing each level again. Once you've done that, you're
+ready to continue to Level 1.
 
 ## Level 1
 
@@ -265,8 +263,8 @@ explaining more about it and many other useful concepts.
 There will be opportunities to demonstrate STDIO and IO redirection later, but
 for this level, all you need to recognize is that `-` is a special character
 that tells cat to read input from STDIN instead of a file as we saw before. So
-to properly refer to the `-` file, it's necessary to reference it by some other
-means than just the simple filename. There are several ways to accomplish that.
+to properly refer to the `-` file, it must be referenced by some other means
+than the simple filename. There are several ways to accomplish that.
 
 1. Use `./<filename>` where `<filename>` would be `-` for this example. The `.`
    is a special character that is interpreted as the current directory. This is
@@ -310,8 +308,7 @@ command will print all files in the current working directory.
    `-`. But just like the other examples it circumvents the special `-`
    argument to `cat`.
 
-   The glob can be quite useful and is actually a part of a larger set of
-   [filename
+   The glob is actually a part of a larger set of [filename
    expansion](https://www.gnu.org/software/bash/manual/bash.html#Filename-Expansion)
    features available in Bash. They're quite useful and we may see more of them
    in future levels.
@@ -322,7 +319,8 @@ The main takeway from this level is that there are special characters that may
 change how commands are interpreted on the command line. Some of them will be
 built-in to whatever shell you're using, but some may just be conventions like
 the `-` character for STDIN and won't apply to every program. Here is a
-breakdown of the special characters used in the Bash shell.
+breakdown of the special characters used in the Bash shell that you might want
+to watch out for.
 [https://mywiki.wooledge.org/BashGuide/SpecialCharacters](https://mywiki.wooledge.org/BashGuide/SpecialCharacters)
 
 {% end %}
@@ -330,7 +328,7 @@ breakdown of the special characters used in the Bash shell.
 ## Level 2
 
 > The password for the next level is stored in a file called `spaces in this filename`
-> located in the home directory
+> located in the `home` directory
 
 This level is similar to Level 1, except that the file is not a special
 character. Instead it contains special characters, the space `█`. The space
@@ -382,22 +380,192 @@ so it is functionally the same as the above example.
    ```
 
 {% callout(type="tip") %}
-Recognize that it's sometimes necessary to escape characters within arguments.
-Most Linux users will avoid naming any files with special characters, but
+
+Recognize that it's sometimes necessary to escape characters within filenames
+and other arguments.
+
+Most Linux users will avoid naming files with any special characters, but
 sometimes you'll still run into them. This is especially true with files
-originally created on Windows where spaces inside file and directory names are
-much more common.
+created on Windows where spaces inside file and directory names are much more
+common.
+
 {% end %}
 
 ## Level 3
 
+> The password for the next level is stored in a hidden file in the `inhere`
+> directory.
+
+```terminal
+$ ls ./inhere
+```
+
+According to the `ls` command, there don't appear to be any files in the
+`inhere` directory. That's because `ls` doesn't display hidden files by
+default.
+
+### Solution
+
+To show hidden files with `ls`, it's necessary to use the `--all` or `-a` flag.
+
+```terminal
+$ ls -a ./inhere
+.  ..  ...Hiding-From-You
+```
+
+With the `--all` flag enabled, `ls` now shows all the files in the `inhere`
+directory. Including the hidden files. In Linux and other Unix-based systems, a
+leading dot `.` in a filename is used to indicate a hidden file. As such, you
+may here them referred to as dotfiles.
+
+Now that we know the name of the hidden file, `cat` can be used to print the
+contents just as we've seen before.
+
+```terminal
+$ cat inhere/...Hiding-From-You
+[REDACTED PASSWORD]
+```
+
+{% callout(type="note") %}
+The term "dotfile" is also frequently used to refer to a users personal
+configuration files. This is because many configuration files follow the
+leading dot `.` convention, so that they don't clutter up directory listings.
+{% end %}
+
+{% callout(type="tip") %}
+Some systems will have aliases for the `ls` command as well, with various flags
+enabled. Here a few common ones.
+- `ll` for `ls -AlhF` to list all files in a human-readable, long format
+- `la` for `ls -A` to list all files excluding `.` and `..`
+- `l` for `ls -CF` to list files in a column format
+- `lsd` for `ls --group-directories-first`
+{% end %}
+
 ## Level 4
 
+> The password for the next level is stored in the only human-readable file in
+> the `inhere` directory. Tip: if your terminal is messed up, try the `reset`
+> command.
+
+If you haven't done so already, now would be a good time to read through the
+manual for each of the linked commands that were already mentioned in [Level
+0](#level-0).
+
+If you, at least read through the description for each, you should have a
+pretty good idea of which command you'll need to solve this one.
+
+### Solution
+
+This level is asking us to identify which files in `inhere` are human readable.
+The `file` command can get the information we need.
+
+From the `file` manual page we know that we can expect a response of `text` for
+any files that only contain typical [ASCII
+characters](https://en.wikipedia.org/wiki/ASCII#Character_set).
+
+```
+The  type  printed  will  usually  contain one of the words `text` (the file
+contains only printing characters and a few common control characters and is
+probably safe to read on an ASCII terminal), `executable` (the file contains
+the result of compiling a program  in  a form  understandable to some UNIX
+kernel or another), or `data` meaning anything else (data is usually “binary”
+or non-printable).
+```
+
+One option is to execute `file` on each file in `inhere` one-by-one like so.
+
+```terminal
+$ file inhere/-file00
+inhere/-file00: data
+```
+
+A better way is to use the glob `*` that we've seen previously. This allows us
+to run the file command on all the files at once.
+
+```terminal, hl_lines=9
+$ file ./inhere/*
+./inhere/-file00: data
+./inhere/-file01: data
+./inhere/-file02: data
+./inhere/-file03: data
+./inhere/-file04: data
+./inhere/-file05: data
+./inhere/-file06: data
+./inhere/-file07: ASCII text
+./inhere/-file08: data
+./inhere/-file09: data
+```
+
+From here it's obvious that we want the file with the text data at `./inhere/-file07`.
+
+```terminal
+$ cat ./inhere/-file07
+[REDACTED PASSWORD]
+```
+
+{% callout(type="tip") %}
+
+Always keep an eye out for opportunities to use globbing. Especially if you're
+running commands over a bunch of files.
+
+{% end %}
+
 ## Level 5
+
+> The password for the next level is stored in a file somewhere under the
+> `inhere` directory and has all of the following properties:
+> - human-readable
+> - 1033 bytes in size
+> - not executable
+
+This level requires a precise approach to locate the correct file. While it's
+technically possible to solve with just the `ls` and `file` commands. It would
+require some tedious manual searching to find the files that match each of the
+criteria. Luckily the `find` command is capable of locating files with all the
+above criteria. You just need to know the right flags.
+
+### Solution
+
+The `find` command is essential to efficiently locating files on Linux systems.
+It has several flags that can be used to refine its search. Most importantly
+for this level are `-readable`, `-size` and `-executable`
+
+```terminal
+$ find -readable -size 1033c -not -executable
+./inhere/maybehere07/.file2
+```
+
+Note `-size` and `-not` flags. The `c` suffix for the `-size` argument is used
+to indicate a size in bytes. The other available suffixes are all available in
+the [find man
+page](https://manpages.ubuntu.com/manpages/noble/man1/find.1.html).
+Additionally, the `-not` flag negates the next expression, thus locating any
+files that aren't executable in this example.
+
+{% callout(type="note") %}
+
+In this case the content and size of the file are sufficient to uniquely
+identify the file and the `-not -executable` isn't strictly necessary.
+
+```terminal
+$ find -readable -size 1033c
+./inhere/maybehere07/.file2
+```
+
+{% end %}
+
+Once again, `cat` the file to get the password.
+
+```terminal
+$ cat ./inhere/maybehere07/.file2
+[REDACTED PASSWORD]
+```
 
 ## To be continued
 
 {% callout(type="note") %}
 I hope you enjoyed the walkthrough. When time permits, I intend to expand this
 post to include every level of OverTheWire Bandit.
+
+Happy hacking!
 {% end %}
