@@ -13,7 +13,6 @@ taxonomies = [
 
 [markdown]
 highlight_code = true
-highlight_theme = "kronuz"
 extra_syntaxes_and_themes = [ 
     "syntaxes/",
     "syntaxes/http/"
@@ -33,7 +32,7 @@ menu_items = [
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "Tags", url = "$BASE_URL/tags"},
     {name = "RSS", url = "$BASE_URL/feeds"},
-    {name = "github", url = "https://github.com/cblanken", newtab = true},
+    {name = "GitHub", url = "https://github.com/cblanken", newtab = true},
 ]
 
 favicon = "/favicon.svg"

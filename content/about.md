@@ -13,12 +13,12 @@ where I post about computer science, tech, and my current projects.
 My formal degree is a Bachelor's of Science in Computer Science and Computer
 Engineering from the University of Louisville. I've previously worked
 professionally as a software engineer developing
-[HMIs](https://realpars.com/what-is-hmi/) for parcel conveyance systems. I also
-have experience with Python, C#, Java, SQL, Javascript, and Rust. I'm currently
+[HMIs](https://realpars.com/what-is-hmi/) for conveyor systems. I also have
+experience with Python, JavaScript, C#, Java, SQL, and Rust. I'm currently
 looking to break into freelance web development or find a role as a security
 analyst.
 
 If you find any of my ramblings helpful or are interested in any of my
 projects, please
-[let&nbsp;me&nbsp;know](mailto://cameron.blankenbuehler@gmail.com)! I hope you
-have a good day and enjoy your time here. Don't forget to be awesome.
+[let&nbsp;me&nbsp;know](mailto:cameron.blankenbuehler@protonmail.com)! I hope
+you have a good day and enjoy your time here. Don't forget to be awesome.
