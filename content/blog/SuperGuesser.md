@@ -48,7 +48,7 @@ Invalid
 Okay it look's like the program is checking our input. Perhaps it is checking against the challenge's flag.
 
 Referring to the challenge title we know that this is a reversing challenge, so the next logical step is to try decompiling the python binary.
-One popular python decompiler is [decompyle3](https://pypi.org/project/decompyle3/#:~:text=Python%20version%203.7%20on), which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.
+One popular python decompiler is [decompyle3](https://pypi.org/project/decompyle3), which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.
 
 We can decompile `guesser.pyc` with the command:
 ```terminal
