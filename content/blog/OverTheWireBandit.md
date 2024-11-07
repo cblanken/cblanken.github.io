@@ -37,25 +37,37 @@ will help the knowledge stick better. I promise.
 {% end %}
 
 I have a few recommendations before getting started. Most of the OverTheWire
-Bandit levels provide links to (potentially) usefal manual pages. Unfortunately
-the `man` pages are often somewhat cryptic, especially for beginners. For that
+Bandit levels provide links to potentially useful manual pages. Unfortunately
+the `man` pages can be somewhat cryptic, especially for beginners. For that
 reason I recommend the following steps to try to get unstuck when slogging
 through the `man` pages for any particular command.
 
 1. Search for examples. Many `man` pages contain examples of their usage. These
    may be marked by all-caps `EXAMPLES` in some cases, but sometimes not.
 2. If skimming through the man pages doesn't surface any apparent examples,
-   then you may want to refer to [`cheat.sh`](https://cheat.sh). Cheat.sh is a
+   then you may want to refer to [cheat.sh](https://cheat.sh). Cheat.sh is a
 database of usage examples for thousands of command line programs. It can be
 searched from the main page or by simply adding a `/` followed by the command.
-For example [`https://cheat.sh/ssh`](https://cheat.sh/ssh) will yield examples
+For example [https://cheat.sh/ssh](https://cheat.sh/ssh) will return examples
 of `ssh` usage. This one can be helpful when trying to understand how a command
 is commonly used and which command flags are most useful.
-3. If you're still struggling to understand some of the examples then paste
-   them into [`https://explainshell.com`](https://explainshell.com).
-Explainshell to get a more readable breakdown of each command line flag and
-argument. This tool can save you a lot of time flipping back and forth through
-the `man` pages.
+3. If you're struggling to understand some of the examples then paste them into
+   [https://explainshell.com](https://explainshell.com). Explainshell
+provides a more readable breakdown of each command line flag and argument. This
+tool can save you a lot of time flipping back and forth through the `man`
+pages.
+
+Please also note that for any terminal output, the command prompt will be
+truncated to a single `$` for brevity. Just remember that you'll need to be
+logged in to the appropriate level before executing any of the commands.
+
+For example:
+
+```terminal
+$ cat hello.txt
+Hello there!
+```
+
 
 ## Log in
 
@@ -92,8 +104,6 @@ both needed to take advantage of the aforementioned public-key cryptography. I
 won't go into detail here, but don't worry there are a couple later levels that
 do utilize SSH keys, so I'll discuss them in more detail when we reach them.
 {% end %}
-
-### Solution
 
 The prompt tells us that both the `username` and `password` are `bandit0`.
 
@@ -152,7 +162,9 @@ by Julia Evans
 
 {% end %}
 
-## Level 0
+## Walkthrough
+
+### Level 0
 
 Now that we're logged in, it's time to solve the first level.
 
@@ -168,20 +180,20 @@ any Linux user who wants to effectively use the command line.
 
 |Command|Description|
 |-------|-----------|
-|[`ls`](https://manpages.ubuntu.com/manpages/noble/man1/ls.1.html)|list the files in a directory|
-|[`cd`](https://manpages.ubuntu.com/manpages/noble/man1/cd.1posix.html)|change your current directory|
-|[`cat`](https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html)|display the contents of a file|
-|[`file`](https://manpages.ubuntu.com/manpages/noble/man1/file.1.html)|display information about the content of a file|
-|[`du`](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)|display the disk space used by files|
-|[`find`](https://manpages.ubuntu.com/manpages/noble/man1/find.1.html)|search the file system for files with various parameters such as filename, file type, file size, etc.|
+|[ls](https://manpages.ubuntu.com/manpages/noble/man1/ls.1.html)|list the files in a directory|
+|[cd](https://manpages.ubuntu.com/manpages/noble/man1/cd.1posix.html)|change your current directory|
+|[cat](https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html)|display the contents of a file|
+|[file](https://manpages.ubuntu.com/manpages/noble/man1/file.1.html)|display information about the content of a file|
+|[du](https://manpages.ubuntu.com/manpages/noble/man1/du.1.html)|display the disk space used by files|
+|[find](https://manpages.ubuntu.com/manpages/noble/man1/find.1.html)|search the file system for files with various parameters such as filename, file type, file size, etc.|
 
 You are _highly_ encouraged to review each of the commands. At the very least
 check out the `cheat.sh` page for each. Regardless these are all pretty common,
 so you'll get plenty of experience with these commands in later levels.
 
-### Solution
+#### Solution
 
-For now, it should be apparent the one of the above commands should serve to
+For now, it should be apparent that one of the above commands should serve to
 show us the contents of the `readme` file mentioned in the prompt. The humble
 `cat` command.
 
@@ -205,7 +217,7 @@ and copy those passwords. You'll need them to return to the last level you've
 completed without completing each level again. Once you've done that, you're
 ready to continue to Level 1.
 
-## Level 1
+### Level 1
 
 > The password for the next level is stored in a file called `-` located in the
 > home directory
@@ -258,7 +270,7 @@ STDIO or standard input and output. If you'd like to read more, there is an
 freeCodeCamp](https://www.freecodecamp.org/news/introduction-to-linux/#heading-standard-file-streams)
 explaining more about it and many other useful concepts.
 
-### Solution
+#### Solution
 
 There will be opportunities to demonstrate STDIO and IO redirection later, but
 for this level, all you need to recognize is that `-` is a special character
@@ -325,13 +337,13 @@ to watch out for.
 
 {% end %}
 
-## Level 2
+### Level 2
 
 > The password for the next level is stored in a file called `spaces in this filename`
 > located in the `home` directory
 
 This level is similar to Level 1, except that the file is not a special
-character. Instead it contains special characters, the space `█`. The space
+character. Instead it contains special characters, the space █. The space
 character is essential for the shell to interpret the input text.
 
 ```terminal
@@ -347,7 +359,7 @@ As you can see from above, entering the name as it's written will cause the
 
 Just as before, there are a few ways to get around this.
 
-### Solution
+#### Solution
 1. Escape the space characters. In Bash, the backslash `\` is used as an
    [escape
 character](https://www.gnu.org/software/bash/manual/bash.html#Escape-Character). When the `\` is used, the following character is interpreted literally. This allows the space characters of the filename to be "escaped".
@@ -370,9 +382,9 @@ Every character between two single quotes is interpreted literally.
 3. Similarly, [double
    quotes](https://www.gnu.org/software/bash/manual/bash.html#Double-Quotes)
 can also be used to interpret the surrounded characters literally. However,
-there are some exceptions, and double quotes allows some special characters to
-be interpreted as they usually are. But the space character is not one those,
-so it is functionally the same as the above example.
+there are some exceptions, and double quotes allow some special characters to
+be interpreted. But the space character is not one those, so it is functionally
+the same as the above example in this case.
 
    ```terminal
    $ cat "spaces in this filename"
@@ -391,7 +403,7 @@ common.
 
 {% end %}
 
-## Level 3
+### Level 3
 
 > The password for the next level is stored in a hidden file in the `inhere`
 > directory.
@@ -404,7 +416,7 @@ According to the `ls` command, there don't appear to be any files in the
 `inhere` directory. That's because `ls` doesn't display hidden files by
 default.
 
-### Solution
+#### Solution
 
 To show hidden files with `ls`, it's necessary to use the `--all` or `-a` flag.
 
@@ -427,9 +439,11 @@ $ cat inhere/...Hiding-From-You
 ```
 
 {% callout(type="note") %}
-The term "dotfile" is also frequently used to refer to a users personal
+
+The term "dotfile" is also frequently used to refer to a user's personal
 configuration files. This is because many configuration files follow the
-leading dot `.` convention, so that they don't clutter up directory listings.
+leading dot `.` convention, so they don't clutter up directory listings.
+
 {% end %}
 
 {% callout(type="tip") %}
@@ -439,22 +453,27 @@ enabled. Here a few common ones.
 - `la` for `ls -A` to list all files excluding `.` and `..`
 - `l` for `ls -CF` to list files in a column format
 - `lsd` for `ls --group-directories-first`
+
+See [this DigitalOcean
+article](https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions)
+to learn more about common aliases and how to configure your own.
+
 {% end %}
 
-## Level 4
+### Level 4
 
 > The password for the next level is stored in the only human-readable file in
 > the `inhere` directory. Tip: if your terminal is messed up, try the `reset`
 > command.
 
 If you haven't done so already, now would be a good time to read through the
-manual for each of the linked commands that were already mentioned in [Level
+manual for each of the commands that were already mentioned in [Level
 0](#level-0).
 
-If you, at least read through the description for each, you should have a
-pretty good idea of which command you'll need to solve this one.
+If you've read through the description for each, you should have a pretty good
+idea of which command you'll need to solve this one.
 
-### Solution
+#### Solution
 
 This level is asking us to identify which files in `inhere` are human readable.
 The `file` command can get the information we need.
@@ -510,7 +529,7 @@ running commands over a bunch of files.
 
 {% end %}
 
-## Level 5
+### Level 5
 
 > The password for the next level is stored in a file somewhere under the
 > `inhere` directory and has all of the following properties:
@@ -524,11 +543,11 @@ require some tedious manual searching to find the files that match each of the
 criteria. Luckily the `find` command is capable of locating files with all the
 above criteria. You just need to know the right flags.
 
-### Solution
+#### Solution
 
 The `find` command is essential to efficiently locating files on Linux systems.
 It has several flags that can be used to refine its search. Most importantly
-for this level are `-readable`, `-size` and `-executable`
+for this level are `-readable`, `-size` and `-executable`.
 
 ```terminal
 $ find -readable -size 1033c -not -executable
@@ -560,6 +579,388 @@ Once again, `cat` the file to get the password.
 $ cat ./inhere/maybehere07/.file2
 [REDACTED PASSWORD]
 ```
+
+### Level 6
+
+> The password for the next level is stored somewhere on the server and has all
+> of the following properties:
+>
+> - owned by user bandit7
+> - owned by group bandit6
+> - 33 bytes in size
+
+This level is very similar to [Level 5](#level-5) with a couple minor
+differences. First, the file is "stored somewhere on the server" instead of in
+the `inhere` directory. That just means we'll need to run the `find` command
+from the root of the file system to ensure the file isn't missed. Secondly, the
+file is specified by two new parameters. The [user and
+group](https://wiki.archlinux.org/title/Users_and_groups) that own the file.
+
+#### Solution
+
+Searching the `find` manpage you can find the two flags `-user` and `-group` to
+filter for files owned by the `bandit7` user and the `bandit6` group as
+specified by the prompt. The final parameter is for a `-size` of 33 bytes which
+we already saw in level 5.
+
+Here's an example of the output from `find` with all the required arguments.
+
+```terminal
+$ find / -user bandit7 -group bandit6 -size 33c
+find: ‘/drifter/drifter14_src/axTLS’: Permission denied
+find: ‘/root’: Permission denied
+find: ‘/snap’: Permission denied
+find: ‘/tmp’: Permission denied
+find: ‘/proc/tty/driver’: Permission denied
+find: ‘/proc/250118/task/250118/fd/6’: No such file or directory
+find: ‘/proc/250118/task/250118/fdinfo/6’: No such file or directory
+find: ‘/proc/250118/fd/5’: No such file or directory
+...
+[TRUNCATED OUTPUT]
+```
+
+Unfortunately searching with `find` from `/` has a side effect. Any files or
+directories that the current user is not allowed to read will print an error to
+the terminal. This makes it pretty difficult to parse the output for any
+resulting files that match our search. To avoid this flood of errors, a common
+solution is to redirect the standard error stream to
+[`/dev/null`](https://www.digitalocean.com/community/tutorials/dev-null-in-linux)
+This is actually just a file that discards anything written to it.
+
+To redirect a data stream in Bash we must specify its [file
+descriptor](https://en.wikipedia.org/wiki/File_descriptor), which is an
+integer. The file descriptor is followed by a greater than sign `>` which
+indacates that the stream should be redirected to a target file. Here is the
+same command as above with all errors redirect to `/dev/null`.
+
+```terminal, hl_lines=2
+$ find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
+/var/lib/dpkg/info/bandit7.password
+```
+
+As you can see, the output is considerably easier to understand. Read the file
+at `/var/lib/dpkg/info/bandit7.password` to get the next password.
+
+### Level 7
+
+> The password for the next level is stored in the file `data.txt` next to the
+> word "millionth".
+
+This is the first level that OverTheWire introduces some new recommended
+commands since [level 0](#level-0).
+
+|Command|Description|
+|-------|-----------|
+|[man](https://manpages.ubuntu.com/manpages/noble/man1/man.1.html)|access the system reference manuals|
+|[grep](https://manpages.ubuntu.com/manpages/noble/man1/grep.1.html)|print lines that match patterns|
+|[sort](https://manpages.ubuntu.com/manpages/noble/man1/sort.1.html)|sort lines in text files|
+|[uniq](https://manpages.ubuntu.com/manpages/noble/man1/uniq.1.html)|remove duplicate lines from a file|
+|[strings](https://manpages.ubuntu.com/manpages/noble/man1/strings.1.html)|print readable strings from arbitrary files (even binary)|
+|[base64](https://manpages.ubuntu.com/manpages/noble/man1/base64.1.html)|encode data into [Base64](https://en.wikipedia.org/wiki/Base64)|
+|[tr](https://manpages.ubuntu.com/manpages/noble/man1/tr.1.html)|translate and replace characters|
+|[tar](https://manpages.ubuntu.com/manpages/noble/man1/tar.1.html)|a utility for archive files|
+|[gzip](https://manpages.ubuntu.com/manpages/noble/man1/gzip.1.html)|a utility for compressing files|
+|[bzip2](https://manpages.ubuntu.com/manpages/noble/man1/bzip2.1.html)|a utility for compressing files|
+|[xxd](https://manpages.ubuntu.com/manpages/noble/man1/xxd.1.html)|a tool for creating a hex dump of a file|
+
+Once again, I highly recommend at least reading through the introduction for
+each of these commands and checking out the examples at
+[cheat.sh](https://cheat.sh).
+
+#### Solution
+
+If you've followed the above advice, there should really only be one contender
+to solve this level. The `grep` command.
+
+```terminal
+NAME
+   grep - print lines that match patterns
+
+SYNOPSIS
+   grep [OPTION...] PATTERNS [FILE...]
+   grep [OPTION...] -e PATTERNS ... [FILE...]
+   grep [OPTION...] -f PATTERN_FILE ... [FILE...]
+
+DESCRIPTION
+   grep  searches for PATTERNS in each FILE. PATTERNS is one or more
+   patterns separated by newline characters, and grep prints each line that
+   matches a pattern. Typically PATTERNS should be quoted when grep is used in a
+   shell command.
+
+```
+
+According to the syntax description we should be able to search for patterns in
+a file with the following syntax.
+
+```terminal
+grep <PATTERN> <FILE>
+```
+
+Swapping in the values mentioned in the prompt will return the line we're
+looking for.
+
+```terminal, hl_lines=2
+$ grep "millionth" data.txt
+millionth       [REDACTED PASSWORD]
+```
+
+#### Regex
+
+Grep and more generally
+[regular expressions](https://en.wikipedia.org/wiki/Regular_expression) (regex)
+are extremely useful. You'll find many applications have integrated support for
+text search via regex. In particular text editors, word processors, and
+programming IDEs.
+
+{% callout(type="tip") %}
+
+To explore regex more I highly recommend reading through the [Regex Quick Start
+Guide](https://www.regular-expressions.info/quickstart.html) from
+[regular-expression.info](https://www.regular-expressions.info) to get a feel
+for what's possible with regex and then follow that up with some
+experimentation on [regex101.com](https://regex101.com). This is a tool that
+visualizes regex matches. Drop any text you want into it and try out all kinds
+of search patterns. Try to match words, letters, various combinations of upper
+and lowercase letters, punctuation, etc. Seeing regex in action and observing
+precisely what matches with different patterns will give you a much better
+intuition for what's possible than anything I could write here.
+
+Regex can get very complicated very quickly, so regex101 is also a great
+tool for debugging your regex. Definitely give it a bookmark, it'll be a life
+saver. Trust me.
+
+{% end %}
+
+### Level 8
+
+> The password for the next level is stored in the file `data.txt` and is the
+> only line of text that occurs only once
+
+This level is the first that seriously benefits from chaining two commands
+together. In Bash this is done with the pipe `|` character. The pipe, when
+placed after a command will pass all of the output (stdout) into the input
+(stdin) of the command that follows it.
+
+For example, we can combine the `ls` and `grep` commands to list only those
+files that contain "bash" in the name.
+
+```terminal
+$ ls -a | grep bash
+.bash_logout
+.bashrc
+```
+
+Remember that the `-a` flag is necessary to list hidden or dot files.
+
+Read through the [Piping and
+Redirection](https://ryanstutorials.net/linuxtutorial/piping.php) article
+provided under the helpful reading material section to learn more about
+piping.
+
+#### Solution
+
+Reviewing the recommended commands, one should stick out.
+
+```
+NAME
+   uniq - report or omit repeated lines
+
+SYNOPSIS
+   uniq [OPTION]... [INPUT [OUTPUT]]
+
+DESCRIPTION
+   Filter adjacent matching lines from INPUT (or standard input), writing
+to OUTPUT (or standard output).
+
+   With no options, matching lines are merged to the first occurrence.
+```
+
+The `uniq` command is able to filter matching or repeated lines. Since we're
+looking for a unique line in a file, this will be helpful. However, there is
+one caveat when using `uniq` that you must be aware of. The `uniq` command
+filters _adjacent matching_ lines. This means that any matching lines that
+aren't directly adjacent, won't be filtered. So the first step must be to
+organize the file such that matching lines are adjacent. In other words the
+file should be sorted. The `sort` program is designed precisely for this use
+case. 
+
+For example, here's the first 20 lines of `data.txt` when sorted.
+
+```terminal
+$ sort data.txt | head -n20
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+```
+
+As mentioned before, the pipe `|` is useful here to send the output of the
+`sort` command to `uniq`.
+
+```terminal
+$ sort data.txt | uniq | head -n20
+0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+0kJ7XHD4gVtNSZIpqyP1V45sfz9OBLFo
+0lPOvKhpHZebxji0gdjtGCd5GWiZnNBj
+0REUhKk0yMqQOwei6NK9ZqIpE5dVlWWM
+1jfUH1m4XCjr7eWAeleGdaNSxFXRtX0l
+1VKPEkd0bCtIRwMFVQfY7InulwOFyDsn
+2u8fvAzvnaFlvQG3iPt4Wc1TFhPcGxhH
+35l6mr3f6TvlJyDwU6aUgJX07cLhr6t9
+3FIgajXBiaQAiTMVGo1gxRDSiACNyvvJ
+3mNA2le0gfURQKNHVIhGkMNLqLwjyyLN
+4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+4P8FsHcdr7d5WKnPtAaXY5SslKICd2gL
+5EmwMKZHwF6Lwq5jHUaDlfFJBeHbcX0b
+5hYz0028e1Q2TrtPVz5GZbpMzZNjebhh
+5I2jWpqjtVp576xXI2TLh1UCyXJtGQ78
+6Boy6esAjnIxCYn8uI6KZ7VD7zysDM8i
+7cP8ssLElERHXqOJc9T84bxsmJBjNXk2
+7qHmEo1FEbzthgyNpKc38YofXjYKZv18
+8FCtUQlFXsJnNeyiDY5KfE3vRy6sZFEJ
+```
+
+Well that's strange. Why has `uniq`  returned all those lines? If you read the
+description for `uniq` carefully, then one line explains this.
+
+```
+With no options, matching lines are merged to the first occurrence.
+```
+
+So essentially what we have here is a file with each unique line of the file
+where adjacent duplicates have been compressed into a single line. However, we
+want to list _only_ the unique lines from the input. For that, the `-u` flag
+will meet our needs. The `-u` flag tells sort to only print _unique_ lines. In
+other words, only lines without any duplicates in the input.
+
+So finally, we have a solution.
+
+```terminal
+$ sort data.txt | uniq -u
+[REDACTED PASSWORD]
+```
+
+### Level 9
+
+> The password for the next level is stored in the file `data.txt` in one of the
+> few human-readable strings, preceded by several ‘=’ characters.
+
+This level 
+
+#### Solution
+
+```terminal
+$ grep '=== \w*' data.txt
+grep: data.txt: binary file matches
+```
+
+The `\w` is a shortcut for any word characters which equivalent to
+`[a-zA-Z0-9_]`.
+
+We can see here, that grep found some matches, but `data.txt` was interpreted
+as a binary file. We can force grep to process the file as if it were text with
+the `-a` flag.
+
+```terminal, hl_lines=4 8 12 16
+$ grep -a '=== \w*' data.txt
+D]
+  h#!QJsVzl7POl%Y]Ha^UvToD|@T^N8g}b}?
+Q#gm1x}========== theѦ+idW^)F1>)٘SK3PZt&xs肉WB/2ÜB       Ź/Bjɢ<7<u/d|
+                                                                    -n
+#iu=
+    7֣n)Uջش5bBKK}x>}:4Rl_7gHD:274CFy
+6!&zB$l_GphqI.02H$Twm⧫o3mt0p~L3JprD========== passwordi L ~ˏ<@Ȅh$%Q5Dk |3
+~Tf;o9sP#t+Pe΢쵟
+OqDf.8Czmnf&vl:FXKbM
+                 CIBi>Y
+Еk      $nXT=~}*4a2?TO"'&J~fDV3========== isd5z(#&s!10&poq
+nR F
+    z|!(if+A64+'FTb5A}
+éT:kAU2Qcɐ%#g+;YA_ekrX53|f8+e~&Oiu?VhM}^Qp^G==6!sT:     "uVa-t\fg
+]󈍅(.ۍg:7nnp CD`voSQ-<]`@#H UumBiAj堵!O&D9========== [REDACTED PASSWORD]
+
+```
+
+On the last line of the above output, you'll find the password to the next
+level.
+
+{% callout(type="tip") %}
+
+It's possible for `grep` to output the precise matching text instead of each
+entire line. The `-o` flag is needed to do this. It tells grep to only output
+the matched pattern.
+
+```terminal, linenos, hl_lines=5
+$ grep -a -o '=== \w*' data.txt
+=== the
+=== passwordi
+=== is
+=== [REDACTED PASSWORD]
+```
+
+This gives a much clearer picture of the password without all the surrounding
+binary data.
+
+{% end %}
+
+### Level 10
+
+> The password for the next level is stored in the file `data.txt`, which
+> contains __base64__ encoded data
+
+
+
+#### Solution
+
+This one is pretty straight forward. The prompt gives it away by mentioning
+that the data is Base64 encoded.
+
+Check the manual for the `base64` command and you'll find one of the first
+flags is `-d` for `--decode`.
+
+```terminal, hl_lines=2
+$ base64 -d data.txt
+The password is [REDACTED PASSWORD]
+```
+
+{% callout(type="note") %}
+
+Be sure you understand what _encoding_ is in this context.
+
+[Base64](https://en.wikipedia.org/wiki/Base64) is just one scheme of many to
+convert binary data into printable characters i.e. alphanumeric characters with
+the addition of the equal sign `=`. In fact, that equal sign `=` is used for
+padding the end of encoded text, so it's often a dead giveaway that some text
+was Base64 encoded. For example, the word "password" when Base64 encoded is
+`cGFzc3dvcmQ=`.
+
+Base64 encoded text is extremely common on the web and you're likely to come
+across it at some point, so it may behoove you to read up on it. FreeCodeCamp
+has an [excellent
+article](https://www.freecodecamp.org/news/what-is-base64-encoding/) that gives
+a good overview of how Base64 works and what it's used for.
+
+You're less likely see other forms of binary to text encoding, but feel free to
+[read more](https://en.wikipedia.org/wiki/Binary-to-text_encoding).
+
+{% end %}
 
 ## To be continued
 
