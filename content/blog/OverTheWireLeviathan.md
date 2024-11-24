@@ -1,6 +1,6 @@
 +++
 title = "OverTheWire - Leviathan"
-date = "2024-11-19"
+date = "2024-11-24"
 description = "Walkthrough for the Leviathan cyber wargame."
 
 [extra]
