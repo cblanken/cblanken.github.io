@@ -1,0 +1,2608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>cblanken</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange.css">
+
+        <link rel="stylesheet" href="https://www.cblanken.dev/color/background_blue.css">
+    
+    <link rel="stylesheet" href="https://www.cblanken.dev/font-hack-subset.css">
+
+    <meta name="description" content="Learn Linux with OverTheWire Bandit.">
+
+    <meta property="og:description" content="Learn Linux with OverTheWire Bandit.">
+    <meta property="og:title" content="cblanken">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/blog/overthewirebandit/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Learn Linux with OverTheWire Bandit.">
+    <meta name="twitter:title" content="cblanken">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/blog/overthewirebandit/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://www.cblanken.dev/about">About me</a></li>
+            
+                <li class="active"><a href="https://www.cblanken.dev/blog">Blog</a></li>
+            
+                <li><a href="https://www.cblanken.dev/journal">Journal</a></li>
+            
+                <li><a href="https://www.cblanken.dev/projects">Projects</a></li>
+            
+                <li><a href="https://www.cblanken.dev/archive">Archive</a></li>
+            
+                <li><a href="https://www.cblanken.dev/tags">Tags</a></li>
+            
+                <li><a href="https://www.cblanken.dev/feeds">RSS</a></li>
+            
+                <li><a href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    
+
+    <div class="post">
+        
+        <div class="toc-container">
+            <div class="toc">
+              <div class="toc-header">Table of Contents</div>
+              <div class="toc-title">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#title">OverTheWire - Bandit</a>
+              </div>
+              <ol class="toc-items">
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#introduction">Introduction</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#log-in">Log in</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#walkthrough">Walkthrough</a>
+                    <ol>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-0">Level 0</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-1">Level 1</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-1">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-2">Level 2</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-2">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-3">Level 3</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-3">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-4">Level 4</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-4">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-5">Level 5</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-5">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-6">Level 6</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-6">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-7">Level 7</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-7">Solution</a>
+                          </li>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#regex">Regex</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-8">Level 8</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-8">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-9">Level 9</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-9">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                      <li class="toc-item">
+                        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#level-10">Level 10</a>
+                        <ol>
+                        
+                          <li class="toc-item">
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#solution-10">Solution</a>
+                          </li>
+                        
+                        </ol>
+                      </li>
+                    
+                    </ol>
+                  </li> 
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;overthewirebandit&#x2F;#to-be-continued">To be continued</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+              </ol>
+            </div>
+        </div>
+        
+
+        
+    <h1 id="title" class="post-title"><a href="https://www.cblanken.dev/blog/overthewirebandit/#title">OverTheWire - Bandit</a></h1>
+    
+    <div class="post-meta-inline">
+            <span>
+    <span class="post-date">
+            October 20, 2024
+        </span>
+</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;
+        <span>4651 words</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;<span>24 min</span>
+    </div>
+    
+
+    <div>
+    
+        <span class="post-tags-inline">
+                <a class="post-tag" href="https://www.cblanken.dev/tags/linux/">#Linux</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/overthewire/">#OverTheWire</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/ctf/">#ctf</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/infosec/">#infosec</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/wargame/">#wargame</a>
+            </span>
+    
+    </div>
+
+        <div class="post-content">
+            <h2 id="introduction"><a class="zola-anchor" href="#introduction" aria-label="Anchor link for: introduction">Introduction</a></h2>
+<p><a href="https://overthewire.org/wargames/bandit/">Bandit</a> is just one of several
+<a href="https://en.wikipedia.org/wiki/Wargame_(hacking)">wargames</a> available at
+<a href="https://overthewire.org/">overthewire.org</a>. It's aimed at beginners to Linux
+and CTFs and provides an excellent introduction to the basics of the Linux
+command line.</p>
+<p>In this walkthrough I'm going to show the process for solving each challenge
+while also providing some insight into what each challenge is trying to teach
+and why it's useful, so keep an eye out for callouts like those below.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>Access to each Bandit level is made over SSH. The username will correspond to
+the index of the level starting at 0. Always make sure you're logging into the
+correct Bandit level!</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout warning">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#warn"></use></svg>
+    <div>Warning</div>
+  </div>
+  <div class="callout-text">
+    <p>If you're looking for the solution of a particular level, you are highly
+encouraged to attempt it on your own before following this walkthrough. You
+will learn some useful things regardless, but attempting it on your own first
+will help the knowledge stick better. I promise.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<p>I have a few recommendations before getting started. Most of the OverTheWire
+Bandit levels provide links to potentially useful manual pages. Unfortunately
+the <code>man</code> pages can be somewhat cryptic, especially for beginners. For that
+reason I recommend the following steps to try to get unstuck when slogging
+through the <code>man</code> pages for any particular command.</p>
+<ol>
+<li>Search for examples. Many <code>man</code> pages contain examples of their usage. These
+may be marked by all-caps <code>EXAMPLES</code> in some cases, but sometimes not.</li>
+<li>If skimming through the man pages doesn't surface any apparent examples,
+then you may want to refer to <a href="https://cheat.sh">cheat.sh</a>. Cheat.sh is a
+database of usage examples for thousands of command line programs. It can be
+searched from the main page or by simply adding a <code>/</code> followed by the command.
+For example <a href="https://cheat.sh/ssh">https://cheat.sh/ssh</a> will return examples
+of <code>ssh</code> usage. This one can be helpful when trying to understand how a command
+is commonly used and which command flags are most useful.</li>
+<li>If you're struggling to understand some of the examples then paste them into
+<a href="https://explainshell.com">https://explainshell.com</a>. Explainshell
+provides a more readable breakdown of each command line flag and argument. This
+tool can save you a lot of time flipping back and forth through the <code>man</code>
+pages.</li>
+</ol>
+<p>Please also note that for any terminal output, the command prompt will be
+truncated to a single <code>$</code> for brevity. Just remember that you'll need to be
+logged in to the appropriate level before executing any of the commands.</p>
+<p>For example:</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat hello.txt
+</span><span>Hello there!
+</span></code></pre>
+<h2 id="log-in"><a class="zola-anchor" href="#log-in" aria-label="Anchor link for: log-in">Log in</a></h2>
+<blockquote>
+<p>The goal of this level is for you to log into the game using SSH. The host to
+which you need to connect is bandit.labs.overthewire.org, on port 2220. The
+username is bandit0 and the password is bandit0. Once logged in, go to the
+Level 1 page to find out how to beat Level 1.</p>
+</blockquote>
+<p><a href="https://overthewire.org/wargames/bandit/bandit0.html">Bandit 0</a> provides an
+introduction to SSH and provides a couple useful links for further research.</p>
+<ul>
+<li><a href="https://manpages.ubuntu.com/manpages/noble/man1/ssh.1.html">ssh manual</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH - Wikipedia</a></li>
+</ul>
+<p>Firstly, let's discuss what SSH is and how it's used day-to-day. SSH is a
+networking protocol that allows secure communication between networked computer
+systems. This is distinct from the <code>ssh</code> command line program linked above. The
+program implements the protocol and allows regular users to utilize the SSH
+protocol for secure communication. The security of SSH is based on <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key
+cryptography</a> which
+you're welcome to read more about, but many of the details are out of scope for
+this walkthrough.</p>
+<p>The most important thing you need to know about SSH is that it can be used to
+login to a computer system with a <code>username</code> and <code>password</code> just as if you were
+physically present. Except in this case it's another system accessible over the
+network. This is how it will be used over the course of the Bandit wargame as
+well as some of the other wargames by OverTheWire.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>It's worth mentioning that SSH is usually (and preferably) used with an SSH
+key. More specifically a key-pair. A public key and a private key which are
+both needed to take advantage of the aforementioned public-key cryptography. I
+won't go into detail here, but don't worry there are a couple later levels that
+do utilize SSH keys, so I'll discuss them in more detail when we reach them.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<p>The prompt tells us that both the <code>username</code> and <code>password</code> are <code>bandit0</code>.</p>
+<p>Just as important though, is the network location we've been provided,
+<code>bandit.labs.overthewire.org</code>, which we'll use to connect to level 0. Actually,
+<code>bandit.labs.overthewire.org</code> is what's known as a
+<a href="https://en.wikipedia.org/wiki/Hostname">hostname</a> or <a href="https://en.wikipedia.org/wiki/Domain_name">domain
+name</a>. More specifically, it's a
+<a href="https://en.wikipedia.org/wiki/Fully_qualified_domain_name">fully qualified domain name
+(FQDN)</a>. You can
+recognize an FQDN because it will include a <a href="https://en.wikipedia.org/wiki/Top-level_domain">top-level domain
+(TLD)</a> such as <code>.com</code>, <code>.net</code>,
+or <code>.org</code>. This naming system for computers is called the <a href="https://en.wikipedia.org/wiki/Domain_Name_System">Domain Name System
+(DNS)</a>. Luckily we don't need
+to dig into the details here. Just know that one of these FQDNs will resolve to
+an <a href="https://en.wikipedia.org/wiki/IP_address">IP address</a> which can (usually)
+be used to uniquely identify a computer system on the internet.</p>
+<p>This unique name will tell the <code>ssh</code> program what system to connect to. The
+<code>ssh</code> program expects the user credentials and hostname in the following format
+<code>ssh://[user@]hostname[:port]</code>. This is explained in the first couple
+paragraphs of the
+<a href="https://www.man7.org/linux/man-pages/man1/ssh.1.html">ssh man page</a>.</p>
+<blockquote>
+<p>ssh connects and logs into the specified destination, which may be  specified
+as  either  <code>[user@]hostname</code>  or  a  URI  of  the  form
+<code>ssh://[user@]hostname[:port]</code>.</p>
+</blockquote>
+<p>The elements wrapped in brackets <code>[</code> and <code>]</code>
+are actually optional. Linux <code>man</code> pages will commonly express the available
+flags and arguments for a command in this way.</p>
+<p>With that knowledge we can now connect to the first level with this command.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">ssh</span><span> ssh://bandit0@bandit.labs.overthewire.org:2220
+</span></code></pre>
+<p>You should be greeted by a banner for the Bandit wargame and a prompt
+requesting entry of the <code>bandit0</code> password. Enter <code>bandit0</code> and you're ready to
+get started.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>It isn't necessary to solve any of the Bandit levels, but I highly recommend
+researching DNS. It's intrinsic to how the internet operates and you'll likely
+encounter it again and again if you pursue any area of IT, software, or
+cybersecurity.</p>
+<p>Resources:</p>
+<ul>
+<li><a href="https://www.freecodecamp.org/news/what-is-dns-for-beginners/">What is DNS?</a>:
+an excellent intro to the basics of DNS by freeCodeCamp</li>
+<li><a href="https://implement-dns.wizardzines.com">Implement DNS in a weekend</a>: if you
+have some programming experience, I highly recommend following this walkthrough
+by Julia Evans</li>
+</ul>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h2 id="walkthrough"><a class="zola-anchor" href="#walkthrough" aria-label="Anchor link for: walkthrough">Walkthrough</a></h2>
+<h3 id="level-0"><a class="zola-anchor" href="#level-0" aria-label="Anchor link for: level-0">Level 0</a></h3>
+<p>Now that we're logged in, it's time to solve the first level.</p>
+<blockquote>
+<p>The password for the next level is stored in a file called readme located in
+the home directory. Use this password to login to <code>bandit1</code> using SSH. Whenever
+you find a password for a level, use SSH (on port 2220) to log into that
+level and continue the game.</p>
+</blockquote>
+<p>The prompt also provides links to the man pages for several commands.</p>
+<p>With perhaps the exception of <code>du</code>. Each of these commands is fundamental for
+any Linux user who wants to effectively use the command line.</p>
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/ls.1.html">ls</a></td><td>list the files in a directory</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/cd.1posix.html">cd</a></td><td>change your current directory</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/cat.1.html">cat</a></td><td>display the contents of a file</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/file.1.html">file</a></td><td>display information about the content of a file</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/du.1.html">du</a></td><td>display the disk space used by files</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/find.1.html">find</a></td><td>search the file system for files with various parameters such as filename, file type, file size, etc.</td></tr>
+</tbody></table>
+<p>You are <em>highly</em> encouraged to review each of the commands. At the very least
+check out the <code>cheat.sh</code> page for each. Regardless these are all pretty common,
+so you'll get plenty of experience with these commands in later levels.</p>
+<h4 id="solution"><a class="zola-anchor" href="#solution" aria-label="Anchor link for: solution">Solution</a></h4>
+<p>For now, it should be apparent that one of the above commands should serve to
+show us the contents of the <code>readme</code> file mentioned in the prompt. The humble
+<code>cat</code> command.</p>
+<p>It takes a filename as a parameter. So providing it with the filename <code>readme</code>
+should print it's contents.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat readme
+</span><span>Congratulations on your first steps into the bandit game!!
+</span><span>Please make sure you have read the rules at https://overthewire.org/rules/
+</span><span>If you are following a course, workshop, walkthrough or other educational activity,
+</span><span>please inform the instructor about the rules as well and encourage them to
+</span><span>contribute to the OverTheWire community so we can keep these games free!
+</span><span>
+</span><span>The password you are looking for is: [REDACTED PASSWORD]
+</span></code></pre>
+<p>I won't be providing any of the passwords throughout this walkthrough per the
+OverTheWire <a href="https://overthewire.org/rules/">rules</a>. So get out your notepad
+and copy those passwords. You'll need them to return to the last level you've
+completed without completing each level again. Once you've done that, you're
+ready to continue to Level 1.</p>
+<h3 id="level-1"><a class="zola-anchor" href="#level-1" aria-label="Anchor link for: level-1">Level 1</a></h3>
+<blockquote>
+<p>The password for the next level is stored in a file called <code>-</code> located in the
+home directory</p>
+</blockquote>
+<p>The prompt also provides links to the man pages for the same commands as level 0.</p>
+<p>Naturally, you might think to try the <code>cat</code> command again. Afterall, we're told
+the password in in the file called <code>-</code>. Let's try it and see what happens.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat -
+</span><span>█
+</span></code></pre>
+<p>Strange, you're left with a blank line on the terminal now. And, if you type
+some text and press the <code>Enter</code> key, the text is repeated back to the
+terminal like so.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat -
+</span><span>hello there
+</span><mark style="background-color:#65737e30;"><span>hello there
+</span></mark></code></pre>
+<p>The reason for this will become clear if you read the description from the
+<code>cat</code> man page.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>NAME
+</span><span>   cat - concatenate files and print on the standard output
+</span><span>
+</span><span>SYNOPSIS
+</span><span>   cat [OPTION]... [FILE]...
+</span><span>
+</span><mark style="background-color:#65737e30;"><span>DESCRIPTION
+</span></mark><mark style="background-color:#65737e30;"><span>   Concatenate FILE(s) to standard output.
+</span></mark><mark style="background-color:#65737e30;"><span>   With no FILE, or when FILE is -, read standard input.
+</span></mark></code></pre>
+<p>So, according to the description, the parameter <code>-</code>, makes <code>cat</code> read from
+standard input. You may have guessed this already, but standard input or STDIN
+is usually what's entered by the user in the terminal; however, STDIN doesn't
+explicitly refer to input from a user. Rather, it refers to a <em>stream</em> of data
+that is being sent to a program, so it may also refer to files or even the
+output of other programs that is being passed to other programs.</p>
+<p>You'll most likely hear of this concept of input and output referred to as
+STDIO or standard input and output. If you'd like to read more, there is an
+<a href="https://www.freecodecamp.org/news/introduction-to-linux/#heading-standard-file-streams">excellent article by
+freeCodeCamp</a>
+explaining more about it and many other useful concepts.</p>
+<h4 id="solution-1"><a class="zola-anchor" href="#solution-1" aria-label="Anchor link for: solution-1">Solution</a></h4>
+<p>There will be opportunities to demonstrate STDIO and IO redirection later, but
+for this level, all you need to recognize is that <code>-</code> is a special character
+that tells cat to read input from STDIN instead of a file as we saw before. So
+to properly refer to the <code>-</code> file, it must be referenced by some other means
+than the simple filename. There are several ways to accomplish that.</p>
+<ol>
+<li>
+<p>Use <code>./&lt;filename&gt;</code> where <code>&lt;filename&gt;</code> would be <code>-</code> for this example. The <code>.</code>
+is a special character that is interpreted as the current directory. This is
+usually implied when we just enter a file by it's name. However, stating it
+explicitly allows us to circumvent the special case of using <code>-</code> as an argument
+to <code>cat</code>.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat ./-
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+</li>
+<li>
+<p>Use the full path. On Linux and other Unix-based systems the <a href="https://en.wikipedia.org/wiki/Root_directory">root of the
+file system</a> can be specified
+with a <code>/</code>. To use this method though we'll need to know the full path of the
+<code>-</code> file. To get that we can use the <code>pwd</code> command, which is short for "print
+working directory".</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ pwd
+</span><span>/home/bandit1
+</span></code></pre>
+<p>To complete the full path for <code>-</code> we just need to append <code>/&lt;filename&gt;</code>.</p>
+<pre data-lang="terminimal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminimal "><code class="language-terminimal" data-lang="terminimal"><span>$ cat /home/bandit1/-
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+</li>
+<li>
+<p>We can also use what is called a glob (<code>*</code>). The glob can be used to execute
+commands over multiple files at once. For example using the following
+command will print all files in the current working directory.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat ./*
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+<p>In this example the only file in our current directory is the password file
+<code>-</code>. But just like the other examples it circumvents the special <code>-</code>
+argument to <code>cat</code>.</p>
+<p>The glob is actually a part of a larger set of <a href="https://www.gnu.org/software/bash/manual/bash.html#Filename-Expansion">filename
+expansion</a>
+features available in Bash. They're quite useful and we may see more of them
+in future levels.</p>
+</li>
+</ol>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>The main takeway from this level is that there are special characters that may
+change how commands are interpreted on the command line. Some of them will be
+built-in to whatever shell you're using, but some may just be conventions like
+the <code>-</code> character for STDIN and won't apply to every program. Here is a
+breakdown of the special characters used in the Bash shell that you might want
+to watch out for.
+<a href="https://mywiki.wooledge.org/BashGuide/SpecialCharacters">https://mywiki.wooledge.org/BashGuide/SpecialCharacters</a></p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h3 id="level-2"><a class="zola-anchor" href="#level-2" aria-label="Anchor link for: level-2">Level 2</a></h3>
+<blockquote>
+<p>The password for the next level is stored in a file called <code>spaces in this filename</code>
+located in the <code>home</code> directory</p>
+</blockquote>
+<p>This level is similar to Level 1, except that the file is not a special
+character. Instead it contains special characters, the space █. The space
+character is essential for the shell to interpret the input text.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat spaces in this filename
+</span><span>cat: spaces: No such file or directory
+</span><span>cat: in: No such file or directory
+</span><span>cat: this: No such file or directory
+</span><span>cat: filename: No such file or directory
+</span></code></pre>
+<p>As you can see from above, entering the name as it's written will cause the
+<code>cat</code> command to interpret each word in the file as a separate filename.</p>
+<p>Just as before, there are a few ways to get around this.</p>
+<h4 id="solution-2"><a class="zola-anchor" href="#solution-2" aria-label="Anchor link for: solution-2">Solution</a></h4>
+<ol>
+<li>
+<p>Escape the space characters. In Bash, the backslash <code>\</code> is used as an
+<a href="https://www.gnu.org/software/bash/manual/bash.html#Escape-Character">escape
+character</a>. When the <code>\</code> is used, the following character is interpreted literally. This allows the space characters of the filename to be "escaped".</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat spaces\ in\ this\ filename
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+</li>
+<li>
+<p>Instead of escaping the spaces individually, the filename can also be
+surrounded by <a href="https://www.gnu.org/software/bash/manual/bash.html#Single-Quotes">single
+quotes</a>.
+Every character between two single quotes is interpreted literally.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat &#39;spaces in this filename&#39;
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+</li>
+<li>
+<p>Similarly, <a href="https://www.gnu.org/software/bash/manual/bash.html#Double-Quotes">double
+quotes</a>
+can also be used to interpret the surrounded characters literally. However,
+there are some exceptions, and double quotes allow some special characters to
+be interpreted. But the space character is not one those, so it is functionally
+the same as the above example in this case.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat &quot;spaces in this filename&quot;
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+</li>
+</ol>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>Recognize that it's sometimes necessary to escape characters within filenames
+and other arguments.</p>
+<p>Most Linux users will avoid naming files with any special characters, but
+sometimes you'll still run into them. This is especially true with files
+created on Windows where spaces inside file and directory names are much more
+common.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h3 id="level-3"><a class="zola-anchor" href="#level-3" aria-label="Anchor link for: level-3">Level 3</a></h3>
+<blockquote>
+<p>The password for the next level is stored in a hidden file in the <code>inhere</code>
+directory.</p>
+</blockquote>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ ls ./inhere
+</span></code></pre>
+<p>According to the <code>ls</code> command, there don't appear to be any files in the
+<code>inhere</code> directory. That's because <code>ls</code> doesn't display hidden files by
+default.</p>
+<h4 id="solution-3"><a class="zola-anchor" href="#solution-3" aria-label="Anchor link for: solution-3">Solution</a></h4>
+<p>To show hidden files with <code>ls</code>, it's necessary to use the <code>--all</code> or <code>-a</code> flag.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ ls -a ./inhere
+</span><span>.  ..  ...Hiding-From-You
+</span></code></pre>
+<p>With the <code>--all</code> flag enabled, <code>ls</code> now shows all the files in the <code>inhere</code>
+directory. Including the hidden files. In Linux and other Unix-based systems, a
+leading dot <code>.</code> in a filename is used to indicate a hidden file. As such, you
+may here them referred to as dotfiles.</p>
+<p>Now that we know the name of the hidden file, <code>cat</code> can be used to print the
+contents just as we've seen before.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat inhere/...Hiding-From-You
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>The term "dotfile" is also frequently used to refer to a user's personal
+configuration files. This is because many configuration files follow the
+leading dot <code>.</code> convention, so they don't clutter up directory listings.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>Some systems will have aliases for the <code>ls</code> command as well, with various flags
+enabled. Here a few common ones.</p>
+<ul>
+<li><code>ll</code> for <code>ls -AlhF</code> to list all files in a human-readable, long format</li>
+<li><code>la</code> for <code>ls -A</code> to list all files excluding <code>.</code> and <code>..</code></li>
+<li><code>l</code> for <code>ls -CF</code> to list files in a column format</li>
+<li><code>lsd</code> for <code>ls --group-directories-first</code></li>
+</ul>
+<p>See <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions">this DigitalOcean
+article</a>
+to learn more about common aliases and how to configure your own.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h3 id="level-4"><a class="zola-anchor" href="#level-4" aria-label="Anchor link for: level-4">Level 4</a></h3>
+<blockquote>
+<p>The password for the next level is stored in the only human-readable file in
+the <code>inhere</code> directory. Tip: if your terminal is messed up, try the <code>reset</code>
+command.</p>
+</blockquote>
+<p>If you haven't done so already, now would be a good time to read through the
+manual for each of the commands that were already mentioned in <a href="https://www.cblanken.dev/blog/overthewirebandit/#level-0">Level
+0</a>.</p>
+<p>If you've read through the description for each, you should have a pretty good
+idea of which command you'll need to solve this one.</p>
+<h4 id="solution-4"><a class="zola-anchor" href="#solution-4" aria-label="Anchor link for: solution-4">Solution</a></h4>
+<p>This level is asking us to identify which files in <code>inhere</code> are human readable.
+The <code>file</code> command can get the information we need.</p>
+<p>From the <code>file</code> manual page we know that we can expect a response of <code>text</code> for
+any files that only contain typical <a href="https://en.wikipedia.org/wiki/ASCII#Character_set">ASCII
+characters</a>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>The  type  printed  will  usually  contain one of the words `text` (the file
+</span><span>contains only printing characters and a few common control characters and is
+</span><span>probably safe to read on an ASCII terminal), `executable` (the file contains
+</span><span>the result of compiling a program  in  a form  understandable to some UNIX
+</span><span>kernel or another), or `data` meaning anything else (data is usually “binary”
+</span><span>or non-printable).
+</span></code></pre>
+<p>One option is to execute <code>file</code> on each file in <code>inhere</code> one-by-one like so.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ file inhere/-file00
+</span><span>inhere/-file00: data
+</span></code></pre>
+<p>A better way is to use the glob <code>*</code> that we've seen previously. This allows us
+to run the file command on all the files at once.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ file ./inhere/*
+</span><span>./inhere/-file00: data
+</span><span>./inhere/-file01: data
+</span><span>./inhere/-file02: data
+</span><span>./inhere/-file03: data
+</span><span>./inhere/-file04: data
+</span><span>./inhere/-file05: data
+</span><span>./inhere/-file06: data
+</span><mark style="background-color:#65737e30;"><span>./inhere/-file07: ASCII text
+</span></mark><span>./inhere/-file08: data
+</span><span>./inhere/-file09: data
+</span></code></pre>
+<p>From here it's obvious that we want the file with the text data at <code>./inhere/-file07</code>.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat ./inhere/-file07
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>Always keep an eye out for opportunities to use globbing. Especially if you're
+running commands over a bunch of files.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h3 id="level-5"><a class="zola-anchor" href="#level-5" aria-label="Anchor link for: level-5">Level 5</a></h3>
+<blockquote>
+<p>The password for the next level is stored in a file somewhere under the
+<code>inhere</code> directory and has all of the following properties:</p>
+<ul>
+<li>human-readable</li>
+<li>1033 bytes in size</li>
+<li>not executable</li>
+</ul>
+</blockquote>
+<p>This level requires a precise approach to locate the correct file. While it's
+technically possible to solve with just the <code>ls</code> and <code>file</code> commands. It would
+require some tedious manual searching to find the files that match each of the
+criteria. Luckily the <code>find</code> command is capable of locating files with all the
+above criteria. You just need to know the right flags.</p>
+<h4 id="solution-5"><a class="zola-anchor" href="#solution-5" aria-label="Anchor link for: solution-5">Solution</a></h4>
+<p>The <code>find</code> command is essential to efficiently locating files on Linux systems.
+It has several flags that can be used to refine its search. Most importantly
+for this level are <code>-readable</code>, <code>-size</code> and <code>-executable</code>.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ find -readable -size 1033c -not -executable
+</span><span>./inhere/maybehere07/.file2
+</span></code></pre>
+<p>Note <code>-size</code> and <code>-not</code> flags. The <code>c</code> suffix for the <code>-size</code> argument is used
+to indicate a size in bytes. The other available suffixes are all available in
+the <a href="https://manpages.ubuntu.com/manpages/noble/man1/find.1.html">find man
+page</a>.
+Additionally, the <code>-not</code> flag negates the next expression, thus locating any
+files that aren't executable in this example.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>In this case the content and size of the file are sufficient to uniquely
+identify the file and the <code>-not -executable</code> isn't strictly necessary.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ find -readable -size 1033c
+</span><span>./inhere/maybehere07/.file2
+</span></code></pre>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<p>Once again, <code>cat</code> the file to get the password.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ cat ./inhere/maybehere07/.file2
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+<h3 id="level-6"><a class="zola-anchor" href="#level-6" aria-label="Anchor link for: level-6">Level 6</a></h3>
+<blockquote>
+<p>The password for the next level is stored somewhere on the server and has all
+of the following properties:</p>
+<ul>
+<li>owned by user bandit7</li>
+<li>owned by group bandit6</li>
+<li>33 bytes in size</li>
+</ul>
+</blockquote>
+<p>This level is very similar to <a href="https://www.cblanken.dev/blog/overthewirebandit/#level-5">Level 5</a> with a couple minor
+differences. First, the file is "stored somewhere on the server" instead of in
+the <code>inhere</code> directory. That just means we'll need to run the <code>find</code> command
+from the root of the file system to ensure the file isn't missed. Secondly, the
+file is specified by two new parameters. The <a href="https://wiki.archlinux.org/title/Users_and_groups">user and
+group</a> that own the file.</p>
+<h4 id="solution-6"><a class="zola-anchor" href="#solution-6" aria-label="Anchor link for: solution-6">Solution</a></h4>
+<p>Searching the <code>find</code> manpage you can find the two flags <code>-user</code> and <code>-group</code> to
+filter for files owned by the <code>bandit7</code> user and the <code>bandit6</code> group as
+specified by the prompt. The final parameter is for a <code>-size</code> of 33 bytes which
+we already saw in level 5.</p>
+<p>Here's an example of the output from <code>find</code> with all the required arguments.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ find / -user bandit7 -group bandit6 -size 33c
+</span><span>find: ‘/drifter/drifter14_src/axTLS’: Permission denied
+</span><span>find: ‘/root’: Permission denied
+</span><span>find: ‘/snap’: Permission denied
+</span><span>find: ‘/tmp’: Permission denied
+</span><span>find: ‘/proc/tty/driver’: Permission denied
+</span><span>find: ‘/proc/250118/task/250118/fd/6’: No such file or directory
+</span><span>find: ‘/proc/250118/task/250118/fdinfo/6’: No such file or directory
+</span><span>find: ‘/proc/250118/fd/5’: No such file or directory
+</span><span>...
+</span><span>[TRUNCATED OUTPUT]
+</span></code></pre>
+<p>Unfortunately searching with <code>find</code> from <code>/</code> has a side effect. Any files or
+directories that the current user is not allowed to read will print an error to
+the terminal. This makes it pretty difficult to parse the output for any
+resulting files that match our search. To avoid this flood of errors, a common
+solution is to redirect the standard error stream to
+<a href="https://www.digitalocean.com/community/tutorials/dev-null-in-linux"><code>/dev/null</code></a>
+This is actually just a file that discards anything written to it.</p>
+<p>To redirect a data stream in Bash we must specify its <a href="https://en.wikipedia.org/wiki/File_descriptor">file
+descriptor</a>, which is an
+integer. The file descriptor is followed by a greater than sign <code>&gt;</code> which
+indacates that the stream should be redirected to a target file. Here is the
+same command as above with all errors redirect to <code>/dev/null</code>.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ find / -user bandit7 -group bandit6 -size 33c 2&gt;/dev/null
+</span><mark style="background-color:#65737e30;"><span>/var/lib/dpkg/info/bandit7.password
+</span></mark></code></pre>
+<p>As you can see, the output is considerably easier to understand. Read the file
+at <code>/var/lib/dpkg/info/bandit7.password</code> to get the next password.</p>
+<h3 id="level-7"><a class="zola-anchor" href="#level-7" aria-label="Anchor link for: level-7">Level 7</a></h3>
+<blockquote>
+<p>The password for the next level is stored in the file <code>data.txt</code> next to the
+word "millionth".</p>
+</blockquote>
+<p>This is the first level that OverTheWire introduces some new recommended
+commands since <a href="https://www.cblanken.dev/blog/overthewirebandit/#level-0">level 0</a>.</p>
+<table><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/man.1.html">man</a></td><td>access the system reference manuals</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/grep.1.html">grep</a></td><td>print lines that match patterns</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/sort.1.html">sort</a></td><td>sort lines in text files</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/uniq.1.html">uniq</a></td><td>remove duplicate lines from a file</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/strings.1.html">strings</a></td><td>print readable strings from arbitrary files (even binary)</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/base64.1.html">base64</a></td><td>encode data into <a href="https://en.wikipedia.org/wiki/Base64">Base64</a></td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/tr.1.html">tr</a></td><td>translate and replace characters</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/tar.1.html">tar</a></td><td>a utility for archive files</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/gzip.1.html">gzip</a></td><td>a utility for compressing files</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/bzip2.1.html">bzip2</a></td><td>a utility for compressing files</td></tr>
+<tr><td><a href="https://manpages.ubuntu.com/manpages/noble/man1/xxd.1.html">xxd</a></td><td>a tool for creating a hex dump of a file</td></tr>
+</tbody></table>
+<p>Once again, I highly recommend at least reading through the introduction for
+each of these commands and checking out the examples at
+<a href="https://cheat.sh">cheat.sh</a>.</p>
+<h4 id="solution-7"><a class="zola-anchor" href="#solution-7" aria-label="Anchor link for: solution-7">Solution</a></h4>
+<p>If you've followed the above advice, there should really only be one contender
+to solve this level. The <code>grep</code> command.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>NAME
+</span><span>   grep - print lines that match patterns
+</span><span>
+</span><span>SYNOPSIS
+</span><span>   grep [OPTION...] PATTERNS [FILE...]
+</span><span>   grep [OPTION...] -e PATTERNS ... [FILE...]
+</span><span>   grep [OPTION...] -f PATTERN_FILE ... [FILE...]
+</span><span>
+</span><span>DESCRIPTION
+</span><span>   grep  searches for PATTERNS in each FILE. PATTERNS is one or more
+</span><span>   patterns separated by newline characters, and grep prints each line that
+</span><span>   matches a pattern. Typically PATTERNS should be quoted when grep is used in a
+</span><span>   shell command.
+</span><span>
+</span></code></pre>
+<p>According to the syntax description we should be able to search for patterns in
+a file with the following syntax.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>grep &lt;PATTERN&gt; &lt;FILE&gt;
+</span></code></pre>
+<p>Swapping in the values mentioned in the prompt will return the line we're
+looking for.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ grep &quot;millionth&quot; data.txt
+</span><mark style="background-color:#65737e30;"><span>millionth       [REDACTED PASSWORD]
+</span></mark></code></pre>
+<h4 id="regex"><a class="zola-anchor" href="#regex" aria-label="Anchor link for: regex">Regex</a></h4>
+<p>Grep and more generally
+<a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> (regex)
+are extremely useful. You'll find many applications have integrated support for
+text search via regex. In particular text editors, word processors, and
+programming IDEs.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>To explore regex more I highly recommend reading through the <a href="https://www.regular-expressions.info/quickstart.html">Regex Quick Start
+Guide</a> from
+<a href="https://www.regular-expressions.info">regular-expression.info</a> to get a feel
+for what's possible with regex and then follow that up with some
+experimentation on <a href="https://regex101.com">regex101.com</a>. This is a tool that
+visualizes regex matches. Drop any text you want into it and try out all kinds
+of search patterns. Try to match words, letters, various combinations of upper
+and lowercase letters, punctuation, etc. Seeing regex in action and observing
+precisely what matches with different patterns will give you a much better
+intuition for what's possible than anything I could write here.</p>
+<p>Regex can get very complicated very quickly, so regex101 is also a great
+tool for debugging your regex. Definitely give it a bookmark, it'll be a life
+saver. Trust me.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h3 id="level-8"><a class="zola-anchor" href="#level-8" aria-label="Anchor link for: level-8">Level 8</a></h3>
+<blockquote>
+<p>The password for the next level is stored in the file <code>data.txt</code> and is the
+only line of text that occurs only once</p>
+</blockquote>
+<p>This level is the first that seriously benefits from chaining two commands
+together. In Bash this is done with the pipe <code>|</code> character. The pipe, when
+placed after a command will pass all of the output (stdout) into the input
+(stdin) of the command that follows it.</p>
+<p>For example, we can combine the <code>ls</code> and <code>grep</code> commands to list only those
+files that contain "bash" in the name.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ ls -a | grep bash
+</span><span>.bash_logout
+</span><span>.bashrc
+</span></code></pre>
+<p>Remember that the <code>-a</code> flag is necessary to list hidden or dot files.</p>
+<p>Read through the <a href="https://ryanstutorials.net/linuxtutorial/piping.php">Piping and
+Redirection</a> article
+provided under the helpful reading material section to learn more about
+piping.</p>
+<h4 id="solution-8"><a class="zola-anchor" href="#solution-8" aria-label="Anchor link for: solution-8">Solution</a></h4>
+<p>Reviewing the recommended commands, one should stick out.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>NAME
+</span><span>   uniq - report or omit repeated lines
+</span><span>
+</span><span>SYNOPSIS
+</span><span>   uniq [OPTION]... [INPUT [OUTPUT]]
+</span><span>
+</span><span>DESCRIPTION
+</span><span>   Filter adjacent matching lines from INPUT (or standard input), writing
+</span><span>to OUTPUT (or standard output).
+</span><span>
+</span><span>   With no options, matching lines are merged to the first occurrence.
+</span></code></pre>
+<p>The <code>uniq</code> command is able to filter matching or repeated lines. Since we're
+looking for a unique line in a file, this will be helpful. However, there is
+one caveat when using <code>uniq</code> that you must be aware of. The <code>uniq</code> command
+filters <em>adjacent matching</em> lines. This means that any matching lines that
+aren't directly adjacent, won't be filtered. So the first step must be to
+organize the file such that matching lines are adjacent. In other words the
+file should be sorted. The <code>sort</code> program is designed precisely for this use
+case.</p>
+<p>For example, here's the first 20 lines of <code>data.txt</code> when sorted.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ sort data.txt | head -n20
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span></code></pre>
+<p>As mentioned before, the pipe <code>|</code> is useful here to send the output of the
+<code>sort</code> command to <code>uniq</code>.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ sort data.txt | uniq | head -n20
+</span><span>0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
+</span><span>0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
+</span><span>0kJ7XHD4gVtNSZIpqyP1V45sfz9OBLFo
+</span><span>0lPOvKhpHZebxji0gdjtGCd5GWiZnNBj
+</span><span>0REUhKk0yMqQOwei6NK9ZqIpE5dVlWWM
+</span><span>1jfUH1m4XCjr7eWAeleGdaNSxFXRtX0l
+</span><span>1VKPEkd0bCtIRwMFVQfY7InulwOFyDsn
+</span><span>2u8fvAzvnaFlvQG3iPt4Wc1TFhPcGxhH
+</span><span>35l6mr3f6TvlJyDwU6aUgJX07cLhr6t9
+</span><span>3FIgajXBiaQAiTMVGo1gxRDSiACNyvvJ
+</span><span>3mNA2le0gfURQKNHVIhGkMNLqLwjyyLN
+</span><span>4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+</span><span>4P8FsHcdr7d5WKnPtAaXY5SslKICd2gL
+</span><span>5EmwMKZHwF6Lwq5jHUaDlfFJBeHbcX0b
+</span><span>5hYz0028e1Q2TrtPVz5GZbpMzZNjebhh
+</span><span>5I2jWpqjtVp576xXI2TLh1UCyXJtGQ78
+</span><span>6Boy6esAjnIxCYn8uI6KZ7VD7zysDM8i
+</span><span>7cP8ssLElERHXqOJc9T84bxsmJBjNXk2
+</span><span>7qHmEo1FEbzthgyNpKc38YofXjYKZv18
+</span><span>8FCtUQlFXsJnNeyiDY5KfE3vRy6sZFEJ
+</span></code></pre>
+<p>Well that's strange. Why has <code>uniq</code>  returned all those lines? If you read the
+description for <code>uniq</code> carefully, then one line explains this.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>With no options, matching lines are merged to the first occurrence.
+</span></code></pre>
+<p>So essentially what we have here is a file with each unique line of the file
+where adjacent duplicates have been compressed into a single line. However, we
+want to list <em>only</em> the unique lines from the input. For that, the <code>-u</code> flag
+will meet our needs. The <code>-u</code> flag tells sort to only print <em>unique</em> lines. In
+other words, only lines without any duplicates in the input.</p>
+<p>So finally, we have a solution.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ sort data.txt | uniq -u
+</span><span>[REDACTED PASSWORD]
+</span></code></pre>
+<h3 id="level-9"><a class="zola-anchor" href="#level-9" aria-label="Anchor link for: level-9">Level 9</a></h3>
+<blockquote>
+<p>The password for the next level is stored in the file <code>data.txt</code> in one of the
+few human-readable strings, preceded by several ‘=’ characters.</p>
+</blockquote>
+<p>This level</p>
+<h4 id="solution-9"><a class="zola-anchor" href="#solution-9" aria-label="Anchor link for: solution-9">Solution</a></h4>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ grep &#39;=== \w*&#39; data.txt
+</span><span>grep: data.txt: binary file matches
+</span></code></pre>
+<p>The <code>\w</code> is a shortcut for any word characters which equivalent to
+<code>[a-zA-Z0-9_]</code>.</p>
+<p>We can see here, that grep found some matches, but <code>data.txt</code> was interpreted
+as a binary file. We can force grep to process the file as if it were text with
+the <code>-a</code> flag.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ grep -a &#39;=== \w*&#39; data.txt
+</span><span>D]
+</span><span>  h#!QJsVzl7POl%Y]Ha^UvToD|@T^N8g}b}?
+</span><mark style="background-color:#65737e30;"><span>Q#gm1x}========== theѦ+idW^)F1&gt;)٘SK3PZt&amp;xs肉WB/2ÜB       Ź/Bjɢ&lt;7&lt;u/d|
+</span></mark><span>                                                                    -n
+</span><span>#iu=
+</span><span>    7֣n)Uջش5bBKK}x&gt;}:4Rl_7gHD:274CFy
+</span><mark style="background-color:#65737e30;"><span>6!&amp;zB$l_GphqI.02H$Twm⧫o3mt0p~L3JprD========== passwordi L ~ˏ&lt;@Ȅh$%Q5Dk |3
+</span></mark><span>~Tf;o9sP#t+Pe΢쵟
+</span><span>OqDf.8Czmnf&amp;vl:FXKbM
+</span><span>                 CIBi&gt;Y
+</span><mark style="background-color:#65737e30;"><span>Еk      $nXT=~}*4a2?TO&quot;&#39;&amp;J~fDV3========== isd5z(#&amp;s!10&amp;poq
+</span></mark><span>nR F
+</span><span>    z|!(if+A64+&#39;FTb5A}
+</span><span>éT:kAU2Qcɐ%#g+;YA_ekrX53|f8+e~&amp;Oiu?VhM}^Qp^G==6!sT:     &quot;uVa-t\fg
+</span><mark style="background-color:#65737e30;"><span>]󈍅(.ۍg:7nnp CD`voSQ-&lt;]`@#H UumBiAj堵!O&amp;D9========== [REDACTED PASSWORD]
+</span></mark><span>
+</span></code></pre>
+<p>On the last line of the above output, you'll find the password to the next
+level.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>It's possible for <code>grep</code> to output the precise matching text instead of each
+entire line. The <code>-o</code> flag is needed to do this. It tells grep to only output
+the matched pattern.</p>
+<pre data-linenos data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><table><tbody><tr><td>1</td><td><span>$ grep -a -o &#39;=== \w*&#39; data.txt
+</span></td></tr><tr><td>2</td><td><span>=== the
+</span></td></tr><tr><td>3</td><td><span>=== passwordi
+</span></td></tr><tr><td>4</td><td><span>=== is
+</span></td></tr><tr><td><mark style="background-color:#65737e30;">5</mark></td><td><mark style="background-color:#65737e30;"><span>=== [REDACTED PASSWORD]
+</span></mark></td></tr></tbody></table></code></pre>
+<p>This gives a much clearer picture of the password without all the surrounding
+binary data.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h3 id="level-10"><a class="zola-anchor" href="#level-10" aria-label="Anchor link for: level-10">Level 10</a></h3>
+<blockquote>
+<p>The password for the next level is stored in the file <code>data.txt</code>, which
+contains <strong>base64</strong> encoded data</p>
+</blockquote>
+<h4 id="solution-10"><a class="zola-anchor" href="#solution-10" aria-label="Anchor link for: solution-10">Solution</a></h4>
+<p>This one is pretty straight forward. The prompt gives it away by mentioning
+that the data is Base64 encoded.</p>
+<p>Check the manual for the <code>base64</code> command and you'll find one of the first
+flags is <code>-d</code> for <code>--decode</code>.</p>
+<pre data-lang="terminal" style="background-color:#2b303b;color:#c0c5ce;" class="language-terminal "><code class="language-terminal" data-lang="terminal"><span>$ base64 -d data.txt
+</span><mark style="background-color:#65737e30;"><span>The password is [REDACTED PASSWORD]
+</span></mark></code></pre>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>Be sure you understand what <em>encoding</em> is in this context.</p>
+<p><a href="https://en.wikipedia.org/wiki/Base64">Base64</a> is just one scheme of many to
+convert binary data into printable characters i.e. alphanumeric characters with
+the addition of the equal sign <code>=</code>. In fact, that equal sign <code>=</code> is used for
+padding the end of encoded text, so it's often a dead giveaway that some text
+was Base64 encoded. For example, the word "password" when Base64 encoded is
+<code>cGFzc3dvcmQ=</code>.</p>
+<p>Base64 encoded text is extremely common on the web and you're likely to come
+across it at some point, so it may behoove you to read up on it. FreeCodeCamp
+has an <a href="https://www.freecodecamp.org/news/what-is-base64-encoding/">excellent
+article</a> that gives
+a good overview of how Base64 works and what it's used for.</p>
+<p>You're less likely see other forms of binary to text encoding, but feel free to
+<a href="https://en.wikipedia.org/wiki/Binary-to-text_encoding">read more</a>.</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+<h2 id="to-be-continued"><a class="zola-anchor" href="#to-be-continued" aria-label="Anchor link for: to-be-continued">To be continued</a></h2>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>I hope you enjoyed the walkthrough. When time permits, I intend to expand this
+post to include every level of OverTheWire Bandit.</p>
+<p>Happy hacking!</p>
+
+  </div>
+</div>
+
+
+<style>
+.callout {
+  backdrop-filter: brightness(135%);
+  border-left: 4px solid;
+  padding: 10px;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.caution {
+  color: #f34e4e;
+}
+
+.warning {
+  color: orange;
+}
+
+.important {
+  color: rgb(177, 154, 255);
+}
+
+.tip {
+  color: rgb(71, 173, 71);
+}
+
+.note {
+  color: rgb(172, 223, 255);
+}
+
+.callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  fill: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+.callout-text {
+  color: var(--color);
+}
+
+.callout-text > p:last-of-type {
+  margin-bottom: 0;
+}
+
+</style>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read more</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <span class="button__icon">«&nbsp;</span>
+                            <a href="https://www.cblanken.dev/blog/janken/">
+                                <span class="button__text">HTB Apocalypse 2023 - Janken</span>
+                            </a>
+                        </span>
+                    
+                    
+                        <span class="button next">
+                            <a href="https://www.cblanken.dev/blog/overthewireleviathan/">
+                                <span class="button__text">OverTheWire - Leviathan</span>
+                            </a>
+                            <span class="button__icon">&nbsp;»</span>
+                        </span>
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2024
+ Cameron Blankenbuehler</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a>
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
