@@ -5,7 +5,7 @@ description = "A web application to explore interesting data related to The Wand
 
 [extra]
 toc = true
-project_image = "/twi-stats/word-counts-by-chapter.svg"
+project_image = "twi-stats/word-counts-by-chapter.svg"
 project_src_link = "https://github.com/cblanken/wandering-inn-stats"
 project_demo_link = "https://twi-stats.cblanken.dev/overview/"
 

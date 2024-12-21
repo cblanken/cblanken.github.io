@@ -5,7 +5,7 @@ description = "A web application to solve the Boggle word game."
 
 [extra]
 toc = true
-project_image = "/boggler/boggler-cover.png"
+project_image = "boggler/boggler-cover.png"
 project_src_link = "https://github.com/cblanken/boggler-flask"
 project_demo_link = "https://boggler.cblanken.dev/"
 
