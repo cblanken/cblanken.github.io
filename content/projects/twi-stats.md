@@ -1,13 +1,16 @@
 +++
 title = "The Wandering Inn (Statistics)"
 date = 2024-10-01
-description = "A web application to display interesting TWI stats."
+description = "A web application to explore interesting data related to The Wandering Inn web serial."
 
 [extra]
 toc = true
+project_image = "/twi-stats/word-counts-by-chapter.svg"
+project_src_link = "https://github.com/cblanken/wandering-inn-stats"
+project_demo_link = "https://twi-stats.cblanken.dev/overview/"
 
 [taxonomies]
-tags = ["TWI", "statistics", "data-viz", "web-novel", "Django", "Tailwind"]
+tags = ["TWI", "data-viz", "Plotly", "web-novel", "python", "Django", "Tailwind"]
 +++
 
 # Project
