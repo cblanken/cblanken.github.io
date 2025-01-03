@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>cblanken</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange.css">
+
+        <link rel="stylesheet" href="https://www.cblanken.dev/color/background_blue.css">
+    
+    <link rel="stylesheet" href="https://www.cblanken.dev/font-hack-subset.css">
+
+    <meta name="description" content="Short form thoughts, ideas, and observations.">
+
+    <meta property="og:description" content="Short form thoughts, ideas, and observations.">
+    <meta property="og:title" content="cblanken">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cblanken.dev/journal/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Short form thoughts, ideas, and observations.">
+    <meta name="twitter:title" content="cblanken">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/journal/">
+
+            
+                <link rel="alternate" type="application/rss+xml" title="cblanken RSS Feed" href="https://www.cblanken.dev/journal/rss.xml" />
+            
+                <link rel="alternate" type="application/atom+xml" title="cblanken Atom Feed" href="https://www.cblanken.dev/journal/atom.xml" />
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://www.cblanken.dev/about">About me</a></li>
+            
+                <li><a href="https://www.cblanken.dev/blog">Blog</a></li>
+            
+                <li class="active"><a href="https://www.cblanken.dev/journal">Journal</a></li>
+            
+                <li><a href="https://www.cblanken.dev/projects">Projects</a></li>
+            
+                <li><a href="https://www.cblanken.dev/archive">Archive</a></li>
+            
+                <li><a href="https://www.cblanken.dev/tags">Tags</a></li>
+            
+                <li><a href="https://www.cblanken.dev/feeds">RSS</a></li>
+            
+                <li><a href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+        <div class="posts">
+                <div class="post on-list">
+                    
+    <h1 id="title" class="post-title"><a href="https://www.cblanken.dev/journal/iana-protocols/">IANA Protocol Registry</a></h1>
+    <div class="project-links"></div>
+    
+    <div class="post-meta-inline">
+            <span>
+    <span class="post-date">
+            September 16, 2024
+        </span>
+</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;
+        <span>198 words</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;<span>1 min</span>
+    </div>
+    
+
+    <div>
+    
+        <div class="post-tags">
+                <a class="post-tag" href="https://www.cblanken.dev/tags/dmarc/">#DMARC</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/rfc/">#RFC</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/smtp/">#SMTP</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/networking/">#networking</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/protocols/">#protocols</a>
+            </div>
+    
+    </div>
+
+
+                    <div class="post-content">
+            <p>If you've ever found yourself browsing through RFCs published by the
+<a href="https://www.ietf.org">IETF</a>, you know it can be a bit of a chore if you're
+just researching some tag name or error code. You shouldn't need to read
+through the entire spec for a protocol just to do some troubleshooting. Right?
+Well, here comes <a href="https://www.iana.org">IANA</a> to the rescue. IANA has
+conveniently compiled a central repository for the many codes and numbers
+contained in Internet protocols. You can find it at their <a href="https://www.iana.org/protocols">protocol
+registry</a>.</p>
+<p>Personally I was just looking for a <a href="https://www.iana.org/assignments/dmarc-parameters/dmarc-parameters.xhtml#tag">simple
+breakdown</a>
+of all the tags available for DMARC. Of course, there's also a <a href="https://www.rfc-editor.org/rfc/rfc7489.html#section-11.4">DMARC tag
+registry table</a>
+embedded in the <a href="https://www.rfc-editor.org/rfc/rfc7489.html">DMARC RFC (RFC
+7489)</a>. But I was having trouble
+wading through all 73 pages of the spec. So, in this case, it wasn't really
+necessary. However, for something like the <a href="https://www.iana.org/assignments/mail-parameters/mail-parameters.xhtml#mail-parameters-2">SMTP service
+extensions</a>,
+it can be much more useful as the service extensions are spread across many
+different RFCs.</p>
+
+        </div>
+
+                </div>
+            
+                <div class="post on-list">
+                    
+    <h1 id="title" class="post-title"><a href="https://www.cblanken.dev/journal/learning-dmarc/">What is DMARC?</a></h1>
+    <div class="project-links"></div>
+    
+    <div class="post-meta-inline">
+            <span>
+    <span class="post-date">
+            September 03, 2024
+        </span>
+</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;
+        <span>96 words</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;<span>1 min</span>
+    </div>
+    
+
+    <div>
+    
+        <div class="post-tags">
+                <a class="post-tag" href="https://www.cblanken.dev/tags/dkim/">#DKIM</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/dmarc/">#DMARC</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/spf/">#SPF</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/email/">#email</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/infosec/">#infosec</a>
+            </div>
+    
+    </div>
+
+
+                    <div class="post-content">
+            <p>I've recently been trying to get a better handle on how email works and how
+it's secured. If you want to do the same. Go try out the exercises at
+<a href="https://www.learndmarc.com">https://www.learndmarc.com</a>.</p>
+<p>It's a great resource for visualizing how DMARC works in conjuction with
+<a href="https://datatracker.ietf.org/doc/html/rfc7208">Sender Policy Framework (SPF)</a>
+and <a href="https://datatracker.ietf.org/doc/html/rfc4686">Domain Keys Identified mail
+(DKIM)</a> to secure email and
+catch spam and phishing attempts.</p>
+<p>There's even a quiz you can try to see how well you can analyze email traffic
+and determine the DMARC results.</p>
+
+        </div>
+
+                </div>
+            <div class="pagination">
+                <div class="pagination__buttons"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2025
+ Cameron Blankenbuehler</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a>
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>cblanken</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange.css">
+
+        <link rel="stylesheet" href="https://www.cblanken.dev/color/background_blue.css">
+    
+    <link rel="stylesheet" href="https://www.cblanken.dev/font-hack-subset.css">
+
+    <meta name="description" content="Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF">
+
+    <meta property="og:description" content="Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF">
+    <meta property="og:title" content="cblanken">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/blog/janken/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF">
+    <meta name="twitter:title" content="cblanken">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/blog/janken/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://www.cblanken.dev/about">About me</a></li>
+            
+                <li class="active"><a href="https://www.cblanken.dev/blog">Blog</a></li>
+            
+                <li><a href="https://www.cblanken.dev/journal">Journal</a></li>
+            
+                <li><a href="https://www.cblanken.dev/projects">Projects</a></li>
+            
+                <li><a href="https://www.cblanken.dev/archive">Archive</a></li>
+            
+                <li><a href="https://www.cblanken.dev/tags">Tags</a></li>
+            
+                <li><a href="https://www.cblanken.dev/feeds">RSS</a></li>
+            
+                <li><a href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    
+
+    <div class="post">
+        
+        <div class="toc-container">
+            <div class="toc">
+              <div class="toc-header">Table of Contents</div>
+              <div class="toc-title">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#title">HTB Apocalypse 2023 - Janken</a>
+              </div>
+              <ol class="toc-items">
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#problem-description">Problem description</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#analysis">Analysis</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#solution">Solution</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+                  <li class="toc-item">
+                    <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#flag">Flag</a>
+                    <ol>
+                    
+                    </ol>
+                  </li> 
+              
+              </ol>
+            </div>
+        </div>
+        
+
+        
+    <h1 id="title" class="post-title"><a href="https://www.cblanken.dev/blog/janken/">HTB Apocalypse 2023 - Janken</a></h1>
+    <div class="project-links"></div>
+    
+    <div class="post-meta-inline">
+            <span>
+    <span class="post-date">
+            March 25, 2023
+        </span>
+</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;
+        <span>126 words</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;<span>1 min</span>
+    </div>
+    
+
+    <div>
+    
+        <div class="post-tags">
+                <a class="post-tag" href="https://www.cblanken.dev/tags/c/">#C</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/ctf/">#ctf</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/infosec/">#infosec</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/python/">#python</a>
+            </div>
+    
+    </div>
+
+        <div class="post-content">
+            <h2 id="problem-description"><a class="zola-anchor" href="#problem-description" aria-label="Anchor link for: problem-description">Problem description</a></h2>
+<p>Janken is an <em>easy</em> rated Misc challenge.</p>
+<blockquote>
+<p>As you approach an ancient tomb, you're met with a wise guru who guards its entrance. In order to proceed, he challenges you to a game of Janken, a variation of rock paper scissors with a unique twist. But there's a catch: you must win 100 rounds in a row to pass. Fail to do so, and you'll be denied entry.</p>
+</blockquote>
+<h2 id="analysis"><a class="zola-anchor" href="#analysis" aria-label="Anchor link for: analysis">Analysis</a></h2>
+<p>Analyzing the decompilation of the binary (<code>janken</code>), we find a loop for the 100 rounds mentioned in the prompt running the following <code>game</code> function.<br>
+<img src="/images/janken_ghidra_1.png" alt="ghidra-1" /></p>
+<h2 id="solution"><a class="zola-anchor" href="#solution" aria-label="Anchor link for: solution">Solution</a></h2>
+<p>Here's an excerpt of the pwntools script used to solve the challenge.</p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>1</td><td><span>io = </span><span style="color:#bf616a;">start</span><span>()
+</span></td></tr><tr><td>2</td><td><span style="color:#bf616a;">info</span><span>(io.</span><span style="color:#bf616a;">recvuntil</span><span>(</span><span style="color:#b48ead;">b</span><span>&#39;</span><span style="color:#a3be8c;">&gt;&gt; </span><span>&#39;)) </span><span style="color:#65737e;"># prompt
+</span></td></tr><tr><td>3</td><td><span>io.</span><span style="color:#bf616a;">sendline</span><span>(</span><span style="color:#b48ead;">b</span><span>&#39;</span><span style="color:#a3be8c;">1</span><span>&#39;)
+</span></td></tr><tr><td>4</td><td><span>
+</span></td></tr><tr><td>5</td><td><span>rps = [&#39;</span><span style="color:#a3be8c;">rock</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">scissors</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">paper</span><span>&#39;]
+</span></td></tr><tr><td>6</td><td><span>
+</span></td></tr><tr><td>7</td><td><span>rps_win = {
+</span></td></tr><tr><td>8</td><td><span>    &#39;</span><span style="color:#a3be8c;">rock</span><span>&#39;: &#39;</span><span style="color:#a3be8c;">paper</span><span>&#39;,
+</span></td></tr><tr><td>9</td><td><span>    &#39;</span><span style="color:#a3be8c;">paper</span><span>&#39;: &#39;</span><span style="color:#a3be8c;">scissors</span><span>&#39;,
+</span></td></tr><tr><td>10</td><td><span>    &#39;</span><span style="color:#a3be8c;">scissors</span><span>&#39;: &#39;</span><span style="color:#a3be8c;">rock</span><span>&#39;,
+</span></td></tr><tr><td>11</td><td><span>}
+</span></td></tr><tr><td>12</td><td><span>
+</span></td></tr><tr><td>13</td><td><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">wait_for_next_second</span><span>(</span><span style="color:#bf616a;">epoch_time</span><span>):
+</span></td></tr><tr><td>14</td><td><span>    </span><span style="color:#b48ead;">while </span><span style="color:#bf616a;">int</span><span>(time.</span><span style="color:#bf616a;">time</span><span>()) &lt;= epoch_time:
+</span></td></tr><tr><td>15</td><td><span>        time.</span><span style="color:#bf616a;">sleep</span><span>(</span><span style="color:#d08770;">0.05</span><span>)
+</span></td></tr><tr><td>16</td><td><span>
+</span></td></tr><tr><td>17</td><td><span style="color:#b48ead;">for </span><span>_i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">99</span><span>):
+</span></td></tr><tr><td>18</td><td><span>    epoch_time = epoch_time = time.</span><span style="color:#bf616a;">time</span><span>() </span><span style="color:#65737e;"># time before asking for prompt
+</span></td></tr><tr><td>19</td><td><span>    </span><span style="color:#b48ead;">if </span><span>epoch_time - </span><span style="color:#bf616a;">int</span><span>(epoch_time) &gt; </span><span style="color:#d08770;">0.8</span><span>:
+</span></td></tr><tr><td>20</td><td><span>        </span><span style="color:#bf616a;">wait_for_next_second</span><span>(epoch_time)
+</span></td></tr><tr><td>21</td><td><span>    </span><span style="color:#bf616a;">info</span><span>(io.</span><span style="color:#bf616a;">recvuntil</span><span>(</span><span style="color:#b48ead;">b</span><span>&#39;</span><span style="color:#a3be8c;">&gt;&gt; </span><span>&#39;)) </span><span style="color:#65737e;"># wait for prompt
+</span></td></tr><tr><td>22</td><td><span>    time2 = time.</span><span style="color:#bf616a;">time</span><span>()
+</span></td></tr><tr><td>23</td><td><span>    rand_io = </span><span style="color:#bf616a;">process</span><span>([&#39;</span><span style="color:#a3be8c;">./rand</span><span>&#39;, </span><span style="color:#b48ead;">f</span><span>&quot;{epoch_time}&quot;])
+</span></td></tr><tr><td>24</td><td><span>    r = </span><span style="color:#bf616a;">int</span><span>(rand_io.</span><span style="color:#bf616a;">readline</span><span>().</span><span style="color:#bf616a;">strip</span><span>())
+</span></td></tr><tr><td>25</td><td><span>    enemy_answer = rps[r % </span><span style="color:#d08770;">3</span><span>]
+</span></td></tr><tr><td>26</td><td><span>    answer = rps_win[enemy_answer]
+</span></td></tr><tr><td>27</td><td><span>
+</span></td></tr><tr><td>28</td><td><span>    </span><span style="color:#bf616a;">info</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;</span><span style="color:#a3be8c;">Sending result: </span><span>{answer}&quot;)
+</span></td></tr><tr><td>29</td><td><span>    time3 = time.</span><span style="color:#bf616a;">time</span><span>() </span><span style="color:#65737e;"># time before sending response
+</span></td></tr><tr><td>30</td><td><span>    io.</span><span style="color:#bf616a;">sendline</span><span>(</span><span style="color:#bf616a;">bytes</span><span>(answer, </span><span style="color:#bf616a;">encoding</span><span>=&quot;</span><span style="color:#a3be8c;">utf-8</span><span>&quot;))
+</span></td></tr><tr><td>31</td><td><span>    time4 = time.</span><span style="color:#bf616a;">time</span><span>() </span><span style="color:#65737e;"># time after sending response
+</span></td></tr><tr><td>32</td><td><span>
+</span></td></tr><tr><td>33</td><td><span>    </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;{_i}</span><span style="color:#a3be8c;">: Time delta: </span><span>{epoch_time</span><span style="color:#d08770;">:.3f</span><span>}</span><span style="color:#a3be8c;">, </span><span>{time2</span><span style="color:#d08770;">:.3f</span><span>}</span><span style="color:#a3be8c;">, </span><span>{(time2 - epoch_time)</span><span style="color:#d08770;">:.3f</span><span>}</span><span style="color:#a3be8c;">, </span><span>{(time4-time3)</span><span style="color:#d08770;">:3f</span><span>}&quot;)
+</span></td></tr><tr><td>34</td><td><span>
+</span></td></tr><tr><td>35</td><td><span>io.</span><span style="color:#bf616a;">interactive</span><span>()
+</span></td></tr></tbody></table></code></pre>
+<h1 id="flag"><a class="zola-anchor" href="#flag" aria-label="Anchor link for: flag">Flag</a></h1>
+<p><img src="/images/janken_get_flag.png" alt="get-flag" /><br>
+We have our flag! <code>HTB{r0ck_p4p3R_5tr5tr_l0g1c_buG}</code></p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read more</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <span class="button__icon">«&nbsp;</span>
+                            <a href="https://www.cblanken.dev/blog/einpfundmails/">
+                                <span class="button__text">KitCTF 2022 - ein-pfund-mails</span>
+                            </a>
+                        </span>
+                    
+                    
+                        <span class="button next">
+                            <a href="https://www.cblanken.dev/blog/overthewirebandit/">
+                                <span class="button__text">OverTheWire - Bandit</span>
+                            </a>
+                            <span class="button__icon">&nbsp;»</span>
+                        </span>
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2025
+ Cameron Blankenbuehler</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a>
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
