@@ -962,6 +962,47 @@ You're less likely see other forms of binary to text encoding, but feel free to
 
 {% end %}
 
+### Level 11
+
+> The password for the next level is stored in the file data.txt, where all
+> lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+This challenge is describing what's commonly known as a shift cipher or [Caesar
+cipher](https://en.wikipedia.org/wiki/Caesar_cipher). It's not actually used in
+modern times for any meaningful attempts at securing messages, but it's
+somewhat popular in CTFs and wargames.
+
+To keep within the spirit of the wargame, let's first go over how you might
+solve this challenge in the terminal. One of the recommended commands is `tr`
+which can "[t]ranslate, squeeze, and/or delete characters" according to the
+description. Here's a few different ways to go about it.
+
+```bash
+# Rotate the alphabet by 13 letters where both input and output are explicit
+cat data.txt | tr "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM"
+
+# Similar to above except the input is defined by a regular expression
+cat data.txt | tr "a-zA-Z" "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM"
+
+# Similar to above except both the input and output are defined by a regular expression
+# Note: the odd arrangement for the output is the necessary since Regex doesn't allow
+# the letter ranges to wrap around
+cat data.txt | tr "a-zA-Z" "n-za-mN-ZA-M"
+```
+
+{% callout(type="tip") %}
+
+While the `tr` command is cool and all, there's an even cooler tool you should
+be using when investigating any challenge related to cryptography. And that's
+[CyberChef](https://gchq.github.io/CyberChef). CyberChef has a huge number of
+useful features for transforming data and supports hundreds of data formats and
+encoding schemes.
+
+Check out the [CyberChef ROT13 cipher
+solver](https://gchq.github.io/CyberChef/#recipe=ROT13(true,true,false,13)).
+
+{% end %}
+
 ## To be continued
 
 {% callout(type="note") %}
