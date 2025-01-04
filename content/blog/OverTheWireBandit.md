@@ -1006,6 +1006,89 @@ solver](https://gchq.github.io/CyberChef/#recipe=ROT13(true,true,false,13)).
 
 {% end %}
 
+### Level 12
+
+> The password for the next level is stored in the file `data.txt`, which is a
+> hexdump of a file that has been repeatedly compressed. For this level it may
+> be useful to create a directory under `/tmp` in which you can work. Use
+> `mkdir` with a hard to guess directory name. Or better, use the command
+> `mktemp -d`. Then copy the datafile using `cp`, and rename it using `mv`
+> (read the manpages!)
+
+This challenge is quite tedious. As the prompt mentions, it's a good idea to
+create a temp directory to work with all the files. For example `mkdir
+/tmp/my-super-secret-directory` followed by `mv ~/data.txt
+/tmp/my-super-secret-directory`. Now we're ready to begin.
+
+The first step is to recognize the format of the `data.txt`.
+
+Taking a look at the first few lines shows that this file isn't just a text
+file. It's a hexdump. Read the first few lines with `head -n5 data.txt`.
+
+```code, linenos
+00000000: 1f8b 0808 dfcd eb66 0203 6461 7461 322e  .......f..data2.
+00000010: 6269 6e00 013e 02c1 fd42 5a68 3931 4159  bin..>...BZh91AY
+00000020: 2653 59ca 83b2 c100 0017 7fff dff3 f4a7  &SY.............
+00000030: fc9f fefe f2f3 cffe f5ff ffdd bf7e 5bfe  .............~[.
+00000040: faff dfbe 97aa 6fff f0de edf7 b001 3b56  ......o.......;V
+```
+
+Don't panic! You don't need to be able to read this stuff right away. Just
+recognizing it as a hexdump is enough. Fortunately, one of the recommended
+commands is made specifically to handle hexdumps. The
+[xxd](https://manpages.ubuntu.com/manpages/noble/man1/xxd.1.html) command.
+
+Using `xxd` with the `-r` flag can reverse the hexdump into a binary file.
+```bash
+xxd -r data.txt > data
+```
+
+This output `data` file is now in it's original format and can be examined with
+`file data` to determine it's type.
+
+```
+data: gzip compressed data, was "data2.bin", last modified: Thu Sep 19 07:08:15 2024, max compression, from Unix, original size modulo 2^32 574
+```
+
+The result from `file` identifies it as "gzip compressed data". To decompress
+the archive, use the `gunzip` command.
+
+{% callout(type="warning") %}
+
+Be aware, that the archive utilities like `gunzip` may require particular file
+extensions when decompressing files. For example, `.gzip` or `.gz`. Otherwise
+you may get an error like this.
+
+`gzip: data: unknown suffix -- ignored`
+
+{% end %}
+
+To complete this challenge, you must repeat this process of decompressing or
+extracting data into a new format, then verifying the new format with `file`
+eight times to reach the original flag file content.
+
+Below is a script describing each step of the decompression. You could run the
+script directly on the Bandit host to get the flag, but I encourage you to walk
+through each decompression step manually and observe the different flags being
+used for each command.
+
+```bash
+#!/bin/sh
+# extract.sh
+xxd -r data.txt > f1.gz;    # extract first gzip archive from hexdump
+gunzip -c f1.gz > f2.bz2;   # extract bzip2 archive from f1.gz
+bunzip2 -c f2.bz2 > f3.gz;  # extract gzip archive from f2.bz2
+gunzip -c f3.gz > f4.tar;   # extract tar archive from f3.gz
+tar -xOf f4.tar > f5.tar;   # extract tar archive from f4.tar
+tar -xOf f5.tar > f6.bz2;   # extract bzip2 archive from f5.tar
+bunzip2 -c f6.bz2 > f7.tar; # extract tar archive from f6.bz2
+tar -xOf f7.tar > f8.gz;    # extract gzip archive from f7.tar
+gunzip -c f8.gz > flag;     # extract plaintext flag file from f8.gz
+
+cat flag;
+```
+
+
 ## To be continued
 
 {% callout(type="note") %}
