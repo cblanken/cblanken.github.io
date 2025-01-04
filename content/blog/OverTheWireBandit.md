@@ -862,9 +862,12 @@ $ sort data.txt | uniq -u
 > The password for the next level is stored in the file `data.txt` in one of the
 > few human-readable strings, preceded by several ‘=’ characters.
 
-This level 
+Once again we're searching a file, so exploring our options with `grep` may be a
+good idea.
 
 #### Solution
+
+Trying a basic `grep` for several `=` characters doesn't seem to work.
 
 ```terminal
 $ grep '=== \w*' data.txt
