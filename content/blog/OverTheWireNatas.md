@@ -214,11 +214,6 @@ examining the page source or navigating to some specific endpoint.
 
 ![level 4 hint](/images/otw-natas/4_hint.png)
 
-The message on the home page hints that authorized users "come from" the URL
-`http://natas5.natas.labs.overthewire.org/`. This requires some knowledge of
-how HTTP works ans specifically recognizing that there a specific HTTP header
-that is used to convey this information from the client to the web server.
-
 If you aren't familiar with HTTP, there are some excellent [guides on
 HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP) available in the [MDN
 Web Docs](https://developer.mozilla.org/en-US/).
@@ -226,35 +221,40 @@ Web Docs](https://developer.mozilla.org/en-US/).
 Essentially every[^3] request by the browser uses HTTP. Fortunately the dev
 tools have a convenient interface for examining the HTTP requests made by the
 browser. These requests can be viewed in the Network tab of the browser dev
-tools.
-
-For example, here's the network tab after loading the level 4 home page.
-![level 4 dev tools network tab](/images/otw-natas/4_dev_tools_network.png)
-
-
-There's a bunch of cool stuff you can do with the network tab, but for this
-challenge we're only interested in that highlighted request to `index.php`,
+tools. There's a bunch of cool stuff you can do with the network tab, but for
+this challenge we're only interested in that highlighted request to `index.php`,
 which is the home page for level 4.
 
 [^3]: Not __every__ request made by a browser is strictly over HTTP or HTTPS,
     but it is the most common and is the only protocol that's essential to
 understand for the Natas wargame.
 
+Here's the network tab after loading the level 4 home page.
+![level 4 dev tools network tab](/images/otw-natas/4_dev_tools_network.png)
+
 Click on that `index.php` to view more information about the request like the
 request's headers.
 
 ![level 4 network tab index.php](/images/otw-natas/4_network_index_php.png)
 
+The message on the home page hints that authorized users "come from" the URL
+`http://natas5.natas.labs.overthewire.org/`. The key is recognizing that there
+is an HTTP header that's used to convey this information from the client to the
+web server.
+
 Unfortunately, at the time of this writing, the request headers can't be easily
-edited in the browser. Instead we'll need to use another tool craft an HTTP
-request with the appropriate header to convince the web server that we're a
-user from `http://natas5.natas.labs.overthewire.org`.
+edited in the browser. Instead we'll need to use another tool to craft an HTTP
+request with the appropriate header to convince the web server that we're a user
+from `http://natas5.natas.labs.overthewire.org`.
 
 This is where knowledge of HTTP is essential, because you have to recognize
 that we're looking for the Referer[^4] HTTP header which is used to indicate the
 source of a request.
 
-[^4]: Yes the correct spelling should be "Referrer", however the header was misspelled in the original HTTP specification, [RFC 1945](https://www.rfc-editor.org/rfc/rfc1945#section-10.13), so it remains misspelled for compatibility.
+[^4]: Yes the correct spelling should be "Referrer", however the header
+was misspelled in the original HTTP specification, [RFC 1945](https://
+www.rfc-editor.org/rfc/rfc1945#section-10.13), so it remains misspelled for
+compatibility.
 
 As I mentioned before, the browser doesn't allow for modifying request headers,
 so we'll need to use a different tool. The simplest will be to use a command
@@ -262,7 +262,7 @@ line tool like [curl](https://curl.se), though a web proxy like ZAP or Burp
 Suite will work just as well.
 
 `curl` is a program for transferring data to or from a server using URLs. We'll
-just be using it with HTTP, but it supports other protocol too. If you'd like
+just be using it with HTTP, but it supports other protocols too. If you'd like
 to dig into the capabilities of curl, I'd recommend reading through the
 [Everything curl](https://everything.curl.dev) guide, but, if you're in a
 hurry, the browser dev tools have a convenient feature to construct a web
@@ -317,8 +317,8 @@ curl -H 'Referer: http://natas5.natas.labs.overthewire.org/' \
      http://natas4.natas.labs.overthewire.org
 ```
 
-The `curl` response should contain the following in the body with the password
-to the next level.
+The `curl` response should contain the following body with the password to the
+next level.
 
 ```html, hl_lines=15, linenostart=20
 <body>
@@ -349,13 +349,14 @@ give us a place to start.
 
 ![level 5 hint](/images/otw-natas/5_hint.png)
 
-First identify what mechanisms may be used for keeping track of the login state
+First identify what mechanisms may be used for tracking the login state
 of a user. [Stateless
 protocols](https://en.wikipedia.org/wiki/Stateless_protocol) like HTTP cannot
 retain session state between requests and must instead work around that
 limitation with some kind of session management mechanism. In the case of HTTP
 this is most often handled with [HTTP
 cookies](https://en.wikipedia.org/wiki/HTTP_cookie).
+
 
 Under the Application tab of the browser dev tools you should find a list of
 storage options available to the browser, including any HTTP cookies.
