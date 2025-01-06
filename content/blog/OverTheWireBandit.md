@@ -191,8 +191,6 @@ You are _highly_ encouraged to review each of the commands. At the very least
 check out the `cheat.sh` page for each. Regardless these are all pretty common,
 so you'll get plenty of experience with these commands in later levels.
 
-#### Solution
-
 For now, it should be apparent that one of the above commands should serve to
 show us the contents of the `readme` file mentioned in the prompt. The humble
 `cat` command.
@@ -269,8 +267,6 @@ STDIO or standard input and output. If you'd like to read more, there is an
 [excellent article by
 freeCodeCamp](https://www.freecodecamp.org/news/introduction-to-linux/#heading-standard-file-streams)
 explaining more about it and many other useful concepts.
-
-#### Solution
 
 There will be opportunities to demonstrate STDIO and IO redirection later, but
 for this level, all you need to recognize is that `-` is a special character
@@ -359,7 +355,6 @@ As you can see from above, entering the name as it's written will cause the
 
 Just as before, there are a few ways to get around this.
 
-#### Solution
 1. Escape the space characters. In Bash, the backslash `\` is used as an
    [escape
 character](https://www.gnu.org/software/bash/manual/bash.html#Escape-Character). When the `\` is used, the following character is interpreted literally. This allows the space characters of the filename to be "escaped".
@@ -416,8 +411,6 @@ According to the `ls` command, there don't appear to be any files in the
 `inhere` directory. That's because `ls` doesn't display hidden files by
 default.
 
-#### Solution
-
 To show hidden files with `ls`, it's necessary to use the `--all` or `-a` flag.
 
 ```terminal
@@ -472,8 +465,6 @@ manual for each of the commands that were already mentioned in [Level
 
 If you've read through the description for each, you should have a pretty good
 idea of which command you'll need to solve this one.
-
-#### Solution
 
 This level is asking us to identify which files in `inhere` are human readable.
 The `file` command can get the information we need.
@@ -543,8 +534,6 @@ require some tedious manual searching to find the files that match each of the
 criteria. Luckily the `find` command is capable of locating files with all the
 above criteria. You just need to know the right flags.
 
-#### Solution
-
 The `find` command is essential to efficiently locating files on Linux systems.
 It has several flags that can be used to refine its search. Most importantly
 for this level are `-readable`, `-size` and `-executable`.
@@ -595,8 +584,6 @@ the `inhere` directory. That just means we'll need to run the `find` command
 from the root of the file system to ensure the file isn't missed. Secondly, the
 file is specified by two new parameters. The [user and
 group](https://wiki.archlinux.org/title/Users_and_groups) that own the file.
-
-#### Solution
 
 Searching the `find` manpage you can find the two flags `-user` and `-group` to
 filter for files owned by the `bandit7` user and the `bandit6` group as
@@ -666,8 +653,6 @@ commands since [level 0](#level-0).
 Once again, I highly recommend at least reading through the introduction for
 each of these commands and checking out the examples at
 [cheat.sh](https://cheat.sh).
-
-#### Solution
 
 If you've followed the above advice, there should really only be one contender
 to solve this level. The `grep` command.
@@ -756,8 +741,6 @@ Read through the [Piping and
 Redirection](https://ryanstutorials.net/linuxtutorial/piping.php) article
 provided under the helpful reading material section to learn more about
 piping.
-
-#### Solution
 
 Reviewing the recommended commands, one should stick out.
 
@@ -865,8 +848,6 @@ $ sort data.txt | uniq -u
 Once again we're searching a file, so exploring our options with `grep` may be a
 good idea.
 
-#### Solution
-
 Trying a basic `grep` for several `=` characters doesn't seem to work.
 
 ```terminal
@@ -927,10 +908,6 @@ binary data.
 
 > The password for the next level is stored in the file `data.txt`, which
 > contains __base64__ encoded data
-
-
-
-#### Solution
 
 This one is pretty straight forward. The prompt gives it away by mentioning
 that the data is Base64 encoded.
@@ -1087,7 +1064,6 @@ gunzip -c f8.gz > flag;     # extract plaintext flag file from f8.gz
 
 cat flag;
 ```
-
 
 ## To be continued
 
