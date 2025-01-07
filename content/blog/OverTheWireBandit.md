@@ -1065,6 +1065,123 @@ gunzip -c f8.gz > flag;     # extract plaintext flag file from f8.gz
 cat flag;
 ```
 
+### Level 13
+
+> The password for the next level is stored in `/etc/bandit_pass/bandit14` and
+> can only be read by user `bandit14`. For this level, you don’t get the next
+> password, but you get a private SSH key that can be used to log into the next
+> level.
+>
+> Note: `localhost` is a hostname that refers to the machine you are working on
+
+Once again, OverTheWire has provided some new recommended commands to investigate.
+
+|Command|Description|
+|-------|-----------|
+|[ssh](https://manpages.ubuntu.com/manpages/noble/man1/ssh.1.html)|a program for logging into or executing commands on remote machines|
+|[telnet](https://manpages.ubuntu.com/manpages/noble/man1/telnet.1posix.html)|communicate with another host using the TELNET protocol|
+|[nc](https://manpages.ubuntu.com/manpages/noble/man1/nc.1.html)|the swiss army knife for communicating over the network using TCP, UDP, or Unix-domain sockets|
+|[openssl](https://manpages.ubuntu.com/manpages/noble/man1/openssl.1.html)|a program for using various cryptography functions of the OpenSSL crypto library from the shell|
+|[s_client](https://manpages.ubuntu.com/manpages/noble/man1/openssl-s_client.1.html)|a program implementing a generic SSL/TLS client|
+|[nmap](https://manpages.ubuntu.com/manpages/noble/man1/nmap.1.html)|a network scanner for network exploration and security auditing|
+
+Each program is worth exploring, but for this challenge we'll only need `ssh`.
+However, it won't be used quite the same as before. This time an SSH private
+key is required to login to the next level.
+
+After logging in to `bandit13`, you should find the private SSH key mentioned
+in the prompt at `/home/bandit13/sshkey.private`. Copy that file to your
+primary host. You can simply copy paste the text if you wish, or use something
+like [scp](https://manpages.ubuntu.com/manpages/noble/en/man1/scp.1.html).
+
+{% callout(type="warning") %}
+
+Watch out! The `ssh` command requires private key files to have appropriate
+permissions. If they aren't correct you may receive an error message like this.
+
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'sshkey.private' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "sshkey.private": bad permissions
+```
+
+---
+*A brief reminder of the octal permissions.*
+
+|Number|Permission Type       |Symbols|
+|------|----------------------|-------|
+|0     |No permissions        |---    |
+|1     |Execute               |--x    |
+|2     |Write                 |-w-    |
+|3     |Write + Execute       |-wx    |
+|4     |Read                  |r--    |
+|5     |Read + Execute        |r-x    |
+|6     |Read + Write          |rw-    |
+|7     |Read + Write + Execute|rwx    |
+
+As the error mentions, the permissions `0644` are too open. That's because
+private key files should only be readable and/or writeable by the user they
+belong to. Usually that means either `600` or `400`, though `400` is a bit
+strict and won't allow the file to edited.
+
+So, setting the permissions to `600` would give the key file read and write
+access for the user, and no permissions for either the group or others.
+
+```bash
+chmod 600 sshkey.private
+```
+
+Now we're ready to connect to `bandit14`.
+
+{% end %}
+
+To use a key file with `ssh`, the `-i` flag can be used.
+
+E.g.
+```bash
+ssh user@host -i private_key
+```
+
+To connect to `bandi14` use the following command.
+```bash
+ssh bandit14@bandit.labs.overthewire.org -p 2220 -i sshkey.private
+```
+
+SSH is the most common protocol used for remotely administrating Linux and
+Unix-like systems, and using a key file as we've done here is by far the most
+common way it's used. It's not strictly necessary, but I highly recommend
+reading up on the fundamentals of [public-key
+cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography). It's how
+SSH guarantees[^1] it's security.
+
+[^1]: Just like almost every cryptographic system, it's possible for SSH to be
+    used incorrectly, thus [compromising it's
+security](https://sandflysecurity.com/blog/ssh-key-compromise-risks-and-countermeasures/).
+
+{% callout(type="note") %}
+
+In the solution above, we just used the `-i` flag to specify the private key
+file. However, anyone using `ssh` on a regular basis will rightly tell you to
+consider configuring ssh on your system for a much simpler workflow.
+
+If you're connecting to many hosts via ssh, it is much more convenient to
+configure the
+[ssh-agent](https://manpages.ubuntu.com/manpages/noble/en/man1/ssh-agent.1.html)
+to handle your ssh keys automatically so you don't need to specifiy the key
+file with the `-i` flag each time.
+
+You may also want to combine this with host-specific configurations. This can
+be done with a `config` file usually at `~/.ssh/config`. Check out the
+[ssh_config
+manual](https://manpages.ubuntu.com/manpages/noble/en/man5/ssh_config.5.html)
+for more details.
+
+{% end %}
+
 ## To be continued
 
 {% callout(type="note") %}
