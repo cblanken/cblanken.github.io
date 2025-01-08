@@ -1182,6 +1182,39 @@ for more details.
 
 {% end %}
 
+### Level 14
+
+> The password for the next level can be retrieved by submitting the password
+> of the current level to port 30000 on localhost.
+
+If you aren't familiar with IP addresses or ports, I highly encourage you to
+read the recommended reading material on the [Bandit 14
+page](https://overthewire.org/wargames/bandit/bandit15.html#helpful-reading-material).
+
+This time we need to connect to a particular port, but we won't be using the
+SSH protocol. Instead we need to send the current password as unencrypted text
+to port 30000 on localhost. The `nc` (netcat) utility can do just that.
+
+Netcat establishes a connection with the following syntax:
+```bash
+nc <destination> <port>
+```
+
+- The `destination` can be any domain as long as it resolves to an IP address, or it can take an IP address directly.
+- The `port` corresponds to the TCP/UDP port.
+
+Now, connect with the parameters given in the prompt.
+
+```bash
+netcat localhost 30000
+```
+
+This will establish the connection, but won't provide a new terminal prompt.
+That's because the program you've connected to is now awaiting input. Provide
+the level 14 password and press `Enter`, and the level 15 password will be
+returned.
+
+
 ## To be continued
 
 {% callout(type="note") %}
