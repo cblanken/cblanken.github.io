@@ -1214,6 +1214,49 @@ That's because the program you've connected to is now awaiting input. Provide
 the level 14 password and press `Enter`, and the level 15 password will be
 returned.
 
+### Level 15
+
+> The password for the next level can be retrieved by submitting the password
+> of the current level to port 30001 on localhost using SSL/TLS encryption.
+>
+> Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the
+> “CONNECTED COMMANDS” section in the manpage.
+
+Now, we've got another challenge asking us to connect to a port on localhost
+and submit the password, but this time, the password must be encrypted using
+SSL/TLS.
+
+One of the recommended commands is `s_client` which is a generic SSL/TLS
+client. We'll need to use a couple flags, `-host`, and `-port`.
+
+```bash
+openssl s_client -host localhost -port 30001
+```
+
+It's actually possible to elide the `-host` flag since `s_client` connects to
+`localhost` by default.
+
+```bash
+openssl s_client -port 30001
+```
+
+By default there, will be a fair amount of output describing the security
+parameters for the connection such as the certificate and handshake details.
+
+Once the connection is established there should be a line at the bottom `read R
+BLOCK`. At this point the terminal is awaiting input. Provide the current
+password to receive the password for the next level.
+
+```
+---
+read R BLOCK
+[REDACTED BANDIT 15 PASSWORD]
+Correct!
+[REDACTED BANDIT 16 PASSWORD]
+
+closed
+```
+
 
 ## To be continued
 
