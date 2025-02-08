@@ -20,5 +20,5 @@ analyst.
 
 If you find any of my ramblings helpful or are interested in any of my
 projects, please
-[let&nbsp;me&nbsp;know](mailto:cameron.blankenbuehler@protonmail.com)! I hope
+[let&nbsp;me&nbsp;know](mailto:contact@cblanken.dev)! I hope
 you have a good day and enjoy your time here. Don't forget to be awesome.
