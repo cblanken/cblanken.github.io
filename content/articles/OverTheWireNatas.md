@@ -16,8 +16,8 @@ tags = ["ctf", "infosec", "wargame", "OverTheWire", "web"]
 The [Natas wargame](https://overthewire.org/wargames/natas/) is another[^1]
 wargame hosted by OverTheWire. This one focuses on web security.
 
-[^1]: See my writeups for the OverTheWire [Bandit](/blog/overthewirebandit) and
-    [Leviathan](/blog/overthewireleviathan) wargames.
+[^1]: See my writeups for the OverTheWire [Bandit](/articles/overthewirebandit) and
+    [Leviathan](/articles/overthewireleviathan) wargames.
 
 In this walkthrough I'm going to show the process for solving each challenge
 and try to provide some insight into what each challenge is trying to teach

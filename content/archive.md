@@ -5,5 +5,5 @@ path = "archive"
 template = "archive.html"
 
 [extra]
-archive_dirs = ["blog", "journal", "projects"]
+archive_dirs = ["articles", "journal", "projects"]
 +++

@@ -28,7 +28,7 @@ index of the level starting at 0. Always make sure you're logging into the
 correct level!
 
 If you're new to CTFs and wargames you may want to check out the [Bandit
-wargame walkthrough](@/blog/OverTheWireBandit.md) first.
+wargame walkthrough](@/articles/OverTheWireBandit.md) first.
 
 {% end %}
 

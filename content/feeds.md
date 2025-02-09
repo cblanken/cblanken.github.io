@@ -8,6 +8,6 @@ disable_post_stats = true
 +++
 
 - [ALL (combines all feeds below)](/rss.xml)
-  - [Blog](/blog/rss.xml)
+  - [Articles](/articles/rss.xml)
   - [Journal](/journal/rss.xml)
   - [Projects](/projects/rss.xml)
