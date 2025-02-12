@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css">
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/font-hack-subset.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/de/journal/iana-protocols/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/de/journal/iana-protocols/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<script src="/js/auto-theme.js"></script>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://www.cblanken.dev/about">About me</a></li>
+            
+                <li><a href="https://www.cblanken.dev/articles">Articles</a></li>
+            
+                <li><a href="https://www.cblanken.dev/journal">Journal</a></li>
+            
+                <li><a href="https://www.cblanken.dev/projects">Projects</a></li>
+            
+                <li><a href="https://www.cblanken.dev/archive">Archive</a></li>
+            
+                <li><a href="https://www.cblanken.dev/tags">Tags</a></li>
+            
+                <li><a href="https://www.cblanken.dev/feeds">RSS</a></li>
+            
+                <li><a href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    
+
+    <div class="post">
+        
+
+        
+    <h1 id="title" class="post-title"><a href="https://www.cblanken.dev/de/journal/iana-protocols/">IANA-Protokollregistrierung</a></h1>
+    <div class="project-links"><div class="langs-block"><a class="lang-item" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;de&#x2F;journal&#x2F;iana-protocols&#x2F;">DE</a><a class="lang-item" href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal&#x2F;iana-protocols&#x2F;">EN</a></div>
+    </div>
+    
+    <div class="post-meta-inline">
+            <span>
+    <span class="post-date">
+            February 11, 2025
+        </span>
+</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;
+        <span>208 words</span>&nbsp;&nbsp;⋅&nbsp;&nbsp;<span>2 min</span>
+    </div>
+    
+
+    <div>
+    
+        <div class="post-tags">
+                <a class="post-tag" href="https://www.cblanken.dev/tags/dmarc/">#DMARC</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/rfc/">#RFC</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/smtp/">#SMTP</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/networking/">#networking</a>
+            
+                <a class="post-tag" href="https://www.cblanken.dev/tags/protocols/">#protocols</a>
+            </div>
+    
+    </div>
+
+        <div class="post-content">
+            <p>Wenn Sie schon einmal durch die RFCs geblättert haben, die von der
+<a href="https://www.ietf.org">IETF</a> veröffentlicht wurden, wissen Sie, dass es ein
+bisschen mühsam sein kann, wenn Sie wenn Sie nur einen Tag-Namen oder einen
+Fehlercode suchen. Sie sollten nicht die gesamte die gesamte Spezifikation
+eines Protokolls durchlesen müssen, nur um eine Fehlersuche durchzuführen.
+Richtig? Nun, hier kommt <a href="https://www.iana.org">IANA</a> zur Rettung. IANA hat ein
+zentrales Repository für die vielen Codes und Nummern, die in den
+Internet-Protokollen die in Internet-Protokollen enthalten sind. Sie finden es
+auf ihrer <a href="https://www.iana.org/protocols">protocol registry</a>.</p>
+<p>Ich persönlich war nur auf der Suche nach einer <a href="https://www.iana.org/assignments/dmarc-parameters/dmarc-parameters.xhtml#tag">einfachen
+Aufschlüsselung</a>
+über alle für DMARC verfügbaren Tags. Natürlich gibt es auch eine <a href="https://www.rfc-editor.org/rfc/rfc7489.html#section-11.4">DMARC tag
+Registry-Tabelle</a>
+eingebettet in den <a href="https://www.rfc-editor.org/rfc/rfc7489.html">DMARC RFC (RFC
+7489)</a>. Aber ich hatte
+Schwierigkeiten sich durch alle 73 Seiten der Spezifikation zu wühlen. In
+diesem Fall war es also nicht wirklich notwendig. Aber für so etwas wie die
+<a href="https://www.iana.org/assignments/mail-parameters/mail-parameters.xhtml#mail-parameters-2">SMTP-Service
+Erweiterungen</a>,
+kann es sehr viel nützlicher sein, da die Service-Erweiterungen über viele
+verschiedene RFCs verteilt sind.</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <span>© 
+    2025
+ Cameron Blankenbuehler</span>
+                    <span class="copyright-theme">
+                        <span class="copyright-theme-sep">:: </span>
+                        Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a>
+                    </span>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
