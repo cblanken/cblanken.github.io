@@ -42,3 +42,14 @@ favicon_mimetype = "image/svg"
 
 author = "Cameron Blankenbuehler"
 
+languages = [
+    { code = "de", feed = true },
+]
+
+[languages.de]
+generate_feeds = true
+build_search_index = true
+taxonomies = [
+    { name = "tags", paginate_by = 10 },
+]
+
