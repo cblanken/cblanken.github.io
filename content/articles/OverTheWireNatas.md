@@ -1,6 +1,7 @@
 +++
 title = "OverTheWire - Natas"
 date = "2024-12-31"
+updated = "2025-01-04"
 description = "Walkthrough for the Natas cyber wargame."
 
 [extra]

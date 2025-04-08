@@ -1,6 +1,7 @@
 +++
 title = "PicoCTF 2022 - SideChannel"
 date = 2022-05-29
+updated = 2024-07-19
 description = "Writeup for the SideChannel challenge from PicoCTF 2022"
 
 [extra]

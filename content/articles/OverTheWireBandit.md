@@ -1,6 +1,7 @@
 +++
 title = "OverTheWire - Bandit"
 date = "2024-10-20"
+updated = "2025-1-13"
 description = "Learn Linux with OverTheWire Bandit."
 
 [extra]

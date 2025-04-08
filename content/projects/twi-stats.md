@@ -1,6 +1,7 @@
 +++
 title = "The Wandering Inn (Statistics)"
 date = 2024-10-01
+updated = 2024-12-17
 description = "A web application to explore interesting data related to The Wandering Inn web serial."
 
 [extra]

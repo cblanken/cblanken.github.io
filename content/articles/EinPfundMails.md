@@ -1,6 +1,7 @@
 +++
 title = "KitCTF 2022 - ein-pfund-mails"
 date = "2022-10-26"
+updated = "2024-10-22"
 description = "Writeup for the ein-pfund-mails challenge from the KitCTF 2022 CTF"
 
 [extra]

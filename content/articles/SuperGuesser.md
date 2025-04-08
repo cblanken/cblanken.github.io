@@ -1,6 +1,7 @@
 +++
 title = "Cryptoverse 2022 - Super Guesser"
 date = "2022-10-26"
+updated = "2022-11-2"
 description = "Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF"
 
 [extra]
