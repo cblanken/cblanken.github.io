@@ -1,7 +1,7 @@
 +++
 title = "OverTheWire - Natas"
 date = "2024-12-31"
-updated = "2025-01-04"
+updated = "2025-4-11"
 description = "Walkthrough for the Natas cyber wargame."
 
 [extra]
@@ -45,22 +45,22 @@ first will help the knowledge stick better. I promise.
 
 The solutions for each level will be illustrated with numerous screenshots, so
 you won't need any other tools to just read along. However, if you'd like to
-have a better understanding of what's going and wish to follow along, you may
-want to familiarize yourself with a few things.
+have a better understanding of what's going on, you may want to familiarize
+yourself with a few things.
 
 1. The basics of HTML and PHP will be quite important. If you're familiar with
    another programming language you can probably follow along with any
 challenges that require PHP without too much trouble though.
 2. The browser dev tools. Specifically for Chrome/chromium browsers, though
    everything we do in this walkthrough should also be possible via the dev
-tools for other browsers like Firefox, Opera, etc. If you'd like an intro check
-out this [overview of the Chrome
+tools for other browsers like Firefox, Opera, etc. If you'd like an
+introduction check out this [overview of the Chrome
 devtools](https://developer.chrome.com/docs/devtools/overview)
 3. Knowledge of HTTP will be essential for several levels and is somewhat of a
    prerequisite to effectively use the web proxies mentioned next.
 4. A web proxy. [Zed Attack Proxy (ZAP)](https://www.zaproxy.org) and
    PortSwigger's [Burp Suite](https://portswigger.net/burp/communitydownload)
-are the most popular ones. Either will suffice but I'll be demoing the
+are the most popular ones. Either will suffice, but I'll be demonstrating the
 solutions in this walkthrough with ZAP wherever a proxy is needed.
 
 That's it. Enjoy the walkthrough!
@@ -102,7 +102,7 @@ can still be found in the wild[^2] and should always be considered when
 examining a web application for vulnerabilities.
 
 [^2]: A relatively high-profile example of this sort of data disclosure
-    occurred in 2021 where over 100,000 teachers' Social Security numbers of
+    occurred in 2021 where over 100,000 teachers' Social Security numbers
 were accessible by simply viewing the page source of a site hosted by the
 [Missouri Department of Elementary and Secondary
 Education](https://dese.mo.gov). See this [TechCrunch
@@ -252,10 +252,10 @@ This is where knowledge of HTTP is essential, because you have to recognize
 that we're looking for the Referer[^4] HTTP header which is used to indicate the
 source of a request.
 
-[^4]: Yes the correct spelling should be "Referrer", however the header
-was misspelled in the original HTTP specification, [RFC 1945](https://
-www.rfc-editor.org/rfc/rfc1945#section-10.13), so it remains misspelled for
-compatibility.
+[^4]: Yes, the correct spelling should be "Referrer", however the header was
+    misspelled in the original HTTP specification [RFC
+1945](https://www.rfc-editor.org/rfc/rfc1945#section-10.13), so it continues to
+be misspelled for backwards compatibility.
 
 As I mentioned before, the browser doesn't allow for modifying request headers,
 so we'll need to use a different tool. The simplest will be to use a command
@@ -337,7 +337,7 @@ Access granted. The password for natas5 is [REDACTED]
 
 HTTP headers are useful for a lot of things, but be cautious. Using them
 incorrectly for authentication as the `Referer` header is used in this
-challenge can lead [all
+challenge can lead to [all
 kinds](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html)
 of security vulnerabilities.
 
@@ -569,8 +569,8 @@ executes an external program as if it was run from the command line. We can see
 `passthru` is being used to execute the `grep` command on a file called
 `dictionary.txt`. Download that file and see what it contains. As you might
 have suspected, it's a list of words, and it's sorted alphabetically. A quick
-scan of the file doesn't reveal any unusual entries. There are a few with
-diacritics and accent marks, but that is it.
+scan of the file doesn't reveal any unusual entries. There are a few words with
+diacritics, but that is it.
 
 Instead let's focus on `$key`. It's being passed directly into the `passthru`
 function without any sanitization, essentially giving us complete control over
@@ -643,9 +643,10 @@ input is still passed into the `grep` command which can take multiple
 arguments. So files can still be searched even if they can't be directly output
 with the `cat` command.
 
-This payload should do the trick: `".*" /etc/natas_webpass/natas11 #`. This
-payload makes the `grep` command return every line in the `natas11` password
-file and comments out the `dictionary.txt` argument with `#` just like in [level 9](#level-9).
+This payload should do the trick: `".*" /etc/natas_webpass/natas11 #`. It makes
+the `grep` command return every line in the `natas11` password file and
+comments out the `dictionary.txt` argument with `#` just like in [level
+9](#level-9).
 
 ![level 10 password](/images/otw-natas/10_password.png)
 
