@@ -1,6 +1,7 @@
 # The URL the site will be built for
 base_url = "https://www.cblanken.dev"
 title = "cblanken"
+author = "Cameron Blankenbuehler"
 compile_sass = true
 generate_feeds = true
 feed_filenames = ["rss.xml", "atom.xml"]
@@ -40,7 +41,6 @@ menu_items = [
 favicon = "/favicon.svg"
 favicon_mimetype = "image/svg"
 
-author = "Cameron Blankenbuehler"
 
 languages = [
     { code = "de", feed = true },
