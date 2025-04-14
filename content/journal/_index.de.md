@@ -1,5 +1,5 @@
 +++
-title = "Zeitschrift"
+title = "Tagebuch"
 description = "Gedanken in Kurzform"
 template = "index.html"
 generate_feeds = true

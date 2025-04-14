@@ -7,7 +7,6 @@ generate_feeds = true
 feed_filenames = ["rss.xml", "atom.xml"]
 build_search_index = true
 theme = "terminimal-custom"
-default_language = "en"
 taxonomies = [
     {name = "tags", paginate_by = 10},
 ]
@@ -21,28 +20,22 @@ extra_syntaxes_and_themes = [
 ]
 
 [extra]
+path_language_resources = "i18n/"
 enable_post_view_navigation = true
 post_view_navigation_prompt = "Read more"
 logo_text = "cblanken.dev"
 accent_color = "orange-auto"
 umami_id = "e421f4ef-172d-42f3-bc26-4bcedb0359b0"
 
-menu_items = [
-    {name = "About me", url = "$BASE_URL/about"},
-    {name = "Articles", url = "$BASE_URL/articles"},
-    {name = "Journal", url = "$BASE_URL/journal"},
-    {name = "Projects", url = "$BASE_URL/projects"},
-    {name = "Archive", url = "$BASE_URL/archive"},
-    {name = "Tags", url = "$BASE_URL/tags"},
-    {name = "RSS", url = "$BASE_URL/feeds"},
-    {name = "GitHub", url = "https://github.com/cblanken", newtab = true},
-]
+# NOTE: the `menu_items` array is not used anymore, the navigation menu items are populated
+# from the [nav] section of the corresponding i18n/XX.toml file
 
 favicon = "/favicon.svg"
 favicon_mimetype = "image/svg"
 
 
 languages = [
+    { code = "en", feed = true },
     { code = "de", feed = true },
 ]
 
