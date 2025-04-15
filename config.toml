@@ -1,10 +1,15 @@
 # The URL the site will be built for
 base_url = "https://www.cblanken.dev"
-title = "cblanken"
+title = "cblanken.dev"
 author = "Cameron Blankenbuehler"
 compile_sass = true
 build_search_index = true
 theme = "terminimal-custom"
+generate_feeds = true
+feed_filenames = ["rss.xml", "atom.xml"]
+taxonomies = [
+    { name = "tags", paginate_by = 10 },
+]
 
 [markdown]
 highlight_code = true
@@ -21,22 +26,16 @@ post_view_navigation_prompt = "Read more"
 logo_text = "cblanken.dev"
 accent_color = "orange-auto"
 umami_id = "e421f4ef-172d-42f3-bc26-4bcedb0359b0"
+favicon = "/favicon.svg"
+favicon_mimetype = "image/svg"
 
 # NOTE: the `menu_items` array is not used anymore, the navigation menu items are populated
 # from the [nav] section of the corresponding i18n/XX.toml file
 
-favicon = "/favicon.svg"
-favicon_mimetype = "image/svg"
-
-[languages.en]
-generate_feeds = true
-build_search_index = true
-taxonomies = [
-    { name = "tags", paginate_by = 10 },
-]
-
 [languages.de]
+title = "cblanken.dev"
 generate_feeds = true
+feed_filenames = ["rss.xml", "atom.xml"]
 build_search_index = true
 taxonomies = [
     { name = "tags", paginate_by = 10 },
