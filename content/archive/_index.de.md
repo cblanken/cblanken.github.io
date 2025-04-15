@@ -1,7 +1,6 @@
 +++
 title = "Archive"
 description = "Archive"
-path = "archive"
 template = "archive.html"
 
 [extra]

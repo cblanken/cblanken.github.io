@@ -1,7 +1,7 @@
 +++
 title = "RSS Feeds"
 description = "Archive"
-path = "feeds"
+template = "feeds.html"
 
 [extra]
 disable_post_stats = true

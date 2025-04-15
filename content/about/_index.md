@@ -1,7 +1,7 @@
 +++
 title = "cblanken.dev"
-description = "Software Developer | Cybersecurity Enthusiast | Lifelong Learner"
-path = "about"
+description = "Software Dev | IT Enthusiast | Lifelong Learner"
+template = "about.html"
 
 [extra]
 disable_post_stats = true
@@ -13,10 +13,10 @@ where I post about computer science, tech, and my current projects.
 My formal degree is a Bachelor's of Science in Computer Science and Computer
 Engineering from the University of Louisville. I've previously worked
 professionally as a software engineer developing
-[HMIs](https://realpars.com/what-is-hmi/) for conveyor systems. I also have
-experience with Python, JavaScript, C#, Java, SQL, and Rust. I'm currently
-looking to break into freelance web development or find a role as a security
-analyst.
+[HMIs](https://realpars.com/what-is-hmi/) for parcel conveyance and sorting
+systems. I also have experience with Python, JavaScript, C#, Java, SQL, and
+Rust. I'm currently looking to break into freelance web development or find a
+role as a security analyst.
 
 If you find any of my ramblings helpful or are interested in any of my
 projects, please
