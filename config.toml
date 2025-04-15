@@ -3,13 +3,8 @@ base_url = "https://www.cblanken.dev"
 title = "cblanken"
 author = "Cameron Blankenbuehler"
 compile_sass = true
-generate_feeds = true
-feed_filenames = ["rss.xml", "atom.xml"]
 build_search_index = true
 theme = "terminimal-custom"
-taxonomies = [
-    {name = "tags", paginate_by = 10},
-]
 
 [markdown]
 highlight_code = true
@@ -33,10 +28,11 @@ umami_id = "e421f4ef-172d-42f3-bc26-4bcedb0359b0"
 favicon = "/favicon.svg"
 favicon_mimetype = "image/svg"
 
-
-languages = [
-    { code = "en", feed = true },
-    { code = "de", feed = true },
+[languages.en]
+generate_feeds = true
+build_search_index = true
+taxonomies = [
+    { name = "tags", paginate_by = 10 },
 ]
 
 [languages.de]

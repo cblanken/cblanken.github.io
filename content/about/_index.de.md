@@ -1,6 +1,7 @@
 +++
 title = "cblanken.dev"
-description = "Software Developer | Cybersecurity Enthusiast | Lifelong Learner"
+description = "Software Dev | IT Enthusiast | Lifelong Learner"
+template="about.html"
 
 [extra]
 disable_post_stats = true
