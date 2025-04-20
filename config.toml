@@ -5,6 +5,7 @@ author = "Cameron Blankenbuehler"
 compile_sass = true
 build_search_index = true
 theme = "terminimal-custom"
+exclude_paginated_pages_in_sitemap = "all"
 generate_feeds = true
 feed_filenames = ["rss.xml", "atom.xml"]
 taxonomies = [
@@ -20,9 +21,8 @@ extra_syntaxes_and_themes = [
 ]
 
 [extra]
-path_language_resources = "i18n/"
+path_language_resources = "i18n.toml"
 enable_post_view_navigation = true
-post_view_navigation_prompt = "Read more"
 logo_text = "cblanken.dev"
 accent_color = "orange-auto"
 umami_id = "e421f4ef-172d-42f3-bc26-4bcedb0359b0"
