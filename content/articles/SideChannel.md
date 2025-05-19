@@ -20,14 +20,14 @@ To start, we're given a short description.
 
 We're then offered a download for a program called `pin_checker`.
 Running the `pin_checker` binary will give us the following output:
-```terminal
+```
 $ ./pin_checker
 Please enter your 8-digit PIN code:
 ```
 
 Let's try entering a PIN 
 
-```terminal
+```
 $ ./pin_checker
 Please enter your 8-digit PIN code:
 00000000
@@ -39,7 +39,7 @@ Access denied.
 Okay, so it looks like a classic PIN entry. The program will tell us if we've found the correct PIN. It also requires an 8-digit PIN as you might expect. Anything longer or shorter will give an error. For example:
 
 Short PIN
-```terminal
+```
 $ ./pin_checker
 Please enter your 8-digit PIN code:
 12345
@@ -48,7 +48,7 @@ Incorrect length.
 ```
 
 Long PIN
-```terminal
+```
 $ ./pin_checker
 Please enter your 8-digit PIN code:
 123456789
@@ -79,7 +79,7 @@ except KeyboardInterrupt:
 ```
 
 `pin.py` output
-```terminal
+```
 $ time python pins.py
 PIN: 00000000, b'Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n'
 PIN: 00000001, b'Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n'
@@ -112,13 +112,13 @@ Okay, now that we've ruled out a brute-force attempt, let's go back to the title
 So, let's start by fuzzing `pin_checker` with a few different PINs and monitoring the execution time to see where that gets us.
 
 Just to highlight a few things I'll be using the following pipeline to clean up the output and just focus on the real elapsed time by the process. You can see an in depth breakdown of the [pipeline](https://explainshell.com/explain?cmd=%24+%2Fusr%2Fbin%2Ftime+-f+2%3E%261+%22%5Cn%25E%22+.%2Fpin_checker+%3C%3C%3C+00000000+%7C+tail+-n1+0%3A00.13) on [explainshell.com](https://explainshell.com/). Just know that we're sending a PIN code (`00000000` in this case) to `./pin_checker` and getting back the elapsed time in `hours:minutes:seconds`.
-```terminal
+```
 $ /usr/bin/time -f 2>&1 "\n%E" ./pin_checker <<< 00000000 | tail -n1
 0:00.13
 ```
 
 Following are all the permutations of the first digit of the PIN while leaving the remaining digits as zero.
-```terminal
+```
 $ /usr/bin/time -f 2>&1 "\n%E" ./pin_checker <<< 00000000 | tail -n1
 0:00.12
 $ /usr/bin/time -f 2>&1 "\n%E" ./pin_checker <<< 10000000 | tail -n1
@@ -144,7 +144,7 @@ $ /usr/bin/time -f 2>&1 "\n%E" ./pin_checker <<< 90000000 | tail -n1
 If you look carefully, you'll see that when we sent the PIN `40000000`, the elapsed time seemed to double. That's certainly interesting. We know that `pin_checker` must be checking the PIN code for a valid entry. Maybe it takes longer to verify the PIN when some of the digits are correct? Let's keep going.
 
 Keeping the first digit as 4, lets check the second digit.
-```terminal
+```
 $ /usr/bin/time -f 2>&1 "\n%E" ./pin_checker <<< 40000000 | tail -n1
 0:00.25
 $ /usr/bin/time -f 2>&1 "\n%E" ./pin_checker <<< 41000000 | tail -n1
@@ -171,7 +171,7 @@ We notice that the elapsed time has increased again when sending the PIN `480000
 I won't go through each step here, but each digit can be deduced from the above process. After checking each digit for an increased elapsed time we can find the correct PIN. I'll leave that up to the reader though =)
 
 Once you determine the correct PIN you can check it against `pin_checker`.
-```terminal
+```
 $ ./pin_checker <<< XXXXXXXX
 Please enter your 8-digit PIN code:
 8

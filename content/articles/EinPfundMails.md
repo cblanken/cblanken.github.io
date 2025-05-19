@@ -160,7 +160,7 @@ This confirms what the prompt told us, so we can't identify the correct flag by 
 The first signature we see in the file is a `DKIM-Signature`. There is a useful [explainer](https://mailtrap.io/blog/dkim/) over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that's used to verify the sender and __content__ of an email have not been altered. That should be perfect to find the original, unaltered email in our _ein pfund mails_.
 
 Luckily, there are several DKIM verification libraries available on [PyPI](https://pypi.org/search/?q=dkim). I chose [check-dkim](https://pypi.org/project/check-dkim/) since it was at the top of the list for my search. In the case of `check-dkim`, it's actually a CLI script. So, after installing (`pip install check-dkim`), we can verify that it works for one of our `.eml` files.
-```console
+```
 $ check-dkim mail/fffc5.eml 
 Error verifying DKIM
 body hash mismatch (got b'SHy1AAdR/+J5fTOT5HqeEr23p+JmXnlXWdr1QxcFqcU=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
@@ -179,7 +179,7 @@ Execute the script to start checking.
 ```
 
 Here is the output from our first few files.
-```terminal
+```
 FILE: mail/c9f01.eml --- Error verifying DKIM                                                                                                                                               
 body hash mismatch (got b'KSjh/SWf9CoOfANlP1JwziULd7TJwo2jAXdS6WxxiXk=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')                                                          
 FILE: mail/483c0.eml --- Error verifying DKIM                                                                                                                                               
@@ -194,7 +194,7 @@ body hash mismatch (got b'GGvQpfeY8Vzvfms3TWn1TsYW2Ws4CKhenm26CVZ7kCs=', expecte
 ----
 
 After a few minutes we get a hit. Here is the output leading up to the valid `.eml`.
-```term, hl_lines=5
+```hl_lines=5
 FILE: mail/3c586.eml --- Error verifying DKIM                                                                                                                                               
 body hash mismatch (got b'DopvYFdcPVYCj2nGEr3Jdll+EK7xiVVk33K/6xRJp90=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
 FILE: mail/06570.eml --- Error verifying DKIM                                                                                                                                               
@@ -203,7 +203,7 @@ FILE: mail/438b5.eml --- DKIM verified successfully
 ```
 
 Now we can check which flag is in `438b5.eml`.
-```term
+```
 grep -oP "(KCTF{.*})" mail/438b5.eml 
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}

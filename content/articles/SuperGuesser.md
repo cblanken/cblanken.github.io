@@ -21,14 +21,14 @@ We are given a short challenge description:
 ## Analysis
 We are provided a link to download `guesser.pyc`, a compiled python binary.
 Just to confirm there aren't any shenangins with the file extension, let's check the file type.
-```terminal
+```
 $ file guesser.pyc
 guesser.pyc: Byte-compiled Python module for CPython 3.8, timestamp-based, .py timestamp: Sun Sep 11 18:00:05 2022 UTC, .py size: 682 bytes
 ```
 The `file` utility tells us that we are, in fact, dealing with a compiled python binary. In this case CPython 3.8 is the version.
 
 _Note_: it's important that we use the correct version of python when running the compiled `.pyc` file otherwise we might get a _magic number_ error as shown below and be unable to execute the program.
-```terminal
+```
 $ python guesser.pyc
 RuntimeError: Bad magic number in .pyc file
 ```
@@ -36,7 +36,7 @@ RuntimeError: Bad magic number in .pyc file
 If your system has an incompatible version of Python, I'd recommend installing a tool like [`pyenv`](https://github.com/pyenv/pyenv) to install and manage other python versions side by side on your system.
 
 Now let's try running this program to see what we get as output.
-```terminal
+```
 $ python guesser.pyc
 Guess: test
 Invalid
@@ -52,7 +52,7 @@ Referring to the challenge title we know that this is a reversing challenge, so 
 One popular python decompiler is [decompyle3](https://pypi.org/project/decompyle3), which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.
 
 We can decompile `guesser.pyc` with the command:
-```terminal
+```
 $ decompyle3 guesser.pyc
 ```
 This gets us the source code `guesser.py`
@@ -137,7 +137,7 @@ d70146aef5a8e5364791d3006ccd9c00
 ```
 
 We should be able to test this by entering `cvctf` as our first guess when running the challenge binary.
-```terminal
+```
 $ python guesser.pyc
 Guess: cvctf
 Guess: again
@@ -192,7 +192,7 @@ for regex in hash_regexes:
 ```
 The program uses [pwntools](https://docs.pwntools.com/en/stable/util/iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce) to generate all the possible combinations given our set of lowercase alphabetic characters. It then generates the md5 hash using the [`hashlib`](https://docs.python.org/3/library/hashlib.html#module-hashlib) library and compares it against the hash from the `hashes` list.
 
-```terminal
+```
 $ python brute.py
 Searching for match for re.compile('^d.0.....f5...5.6.7.1.30.6c.d9..0$')...
 FOUND: cvctf, MD5: d70146aef5a8e5364791d3006ccd9c00

@@ -64,7 +64,7 @@ logged in to the appropriate level before executing any of the commands.
 
 For example:
 
-```terminal
+```
 $ cat hello.txt
 Hello there!
 ```
@@ -199,7 +199,7 @@ show us the contents of the `readme` file mentioned in the prompt. The humble
 It takes a filename as a parameter. So providing it with the filename `readme`
 should print it's contents.
 
-```terminal
+```
 $ cat readme
 Congratulations on your first steps into the bandit game!!
 Please make sure you have read the rules at https://overthewire.org/rules/
@@ -226,7 +226,7 @@ The prompt also provides links to the man pages for the same commands as level 0
 Naturally, you might think to try the `cat` command again. Afterall, we're told
 the password in in the file called `-`. Let's try it and see what happens.
 
-```terminal
+```
 $ cat -
 █
 ```
@@ -235,7 +235,7 @@ Strange, you're left with a blank line on the terminal now. And, if you type
 some text and press the `Enter` key, the text is repeated back to the
 terminal like so.
 
-```terminal, hl_lines=3
+```hl_lines=3
 $ cat -
 hello there
 hello there
@@ -281,7 +281,7 @@ usually implied when we just enter a file by it's name. However, stating it
 explicitly allows us to circumvent the special case of using `-` as an argument
 to `cat`.
 
-   ```terminal
+   ```
    $ cat ./-
    [REDACTED PASSWORD]
    ```
@@ -292,14 +292,14 @@ with a `/`. To use this method though we'll need to know the full path of the
 `-` file. To get that we can use the `pwd` command, which is short for "print
 working directory".
 
-   ```terminal
+   ```
    $ pwd
    /home/bandit1
    ```
 
    To complete the full path for `-` we just need to append `/<filename>`.
 
-   ```terminimal
+   ```
    $ cat /home/bandit1/-
    [REDACTED PASSWORD]
    ```
@@ -308,7 +308,7 @@ working directory".
    commands over multiple files at once. For example using the following
 command will print all files in the current working directory.
 
-   ```terminal
+   ```
    $ cat ./*
    [REDACTED PASSWORD]
    ```
@@ -343,7 +343,7 @@ This level is similar to Level 1, except that the file is not a special
 character. Instead it contains special characters, the space █. The space
 character is essential for the shell to interpret the input text.
 
-```terminal
+```
 $ cat spaces in this filename
 cat: spaces: No such file or directory
 cat: in: No such file or directory
@@ -360,7 +360,7 @@ Just as before, there are a few ways to get around this.
    [escape
 character](https://www.gnu.org/software/bash/manual/bash.html#Escape-Character). When the `\` is used, the following character is interpreted literally. This allows the space characters of the filename to be "escaped".
 
-   ```terminal
+   ```
    $ cat spaces\ in\ this\ filename
    [REDACTED PASSWORD]
    ```
@@ -370,7 +370,7 @@ character](https://www.gnu.org/software/bash/manual/bash.html#Escape-Character).
 quotes](https://www.gnu.org/software/bash/manual/bash.html#Single-Quotes).
 Every character between two single quotes is interpreted literally.
 
-   ```terminal
+   ```
    $ cat 'spaces in this filename'
    [REDACTED PASSWORD]
    ```
@@ -382,7 +382,7 @@ there are some exceptions, and double quotes allow some special characters to
 be interpreted. But the space character is not one those, so it is functionally
 the same as the above example in this case.
 
-   ```terminal
+   ```
    $ cat "spaces in this filename"
    [REDACTED PASSWORD]
    ```
@@ -404,7 +404,7 @@ common.
 > The password for the next level is stored in a hidden file in the `inhere`
 > directory.
 
-```terminal
+```
 $ ls ./inhere
 ```
 
@@ -414,7 +414,7 @@ default.
 
 To show hidden files with `ls`, it's necessary to use the `--all` or `-a` flag.
 
-```terminal
+```
 $ ls -a ./inhere
 .  ..  ...Hiding-From-You
 ```
@@ -427,7 +427,7 @@ may here them referred to as dotfiles.
 Now that we know the name of the hidden file, `cat` can be used to print the
 contents just as we've seen before.
 
-```terminal
+```
 $ cat inhere/...Hiding-From-You
 [REDACTED PASSWORD]
 ```
@@ -485,7 +485,7 @@ or non-printable).
 
 One option is to execute `file` on each file in `inhere` one-by-one like so.
 
-```terminal
+```
 $ file inhere/-file00
 inhere/-file00: data
 ```
@@ -493,7 +493,7 @@ inhere/-file00: data
 A better way is to use the glob `*` that we've seen previously. This allows us
 to run the file command on all the files at once.
 
-```terminal, hl_lines=9
+```hl_lines=9
 $ file ./inhere/*
 ./inhere/-file00: data
 ./inhere/-file01: data
@@ -509,7 +509,7 @@ $ file ./inhere/*
 
 From here it's obvious that we want the file with the text data at `./inhere/-file07`.
 
-```terminal
+```
 $ cat ./inhere/-file07
 [REDACTED PASSWORD]
 ```
@@ -539,7 +539,7 @@ The `find` command is essential to efficiently locating files on Linux systems.
 It has several flags that can be used to refine its search. Most importantly
 for this level are `-readable`, `-size` and `-executable`.
 
-```terminal
+```
 $ find -readable -size 1033c -not -executable
 ./inhere/maybehere07/.file2
 ```
@@ -556,7 +556,7 @@ files that aren't executable in this example.
 In this case the content and size of the file are sufficient to uniquely
 identify the file and the `-not -executable` isn't strictly necessary.
 
-```terminal
+```
 $ find -readable -size 1033c
 ./inhere/maybehere07/.file2
 ```
@@ -565,7 +565,7 @@ $ find -readable -size 1033c
 
 Once again, `cat` the file to get the password.
 
-```terminal
+```
 $ cat ./inhere/maybehere07/.file2
 [REDACTED PASSWORD]
 ```
@@ -593,7 +593,7 @@ we already saw in level 5.
 
 Here's an example of the output from `find` with all the required arguments.
 
-```terminal
+```
 $ find / -user bandit7 -group bandit6 -size 33c
 find: ‘/drifter/drifter14_src/axTLS’: Permission denied
 find: ‘/root’: Permission denied
@@ -621,7 +621,7 @@ integer. The file descriptor is followed by a greater than sign `>` which
 indacates that the stream should be redirected to a target file. Here is the
 same command as above with all errors redirect to `/dev/null`.
 
-```terminal, hl_lines=2
+```hl_lines=2
 $ find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
 /var/lib/dpkg/info/bandit7.password
 ```
@@ -658,7 +658,7 @@ each of these commands and checking out the examples at
 If you've followed the above advice, there should really only be one contender
 to solve this level. The `grep` command.
 
-```terminal
+```
 NAME
    grep - print lines that match patterns
 
@@ -678,14 +678,14 @@ DESCRIPTION
 According to the syntax description we should be able to search for patterns in
 a file with the following syntax.
 
-```terminal
+```
 grep <PATTERN> <FILE>
 ```
 
 Swapping in the values mentioned in the prompt will return the line we're
 looking for.
 
-```terminal, hl_lines=2
+```hl_lines=2
 $ grep "millionth" data.txt
 millionth       [REDACTED PASSWORD]
 ```
@@ -730,7 +730,7 @@ placed after a command will pass all of the output (stdout) into the input
 For example, we can combine the `ls` and `grep` commands to list only those
 files that contain "bash" in the name.
 
-```terminal
+```
 $ ls -a | grep bash
 .bash_logout
 .bashrc
@@ -770,7 +770,7 @@ case.
 
 For example, here's the first 20 lines of `data.txt` when sorted.
 
-```terminal
+```
 $ sort data.txt | head -n20
 0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
 0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
@@ -797,7 +797,7 @@ $ sort data.txt | head -n20
 As mentioned before, the pipe `|` is useful here to send the output of the
 `sort` command to `uniq`.
 
-```terminal
+```
 $ sort data.txt | uniq | head -n20
 0BKVRLEJQcpNx8wnSPxDLFnFKlQafKK6
 0eJPctF8gK96ykGBBaKydhJgxSpTlJtz
@@ -836,7 +836,7 @@ other words, only lines without any duplicates in the input.
 
 So finally, we have a solution.
 
-```terminal
+```
 $ sort data.txt | uniq -u
 [REDACTED PASSWORD]
 ```
@@ -851,7 +851,7 @@ good idea.
 
 Trying a basic `grep` for several `=` characters doesn't seem to work.
 
-```terminal
+```
 $ grep '=== \w*' data.txt
 grep: data.txt: binary file matches
 ```
@@ -863,7 +863,7 @@ We can see here, that grep found some matches, but `data.txt` was interpreted
 as a binary file. We can force grep to process the file as if it were text with
 the `-a` flag.
 
-```terminal, hl_lines=4 8 12 16
+```hl_lines=4 8 12 16
 $ grep -a '=== \w*' data.txt
 D]
   h#!QJsVzl7POl%Y]Ha^UvToD|@T^N8g}b}?
@@ -892,7 +892,7 @@ It's possible for `grep` to output the precise matching text instead of each
 entire line. The `-o` flag is needed to do this. It tells grep to only output
 the matched pattern.
 
-```terminal, linenos, hl_lines=5
+```linenos, hl_lines=5
 $ grep -a -o '=== \w*' data.txt
 === the
 === passwordi
@@ -916,7 +916,7 @@ that the data is Base64 encoded.
 Check the manual for the `base64` command and you'll find one of the first
 flags is `-d` for `--decode`.
 
-```terminal, hl_lines=2
+```hl_lines=2
 $ base64 -d data.txt
 The password is [REDACTED PASSWORD]
 ```
@@ -1003,7 +1003,7 @@ The first step is to recognize the format of the `data.txt`.
 Taking a look at the first few lines shows that this file isn't just a text
 file. It's a hexdump. Read the first few lines with `head -n5 data.txt`.
 
-```code, linenos
+```linenos
 00000000: 1f8b 0808 dfcd eb66 0203 6461 7461 322e  .......f..data2.
 00000010: 6269 6e00 013e 02c1 fd42 5a68 3931 4159  bin..>...BZh91AY
 00000020: 2653 59ca 83b2 c100 0017 7fff dff3 f4a7  &SY.............
