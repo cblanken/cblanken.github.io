@@ -37,7 +37,7 @@ $ cat hello.txt
 Hello there!
 ```
 
-## Log in
+## Logging in
 
 > The goal of this level is for you to log into the game using SSH. The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
 
@@ -86,6 +86,8 @@ Resources:
 Now that we're logged in, it's time to solve the first level.
 
 > The password for the next level is stored in a file called readme located in the home directory. Use this password to login to `bandit1` using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
+
+#### Useful commands 1
 
 The prompt also provides links to the man pages for several commands.
 
@@ -425,6 +427,8 @@ As you can see, the output is considerably easier to understand. Read the file a
 
 > The password for the next level is stored in the file `data.txt` next to the word "millionth".
 
+#### Useful commands 2
+
 This is the first level that OverTheWire introduces some new recommended commands since [level 0](#level-0).
 
 | Command | Description |
@@ -633,7 +637,7 @@ On the last line of the above output, you'll find the password to the next level
 
 It's possible for `grep` to output the precise matching text instead of each entire line. The `-o` flag is needed to do this. It tells grep to only output the matched pattern.
 
-```linenos, hl_lines=5
+```
 $ grep -a -o '=== \w*' data.txt
 === the
 === passwordi
@@ -767,6 +771,8 @@ cat flag;
 >
 > Note: `localhost` is a hostname that refers to the machine you are working on
 
+#### Useful commands 3
+
 Once again, OverTheWire has provided some new recommended commands to investigate.
 
 | Command | Description |
@@ -800,16 +806,16 @@ Load key "sshkey.private": bad permissions
 
 _A brief reminder of the octal permissions._
 
-| Number | Permission Type        | Symbols |
-| ------ | ---------------------- | ------- |
-| 0      | No permissions         | ---     |
-| 1      | Execute                | --x     |
-| 2      | Write                  | -w-     |
-| 3      | Write + Execute        | -wx     |
-| 4      | Read                   | r--     |
-| 5      | Read + Execute         | r-x     |
-| 6      | Read + Write           | rw-     |
-| 7      | Read + Write + Execute | rwx     |
+| Octal Number | Permission Type        | Symbols |
+| ------------ | ---------------------- | ------- |
+| 0            | No permissions         | ---     |
+| 1            | Execute                | --x     |
+| 2            | Write                  | -w-     |
+| 3            | Write + Execute        | -wx     |
+| 4            | Read                   | r--     |
+| 5            | Read + Execute         | r-x     |
+| 6            | Read + Write           | rw-     |
+| 7            | Read + Write + Execute | rwx     |
 
 As the error mentions, the permissions `0644` are too open. That's because private key files should only be readable and/or writeable by the user they belong to. Usually that means either `600` or `400`, though `400` is a bit strict and won't allow the file to edited.
 
@@ -878,13 +884,13 @@ This will establish the connection, but won't provide a new terminal prompt. Tha
 
 ### Level 15
 
-> The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.
->
-> Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.
+> The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL/TLS encryption.<br><br>Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.
 
 Now, we've got another challenge asking us to connect to a port on localhost and submit the password, but this time, the password must be encrypted using SSL/TLS.
 
-One of the recommended commands is `s_client` which is a generic SSL/TLS client. We'll need to use a couple flags, `-host`, and `-port`.
+One of the recommended commands is `s_client` which is a generic SSL/TLS[^2] client. We'll need to use a couple flags, `-host`, and `-port`.
+
+[^2]: SSL and TLS both commonly refer to [Transport Layer Security](https://en.wikipedia.org/wiki/Transport_Layer_Security) which is a protocol designed for secure communications over computer networks. SSL (Secure Sockets Layer) is a legacy term referring to the precursor to TLS, but the terms are often used interchangeably. However, modern applications should not be communicating via SSL since its final version (SSL 3.0) was deprecated in 2015.
 
 ```bash
 openssl s_client -host localhost -port 30001
@@ -910,8 +916,411 @@ Correct!
 closed
 ```
 
+### Level 16
+
+> The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL/TLS and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it. <br><br>Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.
+
+This challenge is almost identical to [Level 15](#level-15). However, this time we are not given the appropriate port. Instead, we're only given a range of suspect ports. To identify the services running on these TCP/UDP ports, we can use the `nmap` program.
+
+[Nmap](https://nmap.org/docs.html) is a network scanning tool which is often used to automatically enumerate devices and ports in a network. In our case, we're only interested in ports on the Bandit host, or in other words the [localhost](https://en.wikipedia.org/wiki/Localhost).
+
+To scan all the ports in the given range on `localhost` we'll run an [nmap command](https://explainshell.com/explain?cmd=nmap+localhost+-p31000-32000).
+
+```bash
+nmap localhost -p31000-32000
+```
+
+This should return the following:
+
+```
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-29 20:28 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00017s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+31046/tcp open  unknown
+31518/tcp open  unknown
+31691/tcp open  unknown
+31790/tcp open  unknown
+31960/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.18 seconds
+```
+
+This scan results in just a few open ports. Given such a short list, one option is to attempt communication on each port to see which one speaks SSL/TLS. However, if there were many more open ports, it would make more sense to automate that detection with `nmap`. Luckily this is possible with just one flag `-sV` which can be found under the `SERVICE/VERSION DETECTION` section in the [manpage](https://linux.die.net/man/1/nmap).
+
+```bash
+nmap localhost -p31000-32000
+```
+
+This version of the command will take a bit longer since `nmap` must analyze the traffic on each open port to determine what service may be running. The output should look something like this.
+
+```hl_lines=6-10
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-05-29 21:11 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00018s latency).
+Not shown: 996 closed tcp ports (conn-refused)
+PORT      STATE SERVICE     VERSION
+31046/tcp open  echo
+31518/tcp open  ssl/echo
+31691/tcp open  echo
+31790/tcp open  ssl/unknown
+31960/tcp open  echo
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port31790-TCP:V=7.94SVN%T=SSL%I=7%D=5/29%Time=6838CD8E%P=x86_64-pc-linu
+SF:x-gnu%r(GenericLines,32,"Wrong!\x20Please\x20enter\x20the\x20correct\x2
+SF:0current\x20password\.\n")%r(GetRequest,32,"Wrong!\x20Please\x20enter\x
+SF:20the\x20correct\x20current\x20password\.\n")%r(HTTPOptions,32,"Wrong!\
+SF:x20Please\x20enter\x20the\x20correct\x20current\x20password\.\n")%r(RTS
+SF:PRequest,32,"Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x20
+SF:password\.\n")%r(Help,32,"Wrong!\x20Please\x20enter\x20the\x20correct\x
+SF:20current\x20password\.\n")%r(FourOhFourRequest,32,"Wrong!\x20Please\x2
+SF:0enter\x20the\x20correct\x20current\x20password\.\n")%r(LPDString,32,"W
+SF:rong!\x20Please\x20enter\x20the\x20correct\x20current\x20password\.\n")
+SF:%r(SIPOptions,32,"Wrong!\x20Please\x20enter\x20the\x20correct\x20curren
+SF:t\x20password\.\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 155.35 seconds
+```
+
+Here we have the same open ports as before, but this time, with some additional version information. You'll notice that SSL/TLS responses were only detected on ports `31518` with `ssl/echo` and `31790` with `ssl/unknown`. The `ssl/echo` is just a simple echo service like the others, except that it is served via SSL/TLS, which only leaves the remaining `ssl/unknown` service. You can actually see the initial text sent and received by `nmap` when analyzing port `31790`. It seems to include several failed password attempts.
+
+Just as in [Level 15](#level-15), we can use the following OpenSSL command to start an SSL/TLS connection with our target port.
+
+After the initial connection is established, the program awaits some user input which requires the password to the current level.
+
+Once the password is entered, it's possible that the service does not immediately reply with the credentials for the next level. As mentioned in the prompt, if there is a response including "DONE", "RENEGOTIATING", or "KEYUPDATE" then you may need to check the "CONNECTED COMMANDS" section of the [openssl-s_client](https://docs.openssl.org/master/man1/openssl-s_client/) manpage.
+
+```hl_lines=6-10,hl_lines=18
+CONNECTED COMMANDS (BASIC)
+       If  a connection is established with an SSL/TLS server then any data received from the server
+       is displayed and any key presses will be sent to the server. If end of file is  reached  then
+       the connection will be closed down.
+
+       When  used  interactively  (which  means  neither  -quiet  nor -ign_eof have been given), and
+       neither of -adv or -nocommands are given then "Basic" command mode is entered. In  this  mode
+       certain commands are recognized which perform special operations. These commands are a letter
+       which  must  appear  at the start of a line. All further data after the initial letter on the
+       line is ignored.  The commands are listed below.
+
+       Q   End the current SSL connection and exit.
+
+       R   Renegotiate the SSL session (TLSv1.2 and below only).
+
+       C   Attempt to reconnect to the server using a resumption handshake.
+
+       k   Send a key update message to the server (TLSv1.3 only)
+
+       K   Send a key update message to the server and request one back (TLSv1.3 only)
+```
+
+In my case, I received a "KEYUPDATE" response because the password I used begins with a "k".
+
+```
+--- snip ---
+read R BLOCK
+[REDACTED LEVEL 15 PASSWORD]
+KEYUPDATE
+```
+
+Since I didn't provide any of the `-quiet`, `-ign_eof`, `-adv`, or `-nocommands` flags, the connection entered the "Basic" command mode which uses the first character in the next line of input to determine which command to execute.
+
+To prevent this "Basic" mode from clobbering our input we need use one of these flags. For example.
+
+```
+openssl s_client -connect localhost:31790 -nocommands
+```
+
+Which should return the following.
+
+```
+--- snip ---
+read R BLOCK
+[REDACTED LEVEL 16 PASSWORD]
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+[REDACTED RSA KEY]
+-----END RSA PRIVATE KEY-----
+
+closed
+```
+
+This time, the service accepts the password and replies with an RSA key to access the next level and closes the connection.
+
+### Level 17
+
+> There are 2 files in the homedirectory: `passwords.old` and `passwords.new`. The password for the next level is in `passwords.new` and is the only line that has been changed between `passwords.old` and `passwords.new`
+>
+> NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19
+
+This level wants us to find any **diff**erences between the `passwords.old` and `passwords.new` files. One of the recommended commands is [diff](https://linux.die.net/man/1/diff) which has the sole purpose of comparing files line by line and displaying the differences.
+
+Let's get a diff of our two password files.
+
+```
+$ diff passwords.old passwords.new
+```
+
+```diff
+42c42
+< C6XNBdYOkgt5ARXESMKWWOUwBeaIQZ0Y
+---
+> [REDACTED LEVEL 18 PASSWORD]
+```
+
+The first line indicates which lines were changed. In this case a change has been identified in line 42 of both files. The lines above the `---` separator are the changes made in the file that was input as the first argument (`passwords.old`), while the lines under the `---` correspond to the second argument (`password.new`).
+
+We can see the password for level 18 highlighted in green.
+
+### Level 18
+
+> The password for the next level is stored in a file `readme` in the homedirectory. Unfortunately, someone has modified `.bashrc` to log you out when you log in with SSH.
+
+While `ssh` is primarily used for starting a user shell on a remote host, commands can actually be executed directly without starting a new shell. The SYNOPSIS of the [ssh manpage](https://linux.die.net/man/1/ssh) shows the necessary syntax.
+
+```hl_lines=6
+SYNOPSIS
+       ssh   [-46AaCfGgKkMNnqsTtVvXxYy]  [-B  bind_interface]  [-b  bind_address]  [-c  cipher_spec]
+           [-D [bind_address:]port] [-E log_file]  [-e  escape_char]  [-F  configfile]  [-I  pkcs11]
+           [-i   identity_file]   [-J  destination]  [-L  address]  [-l  login_name]  [-m  mac_spec]
+           [-O ctl_cmd] [-o option] [-P tag] [-p port] [-R address]  [-S  ctl_path]  [-W  host:port]
+           [-w local_tun[:remote_tun]] destination [command [argument ...]]
+       ssh [-Q query_option]
+```
+
+After the required `destination` parameter you can see the optional `[command [argument ...]]` parameter. Any commands provided here will be executed on the remote host.
+
+So the command to output the password in the remote host's `readme` file should look like this.
+
+```hl_lines=13
+$ ssh bandit18@bandit.labs.overthewire.org cat readme
+                         _                     _ _ _
+                        | |__   __ _ _ __   __| (_) |_
+                        | '_ \ / _` | '_ \ / _` | | __|
+                        | |_) | (_| | | | | (_| | | |_
+                        |_.__/ \__,_|_| |_|\__,_|_|\__|
+
+
+                      This is an OverTheWire game server.
+            More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.org's password:
+[REDACTED LEVEL 18 PASSWORD]
+```
+
+{% callout(type="note") %} This command should be executed from your own system, not from the system hosting Bandit i.e. while logged into one of the previous levels.
+
+I've configured my SSH client to automatically use port `2220` as required for the Bandit wargame which is why I haven't explicitly provided the port in this example. To do the same, add the following line to your `~/.ssh/config` file or provide the port number via the `-p` flag.
+
+```
+Host bandit.labs.overthewire.org
+    port 2220
+```
+
+{% end %}
+
+### Level 19
+
+> To gain access to the next level, you should use the `setuid` binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (`/etc/bandit_pass`), after you have used the `setuid` binary.
+
+First let's define a few terms.
+
+| Term | Descriptions |
+| --- | --- |
+| Real User ID (RUID) | The ID of the user which started a process |
+| Effective User ID (EUID) | The ID of the user which defines the privileges of a running process. |
+| [suid permission bit](https://en.wikipedia.org/wiki/Setuid#SUID) | A special file permission bit besides the standard read (r), write (w), and execute (x) that allows a file to be executed as the owner of that file |
+
+For the `bandit20-do` permissions the `suid` bit can be seen as the `s` in the execute position of the user permissions.
+
+```hl_lines=3
+$ ls -l
+total 16
+-rwsr-x--- 1 bandit20 bandit19 14884 Apr 10 14:23 bandit20-do
+```
+
+The special (suid) permission is set and the owner of the file is `bandit20`, thus allowing the binary access to resources available to the user `bandit20`.
+
+By default, the effective user ID matches the real user ID. However, If you execute the provided binary without any arguments some usage information will be returned.
+
+```
+$ ./bandit20-do
+Run a command as another user.
+  Example: ./bandit20-do id
+```
+
+Note that the [id](https://www.man7.org/linux/man-pages/man1/id.1.html) command will show the real and effective user and group IDs for the current user's shell unless provided with an argument. Now, let's run that example.
+
+```
+$ ./bandit20-do id
+uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11019(bandit19)
+```
+
+See how it differs from running the plain `id` command run as the `bandit19` user.
+
+```
+$ id
+uid=11019(bandit19) gid=11019(bandit19) groups=11019(bandit19)
+```
+
+An additional item is returned from the `bandit20-do` invocation, the _effective_ user ID `euid=11020(bandit20)`. This indicates that the commands run via `bandit20-d0` should be able to access files available to the `bandit20` user. Which includes the password file.
+
+As long as we know its location which was provided as `/etc/bandit_pass/bandit20` we can simply output the file. So, solving this challenge is actually quite simple. Execute a `cat` command with the password file as an argument via the `bandit20-do` binary like so:
+
+```
+$ ./bandit20-do cat /etc/bandit_pass/bandit20
+[REDACTED BANDIT 20 PASSWORD]
+```
+
+### Level 20
+
+> There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+>
+> NOTE: Try connecting to your own network daemon to see if it works as you think
+
+#### Useful commands 4
+
+This challenge recommends some new commands that we haven't seen so far.
+
+| Command | Description |
+| --- | --- |
+| [screen](https://manpages.ubuntu.com/manpages/noble/man1/screen.1.html) | a terminal multiplexer |
+| [tmux](https://manpages.ubuntu.com/manpages/noble/man1/tmux.1.html) | a terminal multiplexer |
+| [jobs](https://www.man7.org/linux/man-pages/man1/jobs.1p.html) | display the status of all jobs in the current session |
+| [bg](https://www.man7.org/linux/man-pages/man1/bg.1p.html) | send a running job to the background |
+| [fg](https://www.man7.org/linux/man-pages/man1/fg.1p.html) | bring a backgrounded job to the foreground |
+
+These programs introduce some new concepts that are pretty important for anyone working on Linux system whether as a user or an administrator. Let's briefly go over them.
+
+#### Job control
+
+You can read more about it in the [Job Control section](https://www.gnu.org/software/bash/manual/html_node/Job-Control.html) of the [Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html). But, to summarize, job control, is a system for suspending and resuming processes and allowing them to run in the _background_ such that the user can continue executing other commands without waiting for previous commands to complete.
+
+To interact with the job control system, we have a few tools including: the `jobs`, `bg`, and `fg` commands as well as the `&` character, and the <kbd>Ctrl+Z</kbd> keyboard shortcut which you may see referred to as the suspend character or `^Z`.
+
+We generally use two methods to run a program in the _background_. The first is to execute a command with an `&` at the end of the line.
+
+For example
+
+```
+$ cat - &
+[1] 1809443
+```
+
+The `cat` process has been added to the jobs list and is now in the background.
+
+```
+$ jobs
+[1]+  Stopped                 cat -
+```
+
+As you can see when listing the available jobs, the command has been _Stopped_ which indicates that is has been suspended and is no longer running. However, we can bring this process back to the foreground so that we can interact with it again using the `fg` command.
+
+```
+$ fg
+cat -
+hello
+hello
+```
+
+Besides starting a command with the `&`, we can also use the <kbd>Ctrl+Z</kbd> keyboard shortcut to send an already running process to the background. Let's send the `cat` process to the background once again.
+
+```
+^Z
+[1]+  Stopped                 cat -
+$ jobs
+[1]+  Stopped                 cat -
+```
+
+You can see here we've once again stopped the process running `cat` and returned it to the background. The `^Z` indicates the pressing of <kbd>Ctrl+Z</kbd>. Be aware though, that backgrounding a process in this manner will also stop the process. To let it continue running in that background you must use the `bg` command.
+
+```
+$ bg %1
+[1]+ cat - &
+
+[1]+  Stopped                 cat -
+```
+
+Here we used what's known as a job specification or job spec to identify the job with a `%` followed by the ID of 1 which you may need to do if you have several backgrounded jobs. In this little example, since the `cat` process is awaiting user input, it's immediately stopped again after telling it to run in the background. However, a longer running process would continue until the program exits or is awaiting more user input.
+
+#### Terminal multiplexing
+
+Both `tmux` and `screen` are terminal multiplexers. Which just means they can display multiple terminals within a single window. They allow you to split these windows as needed and can allow grouping terminals, copying and pasting etc. This can all be done from the command line with these tool, which is why they're useful when working over a remote SSH session.
+
+There are also GUI-based alternatives. Terminal emulators like [Terminator](https://gnome-terminator.org), [Konsole](https://konsole.kde.org), and even [Windows Terminal](https://github.com/microsoft/terminal) ship with multiplexing features, but I won't go into too much detail here. I recommend you try out whichever ones work for your system and see what you like best. Just know that only the terminal-based multiplexers like `tmux` and `screen` will enable you to use multiple terminals on a remote system without initiating an additional SSH session.
+
+#### Solution
+
+This challenge provides another `setuid` binary, just how [Level 19](#level-19) did. Checking the permissions shows that this binary also has the `suid` bit set with an owner of `bandit21`, so it should be able to read the `bandit21` password file for us in some way.
+
+```
+$ ls -l
+total 16
+-rwsr-x--- 1 bandit21 bandit20 15608 Apr 10 14:23 suconnect
+```
+
+First off, let's check the usage information for `suconnect`.
+
+```
+$ ./suconnect
+Usage: ./suconnect <portnumber>
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.
+```
+
+For this walkthrough we'll use the job control method.
+
+First, we need to setup a TCP listener on a high port[^3] for the `suconnect` binary to connect to. The simplest way to do this is with the `netcat` utility which we've [used before](#level-14).
+
+[^3]: Ports 1-1024 are privileged ports and can't be used without root permissions. That's because commonly known services are hosted on these ports and should ideally only be accessible by a system administrator. Anything from 1025 to 65535 should be fine though. If by chance you receive an error message of `nc: Address already in use`, then try another.
+
+Here we run netcat in listening mode and specify port `9898`, but importantly we've provided the `&` at the end of the line to send the process to the background.
+
+```
+$ nc -l -p 9898 &
+[1] 744373
+```
+
+Running the `jobs` command will list the active jobs which now includes the `netcat` command we just launched. As you can see it's still running since it's awaiting a connection.
+
+```
+$ jobs
+[1]+  Running                 nc -l -p 9898 &
+```
+
+Next we need to run the `suconnect` binary and connect to the same port, `9898`. We also execute this command as a background job.
+
+```
+$ ./suconnect 9898 &
+[2] 913657
+```
+
+The jobs list now contains both of our programs running in the background.
+
+```
+$ jobs
+[1]+  Stopped                 nc -l -p 9898
+[2]-  Running                 ./suconnect 9898 &
+```
+
+You can see that the `netcat` command has been stopped, but we can start it again by bringing it into the foreground with the `fg` command to interact with it. Note that since the `netcat` job has the `+` indicator it will be selected by default, but we can also specify the specific job to bring to the foreground with it's job number.
+
+Once you bring the `netcat` job to the foreground, the terminal will once again be awaiting input. Provide the level 20 password as the prompt informed us.
+
+```hl_lines=5-6
+$ fg %1
+nc -l -p 9898
+[REDACTED LEVEL 20 PASSWORD]
+Read: [REDACTED LEVEL 20 PASSWORD]
+Password matches, sending next password
+[REDACTED LEVEL 21 Password]
+[2]+  Done                    ./suconnect 9898
+```
+
+As you can see, `suconnect` accepted the level 20 password and replied with the password for level 21. We can also see that the job for `suconnect` completed and exited normally by the `Done` response in the final line.
+
 ## To be continued
 
-{% callout(type="note") %} I hope you enjoyed the walkthrough. When time permits, I intend to expand this post to include every level of OverTheWire Bandit.
+{% callout(type="note") %} I hope you've enjoyed the walkthrough so far. When time permits, I intend to expand this post to include every level of OverTheWire Bandit. Until then.
 
 Happy hacking! {% end %}
