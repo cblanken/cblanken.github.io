@@ -1,7 +1,7 @@
 +++
 title = "OverTheWire - Bandit"
 date = "2024-10-20"
-updated = "2025-6-5"
+updated = "2025-6-17"
 description = "Learn Linux with OverTheWire Bandit."
 
 [extra]
@@ -9,7 +9,7 @@ show_only_description = true
 toc = true
 
 [taxonomies]
-tags = ["ctf", "infosec", "wargame", "OverTheWire", "Linux"]
+tags = ["ctf", "infosec", "wargame", "OverTheWire", "Linux", "Git", "Vim", "cron", "tmux"]
 +++
 
 ## Introduction
@@ -713,7 +713,7 @@ The first step is to recognize the format of the `data.txt`.
 
 Taking a look at the first few lines shows that this file isn't just a text file. It's a hexdump. Read the first few lines with `head -n5 data.txt`.
 
-```linenos
+```
 00000000: 1f8b 0808 dfcd eb66 0203 6461 7461 322e  .......f..data2.
 00000010: 6269 6e00 013e 02c1 fd42 5a68 3931 4159  bin..>...BZh91AY
 00000020: 2653 59ca 83b2 c100 0017 7fff dff3 f4a7  &SY.............
@@ -1319,8 +1319,1003 @@ Password matches, sending next password
 
 As you can see, `suconnect` accepted the level 20 password and replied with the password for level 21. We can also see that the job for `suconnect` completed and exited normally by the `Done` response in the final line.
 
-## To be continued
+### Level 21
 
-{% callout(type="note") %} I hope you've enjoyed the walkthrough so far. When time permits, I intend to expand this post to include every level of OverTheWire Bandit. Until then.
+A program is running automatically at regular intervals from `cron`, the time-based job scheduler. Look in `/etc/cron.d/` for the configuration and see what command is being executed.
 
-Happy hacking! {% end %}
+The prompt also recommends some useful manpages.
+
+#### Cron
+
+| Manpage | Description |
+| --- | --- |
+| <kbd>[cron(8)](https://www.man7.org/linux/man-pages/man8/cron.8.html)</kbd> | system for scheduling commands |
+| <kbd>[crontab(1)](https://man7.org/linux/man-pages/man1/crontab.1.html)</kbd> | manage crontab files for a user |
+| <kbd>[crontab(5)](https://man7.org/linux/man-pages/man5/crontab.5.html)</kbd> | crontab file format and syntax |
+
+Cron is a system for executing commands at regular intervals. This is a very common task for system administrators. Whether a task involves performing regular backups of data or generate reports automatically.
+
+[Contab guru](https://crontab.guru) is a convenient tool to parse crontabs if you're unfamiliar with the syntax or want to verify the correctness of your own crontabs.
+
+#### Solution
+
+The prompt points us to the configuration files in `/etc/cron.d`.
+
+```
+$ ls -l
+total 28
+-rw-r--r-- 1 root root 123 Apr 10 14:16 clean_tmp
+-rw-r--r-- 1 root root 120 Apr 10 14:23 cronjob_bandit22
+-rw-r--r-- 1 root root 122 Apr 10 14:23 cronjob_bandit23
+-rw-r--r-- 1 root root 120 Apr 10 14:23 cronjob_bandit24
+-rw-r--r-- 1 root root 201 Apr  8  2024 e2scrub_all
+-rwx------ 1 root root  52 Apr 10 14:24 otw-tmp-dir
+-rw-r--r-- 1 root root 396 Jan  9  2024 sysstat
+```
+
+Checking the contents of the `cronjob_bandit22` file reveals a specification for two cron jobs.
+
+```
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+```
+
+The first line runs the `cronjob_bandit22.sh` script at boot time, and the second line runs the same script every minute.
+
+Let's see what that script does.
+
+```bash
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+```
+
+According to this script, the password for `bandit22` seems to be written to the file `/tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv`. Reading that file will reveal the password.
+
+```
+$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+[REDACTED LEVEL 22 PASSWORD]
+```
+
+### Level 22
+
+> A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in `/etc/cron.d/` for the configuration and see what command is being executed.
+>
+> NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
+
+This level once again involves Cron. You may remember, from [Level 21](#level-21) that there were a few other cron files in `/etc/cron.d`.
+
+This time we're interested in the `/etc/cron.d/cronjob_bandit22` file.
+
+```
+@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+```
+
+Once again this crontab points to a script in `/usr/bin`.
+
+```bash, linenos
+#!/bin/bash
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget
+```
+
+This script is quite similar to the script in [Level 21](#level-21) except it's now using a variable, `mytarget` to store the target directory. And, instead of using a hardcoded location, the `mytarget` is built with a series of commands.
+
+However, be aware that the `$myname` variable is being populated when the script runs as the `bandit23` user. So you can't use the results of `whoami` in the current shell for the `$myname` variable since that resolves to `bandit22`. Instead, the `$myname` variable should be `bandit23`. Replace it in the command line, like so, to calculate the correct location for the password.
+
+```bash
+echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+```
+
+Running this series of commands will give us the value stored in `$mytarget` which is `8ca319486bfbbc3663ea0fbe81326349`. Therefore, the final location for the password is `/tmp/8ca319486bfbbc3663ea0fbe81326349`. Output the file to get the password.
+
+```
+$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+[REDACTED BANDIT 23 PASSWORD]
+```
+
+### Level 23
+
+> A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in `/etc/cron.d/` for the configuration and see what command is being executed.
+>
+> NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!
+>
+> NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…
+
+This challenge is similar to the last one, but this time we won't _just_ be reading a shell script. We'll be writing out own.
+
+#### Shell scripting
+
+We mostly breezed by all the scripts in the previous levels, but now that we're writing our own. Let's break them down a bit.
+
+First we'll look at the anatomy of a shell script. Shell scripts are just text files. On Linux, file extensions in Linux usually[^4] aren't necessary, but it's common to end shell scripts with a `.sh` e.g. `shell.sh`.
+
+[^4]: Some programs, in particular archiving and compression utilities like `tar`, `gzip`, and `bzip2` will refuse to operate on files without an appropriate file extension, but most programs will instead read the first few bytes of a file to determine it's type. Commonly known as [magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
+
+The first line of any script should include a [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) to specify what kind of script it is. When a file starting with a shebang is executed, the filepath provided after the shebang points the interpreter that will be used for the script.
+
+For example, a shell script might begin like so.
+
+```bash
+#!/bin/bash
+echo Hello there!
+```
+
+But it's also possible to indicate other types of scripts, like Python for example.
+
+```python
+#!/usr/bin/python
+print("Hi!")
+```
+
+We'll only be writing shell scripts in this walkthrough though.
+
+After the shebang, you can write any command as you'd normally write directly in the terminal. For example, here's a script making a directory and writing some text to a file in that directory.
+
+```sh
+#!/bin/sh
+mkdir -p test_dir
+echo "TESTING" > test_dir/test.txt
+cat test_dir/test.txt
+```
+
+There's a lot more to Bash and shell scripting, but this should be enough to get started. If you'd like to learn more, the [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html) is an excellent reference.
+
+If you're planning to do any real work with Bash scripts, definitely read through the [Bash scripting quirks & safety tips](https://jvns.ca/blog/2017/03/26/bash-quirks/) article by Julia Evans. It'll walk you through some of the common gotchas.
+
+{% callout(type="warning") %} Don't forget to make any script you write executable. On most systems files aren't created with the execute (x) permission. So you'll need to modify the permissions with a command like `chmod +x`. This will enable any user to execute the script. {% end %}
+
+#### Solution
+
+Now let's write our script.
+
+We know that `bandit24` has a cronjob running. You'll find it at `/etc/cron.d/cronjob_bandit24`.
+
+```
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh  &> /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh  &> /dev/null
+```
+
+Just like the last level, the cronjob is executing a script in `/usr/bin`. Let's examine it.
+
+```bash,linenos,hl_lines=6
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname/foo
+echo "Executing and deleting all scripts in /var/spool/$myname/foo:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        owner="$(stat --format "%U" ./$i)"
+        if [ "${owner}" = "bandit23" ]; then
+            timeout -s 9 60 ./$i
+        fi
+        rm -f ./$i
+    fi
+done
+```
+
+According to the `echo` message, this script should be executing and deleting all the scripts in `/var/spool/bandit24/foo`.
+
+So, presumably, if that `foo` directory is writable by `bandit23` then we could write a script. Copy it into that directory, and then simply wait for the cronjob to activate and run our script. Let's check.
+
+```
+$ ls -l /var/spool/bandit24/
+total 4
+drwxrwx-wx 62 root bandit24 4096 Jun 17 13:51 foo
+```
+
+Note the atypical `w` in the "other" portion of the directory permissions. That means we'll be able to copy in any scripts we'd like.
+
+There are plenty of different ways you could solve this, but the simplest is to send the contents of the bandit24 password file to a new file which we can read. Here's an example solution.
+
+```bash,linenos
+#!/bin/sh
+mkdir -p /tmp/cblanken_L24
+cat /etc/bandit_pass/bandit24 > /tmp/cblanken_L24/pass.txt
+```
+
+Don't forget to swap in your own temporary directory name and make your script file executable with `chmod`.
+
+```
+$ chmod +x solve.sh
+```
+
+Then copy your script into `/var/spool/bandit24/foo` and wait for it to be executed.
+
+```
+$ cp solve.sh /var/spool/bandit24/foo/
+```
+
+The cronjob is triggered every minute, so you shouldn't have to wait long.
+
+```
+$ cat /tmp/cblanken_L24/pass.txt
+[REDACTED LEVEL 24 PASSWSORD]
+```
+
+### Level 24
+
+> A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing. You do not need to create new connections each time
+
+There are a lot of possible ways to solve this, but I recommend splitting it into two parts.
+
+1. First we need to generate these 4 digit PINs
+2. Then we'll send them to port 30002.
+
+#### Generating PINs
+
+One convenient way to do this is with the [seq](https://www.man7.org/linux/man-pages/man1/seq.1.html) command which can generate sequences of numbers.
+
+For example
+
+```
+$ seq 0 10
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
+
+You might notice though that all these single digits aren't exactly valid PINs. They should have leading zeroes up to 4 digits.
+
+Fortunately, `seq` has a flag that will pad our numbers with leading zeroes just how we need using the `-w` flag. Here's an excerpt from the manual.
+
+```
+-w, --equal-width
+   equalize width by padding with leading zeroes
+```
+
+Now we have our leading zeroes, and we just need to update the maximum argument from 10 to 9999 to get every possible 4-digit pin.
+
+```
+$ seq -w 0 9999
+0000
+0001
+0002
+0003
+0004
+--- snip ---
+9995
+9996
+9997
+9998
+9999
+```
+
+Next let's see what we need to be sending to port 30002. If you start a connection to the port with netcat, the service will reply with a simple explanation.
+
+```
+$ nc localhost 30002
+I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.
+```
+
+It says here that the `bandit24` password and our PIN should be sent in a single line with a space separating the two. To write this all out, it would be a bit unwieldy to do it all directly from the shell, so let's write ourselves a Bash script.
+
+We've already gone over some of the [basics](#shell-scripting), but here we'll need to introduce some new syntax. The `for` loop.
+
+```bash
+#!/bin/bash
+
+# Generate PINs
+for i in $(seq -w 0 9999); do
+   echo "[REDACTED LEVEL 24 PASSWORD] $i"
+done
+```
+
+Now, I want to return to something mentioned in the prompt. It reads.
+
+> You do not need to create new connections each time.
+
+This is actually quite an important concept when writing scripts or doing any programming really. Understanding the requirements for the script you're writing and making it perform well without doing extra work or using resources that aren't strictly necessary. In this case the prompt has hinted to us that we really only need one connection to port 30002 to do all this work.
+
+Now I want you to think about what this script will do with the addition of one line. Consider why this might be problematic.
+
+```sh
+for i in $(seq -w 0 9999); do
+   echo "[REDACTED LEVEL 24 PASSWORD] $i" | nc localhost 30002
+done
+```
+
+The problem here is that we've placed our call to `netcat` within our `for` loop. That means `netcat` will be creating and tearing down the connection to port 30002 for every iteration of this loop. If you try this script you'll also notice an even more glaring problem. The program actually hangs after sending only the first code. That's because netcat will await user input as long as the connection hasn't been closed and since the correct PIN wasn't sent, the service is still awaiting more input.
+
+So we can already see this approach may cause some problems. Instead, let's generate all our numbers with our first script and then pass the output to netcat with a pipe. In this way, only one connection is required, and we can guarantee that all the PINs will be sent to the service on port 30002.
+
+```
+$ ./gen_pincodes.sh | nc localhost 30002
+```
+
+Running the script will yield the password once the correct PIN is reached.
+
+```
+--- snip ---
+Wrong! Please enter the correct current password and pincode. Try again.
+Wrong! Please enter the correct current password and pincode. Try again.
+Wrong! Please enter the correct current password and pincode. Try again.
+Wrong! Please enter the correct current password and pincode. Try again.
+Correct!
+The password of user bandit25 is [REDACTED LEVEL 25 PASSWORD]
+```
+
+### Level 25
+
+> Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not `/bin/bash`, but something else. Find out what it is, how it works and how to break out of it.
+>
+> NOTE: if you’re a Windows user and typically use Powershell to ssh into bandit: Powershell is known to cause issues with the intended solution to this level. You should use command prompt instead.
+
+We're told bandit 26 runs some other shell than bash.
+
+There are a couple ways to discover a user's default shell in Linux. One is the `/etc/passwd` file. It lists all the users of the system, whether they can login, and what default shell they have. We can cat `/etc/passwd` and search for bandit26 to discover its shell. Here's the relevant excerpt.
+
+```hl_lines=5
+$ cat /etc/passwd
+--- snip ---
+bandit24:x:11024:11024:bandit level 24:/home/bandit24:/bin/bash
+bandit25:x:11025:11025:bandit level 25:/home/bandit25:/bin/bash
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+bandit27:x:11027:11027:bandit level 27:/home/bandit27:/bin/bash
+bandit28:x:11028:11028:bandit level 28:/home/bandit28:/bin/bash
+--- snip ---
+```
+
+To display this information in a more readable format, we can use the [lslogins](https://www.man7.org/linux/man-pages/man1/lslogins.1.html) command as well.
+
+```hl_lines=6
+$ lslogins bandit26
+Username:                           bandit26
+UID:                                11026
+Gecos field:                        bandit level 26
+Home directory:                     /home/bandit26
+Shell:                              /usr/bin/showtext
+No login:                           no
+Primary group:                      bandit26
+GID:                                11026
+Last login:                         14:03
+Last terminal:                      pts/171
+Last hostname:                      183.171.69.129
+Hushed:                             no
+Running processes:                  0
+
+Last logs:
+```
+
+Note how the Shell field for `bandit26` is `/usr/bin/showtext` as opposed to the other levels which use `/usr/bin/bash` as the default shell.
+
+Running `file` on `/usr/bin/showtext` shows that it's a regular ASCII file.
+
+```
+$ file /usr/bin/showtext
+/usr/bin/showtext: POSIX shell script, ASCII text executable
+```
+
+It's identified as a shell script, so let's read through it to see what it's doing.
+
+```sh, linenos
+#!/bin/sh
+
+export TERM=linux
+
+exec more ~/text.txt
+exit 0
+```
+
+Pretty short, it seems to be setting the `$TERM` shell variable to "linux" and then replaces the current shell with a `more` command with the file `/home/bandit26/text.txt` (remember the `~` will expand to the home directory of the user). We can't directly read the contents of the `text.txt` file from bandit25 but since the `more` pager is being used it should print the contents to the screen when we try to login as the bandit26 user.
+
+#### Pagers
+
+Before we continue though, we need to discuss a bit about pagers.
+
+You might have already used one before, but this is our first look at a challenge that strictly requires the use of one. The pager used here is [`more`](https://www.man7.org/linux/man-pages/man1/more.1.html), but it's more likely you'll have used [`less`](https://www.man7.org/linux/man-pages/man1/less.1.html) which is the default in many Linux distributions.
+
+Essentially pagers allow us to view text in the terminal such that it's paginated. As opposed to printing an entire file with the `cat` command all in one shot. A pager like `more` will stop writing text once the screen is filled and then allow you to continue page by page until you've reached the end of the text. The `less` command has some more advanced text search features and allows moving forward _and backwards_ through a file unlike `more`.
+
+In any case, I'd recommend looking through the help menu of `less` (just press `h` after opening a file to see a summary of `less` commands).
+
+```txt, linenos
+                   SUMMARY OF LESS COMMANDS
+
+      Commands marked with * may be preceded by a number, N.
+      Notes in parentheses indicate the behavior if N is given.
+      A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
+
+  h  H                 Display this help.
+  q  :q  Q  :Q  ZZ     Exit.
+ ---------------------------------------------------------------------------
+
+                           MOVING
+
+  e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
+  y  ^Y  k  ^K  ^P  *  Backward one line   (or N lines).
+  f  ^F  ^V  SPACE  *  Forward  one window (or N lines).
+  b  ^B  ESC-v      *  Backward one window (or N lines).
+  z                 *  Forward  one window (and set window to N).
+  w                 *  Backward one window (and set window to N).
+  ESC-SPACE         *  Forward  one window, but don't stop at end-of-file.
+  d  ^D             *  Forward  one half-window (and set half-window to N).
+  u  ^U             *  Backward one half-window (and set half-window to N).
+  ESC-)  RightArrow *  Right one half screen width (or N positions).
+  ESC-(  LeftArrow  *  Left  one half screen width (or N positions).
+  ESC-}  ^RightArrow   Right to last column displayed.
+  ESC-{  ^LeftArrow    Left  to first column.
+  F                    Forward forever; like "tail -f".
+HELP -- Press RETURN for more, or q when done
+```
+
+Now back to the challenge at hand.
+
+#### Solution
+
+Bandit 25 has an ssh key for bandit 26 in the home directory. We'll retrieve that first so we can ssh directly into bandit 26. But, if you try to login with this key we're greeted with the usual message followed by a closed connection.
+
+```hl_lines=18
+$ ssh bandit26@bandit.labs.overthewire.org -i bandit26.key
+--- snip ---
+--[ More information ]--
+
+  For more information regarding individual wargames, visit
+  http://www.overthewire.org/wargames/
+
+  For support, questions or comments, contact us on discord or IRC.
+
+  Enjoy your stay!
+
+  _                     _ _ _   ___   __
+ | |                   | (_) | |__ \ / /
+ | |__   __ _ _ __   __| |_| |_   ) / /_
+ | '_ \ / _` | '_ \ / _` | | __| / / '_ \
+ | |_) | (_| | | | | (_| | | |_ / /| (_) |
+ |_.__/ \__,_|_| |_|\__,_|_|\__|____\___/
+Connection to bandit.labs.overthewire.org closed.
+```
+
+The crux of this challenge relies on that fact that the paging of `more` is dependent upon the size of the text input. If the number of lines of text exceed the available lines on-screen then `more` will paginate the output, otherwise it behaves like the `cat` command. So, in the case above, my terminal was able to print the entire `text.txt` file which we can probably assume contains the ASCII art of bandit26 since that's the last thing we see and the only thing that deviates from the normal welcome message from previous levels.
+
+So, that means it should be possible to trigger the pager by shrinking the height of our terminal to less than 6 lines high.
+
+![level 26 more truncation](/images/otw-bandit/level_26_more_1.png)
+
+Since the output is paginated, the connection doesn't immediately end because the `more` program is waiting for us to page through the remaining content. However, `more` has some other features that can help us escape this prompt. If you press either the `h` or `?` key while on this prompt, `more` will list out a summary of commands. One of which includes the option to execute commands in a subshell. ![level 26 more help](/images/otw-bandit/level_26_more_help.png)
+
+This is promising and there may be a way to execute commands directly via `more` to retrieve the bandit26 password and to solve for the next one. However, it's quite laborious since `more` won't yield any output for any commands we run, so we would have to write to various temporary files to manage it.
+
+Instead, I'm going to show you a neat trick with Vi. If you look carefully there's an option just below the `!<cmd>` option. The `v` command which will open `vi`.
+
+#### Vi and Vim
+
+Vi is a powerful text editor that is a common default on Linux systems. You may have also heard of its descendant Vim which has even more capabilities.
+
+I won't be going into much detail on the features of Vim here. Just enough to demonstrate the solution, but I highly recommend working through the beginner section of the [Vim Guide](https://thevaluable.dev/vim-commands-beginner/) by [The Valuable Dev](https://thevaluable.dev) if you're interested in discovering its power.
+
+From here on out I'll refer to Vi and Vim collectively as Vim for simplicity. Just be aware they are in fact distinct. Even if we don't run into any distinguishing features in this walkthrough.
+
+Firstly, Vim is not a typical text editor like most folks are familiar with like Windows' Notepad and Apple's TextEdit. Vim exists entirely in the terminal and was designed to function entirely without a pointing device like a mouse. Vim is what's known as a modal editor. Instead of always interpreting input from the keyboard as text to be written, Vim has several different modes:
+
+- normal mode (this is the default mode usually used for navigating your files)
+- insert mode (this is like your typical text editors)
+- visual mode (kind of like when you select text with your mouse in other editors)
+- command mode
+
+The main thing you need to know for this challenge is that the colon `:` is used to enter command mode.
+
+The first command we'll use is `:edit`. This command will open a file so let's use it to grab the bandit26 password.
+
+```
+:edit /etc/bandit_pass/bandit26
+```
+
+```
+[REDACTED BANDIT 26 PASSWORD]
+~
+~
+~
+~
+~
+"/etc/bandit_pass/bandit26" [readonly] 1L, 33B           1,1           All
+```
+
+While this is a good first step, we still need some way access a shell to complete the next level.
+
+Fortunately Vim can also open a shell with the `:shell` command. You can read more about it with the `:help` command. The full command is `:help :shell`.
+
+![Vim :shell help](/images/otw-bandit/level_25_vim_shell_help.png)
+
+Unfortunately, by default, it uses the same shell that spawned the process. Use the set command to change the mentioned `shell` variable like so.
+
+```
+:set shell=/bin/bash
+```
+
+At last, we can open a bash shell with the `:shell` command.
+
+![Vim shell](/images/otw-bandit/level_25_vim_shell.png)
+
+### Level 26
+
+> Good job getting a shell! Now hurry and grab the password for bandit27!
+
+- If we look in the home directory of bandit27 we'll find a setuid script called `bandit27-do`. When we run it we get the following output.
+
+This level is essentially a duplicate of [Level 19](#level-19) since the real difficulty is in gaining a shell via `more` as shown in [Level 25](#level-25).
+
+The suid binary `bandit27-do` is available in the home directory.
+
+```
+$ ./bandit27-do
+Run a command as another user.
+  Example: ./bandit27-do id
+```
+
+Print the bandit27 password like so.
+
+```
+$ ./bandit27-do cat /etc/bandit_pass/bandit27
+[REDACTED BANDIT 27 PASSWORD]
+```
+
+### Level 27
+
+> There is a git repository at `ssh://bandit27-git@localhost/home/bandit27-git/` repo via the port 2220. The password for the user bandit27-git is the same as for the user `bandit27`.
+>
+> Clone the repository and find the password for the next level.
+
+#### Git
+
+Git is a software version control system. As of this writing Git is probably the most popular version control system for software and has been for a while. At any rate, you'll likely come across it while doing any kind of IT administration or security work.
+
+The best resource to learn about Git is probably the [reference documentation](https://git-scm.com/docs) and the [Pro Git book](https://git-scm.com/book/en/v2) which is freely available online, but it isn't necessary to know a lot of details for these challenges.
+
+To start you really only need to know a few commands.
+
+| Git Command | Description |
+| --- | --- |
+| [<kbd>git-clone(1)</kbd>](https://git-scm.com/docs/git-clone) | download a repository from a remote system |
+| [<kbd>git-checkout(1)</kbd>](https://git-scm.com/docs/git-checkout) | interact with the repository at a certain commit |
+| [<kbd>git-log(1)</kbd>](https://git-scm.com/docs/git-log) | list commits |
+| [<kbd>git-branch(1)</kbd>](https://git-scm.com/docs/git-branch) | list branches |
+
+The repository mentioned in the prompt can be cloned with the following command.
+
+```
+$ git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+```
+
+After entering the level password, the git clone should complete with some progress indicators.
+
+```
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+Receiving objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+```
+
+And, there should now be a directory named `repo` in the current directory.
+
+The repository contains a single README file which contains the password.
+
+```
+$ cat README
+The password to the next level is: [REDACTED LEVEL 28 PASSWORD]
+```
+
+### Level 28
+
+> There is a git repository at `ssh://bandit28-git@localhost/home/bandit28-git/` repo via the port 2220. The password for the user bandit28-git is the same as for the user `bandit28`.
+>
+> Clone the repository and find the password for the next level.
+
+Just as before, clone the repository.
+
+```
+$ git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+```
+
+This time, the `README` file contains a password that has been redacted.
+
+```md
+# Bandit Notes
+
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: xxxxxxxxxx
+```
+
+Examine the change history with the `git log` command.
+
+```gitlog, hl_lines=5
+commit 674690a00a0056ab96048f7317b9ec20c057c06b (HEAD -> master, origin/master, origin/HEAD)
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu Apr 10 14:23:19 2025 +0000
+
+    fix info leak
+
+commit fb0df1358b1ff146f581651a84bae622353a71c0
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu Apr 10 14:23:19 2025 +0000
+
+    add missing data
+
+commit a5fdc97aae2c6f0e6c1e722877a100f24bcaaa46
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:19 2025 +0000
+
+    initial commit of README.md
+```
+
+There's a reference to an "info leak" from the previous commit. Check out the previous commit with the `git checkout` command.
+
+```
+$ git checkout fb0df1358b1ff146f581651a84bae622353a71c0
+```
+
+This will change the repository to its original state at the specified commit hash.
+
+At this point in the repositories history, the bnadit29 password had not yet been redacted in the `README` file.
+
+```md
+# Bandit Notes
+
+Some notes for level29 of bandit.
+
+## credentials
+
+- username: bandit29
+- password: [REDACTED LEVEL 29 PASSWORD]
+```
+
+### Level 29
+
+> There is a git repository at `ssh://bandit29-git@localhost/home/bandit29-git/` repo via the port 2220. The password for the user bandit29-git is the same as for the user `bandit29`.
+>
+> Clone the repository and find the password for the next level.
+
+Clone the repository.
+
+```
+$ git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+```
+
+Similar to [Level 28](#level-28) there is a `README` file.
+
+```md
+# Bandit Notes
+
+Some notes for bandit30 of bandit.
+
+## credentials
+
+- username: bandit30
+- password: <no passwords in production!>
+```
+
+Looking at the log again doesn't turn up anything interesting.
+
+```gitlog
+commit 3910630172946c9ffb75842922e394b772c672bd (HEAD)
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    add gif2ascii
+
+commit 3b8b91fc3c48f1a19d05670fd45d3e3f2621fcfa (origin/master, origin/HEAD, master)
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    fix username
+
+commit 8d2ffeb5e45f87d0abb028aa796e3ebb63c5579c
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    initial commit of README.md
+```
+
+This is where some knowledge of Git's branching is useful. By default, the `git log` command will only display commits from current branch. In this case the `master` branch.
+
+Use the `git branch` command to show the active branch.
+
+```
+$ git branch
+* master
+```
+
+Additionally using the `--all` flag will list all the local and _remote_ branches.
+
+```
+$ git branch --all
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/dev
+  remotes/origin/master
+  remotes/origin/sploits-dev
+```
+
+You can see here that there are two additional branches mentioned. The `dev` and `sploits-dev` branches. Let's check them out.
+
+```
+$ git checkout dev
+Switched to branch 'dev'
+Your branch is up to date with 'origin/dev'.
+```
+
+```gitlog
+commit a97d0dbf8fd910ead6fcf648829ff55c1a629c8e (HEAD -> dev, origin/dev)
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    add data needed for development
+
+commit 3910630172946c9ffb75842922e394b772c672bd
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    add gif2ascii
+
+commit 3b8b91fc3c48f1a19d05670fd45d3e3f2621fcfa (origin/master, origin/HEAD, master)
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    fix username
+
+commit 8d2ffeb5e45f87d0abb028aa796e3ebb63c5579c
+Author: Ben Dover <noone@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    initial commit of README.md
+```
+
+The `git show` command will print the changes made by the last commit, but you can alternatively, just read the `README` file while on the `dev` branch since the last commit contains the password.
+
+```gitlog
+commit a97d0dbf8fd910ead6fcf648829ff55c1a629c8e (HEAD -> dev, origin/dev)
+Author: Morla Porla <morla@overthewire.org>
+Date:   Thu Apr 10 14:23:21 2025 +0000
+
+    add data needed for development
+
+diff --git a/README.md b/README.md
+index 1af21d3..bc6ad3d 100644
+--- a/README.md
++++ b/README.md
+@@ -4,5 +4,5 @@ Some notes for bandit30 of bandit.
+ ## credentials
+
+ - username: bandit30
+-- password: <no passwords in production!>
++- password: [REDACTED BANDIT 30 PASSWORD]
+```
+
+The password only appears in the `dev` branch because it was only added in the `dev` branch, but never actually merged into `master`.
+
+### Level 30
+
+> There is a git repository at `ssh://bandit30-git@localhost/home/bandit30-git/` repo via the port 2220. The password for the user bandit30-git is the same as for the user `bandit30`.
+>
+> Clone the repository and find the password for the next level.
+
+Clone the repository.
+
+```
+$ git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
+```
+
+If we run `git log --all` there doesn't appear to be anything unusual.
+
+This time we'll need to look at something called [Tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging) and a couple new commands.
+
+| Git Command | Description |
+| --- | --- |
+| [<kbd>git-tag(1)</kbd>](https://git-scm.com/docs/git-clone) | create, list, delete or verify tags |
+| [<kbd>git-show(1)</kbd>](https://git-scm.com/docs/git-checkout) | show various git object i.e. blobs, commits, tags, and trees |
+
+Here we'll list the existing tags for the repo.
+
+```
+$ git tag
+secret
+```
+
+Usually tags are used to mark specific commits, but if you try to `git checkout` this `secret` tag you'll get an error saying the reference is not a tree. This means the tag is just a BLOB (Binary Large OBject). You can read more about trees and blobs [here](https://git-scm.com/book/en/v2/Git-Internals-Git-Objects).
+
+To show the contents of a blob we can use the `git show` command which reveals the next password.
+
+```
+$ git show secret
+[REDACTED LEVEL 31 PASSWORD]
+```
+
+### Level 31
+
+> There is a git repository at ssh://bandit31-git@localhost/home/bandit31-git/repo via the port 2220. The password for the user bandit31-git is the same as for the user bandit31.
+>
+> Clone the repository and find the password for the next level.
+
+Clone the repo.
+
+The `README.md` tells us to push a file to the remote with some file details.
+
+<!-- prettier-ignore-start -->
+```md
+This time your task is to push a file to the remote repository.
+
+Details:
+   File name: key.txt
+   Content: 'May I come in?'
+   Branch: master
+```
+<!-- prettier-ignore-end -->
+
+We'll need a couple new commands to do that.
+
+| Git Command | Description |
+| --- | --- |
+| [<kbd>git-status(1)</kbd>](https://git-scm.com/docs/git-status) | display the status of the working tree |
+| [<kbd>git-add(1)</kbd>](https://git-scm.com/docs/git-add) | add files to the staging area |
+| [<kbd>git-push(1)</kbd>](https://git-scm.com/docs/git-push) | create a new commit based on the current changes and add a commit message |
+
+Next we need to create the `key.txt` file.
+
+```
+$ echo "May I come in?" > key.txt
+```
+
+Then add the `key.txt` to our index.
+
+```
+$ git add key.txt
+The following paths are ignored by one of your .gitignore files:
+key.txt
+hint: Use -f if you really want to add them.
+hint: Turn this message off by running
+hint: "git config advice.addIgnoredFile false"
+```
+
+You can read more about the mentioned `.gitignore` files [here](https://git-scm.com/docs/gitignore), but in this case we can just use the recommended `-f` flag to add the file and try again.
+
+```
+$ git add -f key.txt
+```
+
+We can verify that the `key.txt` file has been added to the index with `git status`.
+
+```hl_lines=7
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   key.txt
+```
+
+Now we need to commit this change with the `git commit` command. This applies our changes to the `master` branch.
+
+```
+$ git commit -m "Add key.txt"
+[master a1f8c06] Add key.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 key.txt
+```
+
+And finally, we can use the `git push` command to push our new commit to the remote repository.
+
+```
+$ git push origin master
+```
+
+{% callout(type="warning") %} Watch out! If the content of `key.txt` does not match the prescribed text _exactly_ you may receive an error like this.
+
+```hl_lines=7-13
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 323 bytes | 323.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: ### Attempting to validate files... ####
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+remote: Wrong!
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+To ssh://localhost:2220/home/bandit31-git/repo
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'ssh://localhost:2220/home/bandit31-git/repo'
+```
+
+{% end %}
+
+If everything is in order, you'll get some feedback from the git server which will include the next password.
+
+```hl_lines=5-6
+remote: ### Attempting to validate files... ####
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+remote: Well done! Here is the password for the next level:
+remote: [REDACTED LEVEL32 PASSWORD]
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+To ssh://localhost:2220/home/bandit31-git/repo
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'ssh://localhost:2220/home/bandit31-git/repo'
+```
+
+### Level 32
+
+> After all this git stuff, it’s time for another escape. Good luck!
+
+After logging in to bandit32 you'll find yourself in an "UPPERCASE" shell, all entered text appears to be converted to uppercase.
+
+```
+WELCOME TO THE UPPERCASE SHELL
+>> cat /etc/passwd
+sh: 1: CAT: Permission denied
+>>
+```
+
+It's possible to reference some environment variables such as `$PATH`, `$PWD`, `$SHELL`, and `$USER`.
+
+```
+>> $PATH
+sh: 1: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin: not found
+>> $PWD
+sh: 1: /home/bandit32: Permission denied
+>> $USER
+sh: 1: bandit32: Permission denied
+```
+
+You see, just accessing the variable, the Uppercase Shell tries to execute the contents seemingly with the `sh` shell. This is great, but not enough.
+
+You have to know about a special shell variable, `$0`. The `$0` shell variable expands to the name of the shell or shell script being executed which in this case is `sh`.
+
+Therefore, providing the `$0` variable will execute the `sh` command dropping us into a normal shell.
+
+```
+>> $0
+$
+```
+
+From here's it's just a matter of printing the next password from the file as we've done many times before.
+
+```
+$ cat /etc/bandit_pass/bandit33
+[REDACTED LEVEL33 PASSWORD]
+```
+
+## The End
+
+Congratulations! You made it! I hope you had fun working through all these challenges. There were a couple tricky ones that I didn't get them all myself on the first time around.
+
+If this wargame has piqued your interest I've also written a couple other walkthroughs.
+
+- [OverTheWire Natas](@/articles/OverTheWireNatas.md)
+- [OverTheWire Leviathan](@/articles/OverTheWireLeviathan.md)
+
+If the OverTheWire wargames aren't quite your cup of tea though, then I highly recommend the [picoCTF](https://picoctf.org) platform run by Carnegie Mellon University. They host an annual CTF event, but challenges from previous years are all available to practice. The picoCTF challenges cover a wide range of topics and levels of difficulty so that anyone can find something interesting.
+
+Finally, a big thanks to the folks at [OverTheWire](https://overthewire.org/) for maintaining the infrastructure for the OverTheWire wargames. They're such a great resource for folks first dipping their toes into cybersecurity and CTFs.
+
+Happy hacking!
