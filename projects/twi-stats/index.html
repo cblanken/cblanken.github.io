@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="A web application to explore interesting data related to The Wandering Inn web serial.">
+
+    <meta property="og:description" content="A web application to explore interesting data related to The Wandering Inn web serial.">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/projects/twi-stats/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="A web application to explore interesting data related to The Wandering Inn web serial.">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/projects/twi-stats/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#title">The Wandering Inn (Statistics)</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#project">Project</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#word-counts">Word counts</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#word-count-by-chapter">Word count by chapter</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#cumulative-word-count-over-time">Cumulative word count over time</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#word-counts-by-book">Word counts by book</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#word-counts-by-volume">Word counts by volume</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#mentions">Mentions</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#mage-mention-count-cumulative">[Mage] mention count (cumulative)</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#mage-mention-count-chronological">[Mage] mention count (chronological)</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#mage-most-mentioned-chapters">[Mage] most mentioned chapters</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#technology">Technology</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#attributions">Attributions</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#author">Author</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;twi-stats&#x2F;#wiki">Wiki</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/projects/twi-stats/">The Wandering Inn (Statistics)</a>
+</h1>
+
+<div class="project-links">
+  <div class="project-code-link">
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;cblanken&#x2F;wandering-inn-stats">Source code</a>
+  </div>
+  
+  <div class="project-code-link">
+    <a href="https:&#x2F;&#x2F;twi-stats.cblanken.dev&#x2F;overview&#x2F;">Demo</a>
+  </div>
+  
+</div>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Oct 01, 2024 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Dec 17, 2024</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>5 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/django/"
+    >#Django</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/plotly/"
+    >#Plotly</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/twi/"
+    >#TWI</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/tailwind/"
+    >#Tailwind</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/data-viz/"
+    >#data-viz</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/web-novel/"
+    >#web-novel</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h1 id="project"><a class="zola-anchor" href="#project" aria-label="Anchor link for: project">Project</a></h1>
+<p><a href="https://wanderinginn.com">The Wandering Inn (TWI)</a> is a webnovel or web serial
+if you prefer. In fact it's one of the longest you'll find. At the time of this
+writing, the word count clocks in at over 13 million. For the record, that's
+over 27 times the length of <a href="https://en.wikipedia.org/wiki/The_Lord_of_the_Rings">The Lord of the
+Rings</a> and almost 3 times
+the length of <a href="https://en.wikipedia.org/wiki/The_Wheel_of_Time">The Wheel of
+Time</a>. Personally I love the
+story, but I'm not hear to talk about that today. Instead we're going to take a
+look at a data visualization project I've been working on.</p>
+<p>Due to its length, TWI has a vast collection of characters, locations, magical
+items etc. that are mentioned by name throughout the story. Not only that, the
+story also includes references to [Classes], [Skills], [Spells] and some other
+things in brackets. To understand why would require that we delve into the lore
+a bit, but suffice to say, all these references make up some interesting data
+points to analyze in terms of their frequency, location on the timeline, and
+relationships with one another.</p>
+<p>TWI Stats is a project that aims to let anyone explore interesting stats
+related to all the items above via various tables and interactive charts and
+graphs.</p>
+<p>The code can be found at <a href="https://github.com/cblanken/wandering-inn-stats">https://github.com/cblanken/wandering-inn-stats</a></p>
+<p>Check out the live deployment at <a href="https://twi-stats.cblanken.dev">https://twi-stats.cblanken.dev</a></p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout warning">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#warn"></use></svg>
+    <div>Warning</div>
+  </div>
+  <div class="callout-text">
+    <p><del>At the time of this writing, the application
+only includes statistics up through volume 9. No chapters of volume 10 have
+been analyzed yet. During development, the wiki underwent significant changes
+and development which broke much of the web scraping required to keep the
+database current with all the characters, [Classes], and [Skills] etc. The wiki
+data collection modules are currently being refactored to accommodate the new
+wiki and extract data via the MediaWiki API to be more robust in the future.</del></p>
+<p>EDIT (2024/12/17): The refactor is complete. Data from <a href="https://wiki.wanderinginn.com/The_Wandering_Inn_Wiki">the
+wiki</a> can now be
+correctly ingested into the database and the live application has been updated
+to include data up to chapter 10.28N of Volume 10.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h1 id="word-counts"><a class="zola-anchor" href="#word-counts" aria-label="Anchor link for: word-counts">Word counts</a></h1>
+<p>Of course, we have word counts. Even if they aren't particularly interesting,
+they're fun to keep track of. That way we can at least compare the length to
+other works.</p>
+<h2 id="word-count-by-chapter"><a class="zola-anchor" href="#word-count-by-chapter" aria-label="Anchor link for: word-count-by-chapter">Word count by chapter</a></h2>
+<p><img src="/images/twi-stats/word-counts-by-chapter.svg" alt="word count by chapter" />
+<a href="https://twi-stats.cblanken.dev/overview/charts/word-counts-by-chapter"><code>Current interactive version</code></a></p>
+<h2 id="cumulative-word-count-over-time"><a class="zola-anchor" href="#cumulative-word-count-over-time" aria-label="Anchor link for: cumulative-word-count-over-time">Cumulative word count over time</a></h2>
+<p>Amazingly, the author's pace hasn't flagged at any point over the last several
+years of writing.</p>
+<p><img src="/images/twi-stats/total-word-counts-over-time.svg" alt="word count over time" />
+<a href="https://twi-stats.cblanken.dev/overview/charts/total-word-counts-over-time"><code>Current interactive version</code></a></p>
+<h2 id="word-counts-by-book"><a class="zola-anchor" href="#word-counts-by-book" aria-label="Anchor link for: word-counts-by-book">Word counts by book</a></h2>
+<p>These books actually refer to the audiobook releases of the serial.</p>
+<p><img src="/images/twi-stats/word-counts-by-book.svg" alt="word count by book" />
+<a href="https://twi-stats.cblanken.dev/overview/charts/word-counts-by-book"><code>Current interactive version</code></a></p>
+<h2 id="word-counts-by-volume"><a class="zola-anchor" href="#word-counts-by-volume" aria-label="Anchor link for: word-counts-by-volume">Word counts by volume</a></h2>
+<p>Volumes are the original demarcation of major plot points of the web serial. As
+you can see, they keep getting longer 👀.</p>
+<p><img src="/images/twi-stats/word-counts-by-volume.svg" alt="word count by volume" />
+<a href="https://twi-stats.cblanken.dev/overview/charts/word-counts-by-volume"><code>Current interactive version</code></a></p>
+<h1 id="mentions"><a class="zola-anchor" href="#mentions" aria-label="Anchor link for: mentions">Mentions</a></h1>
+<p>There are several important reference types that warrant tracking mentions. These include:</p>
+<ol>
+<li>Characters</li>
+<li>[Classes]</li>
+<li>[Skills]</li>
+<li>[Spells]</li>
+<li>[Locations]</li>
+</ol>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>There are some other types that would be
+interesting to track as well, but they're still under development. These will
+include things like named magical items and monsters.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<p>Here's an example of the chart for the most referenced [Classes].</p>
+<p><img src="/images/twi-stats/class-mentions.svg" alt="class mentions" />
+<a href="https://twi-stats.cblanken.dev/overview/charts/class-mentions"><code>Current interactive version</code></a></p>
+<p>Additionally each of these reference types has a breakdown with a few more
+charts describing how often they're mentioned across chapters and the chapters
+with the most references for each type.</p>
+<p>For example, the [Mage] class has the following charts.</p>
+<h3 id="mage-mention-count-cumulative"><a class="zola-anchor" href="#mage-mention-count-cumulative" aria-label="Anchor link for: mage-mention-count-cumulative">[Mage] mention count (cumulative)</a></h3>
+<p><img src="/images/twi-stats/mage-total-mentions.svg" alt="mage cumulative mention count" />
+<a href="https://twi-stats.cblanken.dev/classes/mage/charts/total-mentions"><code>Current interactive version</code></a></p>
+<h3 id="mage-mention-count-chronological"><a class="zola-anchor" href="#mage-mention-count-chronological" aria-label="Anchor link for: mage-mention-count-chronological">[Mage] mention count (chronological)</a></h3>
+<p><img src="/images/twi-stats/mage-mentions.svg" alt="mage chronological mention count" />
+<a href="https://twi-stats.cblanken.dev/classes/mage/charts/mentions"><code>Current interactive version</code></a></p>
+<h3 id="mage-most-mentioned-chapters"><a class="zola-anchor" href="#mage-most-mentioned-chapters" aria-label="Anchor link for: mage-most-mentioned-chapters">[Mage] most mentioned chapters</a></h3>
+<p><img src="/images/twi-stats/chapters-with-the-most-mentions.svg" alt="mage most mentioned chapters" />
+<a href="https://twi-stats.cblanken.dev/classes/mage/charts/chapters-with-the-most-mentions"><code>Current interactive version</code></a></p>
+<p>There are few more stats that are tracked as well, but they're specific to each
+individual reference type and I won't go into detail here. You can check them
+out on their respective pages of the application.</p>
+<h1 id="technology"><a class="zola-anchor" href="#technology" aria-label="Anchor link for: technology">Technology</a></h1>
+<p>The TWI Stats project is built with the following open source software:</p>
+<ul>
+<li>The <a href="https://www.djangoproject.com">Django</a> web framework</li>
+<li>The <a href="https://tailwindcss.com">Tailwind</a> CSS framework</li>
+<li>The <a href="https://plotly.com/python/">Plotly</a> graphing library</li>
+<li>A <a href="https://www.postgresql.org">PostgreSQL</a> database</li>
+</ul>
+<h1 id="attributions"><a class="zola-anchor" href="#attributions" aria-label="Anchor link for: attributions">Attributions</a></h1>
+<h2 id="author"><a class="zola-anchor" href="#author" aria-label="Anchor link for: author">Author</a></h2>
+<p>A huge thanks to <a href="https://www.patreon.com/pirateaba/posts">Pirateaba</a> for
+writing such a wonderful web serial and keeping all the ducks fed for so many
+years.</p>
+<h2 id="wiki"><a class="zola-anchor" href="#wiki" aria-label="Anchor link for: wiki">Wiki</a></h2>
+<p>This project wouldn't be possible without all the awesome folks maintaining the <a href="https://wiki.wanderinginn.com/The_Wandering_Inn_Wiki">TWI Wiki</a> and tracking the thousands of various characters, [Classes], [Skills] etc.</p>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/projects/boggler-web/">
+        <span class="button__text">Boggler</span>
+      </a>
+    </span>
+     
+    <span class="button next">
+      <a href="https://www.cblanken.dev/projects/rustcon/">
+        <span class="button__text">RustCON</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

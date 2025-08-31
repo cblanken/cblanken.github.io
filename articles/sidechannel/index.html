@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="Writeup for the SideChannel challenge from PicoCTF 2022">
+
+    <meta property="og:description" content="Writeup for the SideChannel challenge from PicoCTF 2022">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/articles/sidechannel/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the SideChannel challenge from PicoCTF 2022">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/articles/sidechannel/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+    },
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script type="text/javascript" src="/js/mathjax.js"></script>
+
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;sidechannel&#x2F;#title">PicoCTF 2022 - SideChannel</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;sidechannel&#x2F;#brute-force">Brute-force</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;sidechannel&#x2F;#timing-attack">Timing attack</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/articles/sidechannel/">PicoCTF 2022 - SideChannel</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> May 29, 2022 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Jul 19, 2024</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>3 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  </div>
+</div>
+ <div class="post-content"><p>The name itself "SideChannel" seems to indicate a <a href="https://en.wikipedia.org/wiki/Side-channel_attack">side-channel attack</a>, so we should keep that in mind going forward.</p>
+<p>To start, we're given a short description.</p>
+<blockquote>
+<p>There's something fishy about this PIN-code checker, can you figure out the PIN and get the flag?</p>
+</blockquote>
+<p>We're then offered a download for a program called <code>pin_checker</code>.
+Running the <code>pin_checker</code> binary will give us the following output:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ ./pin_checker
+</span><span>Please enter your 8-digit PIN code:
+</span></code></pre>
+<p>Let's try entering a PIN</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ ./pin_checker
+</span><span>Please enter your 8-digit PIN code:
+</span><span>00000000
+</span><span>8
+</span><span>Checking PIN...
+</span><span>Access denied.
+</span></code></pre>
+<p>Okay, so it looks like a classic PIN entry. The program will tell us if we've found the correct PIN. It also requires an 8-digit PIN as you might expect. Anything longer or shorter will give an error. For example:</p>
+<p>Short PIN</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ ./pin_checker
+</span><span>Please enter your 8-digit PIN code:
+</span><span>12345
+</span><span>5
+</span><span>Incorrect length.
+</span></code></pre>
+<p>Long PIN</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ ./pin_checker
+</span><span>Please enter your 8-digit PIN code:
+</span><span>123456789
+</span><span>9
+</span><span>Incorrect length.
+</span></code></pre>
+<h3 id="brute-force"><a class="zola-anchor" href="#brute-force" aria-label="Anchor link for: brute-force">Brute-force</a></h3>
+<p>At this point, I decided to try a simple brute-force attack on the PIN, just to see if it was feasible, so I wrote a python script to do just that.</p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>1</td><td><span style="color:#65737e;"># pins.py
+</span></td></tr><tr><td>2</td><td><span style="color:#b48ead;">import </span><span>sys
+</span></td></tr><tr><td>3</td><td><span style="color:#b48ead;">from </span><span>subprocess </span><span style="color:#b48ead;">import </span><span>Popen, </span><span style="color:#bf616a;">PIPE
+</span></td></tr><tr><td>4</td><td><span>
+</span></td></tr><tr><td>5</td><td><span>pins = (&quot;</span><span style="color:#d08770;">{:08}</span><span>&quot;.</span><span style="color:#bf616a;">format</span><span>(x) </span><span style="color:#b48ead;">for </span><span>x </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">99999999</span><span>))
+</span></td></tr><tr><td>6</td><td><span style="color:#b48ead;">try</span><span>:
+</span></td></tr><tr><td>7</td><td><span>    </span><span style="color:#b48ead;">for </span><span>pin </span><span style="color:#b48ead;">in </span><span>pins:
+</span></td></tr><tr><td>8</td><td><span>        proc = </span><span style="color:#bf616a;">Popen</span><span>([&quot;</span><span style="color:#a3be8c;">./pin_checker</span><span>&quot;], </span><span style="color:#bf616a;">stdout</span><span>=</span><span style="color:#bf616a;">PIPE</span><span>, </span><span style="color:#bf616a;">stdin</span><span>=</span><span style="color:#bf616a;">PIPE</span><span>, </span><span style="color:#bf616a;">stderr</span><span>=</span><span style="color:#bf616a;">PIPE</span><span>)
+</span></td></tr><tr><td>9</td><td><span>        stdout_data = proc.</span><span style="color:#bf616a;">communicate</span><span>(</span><span style="color:#bf616a;">input</span><span>=</span><span style="color:#bf616a;">bytes</span><span>(pin, &#39;</span><span style="color:#a3be8c;">utf-8</span><span>&#39;))[</span><span style="color:#d08770;">0</span><span>]
+</span></td></tr><tr><td>10</td><td><span>        stdout_string = </span><span style="color:#bf616a;">str</span><span>(stdout_data)
+</span></td></tr><tr><td>11</td><td><span>        </span><span style="color:#b48ead;">if </span><span>&#39;</span><span style="color:#a3be8c;">granted</span><span>&#39; in stdout_string:
+</span></td></tr><tr><td>12</td><td><span>            </span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">FOUND PIN! PIN: </span><span style="color:#d08770;">{}</span><span>&quot;, pin)
+</span></td></tr><tr><td>13</td><td><span>            </span><span style="color:#b48ead;">break
+</span></td></tr><tr><td>14</td><td><span>        </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;</span><span style="color:#a3be8c;">PIN: </span><span>{pin}</span><span style="color:#a3be8c;">, </span><span>{</span><span style="color:#bf616a;">str</span><span>(stdout_data).</span><span style="color:#bf616a;">strip</span><span>()}&quot;)
+</span></td></tr><tr><td>15</td><td><span style="color:#b48ead;">except </span><span>KeyboardInterrupt:
+</span></td></tr><tr><td>16</td><td><span>    </span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">Program interrupted.</span><span>&quot;)
+</span></td></tr><tr><td>17</td><td><span>    sys.</span><span style="color:#bf616a;">exit</span><span>(</span><span style="color:#d08770;">0</span><span>)
+</span></td></tr></tbody></table></code></pre>
+<p><code>pin.py</code> output</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ time python pins.py
+</span><span>PIN: 00000000, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000001, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000002, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000003, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000004, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000005, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>...
+</span><span>PIN: 00000095, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000096, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000097, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000098, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>PIN: 00000099, b&#39;Please enter your 8-digit PIN code:\n8\nChecking PIN...\nAccess denied.\n&#39;
+</span><span>
+</span><span>real    0m12.780s
+</span><span>user    0m12.311s
+</span><span>sys     0m0.435s
+</span></code></pre>
+<p>Unfortunately timing just the first 100 PINs, my system took over 12 seconds.
+Now let's see how long we could expect a complete brute force attempt to take if we let the script run to completion for all 99,999,999 possible PINs.</p>
+<p>$ total time = \frac{99999999} {100} \times 12s = 11,999,999s = 199,999min = 3,333hrs $</p>
+<p>This is, of course, assuming the time to check each PIN is consistent (we'll find out shortly that's not the case). Regardless, it's safe to say brute forcing the PIN doesn't look like a good path forward.</p>
+<h3 id="timing-attack"><a class="zola-anchor" href="#timing-attack" aria-label="Anchor link for: timing-attack">Timing attack</a></h3>
+<p>Okay, now that we've ruled out a brute-force attempt, let's go back to the title of the challenge, <em>SideChannel</em>. Side-channel attacks are essentially observing a process and gleaning information from it based on timing, power consumption, or even sound. They can get very complicated, but in our case the only path that really makes sense for our program is a timing-based attack.</p>
+<p>So, let's start by fuzzing <code>pin_checker</code> with a few different PINs and monitoring the execution time to see where that gets us.</p>
+<p>Just to highlight a few things I'll be using the following pipeline to clean up the output and just focus on the real elapsed time by the process. You can see an in depth breakdown of the <a href="https://explainshell.com/explain?cmd=%24+%2Fusr%2Fbin%2Ftime+-f+2%3E%261+%22%5Cn%25E%22+.%2Fpin_checker+%3C%3C%3C+00000000+%7C+tail+-n1+0%3A00.13">pipeline</a> on <a href="https://explainshell.com/">explainshell.com</a>. Just know that we're sending a PIN code (<code>00000000</code> in this case) to <code>./pin_checker</code> and getting back the elapsed time in <code>hours:minutes:seconds</code>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 00000000 | tail -n1
+</span><span>0:00.13
+</span></code></pre>
+<p>Following are all the permutations of the first digit of the PIN while leaving the remaining digits as zero.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 00000000 | tail -n1
+</span><span>0:00.12
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 10000000 | tail -n1
+</span><span>0:00.13
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 20000000 | tail -n1
+</span><span>0:00.13
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 30000000 | tail -n1
+</span><span>0:00.13
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 40000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 50000000 | tail -n1
+</span><span>0:00.13
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 60000000 | tail -n1
+</span><span>0:00.13
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 70000000 | tail -n1
+</span><span>0:00.14
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 80000000 | tail -n1
+</span><span>0:00.13
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 90000000 | tail -n1
+</span><span>0:00.13
+</span></code></pre>
+<p>If you look carefully, you'll see that when we sent the PIN <code>40000000</code>, the elapsed time seemed to double. That's certainly interesting. We know that <code>pin_checker</code> must be checking the PIN code for a valid entry. Maybe it takes longer to verify the PIN when some of the digits are correct? Let's keep going.</p>
+<p>Keeping the first digit as 4, lets check the second digit.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 40000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 41000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 42000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 43000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 44000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 45000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 46000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 47000000 | tail -n1
+</span><span>0:00.25
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 48000000 | tail -n1
+</span><span>0:00.37
+</span><span>$ /usr/bin/time -f 2&gt;&amp;1 &quot;\n%E&quot; ./pin_checker &lt;&lt;&lt; 49000000 | tail -n1
+</span><span>0:00.25
+</span></code></pre>
+<p>We notice that the elapsed time has increased again when sending the PIN <code>48000000</code>. It hasn't doubled this time, but it has markedly increased while the elapsed time for the others remained the same.</p>
+<p>I won't go through each step here, but each digit can be deduced from the above process. After checking each digit for an increased elapsed time we can find the correct PIN. I'll leave that up to the reader though =)</p>
+<p>Once you determine the correct PIN you can check it against <code>pin_checker</code>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ ./pin_checker &lt;&lt;&lt; XXXXXXXX
+</span><span>Please enter your 8-digit PIN code:
+</span><span>8
+</span><span>Checking PIN...
+</span><span>Access granted. You may use your PIN to log into the master server.
+</span></code></pre>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons"> 
+    <span class="button next">
+      <a href="https://www.cblanken.dev/articles/operationorchid/">
+        <span class="button__text">PicoCTF 2022 - Operation Orchid</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

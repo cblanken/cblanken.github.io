@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="A web application to solve the Boggle word game.">
+
+    <meta property="og:description" content="A web application to solve the Boggle word game.">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/projects/boggler-web/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="A web application to solve the Boggle word game.">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/projects/boggler-web/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#title">Boggler</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#project">Project</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#features">Features</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#solved-board-table">Solved board table</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#dictionaries">Dictionaries</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#heatmap">Heatmap</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#filtering">Filtering</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#path-tracing">Path tracing</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#saved-boards">Saved boards</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects&#x2F;boggler-web&#x2F;#technology">Technology</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/projects/boggler-web/">Boggler</a>
+</h1>
+
+<div class="project-links">
+  <div class="project-code-link">
+    <a href="https:&#x2F;&#x2F;github.com&#x2F;cblanken&#x2F;boggler-flask">Source code</a>
+  </div>
+  
+  <div class="project-code-link">
+    <a href="https:&#x2F;&#x2F;boggler.cblanken.dev&#x2F;">Demo</a>
+  </div>
+  
+</div>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Sep 30, 2024 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Oct 22, 2024</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>5 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/boggle/"
+    >#Boggle</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/flask/"
+    >#Flask</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/word-games/"
+    >#word-games</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h1 id="project"><a class="zola-anchor" href="#project" aria-label="Anchor link for: project">Project</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Boggle">Boggle</a> is an excellent little word
+game. If you haven't played before, here are some details on <a href="https://en.wikipedia.org/wiki/Boggle#Rules">how to
+play</a>.</p>
+<p>Each round is played on a board of dice arranged in a square. Each player
+writes down as many words as they can composed of the connected letters on the
+board. Longer words are worth more points. Play lasts until a player reaches an
+agreed upon score or time limit is reached.</p>
+<p>A board would look something like this.
+<img src="/images/boggler/boggler_board.png" alt="boggle board example" /></p>
+<p>Anyway, I enjoyed playing the game a lot with my family growing up and it was
+always fun finding new or absurdly long words. Unfortunately after a round
+ends, the board is re-rolled never to be seen again leaving all those potential
+words lost to time. This is where the Boggler comes in.</p>
+<p>If you don't care too much about the details, you can check out the live
+application at <a href="https://boggler.cblanken.dev">boggler.cblanken.dev</a>. Have fun!</p>
+<h1 id="features"><a class="zola-anchor" href="#features" aria-label="Anchor link for: features">Features</a></h1>
+<p>The Boggler is first and foremost an application for solving Boggle boards.
+Just enter all the letters from your game board and click "solve". The
+application will check several dictionaries to provide you with a
+searchable table of all the available words from the board. This is great for
+finding the longest words or words that used a particular set of letters that
+you're interested in.</p>
+<p>To follow along with the examples below, you can find the interactive board at
+<a href="https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64">https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64</a></p>
+<h2 id="solved-board-table"><a class="zola-anchor" href="#solved-board-table" aria-label="Anchor link for: solved-board-table">Solved board table</a></h2>
+<p>Each solved board has an interactive board page where you can peruse all the
+available words in a table and filter the results however you see fit.</p>
+<p>For example the word table for the example board above looks like this.</p>
+<p><img src="/images/boggler/boggler_table.png" alt="boggler table" /></p>
+<p>You can see in this example that the table is sorted by word length. A great
+way to find some of the cool words you might have missed.</p>
+<h2 id="dictionaries"><a class="zola-anchor" href="#dictionaries" aria-label="Anchor link for: dictionaries">Dictionaries</a></h2>
+<p>You'll notice there is also a series of dictionaries available to select from
+just above the table. If there are any you'd prefer not to use for your games,
+simply uncheck them from here.</p>
+<p><img src="/images/boggler/dicts.png" alt="solved board dictionaries" /></p>
+<p>Personally, I've found them all to be relatively reliable with the exception of
+the <em>dwyl</em> dictionary. It's an open source English dictionary which you can
+read more about <a href="https://github.com/dwyl/english-words">here</a>. Unfortunately,
+it also contains many words that are invalid for Boggle. To read more about the
+other dictionaries, please see the <em>Dictionary</em> section on the
+<a href="https://boggler.cblanken.dev/board">homepage</a>.</p>
+<h2 id="heatmap"><a class="zola-anchor" href="#heatmap" aria-label="Anchor link for: heatmap">Heatmap</a></h2>
+<p>One of my favorite features is the heatmap. The heatmap displays how many
+times a letter was used by all the available words making it possible to pick
+out hotspots and identify some of the more useful letter combinations and
+patterns.</p>
+<p><img src="/images/boggler/boggler_heatmap.png" alt="boggler board heatmap" /></p>
+<h2 id="filtering"><a class="zola-anchor" href="#filtering" aria-label="Anchor link for: filtering">Filtering</a></h2>
+<p>There are a few methods for filtering the results of the solved board. The
+first being the aforementioned dictionary list. Words are only shown if at
+least one of the enabled dictionaries contains the word.</p>
+<p>Another is the search bar available above the word table.
+<img src="/images/boggler/table_search_rod.png" alt="table search" /></p>
+<p>It isn't necessary to search for full words, you might have noticed searching
+for "rod" also shows words like "trod" and "trode". Words with the target
+letter sequence will be shown regardless of where the letters appear in the
+word.</p>
+<p>And finally, the board itself also functions as a filter. To enable this, click
+on any letter in the board to filter for words that pass through that letter.
+<img src="/images/boggler/letter_filter.png" alt="board letter filter" /></p>
+<p>Clicking the red "filter" button below the board will remove the filter.</p>
+<p>In this example, the letter "I" in the first row is selected, which is
+indicated by the red background color and blue border around the selected
+letter. The word table reflects all the words that pass through that "I".</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>Only a single letter can be filtered with this
+method. To find more complex letter combinations, you'll need to resort to
+using the table's search bar. However, they can be used in tandem.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h2 id="path-tracing"><a class="zola-anchor" href="#path-tracing" aria-label="Anchor link for: path-tracing">Path tracing</a></h2>
+<p>Each word has a unique path on the board and <strong>clicking a word in the table</strong> will
+render that path. For example one of the longest words for this board is
+"indirect". The first letter of the word is indicated by a darker background
+color. <img src="/images/boggler/word_path.png" alt="word path" /></p>
+<h2 id="saved-boards"><a class="zola-anchor" href="#saved-boards" aria-label="Anchor link for: saved-boards">Saved boards</a></h2>
+<p>Solved boards are all saved in a database and can be viewed at
+<a href="https://boggler.cblanken.dev/solved">https://boggler.cblanken.dev/solved</a>.
+This means you can easily share any solved boards. Each solved board has a
+unique URL and you can either copy the URL directly or click the "Share" button
+above the board to automatically copy it to your clipboard.</p>
+<p>The example we've been looking at is available at
+<a href="https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64">https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64</a></p>
+<h1 id="technology"><a class="zola-anchor" href="#technology" aria-label="Anchor link for: technology">Technology</a></h1>
+<p>Boggler uses HTML and Flask's
+<a href="https://flask.palletsprojects.com/en/2.3.x/templating/">Jinja</a> templating
+engine for composing content.</p>
+<p>The board and dictionary data are backed by a <a href="https://www.sqlite.org">SQLite</a> database.</p>
+<p>The styling uses custom CSS and some <a href="https://getbootstrap.com">Bootstrap</a> for a
+couple components.</p>
+<p>Vanilla JavaScript is used in conjunction with the following JavaScript
+libraries for dynamic interaction with the board and tables.</p>
+<ol>
+<li><a href="https://datatables.net">DataTables</a> to display word and board tables</li>
+<li><a href="https://anseki.github.io/leader-line/">LeaderLine</a> to render the word path overlays</li>
+</ol>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons"> 
+    <span class="button next">
+      <a href="https://www.cblanken.dev/projects/twi-stats/">
+        <span class="button__text">The Wandering Inn (Statistics)</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="Walkthrough for the Natas cyber wargame.">
+
+    <meta property="og:description" content="Walkthrough for the Natas cyber wargame.">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/articles/overthewirenatas/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Walkthrough for the Natas cyber wargame.">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/articles/overthewirenatas/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#title">OverTheWire - Natas</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#introduction">Introduction</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#prerequisites">Prerequisites</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#walkthrough">Walkthrough</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-0">Level 0</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-1">Level 1</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-2">Level 2</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-3">Level 3</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-4">Level 4</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-5">Level 5</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-6">Level 6</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-7">Level 7</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-8">Level 8</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-9">Level 9</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#level-10">Level 10</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;overthewirenatas&#x2F;#to-be-continued">To be continued</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/articles/overthewirenatas/">OverTheWire - Natas</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Dec 31, 2024 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Apr 11, 2025</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>15 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/overthewire/"
+    >#OverTheWire</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/wargame/"
+    >#wargame</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/web/"
+    >#web</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h2 id="introduction"><a class="zola-anchor" href="#introduction" aria-label="Anchor link for: introduction">Introduction</a></h2>
+<p>The <a href="https://overthewire.org/wargames/natas/">Natas wargame</a> is another<sup class="footnote-reference" id="fr-1-1"><a href="#fn-1">1</a></sup>
+wargame hosted by OverTheWire. This one focuses on web security.</p>
+<p>In this walkthrough I'm going to show the process for solving each challenge
+and try to provide some insight into what each challenge is trying to teach
+and why it's useful, so keep an eye out for callouts like those below.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>Each Natas level is accessible via browser at the specified URL for the level.
+For example, the level 0 url is:
+<a href="http://natas0.natas.labs.overthewire.org">http://natas0.natas.labs.overthewire.org</a>.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout warning">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#warn"></use></svg>
+    <div>Warning</div>
+  </div>
+  <div class="callout-text">
+    <p>If you're looking for the solution of a particular level, you are highly
+encouraged to attempt it on your own before following this walkthrough. You
+will learn some useful things regardless, but attempting each level on your own
+first will help the knowledge stick better. I promise.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h2 id="prerequisites"><a class="zola-anchor" href="#prerequisites" aria-label="Anchor link for: prerequisites">Prerequisites</a></h2>
+<p>The solutions for each level will be illustrated with numerous screenshots, so
+you won't need any other tools to just read along. However, if you'd like to
+have a better understanding of what's going on, you may want to familiarize
+yourself with a few things.</p>
+<ol>
+<li>The basics of HTML and PHP will be quite important. If you're familiar with
+another programming language you can probably follow along with any
+challenges that require PHP without too much trouble though.</li>
+<li>The browser dev tools. Specifically for Chrome/chromium browsers, though
+everything we do in this walkthrough should also be possible via the dev
+tools for other browsers like Firefox, Opera, etc. If you'd like an
+introduction check out this <a href="https://developer.chrome.com/docs/devtools/overview">overview of the Chrome
+devtools</a></li>
+<li>Knowledge of HTTP will be essential for several levels and is somewhat of a
+prerequisite to effectively use the web proxies mentioned next.</li>
+<li>A web proxy. <a href="https://www.zaproxy.org">Zed Attack Proxy (ZAP)</a> and
+PortSwigger's <a href="https://portswigger.net/burp/communitydownload">Burp Suite</a>
+are the most popular ones. Either will suffice, but I'll be demonstrating the
+solutions in this walkthrough with ZAP wherever a proxy is needed.</li>
+</ol>
+<p>That's it. Enjoy the walkthrough!</p>
+<h2 id="walkthrough"><a class="zola-anchor" href="#walkthrough" aria-label="Anchor link for: walkthrough">Walkthrough</a></h2>
+<h3 id="level-0"><a class="zola-anchor" href="#level-0" aria-label="Anchor link for: level-0">Level 0</a></h3>
+<p>Most of the levels of Natas begin with some kind of hint, links to other pages,
+or an interactive form.</p>
+<p>For example, the level 0 home page shows a hint.</p>
+<p><img src="/images/otw-natas/0_hint.png" alt="level 0 hint" /></p>
+<p>The first step in examining any web application should always include viewing
+the source code. Use the keyboard shortcut <code>Ctrl-U</code> or right click the page and
+select "View page source" to view the source code of the page. This will give
+you insight into what content is on the page, what other resources are used by
+the page like Javascript and CSS files and links to other resources available
+on the website.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">h1</span><span>&gt;natas0&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">content</span><span>&quot;&gt;
+</span><span>You can find the password for the next level on this page.
+</span><span>
+</span><span style="color:#65737e;">&lt;!--The password for natas1 is REDACTED --&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span></code></pre>
+<p>The source code for the level 0 home page clearly shows the password for <a href="https://www.cblanken.dev/articles/overthewirenatas/#level-1">level
+1</a> as an HTML comment.</p>
+<p>While direct data disclosure on a web page like this isn't overly abundant, it
+can still be found in the wild<sup class="footnote-reference" id="fr-2-1"><a href="#fn-2">2</a></sup> and should always be considered when
+examining a web application for vulnerabilities.</p>
+<h3 id="level-1"><a class="zola-anchor" href="#level-1" aria-label="Anchor link for: level-1">Level 1</a></h3>
+<p>This challenge is similar to the last one. The hint provided even mentions that
+"rightclicking" is blocked now.</p>
+<p><img src="/images/otw-natas/1_hint.png" alt="level 1 hint" /></p>
+<p>To bypass this, the keyboard shortcut <code>Ctrl-U</code> mentioned earlier can be used to
+view the source. Once again, the password is clearly shown in an HTML comment.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">body </span><span style="color:#d08770;">oncontextmenu</span><span>=&quot;javascript:</span><span style="color:#bf616a;">alert</span><span>(&#39;</span><span style="color:#a3be8c;">right clicking has been blocked!</span><span>&#39;);</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false</span><span>;&quot;&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">h1</span><span>&gt;natas1&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">content</span><span>&quot;&gt;
+</span><span>You can find the password for the
+</span><span>next level on this page, but rightclicking has been blocked!
+</span><span>
+</span><span style="color:#65737e;">&lt;!--The password for natas2 is REDACTED --&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span></code></pre>
+<h3 id="level-2"><a class="zola-anchor" href="#level-2" aria-label="Anchor link for: level-2">Level 2</a></h3>
+<p>Level 2 doesn't provide much information, but examining the page's source will
+give some insight into solving this level.</p>
+<p><img src="/images/otw-natas/2_hint.png" alt="level 2 hint" /></p>
+<pre data-linenos data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><table><tbody><tr><td>12</td><td><span>&lt;</span><span style="color:#bf616a;">h1</span><span>&gt;natas2&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span></td></tr><tr><td>13</td><td><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">content</span><span>&quot;&gt;
+</span></td></tr><tr><td>14</td><td><span>There is nothing on this page
+</span></td></tr><tr><td><mark style="background-color:#65737e30;">15</mark></td><td><mark style="background-color:#65737e30;"><span>&lt;</span><span style="color:#bf616a;">img </span><span style="color:#d08770;">src</span><span>=&quot;</span><span style="color:#a3be8c;">files/pixel.png</span><span>&quot;&gt;
+</span></mark></td></tr><tr><td>16</td><td><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span></td></tr></tbody></table></code></pre>
+<p>In addition to the message stating there's nothing on this page, there is an
+<code>&lt;img&gt;</code> tag linking to an image file at <code>/files/pixel.png</code>. Most importantly,
+this link indicates some files are being served by the web server under the
+<code>/files</code> directory.</p>
+<p>Navigating to this endpoint at
+<code>http://natas2.natas.labs.overthewire.org/files/</code> shows some interesting files.</p>
+<p><img src="/images/otw-natas/2_files_dir.png" alt="level 2 file directory" /></p>
+<p>Besides the image file, there is also a text file <code>users.txt</code>. This file
+reveals the password for the next level.</p>
+<p><img src="/images/otw-natas/2_password.png" alt="level 2 next password" /></p>
+<p>This kind of vulnerability would most likely be classified as a <a href="https://owasp.org/Top10/A05_2021-Security_Misconfiguration/">security
+misconfiguration</a>.
+Clearly the <code>users.txt</code> should not be accessible. Access should be blocked by
+the web server or at least restricted to particular users.</p>
+<h3 id="level-3"><a class="zola-anchor" href="#level-3" aria-label="Anchor link for: level-3">Level 3</a></h3>
+<p>Once again, the home page doesn't reveal much at first glance. Let's look at
+the source.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">h1</span><span>&gt;natas3&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">content</span><span>&quot;&gt;
+</span><span>There is nothing on this page
+</span><span style="color:#65737e;">&lt;!-- No more information leaks!! Not even Google will find it this time... --&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span></code></pre>
+<p>This time, the HTML comment provides a subtle clue. It mentions that "[n]ot
+even Google will find it" which is hinting at something called a
+<a href="https://en.wikipedia.org/wiki/Robots.txt"><code>robots.txt</code></a> file which contains a
+list of directories and files that should be ignored by web crawlers. Search
+engines like Google and Bing use the <code>robots.txt</code> file to determine which files
+and directories they shouldn't be indexing.</p>
+<p><em>robots.txt</em>
+<img src="/images/otw-natas/3_robots_txt.png" alt="level 3 robots.txt" /></p>
+<p>In this case, there is only a single directory <code>/s3cr3t</code> being disallowed.
+Navigating to that directory reveals a single file, <code>users.txt</code>.</p>
+<p><img src="/images/otw-natas/3_s3cr3t.png" alt="level 3 secret file" /></p>
+<p>View the <code>users.txt</code> file for the password to the next level.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>Looking at the <code>robots.txt</code> is a common step taken by attackers when performing
+reconnaissance on a web application since it can sometimes reveal locations
+that the developers have deemed sensitive enough to exclude from search
+indexing.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h3 id="level-4"><a class="zola-anchor" href="#level-4" aria-label="Anchor link for: level-4">Level 4</a></h3>
+<p>Level 4 is the first challenge we've seen that can't simply be solved by
+examining the page source or navigating to some specific endpoint.</p>
+<p><img src="/images/otw-natas/4_hint.png" alt="level 4 hint" /></p>
+<p>If you aren't familiar with HTTP, there are some excellent <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">guides on
+HTTP</a> available in the <a href="https://developer.mozilla.org/en-US/">MDN
+Web Docs</a>.</p>
+<p>Essentially every<sup class="footnote-reference" id="fr-3-1"><a href="#fn-3">3</a></sup> request by the browser uses HTTP. Fortunately the dev
+tools have a convenient interface for examining the HTTP requests made by the
+browser. These requests can be viewed in the Network tab of the browser dev
+tools. There's a bunch of cool stuff you can do with the network tab, but for
+this challenge we're only interested in that highlighted request to <code>index.php</code>,
+which is the home page for level 4.</p>
+<p>Here's the network tab after loading the level 4 home page.
+<img src="/images/otw-natas/4_dev_tools_network.png" alt="level 4 dev tools network tab" /></p>
+<p>Click on that <code>index.php</code> to view more information about the request like the
+request's headers.</p>
+<p><img src="/images/otw-natas/4_network_index_php.png" alt="level 4 network tab index.php" /></p>
+<p>The message on the home page hints that authorized users "come from" the URL
+<code>http://natas5.natas.labs.overthewire.org/</code>. The key is recognizing that there
+is an HTTP header that's used to convey this information from the client to the
+web server.</p>
+<p>Unfortunately, at the time of this writing, the request headers can't be easily
+edited in the browser. Instead we'll need to use another tool to craft an HTTP
+request with the appropriate header to convince the web server that we're a user
+from <code>http://natas5.natas.labs.overthewire.org</code>.</p>
+<p>This is where knowledge of HTTP is essential, because you have to recognize
+that we're looking for the Referer<sup class="footnote-reference" id="fr-4-1"><a href="#fn-4">4</a></sup> HTTP header which is used to indicate the
+source of a request.</p>
+<p>As I mentioned before, the browser doesn't allow for modifying request headers,
+so we'll need to use a different tool. The simplest will be to use a command
+line tool like <a href="https://curl.se">curl</a>, though a web proxy like ZAP or Burp
+Suite will work just as well.</p>
+<p><code>curl</code> is a program for transferring data to or from a server using URLs. We'll
+just be using it with HTTP, but it supports other protocols too. If you'd like
+to dig into the capabilities of curl, I'd recommend reading through the
+<a href="https://everything.curl.dev">Everything curl</a> guide, but, if you're in a
+hurry, the browser dev tools have a convenient feature to construct a web
+request in the curl format from the Network tab.</p>
+<p>Just right-click on the request and click "Copy as cURL" under the "Copy"
+menu.</p>
+<p><img src="/images/otw-natas/4_copy_as_curl.png" alt="level 4 copy as curl" /></p>
+<p>Paste the command into the terminal or a text editor and it should look
+something like this.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>curl &#39;http://natas4.natas.labs.overthewire.org/index.php&#39; \
+</span><span>  -H &#39;Accept-Language: en-US,en;q=0.9&#39; \
+</span><span>  -H &#39;Authorization: Basic [REDACTED]&#39; \
+</span><span>  -H &#39;Cache-Control: no-cache&#39; \
+</span><span>  -H &#39;Connection: keep-alive&#39; \
+</span><span>  -H &#39;Pragma: no-cache&#39; \
+</span><span>  -H &#39;Upgrade-Insecure-Requests: 1&#39; \
+</span><span>  --insecure
+</span></code></pre>
+<p>Each argument to the <code>-H</code> flag is an HTTP header. Now, just add an argument for
+the Referer header with the correct value as mentioned in the message on the
+home page.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>curl &#39;http://natas4.natas.labs.overthewire.org/index.php&#39; \
+</span><span>  -H &#39;Accept-Language: en-US,en;q=0.9&#39; \
+</span><span>  -H &#39;Authorization: Basic [REDACTED]&#39; \
+</span><span>  -H &#39;Cache-Control: no-cache&#39; \
+</span><span>  -H &#39;Connection: keep-alive&#39; \
+</span><span>  -H &#39;Pragma: no-cache&#39; \
+</span><span>  -H &#39;Upgrade-Insecure-Requests: 1&#39; \
+</span><mark style="background-color:#65737e30;"><span>  -H &#39;Referer: http://natas5.natas.labs.overthewire.org/&#39; \
+</span></mark><span>  --insecure
+</span></code></pre>
+<p>Be sure to keep the original <code>Authorization</code> header from your own HTTP request.
+It's required to handle the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#the_general_http_authentication_framework">Basic
+authentication</a>
+that was previously handled by the browser.</p>
+<p>Alternatively you can provide the credentials with the <code>-u</code> flag like so.
+Replacing <code>REDACTED</code> with the level 4 password you used to access this level.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>curl -H &#39;Referer: http://natas5.natas.labs.overthewire.org/&#39; \
+</span><mark style="background-color:#65737e30;"><span>     -u natas4:REDACTED \
+</span></mark><span>     http://natas4.natas.labs.overthewire.org
+</span></code></pre>
+<p>The <code>curl</code> response should contain the following body with the password to the
+next level.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">h1</span><span>&gt;natas4&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">content</span><span>&quot;&gt;
+</span><span>
+</span><span>Access granted. The password for natas5 is [REDACTED]
+</span><span>&lt;</span><span style="color:#bf616a;">br</span><span>/&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">viewsource</span><span>&quot;&gt;&lt;</span><span style="color:#bf616a;">a </span><span style="color:#d08770;">href</span><span>=&quot;</span><span style="color:#a3be8c;">index.php</span><span>&quot;&gt;Refresh page&lt;/</span><span style="color:#bf616a;">a</span><span>&gt;&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span></code></pre>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>HTTP headers are useful for a lot of things, but be cautious. Using them
+incorrectly for authentication as the <code>Referer</code> header is used in this
+challenge can lead to <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html">all
+kinds</a>
+of security vulnerabilities.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h3 id="level-5"><a class="zola-anchor" href="#level-5" aria-label="Anchor link for: level-5">Level 5</a></h3>
+<p>The level 5 message is a bit more cryptic than the previous levels, but it does
+give us a place to start.</p>
+<p><img src="/images/otw-natas/5_hint.png" alt="level 5 hint" /></p>
+<p>First identify what mechanisms may be used for tracking the login state
+of a user. <a href="https://en.wikipedia.org/wiki/Stateless_protocol">Stateless
+protocols</a> like HTTP cannot
+retain session state between requests and must instead work around that
+limitation with some kind of session management mechanism. In the case of HTTP
+this is most often handled with <a href="https://en.wikipedia.org/wiki/HTTP_cookie">HTTP
+cookies</a>.</p>
+<p>Under the Application tab of the browser dev tools you should find a list of
+storage options available to the browser, including any HTTP cookies.</p>
+<p>In this case there's a single cookie labeled <code>loggedin</code> from the <code>natas5</code>
+domain. It's set to <code>0</code>. Try changing the value to <code>1</code>.</p>
+<p><img src="/images/otw-natas/5_cookie1.png" alt="level 5 cookie" /></p>
+<p>Reloading the page should yield a message of "Access granted" with the password
+to the next level.</p>
+<p><img src="/images/otw-natas/5_password.png" alt="level 5 password" /></p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>Cookies can, in fact, be used for secure session management. But not like this.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h3 id="level-6"><a class="zola-anchor" href="#level-6" aria-label="Anchor link for: level-6">Level 6</a></h3>
+<p>This level doesn't give any message. Just an input form and a link to "View
+sourcecode"</p>
+<p><img src="/images/otw-natas/6_hint_source_button.png" alt="level 6 hint" /></p>
+<p>The "View sourcecode" link doesn't show the client-side source. It actually
+shows the code as it exists on the server.</p>
+<p>The critical section below shows how PHP will render the page based on <code>secret</code>
+POST parameter which is set by the form and checked against the <code>$secret</code>
+variable.</p>
+<pre data-linenos data-lang="php" style="background-color:#2b303b;color:#c0c5ce;" class="language-php "><code class="language-php" data-lang="php"><table><tbody><tr><td>1</td><td><span style="color:#ab7967;">&lt;?
+</span></td></tr><tr><td>2</td><td><span style="color:#b48ead;">include </span><span>&quot;</span><span style="color:#a3be8c;">includes/secret.inc</span><span>&quot;;
+</span></td></tr><tr><td>3</td><td><span>
+</span></td></tr><tr><td>4</td><td><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#96b5b4;">array_key_exists</span><span>(&quot;</span><span style="color:#a3be8c;">submit</span><span>&quot;, $</span><span style="color:#bf616a;">_POST</span><span>)) {
+</span></td></tr><tr><td><mark style="background-color:#65737e30;">5</mark></td><td><mark style="background-color:#65737e30;"><span>        </span><span style="color:#b48ead;">if</span><span>($</span><span style="color:#bf616a;">secret </span><span>== $</span><span style="color:#bf616a;">_POST</span><span>[&#39;</span><span style="color:#a3be8c;">secret</span><span>&#39;]) {
+</span></mark></td></tr><tr><td>6</td><td><span>        </span><span style="color:#96b5b4;">print </span><span>&quot;</span><span style="color:#a3be8c;">Access granted. The password for natas7 is &lt;censored&gt;</span><span>&quot;;
+</span></td></tr><tr><td>7</td><td><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span></td></tr><tr><td>8</td><td><span>        </span><span style="color:#96b5b4;">print </span><span>&quot;</span><span style="color:#a3be8c;">Wrong secret</span><span>&quot;;
+</span></td></tr><tr><td>9</td><td><span>    }
+</span></td></tr><tr><td>10</td><td><span>    }
+</span></td></tr><tr><td>11</td><td><span style="color:#ab7967;">?&gt;
+</span></td></tr><tr><td>12</td><td><span>
+</span></td></tr><tr><td>13</td><td><span>&lt;</span><span style="color:#bf616a;">form </span><span style="color:#d08770;">method</span><span>=</span><span style="color:#a3be8c;">post</span><span>&gt;
+</span></td></tr><tr><td>14</td><td><span>Input secret: &lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">name</span><span>=</span><span style="color:#a3be8c;">secret</span><span>&gt;&lt;</span><span style="color:#bf616a;">br</span><span>&gt;
+</span></td></tr><tr><td>15</td><td><span>&lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">type</span><span>=</span><span style="color:#a3be8c;">submit </span><span style="color:#d08770;">name</span><span>=</span><span style="color:#a3be8c;">submit</span><span>&gt;
+</span></td></tr><tr><td>16</td><td><span>&lt;/</span><span style="color:#bf616a;">form</span><span>&gt;
+</span></td></tr></tbody></table></code></pre>
+<p>Also note the <code>include</code> statement which references a file at
+<code>includes/secret.inc</code>. Navigating to that location shows the following PHP file
+where the <code>$secret</code> variable is defined.</p>
+<pre data-lang="php" style="background-color:#2b303b;color:#c0c5ce;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#ab7967;">&lt;?
+</span><span>$</span><span style="color:#bf616a;">secret </span><span>= &quot;</span><span style="color:#a3be8c;">FOEIUWGHFEEUHOFUOIU</span><span>&quot;;
+</span><span style="color:#ab7967;">?&gt;
+</span></code></pre>
+<p>Entering the secret defined in <code>includes/secret.inc</code> into the form will return
+the password for level 7.</p>
+<h3 id="level-7"><a class="zola-anchor" href="#level-7" aria-label="Anchor link for: level-7">Level 7</a></h3>
+<p>This level actually has multiple pages.</p>
+<p><em>Home page</em>
+<img src="/images/otw-natas/7_home.png" alt="level 7 home page" /></p>
+<p><em>About page</em>
+<img src="/images/otw-natas/7_about.png" alt="level 7 about page" /></p>
+<p>The page source contains a useful hint.</p>
+<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">body</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">h1</span><span>&gt;natas7&lt;/</span><span style="color:#bf616a;">h1</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">div </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">content</span><span>&quot;&gt;
+</span><span>
+</span><span>&lt;</span><span style="color:#bf616a;">a </span><span style="color:#d08770;">href</span><span>=&quot;</span><span style="color:#a3be8c;">index.php?page=home</span><span>&quot;&gt;Home&lt;/</span><span style="color:#bf616a;">a</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">a </span><span style="color:#d08770;">href</span><span>=&quot;</span><span style="color:#a3be8c;">index.php?page=about</span><span>&quot;&gt;About&lt;/</span><span style="color:#bf616a;">a</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">br</span><span>&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">br</span><span>&gt;
+</span><span>
+</span><mark style="background-color:#65737e30;"><span style="color:#65737e;">&lt;!-- hint: password for webuser natas8 is in /etc/natas_webpass/natas8 --&gt;
+</span></mark><span>&lt;/</span><span style="color:#bf616a;">div</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">body</span><span>&gt;
+</span></code></pre>
+<p>The most important thing to notice in this source code is that the "Home" and
+"About" links are specifying their target pages via query parameters. As
+always, when performing a web application test, it's important to examine any
+entry point for user input.</p>
+<p>The combination of the mentioned links and the hint provided should lead you to
+investigate for any <a href="https://en.wikipedia.org/wiki/File_inclusion_vulnerability#Local_file_inclusion(LFI)">local file inclusion
+(LFI)</a>
+vulnerabilities.</p>
+<p>Modify the <code>page</code> query parameter to reference the level 8 password file like so.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>http://natas7.natas.labs.overthewire.org/index.php?page=../../../../etc/natas_webpass/natas8`
+</span></code></pre>
+<p>Note the several doubled dots <code>../</code> chained together to backtrack the current
+directory to the root of the file system before continuing to the password
+directory at <code>/etc/natas_webpass/</code> as mentioned by the hint.</p>
+<h3 id="level-8"><a class="zola-anchor" href="#level-8" aria-label="Anchor link for: level-8">Level 8</a></h3>
+<p>Similar to <a href="https://www.cblanken.dev/articles/overthewirenatas/#level-6">level 6</a>, the main page of level 8 contains an input text
+field and a link to the server-side source code. However, this time the
+encoding of the secret is a bit more complicated.</p>
+<pre data-linenos data-lang="php" style="background-color:#2b303b;color:#c0c5ce;" class="language-php "><code class="language-php" data-lang="php"><table><tbody><tr><td>1</td><td><span style="color:#ab7967;">&lt;?
+</span></td></tr><tr><td>2</td><td><span>
+</span></td></tr><tr><td>3</td><td><span>$</span><span style="color:#bf616a;">encodedSecret </span><span>= &quot;</span><span style="color:#a3be8c;">3d3d516343746d4d6d6c315669563362</span><span>&quot;;
+</span></td></tr><tr><td>4</td><td><span>
+</span></td></tr><tr><td>5</td><td><span style="color:#b48ead;">function </span><span style="color:#8fa1b3;">encodeSecret</span><span>($</span><span style="color:#bf616a;">secret</span><span>) {
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">bin2hex</span><span>(</span><span style="color:#96b5b4;">strrev</span><span>(</span><span style="color:#96b5b4;">base64_encode</span><span>($</span><span style="color:#bf616a;">secret</span><span>)));
+</span></td></tr><tr><td>7</td><td><span>}
+</span></td></tr><tr><td>8</td><td><span>
+</span></td></tr><tr><td>9</td><td><span style="color:#b48ead;">if</span><span>(</span><span style="color:#96b5b4;">array_key_exists</span><span>(&quot;</span><span style="color:#a3be8c;">submit</span><span>&quot;, $</span><span style="color:#bf616a;">_POST</span><span>)) {
+</span></td></tr><tr><td><mark style="background-color:#65737e30;">10</mark></td><td><mark style="background-color:#65737e30;"><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#bf616a;">encodeSecret</span><span>($</span><span style="color:#bf616a;">_POST</span><span>[&#39;</span><span style="color:#a3be8c;">secret</span><span>&#39;]) == $</span><span style="color:#bf616a;">encodedSecret</span><span>) {
+</span></mark></td></tr><tr><td>11</td><td><span>    </span><span style="color:#96b5b4;">print </span><span>&quot;</span><span style="color:#a3be8c;">Access granted. The password for natas9 is &lt;censored&gt;</span><span>&quot;;
+</span></td></tr><tr><td>12</td><td><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span></td></tr><tr><td>13</td><td><span>    </span><span style="color:#96b5b4;">print </span><span>&quot;</span><span style="color:#a3be8c;">Wrong secret</span><span>&quot;;
+</span></td></tr><tr><td>14</td><td><span>    }
+</span></td></tr><tr><td>15</td><td><span>}
+</span></td></tr><tr><td>16</td><td><span style="color:#ab7967;">?&gt;
+</span></td></tr><tr><td>17</td><td><span>
+</span></td></tr><tr><td>18</td><td><span>&lt;</span><span style="color:#bf616a;">form </span><span style="color:#d08770;">method</span><span>=</span><span style="color:#a3be8c;">post</span><span>&gt;
+</span></td></tr><tr><td>19</td><td><span>Input secret: &lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">name</span><span>=</span><span style="color:#a3be8c;">secret</span><span>&gt;&lt;</span><span style="color:#bf616a;">br</span><span>&gt;
+</span></td></tr><tr><td>20</td><td><span>&lt;</span><span style="color:#bf616a;">input </span><span style="color:#d08770;">type</span><span>=</span><span style="color:#a3be8c;">submit </span><span style="color:#d08770;">name</span><span>=</span><span style="color:#a3be8c;">submit</span><span>&gt;
+</span></td></tr><tr><td>21</td><td><span>&lt;/</span><span style="color:#bf616a;">form</span><span>&gt;
+</span></td></tr></tbody></table></code></pre>
+<p>The php script has an <code>$encodedSecret</code> variable which is checked before
+granting access to the next password. The <code>encodeSecret</code> function encodes the
+<code>$secret</code> variable into base64, reverses the string, and converts the ASCII
+string to hex. The encoding algorithm could be reversed with any programming
+language, but PHP has functions available to easily reverse them all.</p>
+<table><thead><tr><th>PHP function</th><th>Description</th></tr></thead><tbody>
+<tr><td><a href="https://www.php.net/manual/en/function.hex2bin.php">hex2bin</a></td><td>decodes a hexadecimally encoded binary string</td></tr>
+<tr><td><a href="https://www.php.net/manual/en/function.strrev.php">strrev</a></td><td>reverse a string</td></tr>
+<tr><td><a href="https://www.php.net/manual/en/function.base64-decode.php">base64_decode</a></td><td>decodes data encoded with MIME base64</td></tr>
+</tbody></table>
+<p>The encoding can be reversed with the following PHP script.</p>
+<pre data-linenos data-lang="php" style="background-color:#2b303b;color:#c0c5ce;" class="language-php "><code class="language-php" data-lang="php"><table><tbody><tr><td>1</td><td><span style="color:#ab7967;">&lt;?php 
+</span></td></tr><tr><td>2</td><td><span>      $</span><span style="color:#bf616a;">res </span><span>= </span><span style="color:#bf616a;">hex2bin</span><span>(&quot;</span><span style="color:#a3be8c;">3d3d516343746d4d6d6c315669563362</span><span>&quot;);
+</span></td></tr><tr><td>3</td><td><span>      </span><span style="color:#96b5b4;">echo </span><span>&quot;$</span><span style="color:#bf616a;">res</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span></td></tr><tr><td>4</td><td><span>      $</span><span style="color:#bf616a;">res </span><span>= </span><span style="color:#96b5b4;">strrev</span><span>($</span><span style="color:#bf616a;">res</span><span>);
+</span></td></tr><tr><td>5</td><td><span>      </span><span style="color:#96b5b4;">echo </span><span>&quot;$</span><span style="color:#bf616a;">res</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span></td></tr><tr><td>6</td><td><span>      $</span><span style="color:#bf616a;">res </span><span>= </span><span style="color:#96b5b4;">base64_decode</span><span>($</span><span style="color:#bf616a;">res</span><span>);
+</span></td></tr><tr><td>7</td><td><span>      </span><span style="color:#96b5b4;">echo </span><span>&quot;$</span><span style="color:#bf616a;">res</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span></td></tr><tr><td>8</td><td><span style="color:#ab7967;">?&gt; 
+</span></td></tr></tbody></table></code></pre>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>If you don't have PHP installed on your system, the script can be executed on
+an online platform like <a href="https://replit.com/languages/PHP">repl.it</a>. Otherwise,
+save the script locally and execute it with <code>php -f script.php</code>.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<p>Enter the decoded secret into the form to get the password to the next level.</p>
+<h3 id="level-9"><a class="zola-anchor" href="#level-9" aria-label="Anchor link for: level-9">Level 9</a></h3>
+<p>Level 9 is a bit different than anything we've seen so far. It contains a form
+that accepts an input to search a dictionary for words that match.</p>
+<p><em>Empty search input</em>
+<img src="/images/otw-natas/9_search_password.png" alt="level 9 search password" /></p>
+<p><em>Search for the string 'hack'</em>
+<img src="/images/otw-natas/9_search_password_hack.png" alt="level 9 search password hack" /></p>
+<p>Similar to the previous challenges though, we have a link to the PHP source
+code.</p>
+<pre data-lang="php" style="background-color:#2b303b;color:#c0c5ce;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#ab7967;">&lt;?
+</span><span>$</span><span style="color:#bf616a;">key </span><span>= &quot;&quot;;
+</span><span>
+</span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#96b5b4;">array_key_exists</span><span>(&quot;</span><span style="color:#a3be8c;">needle</span><span>&quot;, $</span><span style="color:#bf616a;">_REQUEST</span><span>)) {
+</span><span>    $</span><span style="color:#bf616a;">key </span><span>= $</span><span style="color:#bf616a;">_REQUEST</span><span>[&quot;</span><span style="color:#a3be8c;">needle</span><span>&quot;];
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">if</span><span>($</span><span style="color:#bf616a;">key </span><span>!= &quot;&quot;) {
+</span><span>    </span><span style="color:#96b5b4;">passthru</span><span>(&quot;</span><span style="color:#a3be8c;">grep -i </span><span>$</span><span style="color:#bf616a;">key</span><span style="color:#a3be8c;"> dictionary.txt</span><span>&quot;);
+</span><span>}
+</span><span style="color:#ab7967;">?&gt;
+</span></code></pre>
+<p>One thing we should take note of is the
+<a href="https://www.php.net/manual/en/function.passthru.php">passthru</a> function which
+executes an external program as if it was run from the command line. We can see
+<code>passthru</code> is being used to execute the <code>grep</code> command on a file called
+<code>dictionary.txt</code>. Download that file and see what it contains. As you might
+have suspected, it's a list of words, and it's sorted alphabetically. A quick
+scan of the file doesn't reveal any unusual entries. There are a few words with
+diacritics, but that is it.</p>
+<p>Instead let's focus on <code>$key</code>. It's being passed directly into the <code>passthru</code>
+function without any sanitization, essentially giving us complete control over
+the command being executed by the server.</p>
+<p>Here are a few possible payloads. Note the leading <code>;</code> which is used by Bash to
+indicate the end of a line allowing us to insert a new command like <code>cat</code>.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#65737e;"># this payload outputs the entire dictionary.txt instead of just the grepped lines
+</span><span>;</span><span style="color:#bf616a;">cat
+</span><span>
+</span><span style="color:#65737e;"># this payload outputs the /etc/passwd file in addition to dictionary.txt
+</span><span>;</span><span style="color:#bf616a;">cat</span><span> /etc/passwd
+</span><span>
+</span><span style="color:#65737e;"># this payload outputs the natas 10 password in addition to dictionary.txt
+</span><span>;</span><span style="color:#bf616a;">cat</span><span> /etc/natas_webpass/natas10
+</span><span>
+</span><span style="color:#65737e;"># this outputs ONLY the natas 10 password
+</span><span style="color:#65737e;"># The trailing &#39;#&#39; marks the remainder of the line as a comment
+</span><span style="color:#65737e;"># which prevents the dictionary.txt from being output
+</span><span>;</span><span style="color:#bf616a;">cat</span><span> /etc/natas_webpass/natas10 </span><span style="color:#65737e;">#
+</span></code></pre>
+<p>Using <code>;cat /etc/natas_webpass/natas10 #</code> as a payload returns the contents of
+the <code>natas10</code> password file.</p>
+<p><img src="/images/otw-natas/9_password.png" alt="level 9 password" /></p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout tip">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#tip"></use></svg>
+    <div>Tip</div>
+  </div>
+  <div class="callout-text">
+    <p>This type of attack falls under the
+<a href="https://owasp.org/Top10/A03_2021-Injection/">Injection</a> category of the <a href="https://owasp.org/www-project-top-ten/">OWASP
+Top 10 (2021)</a>. Specifically it's a
+command injection vulnerability and is a concern whenever user input is passed
+to an execution environment such as Bash as it's done in this level.</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<h3 id="level-10"><a class="zola-anchor" href="#level-10" aria-label="Anchor link for: level-10">Level 10</a></h3>
+<p>The front page for level 10 is the same as <a href="https://www.cblanken.dev/articles/overthewirenatas/#level-9">level 9</a> with some slight
+changes in the source code.</p>
+<pre data-lang="php" style="background-color:#2b303b;color:#c0c5ce;" class="language-php "><code class="language-php" data-lang="php"><span style="color:#ab7967;">&lt;?
+</span><span>$</span><span style="color:#bf616a;">key </span><span>= &quot;&quot;;
+</span><span>
+</span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#96b5b4;">array_key_exists</span><span>(&quot;</span><span style="color:#a3be8c;">needle</span><span>&quot;, $</span><span style="color:#bf616a;">_REQUEST</span><span>)) {
+</span><span>    $</span><span style="color:#bf616a;">key </span><span>= $</span><span style="color:#bf616a;">_REQUEST</span><span>[&quot;</span><span style="color:#a3be8c;">needle</span><span>&quot;];
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">if</span><span>($</span><span style="color:#bf616a;">key </span><span>!= &quot;&quot;) {
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(</span><span style="color:#96b5b4;">preg_match</span><span>(&#39;/</span><span style="color:#d08770;">[;|&amp;]</span><span>/&#39;,$</span><span style="color:#bf616a;">key</span><span>)) {
+</span><span>        </span><span style="color:#96b5b4;">print </span><span>&quot;</span><span style="color:#a3be8c;">Input contains an illegal character!</span><span>&quot;;
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        </span><span style="color:#96b5b4;">passthru</span><span>(&quot;</span><span style="color:#a3be8c;">grep -i </span><span>$</span><span style="color:#bf616a;">key</span><span style="color:#a3be8c;"> dictionary.txt</span><span>&quot;);
+</span><span>    }
+</span><span>}
+</span><span style="color:#ab7967;">?&gt;
+</span></code></pre>
+<p>In this iteration of the word search form, a call to
+<a href="https://www.php.net/manual/en/function.preg-match.php"><code>preg_match</code></a> is used
+to catch the <code>;</code>, <code>|</code>, and <code>&amp;</code> symbols, so it won't be possible to simply
+prefix the command with <code>;</code> like we did before.</p>
+<p>Fortunately for us, this was a naive approach to sanitize inputs. The search
+input is still passed into the <code>grep</code> command which can take multiple
+arguments. So files can still be searched even if they can't be directly output
+with the <code>cat</code> command.</p>
+<p>This payload should do the trick: <code>".*" /etc/natas_webpass/natas11 #</code>. It makes
+the <code>grep</code> command return every line in the <code>natas11</code> password file and
+comments out the <code>dictionary.txt</code> argument with <code>#</code> just like in <a href="https://www.cblanken.dev/articles/overthewirenatas/#level-9">level
+9</a>.</p>
+<p><img src="/images/otw-natas/10_password.png" alt="level 10 password" /></p>
+<h2 id="to-be-continued"><a class="zola-anchor" href="#to-be-continued" aria-label="Anchor link for: to-be-continued">To be continued</a></h2>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>I hope you enjoyed the walkthrough. When time permits, I intend to expand this
+post to include every level of OverTheWire Natas.</p>
+<p>Happy hacking!</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<footer class="footnotes">
+<ol class="footnotes-list">
+<li id="fn-1">
+<p>See my writeups for the OverTheWire <a href="/articles/overthewirebandit">Bandit</a> and
+<a href="/articles/overthewireleviathan">Leviathan</a> wargames. <a href="#fr-1-1">↩</a></p>
+</li>
+<li id="fn-2">
+<p>A relatively high-profile example of this sort of data disclosure
+occurred in 2021 where over 100,000 teachers' Social Security numbers
+were accessible by simply viewing the page source of a site hosted by the
+<a href="https://dese.mo.gov">Missouri Department of Elementary and Secondary
+Education</a>. See this <a href="https://techcrunch.com/2021/10/15/f12-isnt-hacking-missouri-governor-threatens-to-prosecute-local-journalist-for-finding-exposed-state-data/">TechCrunch
+article</a>
+for more details. <a href="#fr-2-1">↩</a></p>
+</li>
+<li id="fn-3">
+<p>Not <strong>every</strong> request made by a browser is strictly over HTTP or HTTPS,
+but it is the most common and is the only protocol that's essential to
+understand for the Natas wargame. <a href="#fr-3-1">↩</a></p>
+</li>
+<li id="fn-4">
+<p>Yes, the correct spelling should be "Referrer", however the header was
+misspelled in the original HTTP specification <a href="https://www.rfc-editor.org/rfc/rfc1945#section-10.13">RFC
+1945</a>, so it continues to
+be misspelled for backwards compatibility. <a href="#fr-4-1">↩</a></p>
+</li>
+</ol>
+</footer>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/articles/overthewireleviathan/">
+        <span class="button__text">OverTheWire - Leviathan</span>
+      </a>
+    </span>
+     </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

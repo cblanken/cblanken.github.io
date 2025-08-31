@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>cblanken.dev - Journal</title>
+    <link rel="self" type="application/atom+xml" href="https://www.cblanken.dev/journal/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://www.cblanken.dev/journal/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-11-07T00:00:00+00:00</updated>
+    <id>https://www.cblanken.dev/journal/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Language Transfer and The Thinking Method</title>
+        <published>2024-11-07T00:00:00+00:00</published>
+        <updated>2024-11-07T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Cameron Blankenbuehler
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/journal/language-transfer/"/>
+        <id>https://www.cblanken.dev/journal/language-transfer/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/journal/language-transfer/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.languagetransfer.org&quot;&gt;Language Transfer&lt;&#x2F;a&gt; is an incredible project
+by Mihalis Eleftheriou to teach not only languages but a method of learning.&lt;&#x2F;p&gt;
+&lt;p&gt;First off, the &lt;a href=&quot;https:&#x2F;&#x2F;www.languagetransfer.org&#x2F;courses&quot;&gt;free courses&lt;&#x2F;a&gt; are
+excellent. The recordings are available on the web, but the content is also
+available through
+&lt;a href=&quot;https:&#x2F;&#x2F;apps.apple.com&#x2F;us&#x2F;app&#x2F;language-transfer&#x2F;id1519599004&quot;&gt;Apple&lt;&#x2F;a&gt; and
+&lt;a href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=org.languagetransfer&quot;&gt;Android&lt;&#x2F;a&gt;
+apps.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve personally only completed the German cource, but I intend to complete the
+Spanish and French courses as well.&lt;&#x2F;p&gt;
+&lt;p&gt;I think these courses exhibit a few important aspects of learning that make
+them so effective.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Student interaction and a call &#x2F; response methodology to engage students.&lt;&#x2F;li&gt;
+&lt;li&gt;Pausing for reflection and forming connections. In fact it&#x27;s emphasized to
+facilitate active recall of the material.&lt;&#x2F;li&gt;
+&lt;li&gt;Repetition. Returning to previous content at appropriate intervals to improve
+recall.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;These are the core principles used by Mahalis to teach these languages.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>IANA Protocol Registry</title>
+        <published>2024-09-16T00:00:00+00:00</published>
+        <updated>2024-09-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Cameron Blankenbuehler
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/journal/iana-protocols/"/>
+        <id>https://www.cblanken.dev/journal/iana-protocols/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/journal/iana-protocols/">&lt;p&gt;If you&#x27;ve ever found yourself browsing through RFCs published by the
+&lt;a href=&quot;https:&#x2F;&#x2F;www.ietf.org&quot;&gt;IETF&lt;&#x2F;a&gt;, you know it can be a bit of a chore if you&#x27;re
+just researching some tag name or error code. You shouldn&#x27;t need to read
+through the entire spec for a protocol just to do some troubleshooting. Right?
+Well, here comes &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&quot;&gt;IANA&lt;&#x2F;a&gt; to the rescue. IANA has
+conveniently compiled a central repository for the many codes and numbers
+contained in Internet protocols. You can find it at their &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&#x2F;protocols&quot;&gt;protocol
+registry&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Personally I was just looking for a &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&#x2F;assignments&#x2F;dmarc-parameters&#x2F;dmarc-parameters.xhtml#tag&quot;&gt;simple
+breakdown&lt;&#x2F;a&gt;
+of all the tags available for DMARC. Of course, there&#x27;s also a &lt;a href=&quot;https:&#x2F;&#x2F;www.rfc-editor.org&#x2F;rfc&#x2F;rfc7489.html#section-11.4&quot;&gt;DMARC tag
+registry table&lt;&#x2F;a&gt;
+embedded in the &lt;a href=&quot;https:&#x2F;&#x2F;www.rfc-editor.org&#x2F;rfc&#x2F;rfc7489.html&quot;&gt;DMARC RFC (RFC
+7489)&lt;&#x2F;a&gt;. But I was having trouble
+wading through all 73 pages of the spec. So, in this case, it wasn&#x27;t really
+necessary. However, for something like the &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&#x2F;assignments&#x2F;mail-parameters&#x2F;mail-parameters.xhtml#mail-parameters-2&quot;&gt;SMTP service
+extensions&lt;&#x2F;a&gt;,
+it can be much more useful as the service extensions are spread across many
+different RFCs.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>What is DMARC?</title>
+        <published>2024-09-03T00:00:00+00:00</published>
+        <updated>2024-09-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Cameron Blankenbuehler
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/journal/learning-dmarc/"/>
+        <id>https://www.cblanken.dev/journal/learning-dmarc/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/journal/learning-dmarc/">&lt;p&gt;I&#x27;ve recently been trying to get a better handle on how email works and how
+it&#x27;s secured. If you want to do the same. Go try out the exercises at
+&lt;a href=&quot;https:&#x2F;&#x2F;www.learndmarc.com&quot;&gt;https:&#x2F;&#x2F;www.learndmarc.com&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a great resource for visualizing how DMARC works in conjuction with
+&lt;a href=&quot;https:&#x2F;&#x2F;datatracker.ietf.org&#x2F;doc&#x2F;html&#x2F;rfc7208&quot;&gt;Sender Policy Framework (SPF)&lt;&#x2F;a&gt;
+and &lt;a href=&quot;https:&#x2F;&#x2F;datatracker.ietf.org&#x2F;doc&#x2F;html&#x2F;rfc4686&quot;&gt;Domain Keys Identified mail
+(DKIM)&lt;&#x2F;a&gt; to secure email and
+catch spam and phishing attempts.&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s even a quiz you can try to see how well you can analyze email traffic
+and determine the DMARC results.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

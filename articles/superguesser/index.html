@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF">
+
+    <meta property="og:description" content="Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/articles/superguesser/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/articles/superguesser/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+    },
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script type="text/javascript" src="/js/mathjax.js"></script>
+
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;superguesser&#x2F;#title">Cryptoverse 2022 - Super Guesser</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;superguesser&#x2F;#problem-description">Problem description</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;superguesser&#x2F;#analysis">Analysis</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;superguesser&#x2F;#bad-decompilation">Bad Decompilation?</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;superguesser&#x2F;#solution">Solution</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;superguesser&#x2F;#flag">Flag</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/articles/superguesser/">Cryptoverse 2022 - Super Guesser</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Oct 26, 2022 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Nov 02, 2022</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>5 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h2 id="problem-description"><a class="zola-anchor" href="#problem-description" aria-label="Anchor link for: problem-description">Problem description</a></h2>
+<p>Super Guesser is an <em>easy</em> rated reversing challenge for the Crytoverse 2022 CTF.
+We are given a short challenge description:</p>
+<blockquote>
+<p>Only the true guessing <em>king</em> can solve this challenge.</p>
+</blockquote>
+<h2 id="analysis"><a class="zola-anchor" href="#analysis" aria-label="Anchor link for: analysis">Analysis</a></h2>
+<p>We are provided a link to download <code>guesser.pyc</code>, a compiled python binary.
+Just to confirm there aren't any shenangins with the file extension, let's check the file type.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ file guesser.pyc
+</span><span>guesser.pyc: Byte-compiled Python module for CPython 3.8, timestamp-based, .py timestamp: Sun Sep 11 18:00:05 2022 UTC, .py size: 682 bytes
+</span></code></pre>
+<p>The <code>file</code> utility tells us that we are, in fact, dealing with a compiled python binary. In this case CPython 3.8 is the version.</p>
+<p><em>Note</em>: it's important that we use the correct version of python when running the compiled <code>.pyc</code> file otherwise we might get a <em>magic number</em> error as shown below and be unable to execute the program.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ python guesser.pyc
+</span><span>RuntimeError: Bad magic number in .pyc file
+</span></code></pre>
+<p>If your system has an incompatible version of Python, I'd recommend installing a tool like <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a> to install and manage other python versions side by side on your system.</p>
+<p>Now let's try running this program to see what we get as output.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ python guesser.pyc
+</span><span>Guess: test
+</span><span>Invalid
+</span><span>
+</span><span>$ python guesser.pyc
+</span><span>Guess: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</span><span>Invalid
+</span></code></pre>
+<p>Okay it look's like the program is checking our input. Perhaps it is checking against the challenge's flag.</p>
+<p>Referring to the challenge title we know that this is a reversing challenge, so the next logical step is to try decompiling the python binary.
+One popular python decompiler is <a href="https://pypi.org/project/decompyle3">decompyle3</a>, which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.</p>
+<p>We can decompile <code>guesser.pyc</code> with the command:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ decompyle3 guesser.pyc
+</span></code></pre>
+<p>This gets us the source code <code>guesser.py</code></p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>1</td><td><span style="color:#65737e;"># decompyle3 version 3.9.0
+</span></td></tr><tr><td>2</td><td><span style="color:#65737e;"># Python bytecode version base 3.8.0 (3413)
+</span></td></tr><tr><td>3</td><td><span style="color:#65737e;"># Decompiled from: Python 3.8.0 (default, Oct 29 2022, 20:02:52)
+</span></td></tr><tr><td>4</td><td><span style="color:#65737e;"># [GCC 12.2.0]
+</span></td></tr><tr><td>5</td><td><span style="color:#65737e;"># Embedded file name: /home/guesser.py
+</span></td></tr><tr><td>6</td><td><span style="color:#65737e;"># Compiled at: 2022-09-11 14:00:05
+</span></td></tr><tr><td>7</td><td><span style="color:#65737e;"># Size of source mod 2**32: 682 bytes
+</span></td></tr><tr><td>8</td><td><span style="color:#b48ead;">import </span><span>hashlib, re
+</span></td></tr><tr><td>9</td><td><span>hashes = [
+</span></td></tr><tr><td>10</td><td><span> &#39;</span><span style="color:#a3be8c;">d.0.....f5...5.6.7.1.30.6c.d9..0</span><span>&#39;,
+</span></td></tr><tr><td>11</td><td><span> &#39;</span><span style="color:#a3be8c;">1b.8.1.c........09.30.....64aa9.</span><span>&#39;,
+</span></td></tr><tr><td>12</td><td><span> &#39;</span><span style="color:#a3be8c;">c.d.1.53..66.4.43bd.......59...8</span><span>&#39;,
+</span></td></tr><tr><td>13</td><td><span> &#39;</span><span style="color:#a3be8c;">.d.d.076........eae.3.6.85.a2...</span><span>&#39;]
+</span></td></tr><tr><td>14</td><td><span>
+</span></td></tr><tr><td>15</td><td><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">main</span><span>():
+</span></td></tr><tr><td>16</td><td><span>    guesses = []
+</span></td></tr><tr><td>17</td><td><span>    </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#96b5b4;">len</span><span>(hashes)):
+</span></td></tr><tr><td><mark style="background-color:#65737e30;">18</mark></td><td><mark style="background-color:#65737e30;"><span>        guess = </span><span style="color:#96b5b4;">input</span><span>(&#39;</span><span style="color:#a3be8c;">Guess: </span><span>&#39;)
+</span></mark></td></tr><tr><td><mark style="background-color:#65737e30;">19</mark></td><td><mark style="background-color:#65737e30;"><span>        </span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">len</span><span>(guess) &lt;= </span><span style="color:#d08770;">4 </span><span>or </span><span style="color:#96b5b4;">len</span><span>(guess) &gt;= </span><span style="color:#d08770;">6 </span><span>or re.</span><span style="color:#bf616a;">match</span><span>(&#39;</span><span style="color:#a3be8c;">^[a-z]+$</span><span>&#39;, guess):
+</span></mark></td></tr><tr><td><mark style="background-color:#65737e30;">20</mark></td><td><mark style="background-color:#65737e30;"><span>            </span><span style="color:#bf616a;">exit</span><span>(&#39;</span><span style="color:#a3be8c;">Invalid</span><span>&#39;)
+</span></mark></td></tr><tr><td>21</td><td><span>        </span><span style="color:#b48ead;">if </span><span>not re.</span><span style="color:#bf616a;">match</span><span>(&#39;</span><span style="color:#a3be8c;">^</span><span>&#39; + hashes[i].</span><span style="color:#bf616a;">replace</span><span>(&#39;</span><span style="color:#a3be8c;">.</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">[0-9a-f]</span><span>&#39;) + &#39;</span><span style="color:#a3be8c;">$</span><span>&#39;, hashlib.</span><span style="color:#bf616a;">md5</span><span>(guess.</span><span style="color:#bf616a;">encode</span><span>()).</span><span style="color:#bf616a;">hexdigest</span><span>()):
+</span></td></tr><tr><td>22</td><td><span>            </span><span style="color:#bf616a;">exit</span><span>(&#39;</span><span style="color:#a3be8c;">Invalid</span><span>&#39;)
+</span></td></tr><tr><td>23</td><td><span>        </span><span style="color:#b48ead;">else</span><span>:
+</span></td></tr><tr><td>24</td><td><span>            guesses.</span><span style="color:#bf616a;">append</span><span>(guess)
+</span></td></tr><tr><td>25</td><td><span>    </span><span style="color:#b48ead;">else</span><span>:
+</span></td></tr><tr><td>26</td><td><span>        </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;</span><span style="color:#a3be8c;">Flag: </span><span>{guesses[</span><span style="color:#d08770;">0</span><span>]}&quot; + &#39;</span><span style="color:#a3be8c;">{</span><span>&#39; + &#39;&#39;.</span><span style="color:#bf616a;">join</span><span>(guesses[</span><span style="color:#d08770;">1</span><span>:]) + &#39;</span><span style="color:#a3be8c;">}</span><span>&#39;)
+</span></td></tr><tr><td>27</td><td><span>
+</span></td></tr><tr><td>28</td><td><span>
+</span></td></tr><tr><td>29</td><td><span style="color:#b48ead;">if </span><span>__name__ == &#39;</span><span style="color:#a3be8c;">__main__</span><span>&#39;:
+</span></td></tr><tr><td>30</td><td><span>    </span><span style="color:#bf616a;">main</span><span>()
+</span></td></tr><tr><td>31</td><td><span style="color:#65737e;"># okay decompiling guesser.pyc
+</span></td></tr></tbody></table></code></pre>
+<p>At first glance, this seems to be a fairly simple python script, but let's break it down line by line.
+First we have the declaration of a list of <code>hashes</code></p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>1</td><td><span>hashes = [
+</span></td></tr><tr><td>2</td><td><span> &#39;</span><span style="color:#a3be8c;">d.0.....f5...5.6.7.1.30.6c.d9..0</span><span>&#39;,
+</span></td></tr><tr><td>3</td><td><span> &#39;</span><span style="color:#a3be8c;">1b.8.1.c........09.30.....64aa9.</span><span>&#39;,
+</span></td></tr><tr><td>4</td><td><span> &#39;</span><span style="color:#a3be8c;">c.d.1.53..66.4.43bd.......59...8</span><span>&#39;,
+</span></td></tr><tr><td>5</td><td><span> &#39;</span><span style="color:#a3be8c;">.d.d.076........eae.3.6.85.a2...</span><span>&#39;]
+</span></td></tr></tbody></table></code></pre>
+<p>These will be important in a moment, but for now let's follow the logic to see what the <em>guesser</em> is checking for.</p>
+<p>We can see in the main function, we're iterating over the list of hashes, and for each hash, we take a string as user input and check if it's length is equal to 5 <strong>AND</strong> if it matches the regex string <code>^[a-z]+$</code> which would be interpreted as a string of exclusively lowercase alphabetic letters with a length greater than or equal to one. If this condition is met, the program exits and outputs 'Invalid' just as we saw in initial test.</p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>18</td><td><span>guess = </span><span style="color:#96b5b4;">input</span><span>(&#39;</span><span style="color:#a3be8c;">Guess: </span><span>&#39;)
+</span></td></tr><tr><td>19</td><td><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">len</span><span>(guess) &lt;= </span><span style="color:#d08770;">4 </span><span>or </span><span style="color:#96b5b4;">len</span><span>(guess) &gt;= </span><span style="color:#d08770;">6 </span><span>or re.</span><span style="color:#bf616a;">match</span><span>(&#39;</span><span style="color:#a3be8c;">^[a-z]+$</span><span>&#39;, guess):
+</span></td></tr><tr><td>20</td><td><span>    </span><span style="color:#bf616a;">exit</span><span>(&#39;</span><span style="color:#a3be8c;">Invalid</span><span>&#39;)
+</span></td></tr></tbody></table></code></pre>
+<p>The second <code>if</code> statement is taking an md5 hash of our guess string and checking that it matches the hash from our hashes list. The hash converts each <code>.</code> (dot) character to <code>[0-9a-f]</code>. This is necessary to only match on valid md5 hashes, otherwise we exit just as before.</p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>21</td><td><span style="color:#b48ead;">if </span><span>not re.</span><span style="color:#bf616a;">match</span><span>(&#39;</span><span style="color:#a3be8c;">^</span><span>&#39; + hashes[i].</span><span style="color:#bf616a;">replace</span><span>(&#39;</span><span style="color:#a3be8c;">.</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">[0-9a-f]</span><span>&#39;) + &#39;</span><span style="color:#a3be8c;">$</span><span>&#39;, hashlib.</span><span style="color:#bf616a;">md5</span><span>(guess.</span><span style="color:#bf616a;">encode</span><span>()).</span><span style="color:#bf616a;">hexdigest</span><span>()):
+</span></td></tr><tr><td>22</td><td><span>    </span><span style="color:#bf616a;">exit</span><span>(&#39;</span><span style="color:#a3be8c;">Invalid</span><span>&#39;)
+</span></td></tr></tbody></table></code></pre>
+<p>And finally, if our guess passes both of those checks it is appended to the <code>guesses</code> list.</p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>23</td><td><span style="color:#b48ead;">else</span><span>:
+</span></td></tr><tr><td>24</td><td><span>    guesses.</span><span style="color:#bf616a;">append</span><span>(guess)
+</span></td></tr></tbody></table></code></pre>
+<p>This <code>guesses</code> list is joined and printed as the flag output provided the program doesn't exit prematurely by receiving an incorrect guess.</p>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>25</td><td><span style="color:#b48ead;">else</span><span>:
+</span></td></tr><tr><td>26</td><td><span>    </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;</span><span style="color:#a3be8c;">Flag: </span><span>{guesses[</span><span style="color:#d08770;">0</span><span>]}&quot; + &#39;</span><span style="color:#a3be8c;">{</span><span>&#39; + &#39;&#39;.</span><span style="color:#bf616a;">join</span><span>(guesses[</span><span style="color:#d08770;">1</span><span>:]) + &#39;</span><span style="color:#a3be8c;">}</span><span>&#39;)
+</span></td></tr></tbody></table></code></pre>
+<p>One important part of the last line, is that the first element of <code>guesses</code> is used as the beginning of our flag which, according to the flag format should correspond to <code>cvctf</code>. With that in mind we should be able to confirm our understanding of the program by finding the md5 hash of <code>cvctf</code> which should match the first hash in <code>hashes</code>.</p>
+<p>We can get the md5 hash by running <code>echo -n cvctf | md5sum</code> in our terminal. This gives us an md5 hash of <code>d70146aef5a8e5364791d3006ccd9c00</code></p>
+<p>Placing the hashes side by side we can see that they match.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>d.0.....f5...5.6.7.1.30.6c.d9..0
+</span><span>d70146aef5a8e5364791d3006ccd9c00
+</span></code></pre>
+<p>We should be able to test this by entering <code>cvctf</code> as our first guess when running the challenge binary.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ python guesser.pyc
+</span><span>Guess: cvctf
+</span><span>Guess: again
+</span><span>Invalid
+</span></code></pre>
+<p>We can see that the program only exited after the guess of "again", meaning the guess of "cvctf" was correct. That's great but you may have noticed this seems to contradict a bit of our analysis. Recall that the first <code>if</code> check appeared to exclude any guesses that were 5 characters in length or all lowercase and alphabetic. This exactly matches our guess of "cvctf"!</p>
+<h3 id="bad-decompilation"><a class="zola-anchor" href="#bad-decompilation" aria-label="Anchor link for: bad-decompilation">Bad Decompilation?</a></h3>
+<p>As we can see, the behavior of the program when running the decompiled code does not match the behavior of the original <code>guesser.pyc</code>. Now I tried several decompilers, and as far as I can tell this is an error in the decompilation process. That line in particular should actually have decompiled to this:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">if </span><span>not(</span><span style="color:#96b5b4;">len</span><span>(guess) &lt;= </span><span style="color:#d08770;">4 </span><span>or </span><span style="color:#96b5b4;">len</span><span>(guess) &gt;= </span><span style="color:#d08770;">6 </span><span>or re.</span><span style="color:#bf616a;">match</span><span>(&#39;</span><span style="color:#a3be8c;">^[a-z]+$</span><span>&#39;, guess)):
+</span><span>    </span><span style="color:#bf616a;">exit</span><span>(&#39;</span><span style="color:#a3be8c;">Invalid</span><span>&#39;)
+</span></code></pre>
+<p>Instead of this</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">len</span><span>(guess) &lt;= </span><span style="color:#d08770;">4 </span><span>or </span><span style="color:#96b5b4;">len</span><span>(guess) &gt;= </span><span style="color:#d08770;">6 </span><span>or re.</span><span style="color:#bf616a;">match</span><span>(&#39;</span><span style="color:#a3be8c;">^[a-z]+$</span><span>&#39;, guess):
+</span><span>    </span><span style="color:#bf616a;">exit</span><span>(&#39;</span><span style="color:#a3be8c;">Invalid</span><span>&#39;)
+</span></code></pre>
+<p>In this case, the program would exit if the guess is <strong>NOT</strong> 5 alphabetic characters. This matches the behavior we've seen when running the compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter <code>brute.py</code>.</p>
+<h2 id="solution"><a class="zola-anchor" href="#solution" aria-label="Anchor link for: solution">Solution</a></h2>
+<pre data-linenos data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><table><tbody><tr><td>1</td><td><span style="color:#65737e;"># brute.py
+</span></td></tr><tr><td>2</td><td><span style="color:#b48ead;">import </span><span>hashlib
+</span></td></tr><tr><td>3</td><td><span style="color:#b48ead;">import </span><span>re
+</span></td></tr><tr><td>4</td><td><span style="color:#b48ead;">from </span><span>pwnlib.util.iters </span><span style="color:#b48ead;">import </span><span>bruteforce, mbruteforce
+</span></td></tr><tr><td>5</td><td><span>
+</span></td></tr><tr><td>6</td><td><span>hash_patterns = [
+</span></td></tr><tr><td>7</td><td><span> &#39;</span><span style="color:#a3be8c;">^d.0.....f5...5.6.7.1.30.6c.d9..0$</span><span>&#39;,
+</span></td></tr><tr><td>8</td><td><span> &#39;</span><span style="color:#a3be8c;">^1b.8.1.c........09.30.....64aa9.$</span><span>&#39;,
+</span></td></tr><tr><td>9</td><td><span> &#39;</span><span style="color:#a3be8c;">^c.d.1.53..66.4.43bd.......59...8$</span><span>&#39;,
+</span></td></tr><tr><td>10</td><td><span> &#39;</span><span style="color:#a3be8c;">^.d.d.076........eae.3.6.85.a2...$</span><span>&#39;]
+</span></td></tr><tr><td>11</td><td><span> 
+</span></td></tr><tr><td>12</td><td><span>hash_regexes = [re.</span><span style="color:#bf616a;">compile</span><span>(x) </span><span style="color:#b48ead;">for </span><span>x </span><span style="color:#b48ead;">in </span><span>hash_patterns]
+</span></td></tr><tr><td>13</td><td><span>
+</span></td></tr><tr><td>14</td><td><span>guess_len = </span><span style="color:#d08770;">5
+</span></td></tr><tr><td>15</td><td><span>charset = &quot;</span><span style="color:#a3be8c;">abcdefghijklmnopqrstuvwxyz</span><span>&quot;
+</span></td></tr><tr><td>16</td><td><span>
+</span></td></tr><tr><td>17</td><td><span style="color:#b48ead;">for </span><span>regex </span><span style="color:#b48ead;">in </span><span>hash_regexes:
+</span></td></tr><tr><td>18</td><td><span>    </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;</span><span style="color:#a3be8c;">Searching for match for </span><span>{regex}</span><span style="color:#a3be8c;">...</span><span>&quot;)
+</span></td></tr><tr><td>19</td><td><span>    found = </span><span style="color:#bf616a;">mbruteforce</span><span>(</span><span style="color:#b48ead;">lambda </span><span style="color:#bf616a;">guess</span><span>:
+</span></td></tr><tr><td>20</td><td><span>        regex.</span><span style="color:#bf616a;">match</span><span>(hashlib.</span><span style="color:#bf616a;">md5</span><span>(guess.</span><span style="color:#bf616a;">encode</span><span>()).</span><span style="color:#bf616a;">hexdigest</span><span>()),
+</span></td></tr><tr><td>21</td><td><span>        </span><span style="color:#bf616a;">alphabet</span><span>=charset,
+</span></td></tr><tr><td>22</td><td><span>        </span><span style="color:#bf616a;">length</span><span>=guess_len
+</span></td></tr><tr><td>23</td><td><span>    )
+</span></td></tr><tr><td>24</td><td><span>    </span><span style="color:#b48ead;">if </span><span>found is </span><span style="color:#d08770;">None</span><span>:
+</span></td></tr><tr><td>25</td><td><span>        </span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">No matches found</span><span>&quot;)
+</span></td></tr><tr><td>26</td><td><span>    </span><span style="color:#b48ead;">else</span><span>:
+</span></td></tr><tr><td>27</td><td><span>        </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;</span><span style="color:#a3be8c;">FOUND: </span><span>{found}</span><span style="color:#a3be8c;">, MD5: </span><span>{hashlib.</span><span style="color:#bf616a;">md5</span><span>(found.</span><span style="color:#bf616a;">encode</span><span>()).</span><span style="color:#bf616a;">hexdigest</span><span>()}&quot;)
+</span></td></tr></tbody></table></code></pre>
+<p>The program uses <a href="https://docs.pwntools.com/en/stable/util/iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce">pwntools</a> to generate all the possible combinations given our set of lowercase alphabetic characters. It then generates the md5 hash using the <a href="https://docs.python.org/3/library/hashlib.html#module-hashlib"><code>hashlib</code></a> library and compares it against the hash from the <code>hashes</code> list.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ python brute.py
+</span><span>Searching for match for re.compile(&#39;^d.0.....f5...5.6.7.1.30.6c.d9..0$&#39;)...
+</span><span>FOUND: cvctf, MD5: d70146aef5a8e5364791d3006ccd9c00
+</span><span>Searching for match for re.compile(&#39;^1b.8.1.c........09.30.....64aa9.$&#39;)...
+</span><span>FOUND: hashi, MD5: 1bd8d1fc2b9ad2bb0943056ecf64aa97
+</span><span>Searching for match for re.compile(&#39;^c.d.1.53..66.4.43bd.......59...8$&#39;)...
+</span><span>FOUND: snotg, MD5: cdd01c536d66a4943bd8bf6f5d59c0c8
+</span><span>Searching for match for re.compile(&#39;^.d.d.076........eae.3.6.85.a2...$&#39;)...
+</span><span>FOUND: uessy, MD5: 8d1d70762f431cd9eaec3967859a2b4b
+</span></code></pre>
+<h1 id="flag"><a class="zola-anchor" href="#flag" aria-label="Anchor link for: flag">Flag</a></h1>
+<p>Et voilà, we have our flag! <code>cvctf{hashisnotguessy}</code></p>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/articles/operationorchid/">
+        <span class="button__text">PicoCTF 2022 - Operation Orchid</span>
+      </a>
+    </span>
+     
+    <span class="button next">
+      <a href="https://www.cblanken.dev/articles/einpfundmails/">
+        <span class="button__text">KitCTF 2022 - ein-pfund-mails</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

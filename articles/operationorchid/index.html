@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="Writeup for the Operation Orchid challenge from PicoCTF 2022">
+
+    <meta property="og:description" content="Writeup for the Operation Orchid challenge from PicoCTF 2022">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/articles/operationorchid/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the Operation Orchid challenge from PicoCTF 2022">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/articles/operationorchid/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+
+<div class="post">
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/articles/operationorchid/">PicoCTF 2022 - Operation Orchid</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> May 29, 2022 </span>
+</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>3 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/forensics/"
+    >#forensics</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  </div>
+</div>
+ <div class="post-content"><p>The challenge description goes as follows:</p>
+<blockquote>
+<p>Download this disk image and find the flag.</p>
+</blockquote>
+<p>We're then given an option to download the mentioned compressed disk image (disk.flag.img.gz). Decompress the archive with <code>gunzip disk.flag.img.gz</code>.</p>
+<p>Let's check what kind of disk image this is:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ file disk.flag.img
+</span><span>disk.flag.img: DOS/MBR boot sector; partition 1 : ID=0x83, active, start-CHS (0x0,32,33), end-CHS (0xc,223,19), startsector 2048, 204800 sectors; partition 2 : ID=0x82, start-CHS (0xc,223,20), end-CHS (0x19,159,6), startsector 206848, 204800 sectors; partition 3 : ID=0x83, start-CHS (0x19,159,7), end-CHS (0x32,253,11), startsector 411648, 407552 sectors
+</span></code></pre>
+<p>Okay at the very least the system recognizes <code>disk.flag.img</code> as a valid image. Let's try to mount the image to see if we can access the files.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ mkdir ./mnt
+</span><span>$ sudo mount disk.flag.img ./mnt/
+</span><span>mount: /home/cameron/notes/ctf/picoCTF_2022/Forensics/OperationOrchid/mnt: wrong fs type, bad option, bad superblock on /dev/loop0, missing codepage or helper program, or other error.
+</span></code></pre>
+<p>Well that didn't work. It's important to know that, while the <code>mount</code> command can often automatically detect the filesystem of a device or disk image, it doesn't automatically detect the offset.</p>
+<p>We can get some more information about the image, by viewing the partition table with the <code>mmls</code> command.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ mmls disk.flag.img
+</span><span>DOS Partition Table
+</span><span>Offset Sector: 0
+</span><span>Units are in 512-byte sectors
+</span><span>
+</span><span>      Slot      Start        End          Length       Description
+</span><span>000:  Meta      0000000000   0000000000   0000000001   Primary Table (#0)
+</span><span>001:  -------   0000000000   0000002047   0000002048   Unallocated
+</span><span>002:  000:000   0000002048   0000206847   0000204800   Linux (0x83)
+</span><span>003:  000:001   0000206848   0000411647   0000204800   Linux Swap / Solaris x86 (0x82)
+</span><span>004:  000:002   0000411648   0000819199   0000407552   Linux (0x83)
+</span></code></pre>
+<p>Here we have all the information we need to calculate the offset in bytes.
+The <code>mmls</code> output lists each section by a count of sectors. So in this case, we can see the first Linux partition starts at sector <code>2048</code>. To calculate the offset we just need to multiply the number of sectors by the bytes per sector listed above as</p>
+<blockquote>
+<p>Units are in 512-byte sectors</p>
+</blockquote>
+<p>So, our <strong>offset</strong> = 512 x 2048 = 1048576 bytes. Let's try to mount the image again with the appropriate offset.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo mount -o offset=1048576 disk.flag.img ./mnt/
+</span></code></pre>
+<p>Nice, we didn't get any errors this time. Let's check the <code>./mnt/</code> directory</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ tree ./mnt/
+</span><span>./mnt/
+</span><span>├── boot -&gt; .
+</span><span>├── config-virt
+</span><span>├── extlinux.conf
+</span><span>├── initramfs-virt
+</span><span>├── ldlinux.c32
+</span><span>├── ldlinux.sys
+</span><span>├── libcom32.c32
+</span><span>├── libutil.c32
+</span><span>├── lost+found [error opening dir]
+</span><span>├── mboot.c32
+</span><span>├── menu.c32
+</span><span>├── System.map-virt
+</span><span>├── vesamenu.c32
+</span><span>└── vmlinuz-virt
+</span><span>
+</span><span>2 directories, 12 files
+</span></code></pre>
+<p>Okay, doesn't look like there is much here. This just seems to be the boot partition.
+We can check out the <code>extlinux.conf</code></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ cat extlinux.conf
+</span><span># Generated by update-extlinux 6.04_pre1-r9
+</span><span>DEFAULT menu.c32
+</span><span>PROMPT 0
+</span><span>MENU TITLE Alpine/Linux Boot Menu
+</span><span>MENU HIDDEN
+</span><span>MENU AUTOBOOT Alpine will be booted automatically in # seconds.
+</span><span>TIMEOUT 30
+</span><span>LABEL virt
+</span><span>  MENU LABEL Linux virt
+</span><span>  LINUX vmlinuz-virt
+</span><span>  INITRD initramfs-virt
+</span><span>  APPEND root=UUID=7b688671-b1b5-4e64-830d-36ebc2d4259e modules=sd-mod,usb-storage,ext4 quiet rootfstype=ext4
+</span><span>
+</span><span>MENU SEPARATOR
+</span></code></pre>
+<p>It looks like this is an Alpine Linux image which is neat but isn't particularly helpful here. Let's look at the next partition we saw in the partition table.</p>
+<p>The 2nd partition started at sector 206848, but it says it's a swap partition which is essentially a file that acts as extra memory to keep your system from crashing if it is using too much RAM. We'll skip this partition for now and look at the last partition which should contain the files for the system this image was pulled from.</p>
+<p>The last partition starts at sector 411648, so 512 x 411648 = 210763776 bytes is our new offset. Let's unmount the first partition and remount with the new offset.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo umount ./mnt
+</span><span>$ sudo mount -o offset=210763776 disk.flag.img ./mnt/
+</span><span>$ tree -L 1 ./mnt/
+</span><span>./mnt/
+</span><span>├── bin
+</span><span>├── boot
+</span><span>├── dev
+</span><span>├── etc
+</span><span>├── home
+</span><span>├── lib
+</span><span>├── lost+found
+</span><span>├── media
+</span><span>├── mnt
+</span><span>├── opt
+</span><span>├── proc
+</span><span>├── root
+</span><span>├── run
+</span><span>├── sbin
+</span><span>├── srv
+</span><span>├── swap
+</span><span>├── sys
+</span><span>├── tmp
+</span><span>├── usr
+</span><span>└── var
+</span></code></pre>
+<p>Nice, that looks like a standard Linux system to me. Let's see if we can find that flag.
+A good first step is to search for any files with "flag" in the name since this <em>is</em> a CTF after all. We can do that with the <code>find</code> command.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo find ./mnt/ -iname &quot;*flag*&quot;
+</span><span>./mnt/root/flag.txt.enc
+</span></code></pre>
+<p>Well that looks promising. Let's check what kind of file that is.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo file ./mnt/root/flag.txt.enc
+</span><span>./mnt/root/flag.txt.enc: openssl enc&#39;d data with salted password
+</span></code></pre>
+<p>Let's also check if <code>flag.txt.enc</code> shows up in any logs, scripts or other files on the image.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo grep -r flag.txt.enc ./mnt
+</span><span>./mnt/root/.ash_history:openssl aes256 -salt -in flag.txt -out flag.txt.enc -k unbreakablepassword1234567
+</span></code></pre>
+<p>It looks like the <code>openssl</code> command was used to encrypt the <code>flag.txt</code> with a password of <code>unbreakablepassword1234567</code>. The command we saw in <code>/mnt/root/.ash_history</code> uses the <a href="https://www.openssl.org/docs/man1.1.1/man1/enc.html"><code>openssl-enc</code></a> function of <code>openssl</code> to encrypt the data. If we look through the man page, we'll notice that <code>openssl-enc</code> has an option for decryption.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>-e  Encrypt the input data: this is the default.
+</span><span>-d  Decrypt the input data.
+</span></code></pre>
+<p>Let's try decrypting <code>flag.txt.enc</code> with the password we found.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ openssl aes256 -d -salt -in flag.txt.enc -out flag.txt -k unbreakablepassword1234567
+</span><span>*** WARNING : deprecated key derivation used.
+</span><span>Using -iter or -pbkdf2 would be better.
+</span><span>bad decrypt
+</span><span>140027284948288:error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt:../crypto/evp/evp_enc.c:610:
+</span></code></pre>
+<p>We got some warnings, but it looks like the command still output a decrypted file <code>flag.txt</code>. Let's see what it says.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ cat flag.txt
+</span><span>picoCTF{h4un71ng_p457_5113beab}
+</span></code></pre>
+<p>And there's our flag.</p>
+<svg 
+  version="1.1" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  style="display: none;">
+    <style>
+        .info-text {
+            font-size: 60px;
+            font-weight: 600;
+            font-family: 'Atkinson Hyperlegible', 'Tahoma', 'Arial';
+        }
+    </style>
+    <symbol id="info" viewBox="0 0 100 100">
+        <circle
+           id="info-circle"
+           stroke="currentColor"
+           stroke-width="10"
+           cx="50"
+           cy="50"
+           r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">i</text>
+    </symbol>
+    <symbol id="warn" viewBox="0 0 100 100">
+        <circle
+          id="warning-circle"
+          stroke="currentColor"
+          stroke-width="10"
+          cx="50"
+          cy="50"
+          r="45" />
+        <text class="info-text" x="50" y="50" dy=".26rem" text-anchor="middle" dominant-baseline="middle" fill="currentColor">!</text>
+    </symbol>
+    <symbol id="tip" viewBox="0 0 285 285">
+        <polygon
+          id="tip-star"
+          stroke="#efefef"
+          stroke-width="20"
+          points="150,15 258,77 258,202 150,265 42,202 42,77"
+          fill="currentColor"
+        />
+    </symbol>
+</svg>
+
+
+<div class="callout note">
+  <div class="callout-head">
+    <svg class="icon"><use xlink:href="#info"></use></svg>
+    <div>Note</div>
+  </div>
+  <div class="callout-text">
+    <p>Don't forget to unmount the image once you're done!</p>
+
+  </div>
+</div>
+
+
+<style>
+</style>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ sudo umount ./mnt/
+</span></code></pre>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/articles/sidechannel/">
+        <span class="button__text">PicoCTF 2022 - SideChannel</span>
+      </a>
+    </span>
+     
+    <span class="button next">
+      <a href="https://www.cblanken.dev/articles/superguesser/">
+        <span class="button__text">Cryptoverse 2022 - Super Guesser</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

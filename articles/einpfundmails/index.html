@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=3182f546a1b9a6e33d32">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/orange-auto.css?h=e80c890ed79117afae1d">
+
+    <meta name="description" content="Writeup for the ein-pfund-mails challenge from the KitCTF 2022 CTF">
+
+    <meta property="og:description" content="Writeup for the ein-pfund-mails challenge from the KitCTF 2022 CTF">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/articles/einpfundmails/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the ein-pfund-mails challenge from the KitCTF 2022 CTF">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/articles/einpfundmails/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles">Articles</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;journal">Journal</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            <a class="external-link" href="https://github.com/cblanken" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;einpfundmails&#x2F;#title">KitCTF 2022 - ein-pfund-mails</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;einpfundmails&#x2F;#problem-description">Problem description</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;einpfundmails&#x2F;#analysis">Analysis</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;einpfundmails&#x2F;#solution">Solution</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;articles&#x2F;einpfundmails&#x2F;#flag">Flag</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/articles/einpfundmails/">KitCTF 2022 - ein-pfund-mails</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Oct 26, 2022 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Oct 22, 2024</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>2 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/dkim/"
+    >#dkim</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h2 id="problem-description"><a class="zola-anchor" href="#problem-description" aria-label="Anchor link for: problem-description">Problem description</a></h2>
+<p>The <code>ein-pfund-mails</code> challenge is a <em>baby</em> rated challenge in the Misc category for KitCTFCTF 2022. The title <em>ein pfund mails</em> is actually German for <em>"A pound of mail"</em>. Which makes sense since we are given an archive (<code>mails.tar.gz</code>) containing 3993 <code>.eml</code> files. We're told one of these leaked email files contains our flag, but we're unable to determine which file contains the correct flag.</p>
+<h2 id="analysis"><a class="zola-anchor" href="#analysis" aria-label="Anchor link for: analysis">Analysis</a></h2>
+<p>First off, let's take a look at one of the email files.</p>
+<pre data-lang="eml" style="background-color:#2b303b;color:#c0c5ce;" class="language-eml "><code class="language-eml" data-lang="eml"><span style="color:#a3be8c;">Return-Path:</span><span> &lt;mawalu98@gmail.com&gt;
+</span><span style="color:#d08770;">Delivered-To:</span><span> martin@mawalabs.de
+</span><span style="color:#a3be8c;">Received:</span><span> from mail.mawalabs.de ([fd4d:6169:6c63:6f77::e])
+</span><span>	by a0818493a1af with LMTP
+</span><span>	id Oa/3IrxGq2JiaTIAoqc0QA
+</span><span>	(envelope-from &lt;mawalu98@gmail.com&gt;)
+</span><span>	for &lt;martin@mawalabs.de&gt;; Thu, 16 Jun 2022 17:05:32 +0200
+</span><span style="color:#a3be8c;">Received:</span><span> from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+</span><span>	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+</span><span>	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+</span><span>	(No client certificate requested)
+</span><span>	by mail.mawalabs.de (Postcow) with ESMTPS id 5BA84A2171
+</span><span>	for &lt;martin@mawalabs.de&gt;; Thu, 16 Jun 2022 17:05:27 +0200 (CEST)
+</span><span style="color:#a3be8c;">Received:</span><span> by mail-pj1-f42.google.com with SMTP id k12-20020a17090a404c00b001eaabc1fe5dso2079659pjg.1
+</span><span>        for &lt;martin@mawalabs.de&gt;; Thu, 16 Jun 2022 08:05:27 -0700 (PDT)
+</span><span style="color:#a3be8c;">DKIM-Signature:</span><span> v=1; a=rsa-sha256; c=relaxed/relaxed;
+</span><span>        d=gmail.com; s=20210112;
+</span><span>        h=mime-version:from:date:message-id:subject:to;
+</span><span>        bh=Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=;
+</span><span>        b=R1TrM58fPxWGqqUpauME4wQbljhoUlMEpPpf2NWBP1Hy8WrZH0MMkrqurXHAMNNx/H
+</span><span>         I3QHbOEeHm8GjQ9GbUWHWTYt8oFutzcBiCN8+5xFbuuDoYgxyAQWpbuKcWM3h3LpkFbC
+</span><span>         IN4ps9rF3ANb/DOTxYFf0TUGvTOSqXuwe1UBFnOwckfUFVwvh/FYPDzOvGiXE683jxXq
+</span><span>         4GrAKzDDdbyyeKzUSyeV4ndqkTGGODLWULrUbBT/ihyNq5Nomc5QCiw61UIflwVndFdE
+</span><span>         h1ufkxX2FEUJ2fpS9KbV8mfEqN+roncsHzXvVdo+ersxg4jQXA/aYOf9XoaPz48Sb9qf
+</span><span>         MsMg==
+</span><span style="color:#d08770;">X-Google-DKIM-Signature:</span><span> v=1; a=rsa-sha256; c=relaxed/relaxed;
+</span><span>        d=1e100.net; s=20210112;
+</span><span>        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+</span><span>        bh=Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=;
+</span><span>        b=AwM4jiAdlpSKBy7IZ3nfQsHnYeQp1gvVpI/Bpnoer/mkdv75drjydquL+ZXUmOaySW
+</span><span>         k9jKtb/haWXRx6TCvoAFrO/ZN2tmDknI7r9yoKWdLP37Er4thOhniv0mKAPBeL47i/95
+</span><span>         GG3Kfu4eMuNx/NzhqxKPIPb6Mc+tGAfe2VisvxOk/l5vbR8U4bWNiBwmF9Q4kLyFYMnb
+</span><span>         gPx1ZhsxQWqFIn+hr6D9vUFxiz5cAe0m2Bq6V4e24akQrLjMrBjwY94vXzZJlb4VW6cG
+</span><span>         2pffywU5CDks4qLPYnI1bkImrQJrOR3KEZSYppSm3vkBSvgJ06aTzvGRrLE18Hwmtxmv
+</span><span>         5Vnw==
+</span><span style="color:#d08770;">X-Gm-Message-State:</span><span> AJIora9DCvU5UatGInjShXcoDXp0abItZgRUoXxhwA+0+fDgg4Jv+3l8
+</span><span>	jr6KvtgQZpxKkN+zFS/vejX8L1MA57H5+1ZjOis2QxR6//w=
+</span><span style="color:#d08770;">X-Google-Smtp-Source:</span><span> AGRyM1tXZeDE5/ppkeaIx2YE297NIvPpikDXV+2nwHlgPl646MSCkIdSwtEBFkznNZNqV1uMfJsEq98wjv3m/KYd3Vc=
+</span><span style="color:#d08770;">X-Received:</span><span> by 2002:a17:903:244a:b0:164:2880:4df1 with SMTP id
+</span><span> l10-20020a170903244a00b0016428804df1mr5108675pls.120.1655391924792; Thu, 16
+</span><span> Jun 2022 08:05:24 -0700 (PDT)
+</span><span style="color:#a3be8c;">MIME-Version:</span><span> 1.0
+</span><span style="color:#a3be8c;">From:</span><span> Martin Wagner &lt;mawalu98@gmail.com&gt;
+</span><span style="color:#a3be8c;">Date:</span><span> Thu, 16 Jun 2022 17:05:13 +0200
+</span><span style="color:#a3be8c;">Message-ID:</span><span> &lt;CAA2ev=GHMZn2+6vgHv9kEQV5h4ZWcOapubMOJtg2BTM7VsgOAw@mail.gmail.com&gt;
+</span><span style="color:#a3be8c;">Subject:</span><span> Flag
+</span><span style="color:#a3be8c;">To:</span><span> martin@mawalabs.de
+</span><span style="color:#a3be8c;">Content-Type:</span><span> multipart/alternative; boundary=&quot;000000000000a433c905e191f775&quot;
+</span><span>ARC-Seal: i=1; s=dkim; d=mawalabs.de; t=1655391927; a=rsa-sha256; cv=none;
+</span><span>	b=qiV2rtXrZGucJcxohmzBoIzrGijMaDnXMKViSQCoub6PgUBRu9dXIo2JbqjIvVG3RiAsB5
+</span><span>	x2y79l2rnSzipM62UfVfdnv7/bHXC0oxlHtIqYVDK/NqOBasDYzkgkmkAmUFIeyh7qcJ8A
+</span><span>	i50585Fm1I58zMYi88Nnlq4Ou+whuc8=
+</span><span>ARC-Authentication-Results: i=1;
+</span><span>	mail.mawalabs.de;
+</span><span>	dkim=pass header.d=gmail.com header.s=20210112 header.b=R1TrM58f;
+</span><span>	spf=pass (mail.mawalabs.de: domain of mawalu98@gmail.com designates 209.85.216.42 as permitted sender) smtp.mailfrom=mawalu98@gmail.com;
+</span><span>	dmarc=pass (policy=none) header.from=gmail.com
+</span><span>ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=mawalabs.de;
+</span><span>	s=dkim; t=1655391927;
+</span><span>	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+</span><span>	 to:to:cc:mime-version:mime-version:content-type:content-type:
+</span><span>	 dkim-signature; bh=Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=;
+</span><span>	b=oiuiewyUJBkwDRfqclseGFj1hYEfF0kN+UD7pdWf/wun/Sccb1T9bP6a9DGS/liipuXPhS
+</span><span>	DayxqKgsuRqvB5c1WSxQXIc2iXdKkTttQt1LgaXE1d+wSo6Hap502RMji4aZVcMM6owh/T
+</span><span>	1fhY0QCzzNrw2JCYoeMCtcZ0LNWvtTY=
+</span><span style="color:#d08770;">X-Last-TLS-Session-Version:</span><span> TLSv1.3
+</span><span style="color:#a3be8c;">Authentication-Results:</span><span> mail.mawalabs.de;
+</span><span>	dkim=pass header.d=gmail.com header.s=20210112 header.b=R1TrM58f;
+</span><span>	spf=pass (mail.mawalabs.de: domain of mawalu98@gmail.com designates 209.85.216.42 as permitted sender) smtp.mailfrom=mawalu98@gmail.com;
+</span><span>	dmarc=pass (policy=none) header.from=gmail.com
+</span><span style="color:#d08770;">X-Spamd-Result:</span><span> default: False [1.79 / 15.00];
+</span><span>	RBL_SORBS_RECENT(2.00)[209.85.216.42:from];
+</span><span>	BAD_REP_POLICIES(2.00)[];
+</span><span>	NEURAL_HAM_SHORT(-2.00)[-1.000];
+</span><span>	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+</span><span>	RWL_MAILSPIKE_GOOD(-0.10)[209.85.216.42:from];
+</span><span>	MX_GOOD(-0.01)[];
+</span><span>	IP_REPUTATION_HAM(-0.00)[asn: 15169(0.00), country: US(-0.00), ip: 209.85.216.42(0.00)];
+</span><span>	FROM_HAS_DN(0.00)[];
+</span><span>	R_DKIM_ALLOW(0.00)[gmail.com:s=20210112];
+</span><span>	BCC(0.00)[];
+</span><span>	DWL_DNSWL_NONE(0.00)[gmail.com:dkim];
+</span><span>	TO_MATCH_ENVRCPT_ALL(0.00)[];
+</span><span>	RCPT_COUNT_ONE(0.00)[1];
+</span><span>	ARC_NA(0.00)[];
+</span><span>	CLAM_VIRUS_FAIL(0.00)[failed to scan and retransmits exceed];
+</span><span>	PREVIOUSLY_DELIVERED(0.00)[martin@mawalabs.de];
+</span><span>	RCPT_MAILCOW_DOMAIN(0.00)[mawalabs.de];
+</span><span>	FREEMAIL_ENVFROM(0.00)[gmail.com];
+</span><span>	RCVD_IN_DNSWL_NONE(0.00)[209.85.216.42:from];
+</span><span>	ARC_SIGNED(0.00)[mawalabs.de:s=dkim:i=1];
+</span><span>	R_SPF_ALLOW(0.00)[+ip4:209.85.128.0/17];
+</span><span>	TO_DN_NONE(0.00)[];
+</span><span>	FREEMAIL_FROM(0.00)[gmail.com];
+</span><span>	ASN(0.00)[asn:15169, ipnet:209.85.128.0/17, country:US];
+</span><span>	MID_RHS_MATCH_FROMTLD(0.00)[];
+</span><span>	DMARC_POLICY_ALLOW(0.00)[gmail.com,none];
+</span><span>	MIME_TRACE(0.00)[0:+,1:+,2:~];
+</span><span>	DKIM_TRACE(0.00)[gmail.com:+];
+</span><span>	RCVD_TLS_LAST(0.00)[];
+</span><span>	FROM_EQ_ENVFROM(0.00)[];
+</span><span>	RCVD_COUNT_TWO(0.00)[2]
+</span><span style="color:#d08770;">X-Rspamd-Queue-Id:</span><span> 5BA84A2171
+</span><span>
+</span><span>--000000000000a433c905e191f775
+</span><span style="color:#a3be8c;">Content-Type:</span><span> text/plain; charset=&quot;UTF-8&quot;
+</span><span>
+</span><span>Hi,
+</span><span>
+</span><span>die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}
+</span><span>
+</span><span>LG
+</span><span>Martin
+</span><span>
+</span><span>--000000000000a433c905e191f775
+</span><span style="color:#a3be8c;">Content-Type:</span><span> text/html; charset=&quot;UTF-8&quot;
+</span><span>
+</span><span>&lt;div dir=&quot;ltr&quot;&gt;Hi,&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;LG&lt;/div&gt;&lt;div&gt;Martin&lt;/div&gt;&lt;/div&gt;
+</span><span>
+</span><span>--000000000000a433c905e191f775--
+</span></code></pre>
+<p>Of note, are several <em>signatures</em> and a possible flag (<code>KCTF{1d2fa1ed91a0310dad83242abc3f8a92}</code>).</p>
+<p>If we take a <code>diff</code> of the two different emails (e.g. <code>diff fffc5.eml ffdef.eml</code>), only the flag is changed.</p>
+<pre data-lang="diff" style="background-color:#2b303b;color:#c0c5ce;" class="language-diff "><code class="language-diff" data-lang="diff"><span>110c110
+</span><span style="color:#bf616a;">&lt; die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}
+</span><span style="background-color:#4f5b66;color:#c0c5ce;">---
+</span><span style="color:#a3be8c;">&gt; die Flag ist KCTF{a3afe0043bf7736216bc7ace6efac886}
+</span><span>118c118
+</span><span style="color:#bf616a;">&lt; &lt;div dir=&quot;ltr&quot;&gt;Hi,&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;LG&lt;/div&gt;&lt;div&gt;Martin&lt;/div&gt;&lt;/div&gt;
+</span><span style="background-color:#4f5b66;color:#c0c5ce;">---
+</span><span style="color:#a3be8c;">&gt; &lt;div dir=&quot;ltr&quot;&gt;Hi,&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;die Flag ist KCTF{a3afe0043bf7736216bc7ace6efac886}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;LG&lt;/div&gt;&lt;div&gt;Martin&lt;/div&gt;&lt;/div&gt;
+</span></code></pre>
+<p>This confirms what the prompt told us, so we can't identify the correct flag by any differences between the files. Instead we'll have to utilize the signatures provided in the emails to verify a valid <code>.eml</code>.</p>
+<h2 id="solution"><a class="zola-anchor" href="#solution" aria-label="Anchor link for: solution">Solution</a></h2>
+<p>The first signature we see in the file is a <code>DKIM-Signature</code>. There is a useful <a href="https://mailtrap.io/blog/dkim/">explainer</a> over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that's used to verify the sender and <strong>content</strong> of an email have not been altered. That should be perfect to find the original, unaltered email in our <em>ein pfund mails</em>.</p>
+<p>Luckily, there are several DKIM verification libraries available on <a href="https://pypi.org/search/?q=dkim">PyPI</a>. I chose <a href="https://pypi.org/project/check-dkim/">check-dkim</a> since it was at the top of the list for my search. In the case of <code>check-dkim</code>, it's actually a CLI script. So, after installing (<code>pip install check-dkim</code>), we can verify that it works for one of our <code>.eml</code> files.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ check-dkim mail/fffc5.eml 
+</span><span>Error verifying DKIM
+</span><span>body hash mismatch (got b&#39;SHy1AAdR/+J5fTOT5HqeEr23p+JmXnlXWdr1QxcFqcU=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span></code></pre>
+<p>Now let's write a simple bash script to verify every email file.</p>
+<pre data-linenos data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><table><tbody><tr><td>1</td><td><span style="color:#65737e;">#!/bin/bash
+</span></td></tr><tr><td>2</td><td><span style="color:#65737e;"># dkim_verify.sh
+</span></td></tr><tr><td>3</td><td><span style="color:#bf616a;">find </span><span>&quot;$</span><span style="color:#bf616a;">1</span><span>&quot;</span><span style="color:#bf616a;"> -iname </span><span>*.eml</span><span style="color:#bf616a;"> -type</span><span> f</span><span style="color:#bf616a;"> -exec</span><span> echo</span><span style="color:#bf616a;"> -ne </span><span>&quot;</span><span style="color:#a3be8c;">FILE: {} --- </span><span>&quot; </span><span style="color:#96b5b4;">\;</span><span style="color:#bf616a;"> -exec</span><span> check-dkim {} </span><span style="color:#96b5b4;">\;
+</span></td></tr></tbody></table></code></pre>
+<p>Execute the script to start checking.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">./dkim_verify.sh</span><span> ./mail/
+</span></code></pre>
+<p>Here is the output from our first few files.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>FILE: mail/c9f01.eml --- Error verifying DKIM                                                                                                                                               
+</span><span>body hash mismatch (got b&#39;KSjh/SWf9CoOfANlP1JwziULd7TJwo2jAXdS6WxxiXk=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)                                                          
+</span><span>FILE: mail/483c0.eml --- Error verifying DKIM                                                                                                                                               
+</span><span>body hash mismatch (got b&#39;NPfXTjlgeHmYX3XL505Y9ZlDsWR/nKofQRnlX2Eg+Vk=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span><span>FILE: mail/e1262.eml --- Error verifying DKIM
+</span><span>body hash mismatch (got b&#39;IwEUYGwkRHvyIUocHDTn1mq653UyllFukFAsC7/bewY=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span><span>FILE: mail/a9331.eml --- Error verifying DKIM
+</span><span>body hash mismatch (got b&#39;2kwfDpgExCVsPaquMn2PMAqKf/UEuOQneY6YpVutQ+U=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span><span>FILE: mail/c65c1.eml --- Error verifying DKIM
+</span><span>body hash mismatch (got b&#39;GGvQpfeY8Vzvfms3TWn1TsYW2Ws4CKhenm26CVZ7kCs=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span></code></pre>
+<hr />
+<p>After a few minutes we get a hit. Here is the output leading up to the valid <code>.eml</code>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>FILE: mail/3c586.eml --- Error verifying DKIM                                                                                                                                               
+</span><span>body hash mismatch (got b&#39;DopvYFdcPVYCj2nGEr3Jdll+EK7xiVVk33K/6xRJp90=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span><span>FILE: mail/06570.eml --- Error verifying DKIM                                                                                                                                               
+</span><span>body hash mismatch (got b&#39;uJ/mmb0346p2GMzAqGnz/6hn5G0cL/jiotY2dl2tBJk=&#39;, expected b&#39;Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=&#39;)
+</span><mark style="background-color:#65737e30;"><span>FILE: mail/438b5.eml --- DKIM verified successfully                                                                                                                                         
+</span></mark></code></pre>
+<p>Now we can check which flag is in <code>438b5.eml</code>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>grep -oP &quot;(KCTF{.*})&quot; mail/438b5.eml 
+</span><span>KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
+</span><span>KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
+</span></code></pre>
+<h1 id="flag"><a class="zola-anchor" href="#flag" aria-label="Anchor link for: flag">Flag</a></h1>
+<p>Here we have our flag! <code>KCTF{1f8e659e892f2b2a05a54b8448ccbff9}</code></p>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/articles/superguesser/">
+        <span class="button__text">Cryptoverse 2022 - Super Guesser</span>
+      </a>
+    </span>
+     
+    <span class="button next">
+      <a href="https://www.cblanken.dev/articles/janken/">
+        <span class="button__text">HTB Apocalypse 2023 - Janken</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2025
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

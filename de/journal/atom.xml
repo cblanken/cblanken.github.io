@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="de">
+    <title>cblanken.dev - Tagebuch</title>
+    <link rel="self" type="application/atom+xml" href="https://www.cblanken.dev/de/journal/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://www.cblanken.dev/de/journal/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-02-11T00:00:00+00:00</updated>
+    <id>https://www.cblanken.dev/de/journal/atom.xml</id>
+    <entry xml:lang="de">
+        <title>IANA-Protokollregistrierung</title>
+        <published>2025-02-11T00:00:00+00:00</published>
+        <updated>2025-02-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Cameron Blankenbuehler
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/de/journal/iana-protocols/"/>
+        <id>https://www.cblanken.dev/de/journal/iana-protocols/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/de/journal/iana-protocols/">&lt;p&gt;Wenn Sie schon einmal durch die RFCs geblättert haben, die von der &lt;a href=&quot;https:&#x2F;&#x2F;www.ietf.org&quot;&gt;IETF&lt;&#x2F;a&gt; veröffentlicht wurden, wissen Sie, dass es ein bisschen mühsam sein kann, wenn Sie nur einen Tag-Namen oder einen Fehlercode suchen. Sie sollten nicht die gesamte Spezifikation eines Protokolls durchlesen müssen, nur um eine Fehlersuche durchzuführen. Richtig? Nun, hier kommt &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&quot;&gt;IANA&lt;&#x2F;a&gt; zur Rettung. IANA hat ein zentrales Repository für die vielen Codes und Nummern, die in den Internet-Protokollen die in Internet-Protokollen enthalten sind. Sie finden es auf ihrer &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&#x2F;protocols&quot;&gt;protocol registry&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Ich persönlich war nur auf der Suche nach einer &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&#x2F;assignments&#x2F;dmarc-parameters&#x2F;dmarc-parameters.xhtml#tag&quot;&gt;einfachen Erklärung&lt;&#x2F;a&gt; über alle für DMARC verfügbaren Tags. Natürlich gibt es auch eine &lt;a href=&quot;https:&#x2F;&#x2F;www.rfc-editor.org&#x2F;rfc&#x2F;rfc7489.html#section-11.4&quot;&gt;DMARC tag Registry-Tabelle&lt;&#x2F;a&gt; eingebettet in den &lt;a href=&quot;https:&#x2F;&#x2F;www.rfc-editor.org&#x2F;rfc&#x2F;rfc7489.html&quot;&gt;DMARC RFC (RFC 7489)&lt;&#x2F;a&gt;. Aber ich hatte Schwierigkeiten sich durch alle 73 Seiten der Spezifikation zu wühlen. In diesem Fall war es also nicht wirklich notwendig. Aber für so etwas wie die &lt;a href=&quot;https:&#x2F;&#x2F;www.iana.org&#x2F;assignments&#x2F;mail-parameters&#x2F;mail-parameters.xhtml#mail-parameters-2&quot;&gt;SMTP-Service Erweiterungen&lt;&#x2F;a&gt;, kann es sehr viel nützlicher sein, da die Service-Erweiterungen über viele verschiedene RFCs verteilt sind.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
