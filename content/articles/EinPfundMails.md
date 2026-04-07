@@ -13,10 +13,13 @@ tags = ["ctf", "infosec", "python", "dkim"]
 +++
 
 ## Problem description
+
 The `ein-pfund-mails` challenge is a _baby_ rated challenge in the Misc category for KitCTFCTF 2022. The title _ein pfund mails_ is actually German for _"A pound of mail"_. Which makes sense since we are given an archive (`mails.tar.gz`) containing 3993 `.eml` files. We're told one of these leaked email files contains our flag, but we're unable to determine which file contains the correct flag.
 
 ## Analysis
+
 First off, let's take a look at one of the email files.
+
 ```eml
 Return-Path: <mawalu98@gmail.com>
 Delivered-To: martin@mawalabs.de
@@ -143,6 +146,7 @@ Content-Type: text/html; charset="UTF-8"
 Of note, are several _signatures_ and a possible flag (`KCTF{1d2fa1ed91a0310dad83242abc3f8a92}`).
 
 If we take a `diff` of the two different emails (e.g. `diff fffc5.eml ffdef.eml`), only the flag is changed.
+
 ```diff
 110c110
 < die Flag ist KCTF{1d2fa1ed91a0310dad83242abc3f8a92}
@@ -157,16 +161,19 @@ If we take a `diff` of the two different emails (e.g. `diff fffc5.eml ffdef.eml`
 This confirms what the prompt told us, so we can't identify the correct flag by any differences between the files. Instead we'll have to utilize the signatures provided in the emails to verify a valid `.eml`.
 
 ## Solution
-The first signature we see in the file is a `DKIM-Signature`. There is a useful [explainer](https://mailtrap.io/blog/dkim/) over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that's used to verify the sender and __content__ of an email have not been altered. That should be perfect to find the original, unaltered email in our _ein pfund mails_.
+
+The first signature we see in the file is a `DKIM-Signature`. There is a useful [explainer](https://mailtrap.io/blog/dkim/) over on mailtrap[.]com, if you want to get into the nitty gritty, but the short of it is that DKIM is a common signature type that's used to verify the sender and **content** of an email have not been altered. That should be perfect to find the original, unaltered email in our _ein pfund mails_.
 
 Luckily, there are several DKIM verification libraries available on [PyPI](https://pypi.org/search/?q=dkim). I chose [check-dkim](https://pypi.org/project/check-dkim/) since it was at the top of the list for my search. In the case of `check-dkim`, it's actually a CLI script. So, after installing (`pip install check-dkim`), we can verify that it works for one of our `.eml` files.
+
 ```
-$ check-dkim mail/fffc5.eml 
+$ check-dkim mail/fffc5.eml
 Error verifying DKIM
 body hash mismatch (got b'SHy1AAdR/+J5fTOT5HqeEr23p+JmXnlXWdr1QxcFqcU=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
 ```
 
 Now let's write a simple bash script to verify every email file.
+
 ```bash, linenos
 #!/bin/bash
 # dkim_verify.sh
@@ -174,15 +181,17 @@ find "$1" -iname *.eml -type f -exec echo -ne "FILE: {} --- " \; -exec check-dki
 ```
 
 Execute the script to start checking.
+
 ```bash
 ./dkim_verify.sh ./mail/
 ```
 
 Here is the output from our first few files.
+
 ```
-FILE: mail/c9f01.eml --- Error verifying DKIM                                                                                                                                               
-body hash mismatch (got b'KSjh/SWf9CoOfANlP1JwziULd7TJwo2jAXdS6WxxiXk=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')                                                          
-FILE: mail/483c0.eml --- Error verifying DKIM                                                                                                                                               
+FILE: mail/c9f01.eml --- Error verifying DKIM
+body hash mismatch (got b'KSjh/SWf9CoOfANlP1JwziULd7TJwo2jAXdS6WxxiXk=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
+FILE: mail/483c0.eml --- Error verifying DKIM
 body hash mismatch (got b'NPfXTjlgeHmYX3XL505Y9ZlDsWR/nKofQRnlX2Eg+Vk=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
 FILE: mail/e1262.eml --- Error verifying DKIM
 body hash mismatch (got b'IwEUYGwkRHvyIUocHDTn1mq653UyllFukFAsC7/bewY=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
@@ -191,23 +200,27 @@ body hash mismatch (got b'2kwfDpgExCVsPaquMn2PMAqKf/UEuOQneY6YpVutQ+U=', expecte
 FILE: mail/c65c1.eml --- Error verifying DKIM
 body hash mismatch (got b'GGvQpfeY8Vzvfms3TWn1TsYW2Ws4CKhenm26CVZ7kCs=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
 ```
-----
+
+---
 
 After a few minutes we get a hit. Here is the output leading up to the valid `.eml`.
+
 ```hl_lines=5
-FILE: mail/3c586.eml --- Error verifying DKIM                                                                                                                                               
+FILE: mail/3c586.eml --- Error verifying DKIM
 body hash mismatch (got b'DopvYFdcPVYCj2nGEr3Jdll+EK7xiVVk33K/6xRJp90=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
-FILE: mail/06570.eml --- Error verifying DKIM                                                                                                                                               
+FILE: mail/06570.eml --- Error verifying DKIM
 body hash mismatch (got b'uJ/mmb0346p2GMzAqGnz/6hn5G0cL/jiotY2dl2tBJk=', expected b'Hc1fzmKy9aocJCtYl88l4HEWgiYgp/nBHaexg4xOWtk=')
-FILE: mail/438b5.eml --- DKIM verified successfully                                                                                                                                         
+FILE: mail/438b5.eml --- DKIM verified successfully
 ```
 
 Now we can check which flag is in `438b5.eml`.
+
 ```
-grep -oP "(KCTF{.*})" mail/438b5.eml 
+grep -oP "(KCTF{.*})" mail/438b5.eml
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 KCTF{1f8e659e892f2b2a05a54b8448ccbff9}
 ```
 
 # Flag
+
 Here we have our flag! `KCTF{1f8e659e892f2b2a05a54b8448ccbff9}`

@@ -24,22 +24,18 @@ In this walkthrough I'm going to show the process for solving each challenge
 and try to provide some insight into what each challenge is trying to teach
 and why it's useful, so keep an eye out for callouts like those below.
 
-{% callout(type="note") %}
+> [!Note]
+> Each Natas level is accessible via browser at the specified URL for the level.
+> For example, the level 0 url is:
+> [http://natas0.natas.labs.overthewire.org](http://natas0.natas.labs.overthewire.org).
 
-Each Natas level is accessible via browser at the specified URL for the level.
-For example, the level 0 url is:
-[http://natas0.natas.labs.overthewire.org](http://natas0.natas.labs.overthewire.org).
 
-{% end %}
+> [!Warning]
+> If you're looking for the solution of a particular level, you are highly
+> encouraged to attempt it on your own before following this walkthrough. You
+> will learn some useful things regardless, but attempting each level on your own
+> first will help the knowledge stick better. I promise.
 
-{% callout(type="warning") %}
-
-If you're looking for the solution of a particular level, you are highly
-encouraged to attempt it on your own before following this walkthrough. You
-will learn some useful things regardless, but attempting each level on your own
-first will help the knowledge stick better. I promise.
-
-{% end %}
 
 ## Prerequisites
 
@@ -199,14 +195,12 @@ Navigating to that directory reveals a single file, `users.txt`.
 
 View the `users.txt` file for the password to the next level.
 
-{% callout(type="tip") %}
+> [!Tip]
+> Looking at the `robots.txt` is a common step taken by attackers when performing
+> reconnaissance on a web application since it can sometimes reveal locations
+> that the developers have deemed sensitive enough to exclude from search
+> indexing.
 
-Looking at the `robots.txt` is a common step taken by attackers when performing
-reconnaissance on a web application since it can sometimes reveal locations
-that the developers have deemed sensitive enough to exclude from search
-indexing.
-
-{% end %}
 
 ### Level 4
 
@@ -333,15 +327,13 @@ Access granted. The password for natas5 is [REDACTED]
 </body>
 ```
 
-{% callout(type="tip") %}
+> [!Tip]
+> HTTP headers are useful for a lot of things, but be cautious. Using them
+> incorrectly for authentication as the `Referer` header is used in this
+> challenge can lead to [all
+> kinds](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html)
+> of security vulnerabilities.
 
-HTTP headers are useful for a lot of things, but be cautious. Using them
-incorrectly for authentication as the `Referer` header is used in this
-challenge can lead to [all
-kinds](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html)
-of security vulnerabilities.
-
-{% end %}
 
 ### Level 5
 
@@ -372,11 +364,9 @@ to the next level.
 
 ![level 5 password](/images/otw-natas/5_password.png)
 
-{% callout(type="tip") %}
+> [!Tip]
+> Cookies can, in fact, be used for secure session management. But not like this.
 
-Cookies can, in fact, be used for secure session management. But not like this.
-
-{% end %}
 
 ### Level 6
 
@@ -525,13 +515,10 @@ The encoding can be reversed with the following PHP script.
 ?> 
 ```
 
-{% callout(type="note") %}
-
-If you don't have PHP installed on your system, the script can be executed on
-an online platform like [repl.it](https://replit.com/languages/PHP). Otherwise,
-save the script locally and execute it with `php -f script.php`.
-
-{% end %}
+> [!Note]
+> If you don't have PHP installed on your system, the script can be executed on
+> an online platform like [repl.it](https://replit.com/languages/PHP). Otherwise,
+> save the script locally and execute it with `php -f script.php`.
 
 Enter the decoded secret into the form to get the password to the next level.
 
@@ -600,15 +587,13 @@ the `natas10` password file.
 
 ![level 9 password](/images/otw-natas/9_password.png)
 
-{% callout(type="tip") %}
+> [!Tip]
+> This type of attack falls under the
+> [Injection](https://owasp.org/Top10/A03_2021-Injection/) category of the [OWASP
+> Top 10 (2021)](https://owasp.org/www-project-top-ten/). Specifically it's a
+> command injection vulnerability and is a concern whenever user input is passed
+> to an execution environment such as Bash as it's done in this level.
 
-This type of attack falls under the
-[Injection](https://owasp.org/Top10/A03_2021-Injection/) category of the [OWASP
-Top 10 (2021)](https://owasp.org/www-project-top-ten/). Specifically it's a
-command injection vulnerability and is a concern whenever user input is passed
-to an execution environment such as Bash as it's done in this level.
-
-{% end %}
 
 ### Level 10
 
@@ -652,10 +637,8 @@ comments out the `dictionary.txt` argument with `#` just like in [level
 
 ## To be continued
 
-{% callout(type="note") %}
-
-I hope you enjoyed the walkthrough. When time permits, I intend to expand this
-post to include every level of OverTheWire Natas.
-
-Happy hacking!
-{% end %}
+> [!Note]
+> I hope you enjoyed the walkthrough. When time permits, I intend to expand this
+> post to include every level of OverTheWire Natas.
+>
+> Happy hacking!

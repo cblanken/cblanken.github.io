@@ -21,16 +21,14 @@ In this walkthrough I'm going to show the process for solving each challenge
 while also providing some insight into what each challenge is trying to teach
 and why it's useful. Keep an eye out for callouts like those below.
 
-{% callout(type="tip") %}
+> [!Tip]
+> Access to each level is made over SSH. The username will correspond to the
+> index of the level starting at 0. Always make sure you're logging into the
+> correct level!
+> 
+> If you're new to CTFs and wargames you may want to check out the [Bandit
+> wargame walkthrough](@/articles/OverTheWireBandit.md) first.
 
-Access to each level is made over SSH. The username will correspond to the
-index of the level starting at 0. Always make sure you're logging into the
-correct level!
-
-If you're new to CTFs and wargames you may want to check out the [Bandit
-wargame walkthrough](@/articles/OverTheWireBandit.md) first.
-
-{% end %}
 
 None of the Leviathan levels have any additional descriptions. Presumably,
 since they're relatively simple, any hints would probably give away the
@@ -56,19 +54,17 @@ be useful. For example, "password" or "flag".
 
 ![level 0 flag](/images/otw-leviathan/0_flag.png)
 
-{% callout(type="tip") %}
-
-This example is a bit contrived for the sake of the wargame, but this is a
-common tactic used by attackers. Searching a user's files with `grep` for
-things like usernames, passwords, bank or credit card details, and any other
-kind of sensitive information is one of the first things an attacker might do
-once they've compromised a user's account.
-
-It should go without saying that you should never store any passwords or other
+> [!Tip]
+> This example is a bit contrived for the sake of the wargame, but this is a
+> common tactic used by attackers. Searching a user's files with `grep` for
+> things like usernames, passwords, bank or credit card details, and any other
+> kind of sensitive information is one of the first things an attacker might do
+> once they've compromised a user's account.
+>
+> It should go without saying that you should never store any passwords or other
 sensitive information in plain text files if it can be avoided. Ideally use a
 password manager with secure encryption to store any digital account details.
 
-{% end %}
 
 ### Level 1
 
@@ -100,13 +96,10 @@ From the output of the above `ltrace`, we can see the parameters passed to the
 `strcmp` function call. The first is our test password, and the second is the
 target password that `check` is using to verify the input.
 
-{% callout(type="tip") %}
-
-The `ltrace` program can be quite useful to perform some initial analysis of a
-binary's execution before transitioning to more advanced tools like the `gdb`
-debugger.
-
-{% end %}
+> [!Tip]
+> The `ltrace` program can be quite useful to perform some initial analysis of a
+> binary's execution before transitioning to more advanced tools like the `gdb`
+> debugger.
 
 ### Level 2
 
@@ -141,15 +134,12 @@ Attempting to read another file for which we have read permissions, e.g.
 <FILEPATH>`  when the `access` function call succeeds where `<FILEPATH>` is
 whatever you pass as the first argument to `printfile`.
 
-{% callout(type="note") %}
-
-The above output was truncated since the `.bashrc` file is actually quite long.
-In fact, you might want to redirect stdout to `/dev/null` to only display the
-results from `ltrace`. Just to make it a bit more readable.
-
-![level 2 ltrace /dev/null output](/images/otw-leviathan/2_ltrace_dev_null.png)
-
-{% end %}
+> [!Note]
+> The above output was truncated since the `.bashrc` file is actually quite long.
+> In fact, you might want to redirect stdout to `/dev/null` to only display the
+> results from `ltrace`. Just to make it a bit more readable.
+> 
+> ![level 2 ltrace /dev/null output](/images/otw-leviathan/2_ltrace_dev_null.png)
 
 #### The setuid bit
 
@@ -171,28 +161,25 @@ path with a variable. This way the variable will be expanded when the path is
 passed to the `system` function, but will be interpreted literally by the call
 to `access`.
 
-{% callout(type="tip") %}
-
-When attacking the input of a program, always try to identify different points
-of entry. In this case there are two points at which the input path is passed
-into the program. The first is to the call to `access` and the second to
-`system`. Both of these functions process input differently. When you have
-multiple points like this without some sort of input validation or
-normalization, there's always an opportunity to disrupt the expected behavior
-of the program.
-
-On the flip-side of this, as a developer this showcases why input validation is
-such an important concept. Never implicitly trust user input.
-
-More specifically for this level, `system` should never be used in a setuid
-program and user input should never be passed directly to a call to `system`
-without sanitization. The [`system` manual
-page](https://www.man7.org/linux/man-pages/man3/system.3.html) explicitly warns
-against this practice due to the potential for compromising system security.
-
-![system manual caveat](/images/otw-leviathan/2_system_manual_caveat.png)
-
-{% end %}
+> [!Tip]
+> When attacking the input of a program, always try to identify different points
+> of entry. In this case there are two points at which the input path is passed
+> into the program. The first is to the call to `access` and the second to
+> `system`. Both of these functions process input differently. When you have
+> multiple points like this without some sort of input validation or
+> normalization, there's always an opportunity to disrupt the expected behavior
+> of the program.
+> 
+> On the flip-side of this, as a developer this showcases why input validation is
+> such an important concept. Never implicitly trust user input.
+> 
+> More specifically for this level, `system` should never be used in a setuid
+> program and user input should never be passed directly to a call to `system`
+> without sanitization. The [`system` manual
+> page](https://www.man7.org/linux/man-pages/man3/system.3.html) explicitly warns
+> against this practice due to the potential for compromising system security.
+> 
+> ![system manual caveat](/images/otw-leviathan/2_system_manual_caveat.png)
 
 #### Solution
 
@@ -345,10 +332,7 @@ Either way, know your tools. I think `ltrace` in particular is useful for
 understanding the actions of a binary without needing to resort to tools for
 debugging and reverse engineering like gdb or Ghidra.
 
-{% callout(type="warning") %}
-
-Don't forget to clean up any files you've created.
-
-`rm -rf /tmp/MY_TEMP_DIRECTORY`
-
-{% end %}
+> [!Warning] 
+> Don't forget to clean up any files you've created.
+> 
+> `rm -rf /tmp/MY_TEMP_DIRECTORY`

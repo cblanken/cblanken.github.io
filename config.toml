@@ -13,7 +13,9 @@ taxonomies = [
 ]
 
 [markdown]
+smart_punctuation = true
 bottom_footnotes = true
+github_alerts = true
 
 [markdown.highlighting]
 light_theme = "gruvbox-light-medium"
