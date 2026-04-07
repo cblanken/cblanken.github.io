@@ -18,9 +18,11 @@ tags = ["ctf", "infosec", "wargame", "OverTheWire", "Linux", "Git", "Vim", "cron
 
 In this walkthrough I'm going to show the process for solving each challenge while also providing some insight into what each challenge is trying to teach and why it's useful, so keep an eye out for callouts like those below.
 
-{% callout(type="note") %} Access to each Bandit level is made over SSH. The username will correspond to the index of the level starting at 0. Always make sure you're logging into the correct Bandit level! {% end %}
+> [!Note]
+> Access to each Bandit level is made over SSH. The username will correspond to the index of the level starting at 0. Always make sure you're logging into the correct Bandit level!
 
-{% callout(type="warning") %} If you're looking for the solution of a particular level, you are highly encouraged to attempt it on your own before following this walkthrough. You will learn some useful things regardless, but attempting it on your own first will help the knowledge stick better. I promise. {% end %}
+> [!Warning]
+> If you're looking for the solution of a particular level, you are highly encouraged to attempt it on your own before following this walkthrough. You will learn some useful things regardless, but attempting it on your own first will help the knowledge stick better. I promise.
 
 I have a few recommendations before getting started. Most of the OverTheWire Bandit levels provide links to potentially useful manual pages. Unfortunately the `man` pages can be somewhat cryptic, especially for beginners. For that reason I recommend the following steps to try to get unstuck when slogging through the `man` pages for any particular command.
 
@@ -50,7 +52,8 @@ Firstly, let's discuss what SSH is and how it's used day-to-day. SSH is a networ
 
 The most important thing you need to know about SSH is that it can be used to login to a computer system with a `username` and `password` just as if you were physically present. Except in this case it's another system accessible over the network. This is how it will be used over the course of the Bandit wargame as well as some of the other wargames by OverTheWire.
 
-{% callout(type="note") %} It's worth mentioning that SSH is usually (and preferably) used with an SSH key. More specifically a key-pair. A public key and a private key which are both needed to take advantage of the aforementioned public-key cryptography. I won't go into detail here, but don't worry there are a couple later levels that do utilize SSH keys, so I'll discuss them in more detail when we reach them. {% end %}
+> [!Note]
+> It's worth mentioning that SSH is usually (and preferably) used with an SSH key. More specifically a key-pair. A public key and a private key which are both needed to take advantage of the aforementioned public-key cryptography. I won't go into detail here, but don't worry there are a couple later levels that do utilize SSH keys, so I'll discuss them in more detail when we reach them.
 
 The prompt tells us that both the `username` and `password` are `bandit0`.
 
@@ -70,14 +73,15 @@ ssh ssh://bandit0@bandit.labs.overthewire.org:2220
 
 You should be greeted by a banner for the Bandit wargame and a prompt requesting entry of the `bandit0` password. Enter `bandit0` and you're ready to get started.
 
-{% callout(type="note") %} It isn't necessary to solve any of the Bandit levels, but I highly recommend researching DNS. It's intrinsic to how the internet operates and you'll likely encounter it again and again if you pursue any area of IT, software, or cybersecurity.
+> [!Note]
+> It isn't necessary to solve any of the Bandit levels, but I highly recommend researching DNS. It's intrinsic to how the internet operates and you'll likely encounter it again and again if you pursue any area of IT, software, or cybersecurity.
 
 Resources:
 
 - [What is DNS?](https://www.freecodecamp.org/news/what-is-dns-for-beginners/): an excellent intro to the basics of DNS by freeCodeCamp
 - [Implement DNS in a weekend](https://implement-dns.wizardzines.com): if you have some programming experience, I highly recommend following this walkthrough by Julia Evans
 
-{% end %}
+
 
 ## Walkthrough
 
@@ -194,11 +198,9 @@ There will be opportunities to demonstrate STDIO and IO redirection later, but f
 
    The glob is actually a part of a larger set of [filename expansion](https://www.gnu.org/software/bash/manual/bash.html#Filename-Expansion) features available in Bash. They're quite useful and we may see more of them in future levels.
 
-{% callout(type="tip") %}
+> [!Tip]
+> The main takeway from this level is that there are special characters that may change how commands are interpreted on the command line. Some of them will be built-in to whatever shell you're using, but some may just be conventions like the `-` character for STDIN and won't apply to every program. Here is a breakdown of the special characters used in the Bash shell that you might want to watch out for. [https://mywiki.wooledge.org/BashGuide/SpecialCharacters](https://mywiki.wooledge.org/BashGuide/SpecialCharacters)
 
-The main takeway from this level is that there are special characters that may change how commands are interpreted on the command line. Some of them will be built-in to whatever shell you're using, but some may just be conventions like the `-` character for STDIN and won't apply to every program. Here is a breakdown of the special characters used in the Bash shell that you might want to watch out for. [https://mywiki.wooledge.org/BashGuide/SpecialCharacters](https://mywiki.wooledge.org/BashGuide/SpecialCharacters)
-
-{% end %}
 
 ### Level 2
 
@@ -239,13 +241,11 @@ Just as before, there are a few ways to get around this.
    [REDACTED PASSWORD]
    ```
 
-{% callout(type="tip") %}
+> [!Tip]
+> Recognize that it's sometimes necessary to escape characters within filenames and other arguments.
+>
+> Most Linux users will avoid naming files with any special characters, but sometimes you'll still run into them. This is especially true with files created on Windows where spaces inside file and directory names are much more common.
 
-Recognize that it's sometimes necessary to escape characters within filenames and other arguments.
-
-Most Linux users will avoid naming files with any special characters, but sometimes you'll still run into them. This is especially true with files created on Windows where spaces inside file and directory names are much more common.
-
-{% end %}
 
 ### Level 3
 
@@ -273,22 +273,20 @@ $ cat inhere/...Hiding-From-You
 [REDACTED PASSWORD]
 ```
 
-{% callout(type="note") %}
+> [!Note]
+> The term "dotfile" is also frequently used to refer to a user's personal configuration files. This is because many configuration files follow the leading dot `.` convention, so they don't clutter up directory listings.
 
-The term "dotfile" is also frequently used to refer to a user's personal configuration files. This is because many configuration files follow the leading dot `.` convention, so they don't clutter up directory listings.
+> [!Tip]
+> Some systems will have aliases for the `ls` command as well, with various flags enabled. Here a few common ones.
+> 
+> - `ll` for `ls -AlhF` to list all files in a human-readable, long format
+> - `la` for `ls -A` to list all files excluding `.` and `..`
+> - `l` for `ls -CF` to list files in a column format
+> - `lsd` for `ls --group-directories-first`
+> 
+> See [this DigitalOcean article](https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions) to learn more about common aliases and how to configure your own.
 
-{% end %}
 
-{% callout(type="tip") %} Some systems will have aliases for the `ls` command as well, with various flags enabled. Here a few common ones.
-
-- `ll` for `ls -AlhF` to list all files in a human-readable, long format
-- `la` for `ls -A` to list all files excluding `.` and `..`
-- `l` for `ls -CF` to list files in a column format
-- `lsd` for `ls --group-directories-first`
-
-See [this DigitalOcean article](https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions) to learn more about common aliases and how to configure your own.
-
-{% end %}
 
 ### Level 4
 
@@ -341,11 +339,9 @@ $ cat ./inhere/-file07
 [REDACTED PASSWORD]
 ```
 
-{% callout(type="tip") %}
+> [!Tip]
+> Always keep an eye out for opportunities to use globbing. Especially if you're running commands over a bunch of files.
 
-Always keep an eye out for opportunities to use globbing. Especially if you're running commands over a bunch of files.
-
-{% end %}
 
 ### Level 5
 
@@ -366,16 +362,14 @@ $ find -readable -size 1033c -not -executable
 
 Note `-size` and `-not` flags. The `c` suffix for the `-size` argument is used to indicate a size in bytes. The other available suffixes are all available in the [find man page](https://manpages.ubuntu.com/manpages/noble/man1/find.1.html). Additionally, the `-not` flag negates the next expression, thus locating any files that aren't executable in this example.
 
-{% callout(type="note") %}
+> [!Note]
+> In this case the content and size of the file are sufficient to uniquely identify the file and the `-not -executable` isn't strictly necessary.
+> 
+> ```
+> $ find -readable -size 1033c
+> ./inhere/maybehere07/.file2
+> ```
 
-In this case the content and size of the file are sufficient to uniquely identify the file and the `-not -executable` isn't strictly necessary.
-
-```
-$ find -readable -size 1033c
-./inhere/maybehere07/.file2
-```
-
-{% end %}
 
 Once again, `cat` the file to get the password.
 
@@ -483,13 +477,11 @@ millionth       [REDACTED PASSWORD]
 
 Grep and more generally [regular expressions](https://en.wikipedia.org/wiki/Regular_expression) (regex) are extremely useful. You'll find many applications have integrated support for text search via regex. In particular text editors, word processors, and programming IDEs.
 
-{% callout(type="tip") %}
+> [!Tip]
+> To explore regex more I highly recommend reading through the [Regex Quick Start Guide](https://www.regular-expressions.info/quickstart.html) from [regular-expression.info](https://www.regular-expressions.info) to get a feel for what's possible with regex and then follow that up with some experimentation on [regex101.com](https://regex101.com). This is a tool that visualizes regex matches. Drop any text you want into it and try out all kinds of search patterns. Try to match words, letters, various combinations of upper and lowercase letters, punctuation, etc. Seeing regex in action and observing precisely what matches with different patterns will give you a much better intuition for what's possible than anything I could write here.
+> 
+> Regex can get very complicated very quickly, so regex101 is also a great tool for debugging your regex. Definitely give it a bookmark, it'll be a life saver. Trust me.
 
-To explore regex more I highly recommend reading through the [Regex Quick Start Guide](https://www.regular-expressions.info/quickstart.html) from [regular-expression.info](https://www.regular-expressions.info) to get a feel for what's possible with regex and then follow that up with some experimentation on [regex101.com](https://regex101.com). This is a tool that visualizes regex matches. Drop any text you want into it and try out all kinds of search patterns. Try to match words, letters, various combinations of upper and lowercase letters, punctuation, etc. Seeing regex in action and observing precisely what matches with different patterns will give you a much better intuition for what's possible than anything I could write here.
-
-Regex can get very complicated very quickly, so regex101 is also a great tool for debugging your regex. Definitely give it a bookmark, it'll be a life saver. Trust me.
-
-{% end %}
 
 ### Level 8
 
@@ -633,21 +625,21 @@ nR F
 
 On the last line of the above output, you'll find the password to the next level.
 
-{% callout(type="tip") %}
+> [!Tip]
+>
+> It's possible for `grep` to output the precise matching text instead of each entire line. The `-o` flag is needed to do this. It tells grep to only output the matched pattern.
+> 
+> ```console
+> $ grep -a -o '=== \w*' data.txt
+> === the
+> === passwordi
+> === is
+> === [REDACTED PASSWORD]
+> ```
+> 
+> This gives a much clearer picture of the password without all the surrounding binary data.
 
-It's possible for `grep` to output the precise matching text instead of each entire line. The `-o` flag is needed to do this. It tells grep to only output the matched pattern.
 
-```
-$ grep -a -o '=== \w*' data.txt
-=== the
-=== passwordi
-=== is
-=== [REDACTED PASSWORD]
-```
-
-This gives a much clearer picture of the password without all the surrounding binary data.
-
-{% end %}
 
 ### Level 10
 
@@ -662,17 +654,16 @@ $ base64 -d data.txt
 The password is [REDACTED PASSWORD]
 ```
 
-{% callout(type="note") %}
+> [!Note]
+> Be sure you understand what _encoding_ is in this context.
+> 
+> [Base64](https://en.wikipedia.org/wiki/Base64) is just one scheme of many to convert binary data into printable characters i.e. alphanumeric characters with the addition of the equal sign `=`. In fact, that equal sign `=` is used for padding the end of encoded text, so it's often a dead giveaway that some text was Base64 encoded. For example, the word "password" when Base64 encoded is `cGFzc3dvcmQ=`.
+> 
+> Base64 encoded text is extremely common on the web and you're likely to come across it at some point, so it may behoove you to read up on it. FreeCodeCamp has an [excellent article](https://www.freecodecamp.org/news/what-is-base64-encoding/) that gives a good overview of how Base64 works and what it's used for.
+> 
+> You're less likely see other forms of binary to text encoding, but feel free to [read more](https://en.wikipedia.org/wiki/Binary-to-text_encoding).
 
-Be sure you understand what _encoding_ is in this context.
 
-[Base64](https://en.wikipedia.org/wiki/Base64) is just one scheme of many to convert binary data into printable characters i.e. alphanumeric characters with the addition of the equal sign `=`. In fact, that equal sign `=` is used for padding the end of encoded text, so it's often a dead giveaway that some text was Base64 encoded. For example, the word "password" when Base64 encoded is `cGFzc3dvcmQ=`.
-
-Base64 encoded text is extremely common on the web and you're likely to come across it at some point, so it may behoove you to read up on it. FreeCodeCamp has an [excellent article](https://www.freecodecamp.org/news/what-is-base64-encoding/) that gives a good overview of how Base64 works and what it's used for.
-
-You're less likely see other forms of binary to text encoding, but feel free to [read more](https://en.wikipedia.org/wiki/Binary-to-text_encoding).
-
-{% end %}
 
 ### Level 11
 
@@ -695,13 +686,11 @@ cat data.txt | tr "a-zA-Z" "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM
 cat data.txt | tr "a-zA-Z" "n-za-mN-ZA-M"
 ```
 
-{% callout(type="tip") %}
+> [!Tip]
+> While the `tr` command is cool and all, there's an even cooler tool you should be using when investigating any challenge related to cryptography. And that's [CyberChef](https://gchq.github.io/CyberChef). CyberChef has a huge number of useful features for transforming data and supports hundreds of data formats and encoding schemes.
+> 
+> Check out the [CyberChef ROT13 cipher solver](<https://gchq.github.io/CyberChef/#recipe=ROT13(true,true,false,13)>).
 
-While the `tr` command is cool and all, there's an even cooler tool you should be using when investigating any challenge related to cryptography. And that's [CyberChef](https://gchq.github.io/CyberChef). CyberChef has a huge number of useful features for transforming data and supports hundreds of data formats and encoding schemes.
-
-Check out the [CyberChef ROT13 cipher solver](<https://gchq.github.io/CyberChef/#recipe=ROT13(true,true,false,13)>).
-
-{% end %}
 
 ### Level 12
 
@@ -737,13 +726,11 @@ data: gzip compressed data, was "data2.bin", last modified: Thu Sep 19 07:08:15 
 
 The result from `file` identifies it as "gzip compressed data". To decompress the archive, use the `gunzip` command.
 
-{% callout(type="warning") %}
+> [!Warning]
+> Be aware, that the archive utilities like `gunzip` may require particular file extensions when decompressing files. For example, `.gzip` or `.gz`. Otherwise you may get an error like this.
+> 
+> `gzip: data: unknown suffix -- ignored`
 
-Be aware, that the archive utilities like `gunzip` may require particular file extensions when decompressing files. For example, `.gzip` or `.gz`. Otherwise you may get an error like this.
-
-`gzip: data: unknown suffix -- ignored`
-
-{% end %}
 
 To complete this challenge, you must repeat this process of decompressing or extracting data into a new format, then verifying the new format with `file` eight times to reach the original flag file content.
 
@@ -788,46 +775,45 @@ Each program is worth exploring, but for this challenge we'll only need `ssh`. H
 
 After logging in to `bandit13`, you should find the private SSH key mentioned in the prompt at `/home/bandit13/sshkey.private`. Copy that file to your primary host. You can simply copy paste the text if you wish, or use something like [scp](https://manpages.ubuntu.com/manpages/noble/en/man1/scp.1.html).
 
-{% callout(type="warning") %}
+> [!Warning]
+> Watch out! The `ssh` command requires private key files to have appropriate permissions. If they aren't correct you may receive an error message like this.
+> 
+> ```
+> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+> @         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+> Permissions 0644 for 'sshkey.private' are too open.
+> It is required that your private key files are NOT accessible by others.
+> This private key will be ignored.
+> Load key "sshkey.private": bad permissions
+> ```
+> 
+> ---
+> 
+> _A brief reminder of the octal permissions._
+> 
+> | Octal Number | Permission Type        | Symbols |
+> | ------------ | ---------------------- | ------- |
+> | 0            | No permissions         | ---     |
+> | 1            | Execute                | --x     |
+> | 2            | Write                  | -w-     |
+> | 3            | Write + Execute        | -wx     |
+> | 4            | Read                   | r--     |
+> | 5            | Read + Execute         | r-x     |
+> | 6            | Read + Write           | rw-     |
+> | 7            | Read + Write + Execute | rwx     |
+> 
+> As the error mentions, the permissions `0644` are too open. That's because private key files should only be readable and/or writeable by the user they belong to. Usually that means either `600` or `400`, though `400` is a bit strict and won't allow the file to be edited.
+> 
+> Setting the permissions to `600` gives the key file read and write access for the user, and no permissions for either the group or others.
+> 
+> ```bash
+> chmod 600 sshkey.private
+> ```
+> 
+> Now we're ready to connect to `bandit14`.
 
-Watch out! The `ssh` command requires private key files to have appropriate permissions. If they aren't correct you may receive an error message like this.
 
-```
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-Permissions 0644 for 'sshkey.private' are too open.
-It is required that your private key files are NOT accessible by others.
-This private key will be ignored.
-Load key "sshkey.private": bad permissions
-```
-
----
-
-_A brief reminder of the octal permissions._
-
-| Octal Number | Permission Type        | Symbols |
-| ------------ | ---------------------- | ------- |
-| 0            | No permissions         | ---     |
-| 1            | Execute                | --x     |
-| 2            | Write                  | -w-     |
-| 3            | Write + Execute        | -wx     |
-| 4            | Read                   | r--     |
-| 5            | Read + Execute         | r-x     |
-| 6            | Read + Write           | rw-     |
-| 7            | Read + Write + Execute | rwx     |
-
-As the error mentions, the permissions `0644` are too open. That's because private key files should only be readable and/or writeable by the user they belong to. Usually that means either `600` or `400`, though `400` is a bit strict and won't allow the file to edited.
-
-So, setting the permissions to `600` would give the key file read and write access for the user, and no permissions for either the group or others.
-
-```bash
-chmod 600 sshkey.private
-```
-
-Now we're ready to connect to `bandit14`.
-
-{% end %}
 
 To use a key file with `ssh`, the `-i` flag can be used.
 
@@ -847,15 +833,14 @@ SSH is the most common protocol used for remotely administrating Linux and Unix-
 
 [^1]: Just like almost every cryptographic system, it's possible for SSH to be used incorrectly, thus [compromising it's security](https://sandflysecurity.com/blog/ssh-key-compromise-risks-and-countermeasures/).
 
-{% callout(type="note") %}
+> [!Note]
+> In the solution above, we just used the `-i` flag to specify the private key file. However, anyone using `ssh` on a regular basis will rightly tell you to consider configuring ssh on your system for a much simpler workflow.
+> 
+> If you're connecting to many hosts via ssh, it is much more convenient to configure the [ssh-agent](https://manpages.ubuntu.com/manpages/noble/en/man1/ssh-agent.1.html) to handle your ssh keys automatically so you don't need to specifiy the key file with the `-i` flag each time.
+> 
+> You may also want to combine this with host-specific configurations. This can be done with a `config` file usually at `~/.ssh/config`. Check out the [ssh_config manual](https://manpages.ubuntu.com/manpages/noble/en/man5/ssh_config.5.html) for more details.
+ 
 
-In the solution above, we just used the `-i` flag to specify the private key file. However, anyone using `ssh` on a regular basis will rightly tell you to consider configuring ssh on your system for a much simpler workflow.
-
-If you're connecting to many hosts via ssh, it is much more convenient to configure the [ssh-agent](https://manpages.ubuntu.com/manpages/noble/en/man1/ssh-agent.1.html) to handle your ssh keys automatically so you don't need to specifiy the key file with the `-i` flag each time.
-
-You may also want to combine this with host-specific configurations. This can be done with a `config` file usually at `~/.ssh/config`. Check out the [ssh_config manual](https://manpages.ubuntu.com/manpages/noble/en/man5/ssh_config.5.html) for more details.
-
-{% end %}
 
 ### Level 14
 
@@ -1109,16 +1094,16 @@ bandit18@bandit.labs.overthewire.org's password:
 [REDACTED LEVEL 18 PASSWORD]
 ```
 
-{% callout(type="note") %} This command should be executed from your own system, not from the system hosting Bandit i.e. while logged into one of the previous levels.
+> [!Note]
+> This command should be executed from your own system, not from the system hosting Bandit i.e. while logged into one of the previous levels.
+> 
+> I've configured my SSH client to automatically use port `2220` as required for the Bandit wargame which is why I haven't explicitly provided the port in this example. To do the same, add the following line to your `~/.ssh/config` file or provide the port number via the `-p` flag.
+> 
+> ```
+> Host bandit.labs.overthewire.org
+    > port 2220
+> ```
 
-I've configured my SSH client to automatically use port `2220` as required for the Bandit wargame which is why I haven't explicitly provided the port in this example. To do the same, add the following line to your `~/.ssh/config` file or provide the port number via the `-p` flag.
-
-```
-Host bandit.labs.overthewire.org
-    port 2220
-```
-
-{% end %}
 
 ### Level 19
 
@@ -1468,7 +1453,8 @@ There's a lot more to Bash and shell scripting, but this should be enough to get
 
 If you're planning to do any real work with Bash scripts, definitely read through the [Bash scripting quirks & safety tips](https://jvns.ca/blog/2017/03/26/bash-quirks/) article by Julia Evans. It'll walk you through some of the common gotchas.
 
-{% callout(type="warning") %} Don't forget to make any script you write executable. On most systems files aren't created with the execute (x) permission. So you'll need to modify the permissions with a command like `chmod +x`. This will enable any user to execute the script. {% end %}
+> [!Warning]
+> Don't forget to make any script you write executable. On most systems files aren't created with the execute (x) permission. So you'll need to modify the permissions with a command like `chmod +x`. This will enable any user to execute the script.
 
 #### Solution
 
@@ -2222,29 +2208,30 @@ And finally, we can use the `git push` command to push our new commit to the rem
 $ git push origin master
 ```
 
-{% callout(type="warning") %} Watch out! If the content of `key.txt` does not match the prescribed text _exactly_ you may receive an error like this.
+> [!Warning]
+> Watch out! If the content of `key.txt` does not match the prescribed text _exactly_ you may receive an error like this.
+>
+> ```hl_lines=7-13
+> Enumerating objects: 4, done.
+> Counting objects: 100% (4/4), done.
+> Delta compression using up to 2 threads
+> Compressing objects: 100% (2/2), done.
+> Writing objects: 100% (3/3), 323 bytes | 323.00 KiB/s, done.
+> Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+> remote: ### Attempting to validate files... ####
+> remote:
+> remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+> remote:
+> remote: Wrong!
+> remote:
+> remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+> remote:
+> To ssh://localhost:2220/home/bandit31-git/repo
+ > ! [remote rejected] master -> master (pre-receive hook declined)
+> error: failed to push some refs to 'ssh://localhost:2220/home/bandit31-git/repo'
+> ```
 
-```hl_lines=7-13
-Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 2 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 323 bytes | 323.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
-remote: ### Attempting to validate files... ####
-remote:
-remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
-remote:
-remote: Wrong!
-remote:
-remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
-remote:
-To ssh://localhost:2220/home/bandit31-git/repo
- ! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to 'ssh://localhost:2220/home/bandit31-git/repo'
-```
 
-{% end %}
 
 If everything is in order, you'll get some feedback from the git server which will include the next password.
 

@@ -13,12 +13,14 @@ taxonomies = [
 ]
 
 [markdown]
-highlight_code = true
+smart_punctuation = true
 bottom_footnotes = true
-extra_syntaxes_and_themes = [ 
-    "syntaxes/",
-    "syntaxes/http/"
-]
+github_alerts = true
+
+[markdown.highlighting]
+light_theme = "gruvbox-light-medium"
+dark_theme = "kanagawa-dragon"
+error_on_missing_language = false
 
 [extra]
 path_language_resources = "i18n.toml"

@@ -166,9 +166,8 @@ picoCTF{h4un71ng_p457_5113beab}
 
 And there's our flag.
 
-{% callout(type="note") %}
-Don't forget to unmount the image once you're done!
-{% end %}
+> [!Note]
+> Don't forget to unmount the image once you're done!
 
 ```
 $ sudo umount ./mnt/
