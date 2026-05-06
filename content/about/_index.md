@@ -1,6 +1,6 @@
 +++
-title = "cblanken.dev"
-description = "Software Dev | IT Enthusiast | Lifelong Learner"
+title = "About me"
+description = "Software Developer | Linux Lover | Lifelong Learner"
 template = "about.html"
 
 [extra]
