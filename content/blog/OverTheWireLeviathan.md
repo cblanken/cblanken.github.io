@@ -27,7 +27,7 @@ and why it's useful. Keep an eye out for callouts like those below.
 > correct level!
 > 
 > If you're new to CTFs and wargames you may want to check out the [Bandit
-> wargame walkthrough](@/articles/OverTheWireBandit.md) first.
+> wargame walkthrough](@/blog/OverTheWireBandit.md) first.
 
 
 None of the Leviathan levels have any additional descriptions. Presumably,

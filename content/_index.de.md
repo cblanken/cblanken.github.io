@@ -1,4 +1,4 @@
 +++
 render = true
-redirect_to = "de/articles"
+redirect_to = "de/blog"
 +++

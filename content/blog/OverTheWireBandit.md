@@ -2298,8 +2298,8 @@ Congratulations! You made it! I hope you had fun working through all these chall
 
 If this wargame has piqued your interest I've also written a couple other walkthroughs.
 
-- [OverTheWire Natas](@/articles/OverTheWireNatas.md)
-- [OverTheWire Leviathan](@/articles/OverTheWireLeviathan.md)
+- [OverTheWire Natas](@/blog/OverTheWireNatas.md)
+- [OverTheWire Leviathan](@/blog/OverTheWireLeviathan.md)
 
 If the OverTheWire wargames aren't quite your cup of tea though, then I highly recommend the [picoCTF](https://picoctf.org) platform run by Carnegie Mellon University. They host an annual CTF event, but challenges from previous years are all available to practice. The picoCTF challenges cover a wide range of topics and levels of difficulty so that anyone can find something interesting.
 
