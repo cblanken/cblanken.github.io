@@ -1,9 +1,0 @@
-+++
-title = "Journal"
-description = "Short form thoughts, ideas, and observations."
-template = "index.html"
-generate_feeds = true
-insert_anchor_links = "heading"
-sort_by = "date"
-paginate_by = 20
-+++

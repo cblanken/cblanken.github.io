@@ -9,5 +9,5 @@ disable_post_stats = true
 
 - [ALL (combines all feeds below)](/rss.xml)
   - [Blog](/blog/rss.xml)
-  - [Journal](/journal/rss.xml)
+  - [TIL](/til/rss.xml)
   - [Projects](/projects/rss.xml)

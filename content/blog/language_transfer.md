@@ -6,6 +6,7 @@ description = "Musings on Mihalis Eleftheriou's Thinking Method"
 
 [extra]
 toc = true
+show_only_description = true
 
 [taxonomies]
 tags = ["languages", "teaching", "learning"]

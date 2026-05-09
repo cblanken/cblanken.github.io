@@ -4,5 +4,5 @@ description = "Archive"
 template = "archive.html"
 
 [extra]
-archive_dirs = ["projects", "blog", "til", "journal"]
+archive_dirs = ["projects", "blog", "til"]
 +++
