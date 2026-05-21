@@ -1,6 +1,7 @@
 +++
 title = "Faillock"
 date = 2026-05-15
+updated = "2026-5-19"
 description = "My PC locked me out today."
 
 [extra]
@@ -10,9 +11,9 @@ toc = true
 tags = ["Linux", "authentication", "faillock", "passwords"]
 +++
 
-After over eight years of using primarly Linux as my OS of choice, today was the first time that my system has locked me out for failed password attempts. It wasn't that I had forgotten by password. I was simply in a hurry and made a typo three times in row, and, _apparently_, the [`pam_faillock.so` PAM module](https://www.man7.org/linux/man-pages/man8/pam_faillock.8.html) is configured to lockout the user for _fifteen_ minutes after three failed login attempts. At least on Arch Linux (btw) anyway. 
+After over eight years of using primarily Linux as my OS of choice, today was the first time that my system has locked me out for failed password attempts. It wasn't that I had forgotten by password. I was simply in a hurry and made a typo three times in row, and, _apparently_, the [`pam_faillock.so` PAM module](https://www.man7.org/linux/man-pages/man8/pam_faillock.8.html) is configured to lockout the user for _fifteen_ minutes after three failed login attempts. At least on Arch Linux (btw) anyway.
 
-If you're like me, and think that lockout policy is just a _little_ aggressive, then look no further. I'll get you sorted. The default location for the `pam_faillock.so` module is `/etc/security/faillock.conf`, and in that file you'll find an entry titled `deny` set to 3.
+If you're like me, and think that lockout policy is just a _little_ aggressive, then look no further. I'll get you sorted. The default location for the `pam_faillock.so` module config is `/etc/security/faillock.conf`, and in that file you'll find an entry titled `deny` set to 3.
 
 ```conf
 # Deny access if the number of consecutive authentication failures
