@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=f74b25acf4b38f82b956">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/default-auto.css?h=f6bc24f1a9a1686b3a6c">
+
+    <meta name="description" content="Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF">
+
+    <meta property="og:description" content="Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/blog/janken/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the Janken challenge from the HTB Apocalypse 2023 CTF">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/blog/janken/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog">Blog</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;til">TIL</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#title">HTB Apocalypse 2023 - Janken</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#problem-description">Problem description</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#analysis">Analysis</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#solution">Solution</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;janken&#x2F;#flag">Flag</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/blog/janken/">HTB Apocalypse 2023 - Janken</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Mar 25, 2023 </span>
+</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>1 minute</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/c/"
+    >#C</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h2 id="problem-description"><a class="zola-anchor" href="#problem-description" aria-label="Anchor link for: problem-description">Problem description</a></h2>
+<p>Janken is an <em>easy</em> rated Misc challenge.</p>
+<blockquote>
+<p>As you approach an ancient tomb, you’re met with a wise guru who guards its entrance. In order to proceed, he challenges you to a game of Janken, a variation of rock paper scissors with a unique twist. But there’s a catch: you must win 100 rounds in a row to pass. Fail to do so, and you’ll be denied entry.</p>
+</blockquote>
+<h2 id="analysis"><a class="zola-anchor" href="#analysis" aria-label="Anchor link for: analysis">Analysis</a></h2>
+<p>Analyzing the decompilation of the binary (<code>janken</code>), we find a loop for the 100 rounds mentioned in the prompt running the following <code>game</code> function.<br>
+<img src="/images/janken_ghidra_1.png" alt="ghidra-1" /></p>
+<h2 id="solution"><a class="zola-anchor" href="#solution" aria-label="Anchor link for: solution">Solution</a></h2>
+<p>Here’s an excerpt of the pwntools script used to solve the challenge.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 1</span><span>io</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#076678, #8BA4B0);"> start</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 2</span><span style="color: light-dark(#076678, #8BA4B0);">info</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">io</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">recvuntil</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">b</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">&gt;&gt; </span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> #</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> prompt</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 3</span><span>io</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">sendline</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">b</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">1</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 4</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 5</span><span>rps</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> [</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">rock</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">scissors</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">paper</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 6</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 7</span><span>rps_win</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> {</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 8</span><span style="color: light-dark(#7C6F64, #8A9A7B);">    &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">rock</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">paper</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 9</span><span style="color: light-dark(#7C6F64, #8A9A7B);">    &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">paper</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">scissors</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">10</span><span style="color: light-dark(#7C6F64, #8A9A7B);">    &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">scissors</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">rock</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">11</span><span style="color: light-dark(#7C6F64, #9E9B93);">}</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">12</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">13</span><span style="color: light-dark(#9D0006, #8992A7);">def</span><span style="color: light-dark(#427B58, #8BA4B0);"> wait_for_next_second</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#076678, #C5C9C5);">epoch_time</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">14</span><span style="color: light-dark(#9D0006, #8992A7);">    while</span><span style="color: light-dark(#B57614, #8EA4A2);"> int</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">time</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">time</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &lt;=</span><span> epoch_time</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">15</span><span>        time</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">sleep</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#8F3F71, #A292A3);">0.05</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">16</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">17</span><span style="color: light-dark(#9D0006, #8992A7);">for</span><span> _i</span><span style="color: light-dark(#9D0006, #8992A7);"> in</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> range</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#8F3F71, #A292A3);">0</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#8F3F71, #A292A3);"> 99</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">18</span><span>    epoch_time</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> epoch_time</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> time</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">time</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> #</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> time before asking for prompt</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">19</span><span style="color: light-dark(#9D0006, #8992A7);">    if</span><span> epoch_time</span><span style="color: light-dark(#427B58, #C4B28A);"> -</span><span style="color: light-dark(#B57614, #8EA4A2);"> int</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">epoch_time</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &gt;</span><span style="color: light-dark(#8F3F71, #A292A3);"> 0.8</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">20</span><span style="color: light-dark(#076678, #8BA4B0);">        wait_for_next_second</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">epoch_time</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">21</span><span style="color: light-dark(#076678, #8BA4B0);">    info</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">io</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">recvuntil</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">b</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">&gt;&gt; </span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> #</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> wait for prompt</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">22</span><span>    time2</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> time</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">time</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">23</span><span>    rand_io</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#076678, #8BA4B0);"> process</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">./rand</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#9D0006, #8992A7);"> f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">epoch_time</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">24</span><span>    r</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#B57614, #8EA4A2);"> int</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">rand_io</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">readline</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">strip</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">25</span><span>    enemy_answer</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> rps</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span>r</span><span style="color: light-dark(#427B58, #C4B28A);"> %</span><span style="color: light-dark(#8F3F71, #A292A3);"> 3</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">26</span><span>    answer</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> rps_win</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span>enemy_answer</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">27</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">28</span><span style="color: light-dark(#076678, #8BA4B0);">    info</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">Sending result: </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">answer</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">29</span><span>    time3</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> time</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">time</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> #</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> time before sending response</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">30</span><span>    io</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">sendline</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#B57614, #8EA4A2);">bytes</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">answer</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#076678, #C5C9C5);"> encoding</span><span style="color: light-dark(#427B58, #C4B28A);">=</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">utf-8</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">31</span><span>    time4</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span> time</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">time</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> #</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> time after sending response</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">32</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">33</span><span style="color: light-dark(#AF3A03, #8BA4B0);">    print</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">_i</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">: Time delta: </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">epoch_time</span><span style="color: light-dark(#AF3A03, #8992A7);">:.3f</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">, </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">time2</span><span style="color: light-dark(#AF3A03, #8992A7);">:.3f</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">, </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">time2</span><span style="color: light-dark(#427B58, #C4B28A);"> -</span><span style="color: light-dark(#504945, #8BA4B0);"> epoch_time</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#AF3A03, #8992A7);">:.3f</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">, </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">time4</span><span style="color: light-dark(#427B58, #C4B28A);">-</span><span style="color: light-dark(#504945, #8BA4B0);">time3</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#AF3A03, #8992A7);">:3f</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">34</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">35</span><span>io</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">interactive</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre><h1 id="flag"><a class="zola-anchor" href="#flag" aria-label="Anchor link for: flag">Flag</a></h1>
+<p><img src="/images/janken_get_flag.png" alt="get-flag" /><br>
+We have our flag! <code>HTB{r0ck_p4p3R_5tr5tr_l0g1c_buG}</code></p>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/blog/einpfundmails/">
+        <span class="button__text">KitCTF 2022 - ein-pfund-mails</span>
+      </a>
+    </span>
+     
+    <span class="button next">
+      <a href="https://www.cblanken.dev/blog/overthewirebandit/">
+        <span class="button__text">OverTheWire - Bandit</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2026
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

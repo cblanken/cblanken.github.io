@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+    
+
+
+<head>
+    
+    
+    
+    
+    
+
+    <title>cblanken.dev</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://www.cblanken.dev/style.css?h=f74b25acf4b38f82b956">
+    <link rel="stylesheet" href="https://www.cblanken.dev/color/default-auto.css?h=f6bc24f1a9a1686b3a6c">
+
+    <meta name="description" content="Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF">
+
+    <meta property="og:description" content="Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF">
+    <meta property="og:title" content="cblanken.dev">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cblanken.dev/blog/superguesser/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Writeup for the Super Guesser challenge from the Cryptoverse 2022 CTF">
+    <meta name="twitter:title" content="cblanken.dev">
+    <meta property="twitter:domain" content="www.cblanken.dev">
+    <meta property="twitter:url" content="https://www.cblanken.dev/blog/superguesser/">
+
+        <!-- Umami Analytics -->
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="e421f4ef-172d-42f3-bc26-4bcedb0359b0"></script>
+    
+        <link rel="shortcut icon" type="image/svg" href="/favicon.svg">
+    
+    </head>
+
+<body>
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://www.cblanken.dev" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            cblanken.dev
+                        
+                    </div>
+                </a>
+            </div>
+            <div id="change-lang" class="logo">
+                <select>
+                    <button>
+                            <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="796 796 200 200" enable-background="new 796 796 200 200" xml:space="preserve"> <g> <path d="M973.166,818.5H818.833c-12.591,0-22.833,10.243-22.833,22.833v109.333c0,12.59,10.243,22.833,22.833,22.833h154.333 c12.59,0,22.834-10.243,22.834-22.833V841.333C996,828.743,985.756,818.5,973.166,818.5z M896,961.5h-77.167 c-5.973,0-10.833-4.859-10.833-10.833V841.333c0-5.974,4.86-10.833,10.833-10.833H896V961.5z M978.58,872.129 c-0.547,9.145-5.668,27.261-20.869,39.845c4.615,1.022,9.629,1.573,14.92,1.573v12c-10.551,0-20.238-1.919-28.469-5.325 c-7.689,3.301-16.969,5.325-28.125,5.325v-12c5.132,0,9.924-0.501,14.366-1.498c-8.412-7.016-13.382-16.311-13.382-26.78h11.999 c0,8.857,5.66,16.517,14.884,21.623c4.641-2.66,8.702-6.112,12.164-10.351c5.628-6.886,8.502-14.521,9.754-20.042h-49.785v-12 h22.297v-11.986h12V864.5h21.055c1.986,0,3.902,0.831,5.258,2.28C977.986,868.199,978.697,870.155,978.58,872.129z"/> <g> <g> <path d="M839.035,914.262l-4.45,11.258h-15.971l26.355-61.09h15.971l25.746,61.09h-16.583l-4.363-11.258H839.035z M852.475,879.876l-8.902,22.604h17.629L852.475,879.876z"/> </g> </g> </g> </svg>
+                    </button>
+                    
+                     
+                        
+                            
+                        
+                        <option value="">EN</option>
+                     
+                        
+                            
+                        
+                        <option value="de">DE</option>
+                    
+                    <script>
+                        let a;
+                        document.querySelector("#change-lang").addEventListener("change", e => {
+                            window.location = `/${e.target.value}`;
+                        });
+                    </script>
+                </select>
+            </div>
+        </div>
+
+        
+        
+    
+    
+        
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+                    
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+                
+                    
+                        
+                    
+                
+
+                
+
+                
+            
+
+            
+
+            
+    
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;about">About</a>
+                        
+                    
+                </li>
+            
+                <li  class="active" >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog">Blog</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;til">TIL</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;projects">Projects</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;archive">Archive</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;tags">Tags</a>
+                        
+                    
+                </li>
+            
+                <li >
+                    
+                        
+                            
+                        
+
+                        
+                            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;feeds">RSS</a>
+                        
+                    
+                </li>
+            
+            </ul>
+        </nav>
+    
+
+    
+
+        
+
+    </header>
+    
+
+     
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+    },
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script type="text/javascript" src="/js/mathjax.js"></script>
+
+
+<div class="post">
+  
+  <div class="toc-container">
+    <div class="toc">
+      <div class="toc-header">Table of Contents</div>
+      <div class="toc-title">
+        <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;superguesser&#x2F;#title">Cryptoverse 2022 - Super Guesser</a>
+      </div>
+      <div class="toc-items-container">
+        <ol class="toc-items">
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;superguesser&#x2F;#problem-description">Problem description</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;superguesser&#x2F;#analysis">Analysis</a>
+            <ol>
+              
+              <li class="toc-item">
+                <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;superguesser&#x2F;#bad-decompilation">Bad Decompilation?</a>
+                <ol>
+                  
+                </ol>
+              </li>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;superguesser&#x2F;#solution">Solution</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+          <li class="toc-item">
+            <a href="https:&#x2F;&#x2F;www.cblanken.dev&#x2F;blog&#x2F;superguesser&#x2F;#flag">Flag</a>
+            <ol>
+              
+            </ol>
+          </li>
+          
+        </ol>
+      </div>
+    </div>
+  </div>
+   
+<h1 id="title" class="post-title">
+  <a href="https://www.cblanken.dev/blog/superguesser/">Cryptoverse 2022 - Super Guesser</a>
+</h1>
+ 
+<div class="post-meta-inline">
+  <div>
+    <div class="post-sub-title">Published</div>
+    <div>
+<span class="post-date"> Oct 26, 2022 </span>
+</div>
+  </div>
+  
+  <div>
+    <div class="post-sub-title">Last edited</div>
+    <div>Nov 02, 2022</div>
+  </div>
+  
+
+  <div>
+    <div class="post-sub-title">Reading time</div>
+    
+    <div>5 minutes</div>
+    
+  </div>
+</div>
+
+
+<div>
+<div class="post-tags">
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/ctf/"
+    >#ctf</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/infosec/"
+    >#infosec</a
+  >
+  
+  <a
+    class="post-tag"
+    href="https://www.cblanken.dev/tags/python/"
+    >#python</a
+  >
+  </div>
+</div>
+ <div class="post-content"><h2 id="problem-description"><a class="zola-anchor" href="#problem-description" aria-label="Anchor link for: problem-description">Problem description</a></h2>
+<p>Super Guesser is an <em>easy</em> rated reversing challenge for the Crytoverse 2022 CTF.
+We are given a short challenge description:</p>
+<blockquote>
+<p>Only the true guessing <em>king</em> can solve this challenge.</p>
+</blockquote>
+<h2 id="analysis"><a class="zola-anchor" href="#analysis" aria-label="Anchor link for: analysis">Analysis</a></h2>
+<p>We are provided a link to download <code>guesser.pyc</code>, a compiled python binary.
+Just to confirm there aren’t any shenangins with the file extension, let’s check the file type.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>$ file guesser.pyc</span></span>
+<span class="giallo-l"><span>guesser.pyc: Byte-compiled Python module for CPython 3.8, timestamp-based, .py timestamp: Sun Sep 11 18:00:05 2022 UTC, .py size: 682 bytes</span></span></code></pre>
+<p>The <code>file</code> utility tells us that we are, in fact, dealing with a compiled python binary. In this case CPython 3.8 is the version.</p>
+<p><em>Note</em>: it’s important that we use the correct version of python when running the compiled <code>.pyc</code> file otherwise we might get a <em>magic number</em> error as shown below and be unable to execute the program.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>$ python guesser.pyc</span></span>
+<span class="giallo-l"><span>RuntimeError: Bad magic number in .pyc file</span></span></code></pre>
+<p>If your system has an incompatible version of Python, I’d recommend installing a tool like <a rel="external" href="https://github.com/pyenv/pyenv"><code>pyenv</code></a> to install and manage other python versions side by side on your system.</p>
+<p>Now let’s try running this program to see what we get as output.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>$ python guesser.pyc</span></span>
+<span class="giallo-l"><span>Guess: test</span></span>
+<span class="giallo-l"><span>Invalid</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>$ python guesser.pyc</span></span>
+<span class="giallo-l"><span>Guess: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</span></span>
+<span class="giallo-l"><span>Invalid</span></span></code></pre>
+<p>Okay it look’s like the program is checking our input. Perhaps it is checking against the challenge’s flag.</p>
+<p>Referring to the challenge title we know that this is a reversing challenge, so the next logical step is to try decompiling the python binary.
+One popular python decompiler is <a rel="external" href="https://pypi.org/project/decompyle3">decompyle3</a>, which we can see from the PyPI page supports python versions 3.7+ which should work fine for the bytecode we have.</p>
+<p>We can decompile <code>guesser.pyc</code> with the command:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>$ decompyle3 guesser.pyc</span></span></code></pre>
+<p>This gets us the source code <code>guesser.py</code></p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 1</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> decompyle3 version 3.9.0</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 2</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> Python bytecode version base 3.8.0 (3413)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 3</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> Decompiled from: Python 3.8.0 (default, Oct 29 2022, 20:02:52)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 4</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> [GCC 12.2.0]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 5</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> Embedded file name: /home/guesser.py</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 6</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> Compiled at: 2022-09-11 14:00:05</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 7</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> Size of source mod 2**32: 682 bytes</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 8</span><span style="color: light-dark(#9D0006, #B6927B);">import</span><span> hashlib</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span> re</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 9</span><span>hashes</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> [</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">10</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">d.0.....f5...5.6.7.1.30.6c.d9..0</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">11</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">1b.8.1.c........09.30.....64aa9.</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">12</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">c.d.1.53..66.4.43bd.......59...8</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">13</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">.d.d.076........eae.3.6.85.a2...</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">14</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">15</span><span style="color: light-dark(#9D0006, #8992A7);">def</span><span style="color: light-dark(#427B58, #8BA4B0);"> main</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">16</span><span>    guesses</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> [</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">17</span><span style="color: light-dark(#9D0006, #8992A7);">    for</span><span> i</span><span style="color: light-dark(#9D0006, #8992A7);"> in</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> range</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#AF3A03, #8BA4B0);">len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">hashes</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l" style="background-color: light-dark(#EBDBB260, #393836);"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">18</span><span>        guess</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> input</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Guess: </span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l" style="background-color: light-dark(#EBDBB260, #393836);"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">19</span><span style="color: light-dark(#9D0006, #8992A7);">        if</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &lt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 4</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &gt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 6</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span> re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^[a-z]+$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#504945, #8BA4B0);"> guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l" style="background-color: light-dark(#EBDBB260, #393836);"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">20</span><span style="color: light-dark(#AF3A03, #8BA4B0);">            exit</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Invalid</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">21</span><span style="color: light-dark(#9D0006, #8992A7);">        if</span><span style="color: light-dark(#9D0006, #C4B28A);"> not</span><span> re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#504945, #8BA4B0);"> hashes</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#504945, #8BA4B0);">i</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">replace</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">.</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">[0-9a-f]</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#504945, #8BA4B0);"> hashlib</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">md5</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">encode</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">hexdigest</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">22</span><span style="color: light-dark(#AF3A03, #8BA4B0);">            exit</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Invalid</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">23</span><span style="color: light-dark(#9D0006, #8992A7);">        else</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">24</span><span>            guesses</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">append</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">25</span><span style="color: light-dark(#9D0006, #8992A7);">    else</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">26</span><span style="color: light-dark(#AF3A03, #8BA4B0);">        print</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">Flag: </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">guesses</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#8F3F71, #A292A3);">0</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">{</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">join</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guesses</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#8F3F71, #A292A3);">1</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">}</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">27</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">28</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">29</span><span style="color: light-dark(#9D0006, #8992A7);">if</span><span style="color: light-dark(#8F3F71, #C5C9C5);"> __name__</span><span style="color: light-dark(#427B58, #C4B28A);"> ==</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">__main__</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">30</span><span style="color: light-dark(#076678, #8BA4B0);">    main</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">31</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> okay decompiling guesser.pyc</span></span></code></pre>
+<p>At first glance, this seems to be a fairly simple python script, but let’s break it down line by line.
+First we have the declaration of a list of <code>hashes</code></p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">1</span><span>hashes</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> [</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">2</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">d.0.....f5...5.6.7.1.30.6c.d9..0</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">3</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">1b.8.1.c........09.30.....64aa9.</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">4</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">c.d.1.53..66.4.43bd.......59...8</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">5</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">.d.d.076........eae.3.6.85.a2...</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span></code></pre>
+<p>These will be important in a moment, but for now let’s follow the logic to see what the <em>guesser</em> is checking for.</p>
+<p>We can see in the main function, we’re iterating over the list of hashes, and for each hash, we take a string as user input and check if it’s length is equal to 5 <strong>AND</strong> if it matches the regex string <code>^[a-z]+$</code> which would be interpreted as a string of exclusively lowercase alphabetic letters with a length greater than or equal to one. If this condition is met, the program exits and outputs ‘Invalid’ just as we saw in initial test.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">18</span><span>guess</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> input</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Guess: </span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">19</span><span style="color: light-dark(#9D0006, #8992A7);">if</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &lt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 4</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &gt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 6</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span> re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^[a-z]+$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#504945, #8BA4B0);"> guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">20</span><span style="color: light-dark(#AF3A03, #8BA4B0);">    exit</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Invalid</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>The second <code>if</code> statement is taking an md5 hash of our guess string and checking that it matches the hash from our hashes list. The hash converts each <code>.</code> (dot) character to <code>[0-9a-f]</code>. This is necessary to only match on valid md5 hashes, otherwise we exit just as before.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">21</span><span style="color: light-dark(#9D0006, #8992A7);">if</span><span style="color: light-dark(#9D0006, #C4B28A);"> not</span><span> re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#504945, #8BA4B0);"> hashes</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#504945, #8BA4B0);">i</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">replace</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">.</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">[0-9a-f]</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#504945, #8BA4B0);"> hashlib</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">md5</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">encode</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">hexdigest</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">22</span><span style="color: light-dark(#AF3A03, #8BA4B0);">    exit</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Invalid</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>And finally, if our guess passes both of those checks it is appended to the <code>guesses</code> list.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">23</span><span style="color: light-dark(#9D0006, #8992A7);">else</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">24</span><span>    guesses</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">append</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>This <code>guesses</code> list is joined and printed as the flag output provided the program doesn’t exit prematurely by receiving an incorrect guess.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">25</span><span style="color: light-dark(#9D0006, #8992A7);">else</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">26</span><span style="color: light-dark(#AF3A03, #8BA4B0);">    print</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">Flag: </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">guesses</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#8F3F71, #A292A3);">0</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">{</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">join</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guesses</span><span style="color: light-dark(#7C6F64, #9E9B93);">[</span><span style="color: light-dark(#8F3F71, #A292A3);">1</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> +</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">}</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>One important part of the last line, is that the first element of <code>guesses</code> is used as the beginning of our flag which, according to the flag format should correspond to <code>cvctf</code>. With that in mind we should be able to confirm our understanding of the program by finding the md5 hash of <code>cvctf</code> which should match the first hash in <code>hashes</code>.</p>
+<p>We can get the md5 hash by running <code>echo -n cvctf | md5sum</code> in our terminal. This gives us an md5 hash of <code>d70146aef5a8e5364791d3006ccd9c00</code></p>
+<p>Placing the hashes side by side we can see that they match.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>d.0.....f5...5.6.7.1.30.6c.d9..0</span></span>
+<span class="giallo-l"><span>d70146aef5a8e5364791d3006ccd9c00</span></span></code></pre>
+<p>We should be able to test this by entering <code>cvctf</code> as our first guess when running the challenge binary.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>$ python guesser.pyc</span></span>
+<span class="giallo-l"><span>Guess: cvctf</span></span>
+<span class="giallo-l"><span>Guess: again</span></span>
+<span class="giallo-l"><span>Invalid</span></span></code></pre>
+<p>We can see that the program only exited after the guess of “again”, meaning the guess of “cvctf” was correct. That’s great but you may have noticed this seems to contradict a bit of our analysis. Recall that the first <code>if</code> check appeared to exclude any guesses that were 5 characters in length or all lowercase and alphabetic. This exactly matches our guess of “cvctf”!</p>
+<h3 id="bad-decompilation"><a class="zola-anchor" href="#bad-decompilation" aria-label="Anchor link for: bad-decompilation">Bad Decompilation?</a></h3>
+<p>As we can see, the behavior of the program when running the decompiled code does not match the behavior of the original <code>guesser.pyc</code>. Now I tried several decompilers, and as far as I can tell this is an error in the decompilation process. That line in particular should actually have decompiled to this:</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#9D0006, #8992A7);">if</span><span style="color: light-dark(#9D0006, #C4B28A);"> not</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#AF3A03, #8BA4B0);">len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &lt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 4</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &gt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 6</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span> re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^[a-z]+$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#504945, #8BA4B0);"> guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#AF3A03, #8BA4B0);">    exit</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Invalid</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>Instead of this</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span style="color: light-dark(#9D0006, #8992A7);">if</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &lt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 4</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span style="color: light-dark(#AF3A03, #8BA4B0);"> len</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#427B58, #C4B28A);"> &gt;=</span><span style="color: light-dark(#8F3F71, #A292A3);"> 6</span><span style="color: light-dark(#9D0006, #C4B28A);"> or</span><span> re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^[a-z]+$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span style="color: light-dark(#504945, #8BA4B0);"> guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span style="color: light-dark(#AF3A03, #8BA4B0);">    exit</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">Invalid</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>In this case, the program would exit if the guess is <strong>NOT</strong> 5 alphabetic characters. This matches the behavior we’ve seen when running the compiled binary and leads us to different assumptions about the possible problem space. Restricting our guess to all lowercase alphabetic characters means we only have $ 26^5 $ possibilities. That comes out to a measly 11,881,376 possible guesses. We should be able to write a program to do that for us. Enter <code>brute.py</code>.</p>
+<h2 id="solution"><a class="zola-anchor" href="#solution" aria-label="Anchor link for: solution">Solution</a></h2>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="python"><span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 1</span><span style="color: light-dark(#928374, #737C73);font-style: italic;">#</span><span style="color: light-dark(#928374, #737C73);font-style: italic;"> brute.py</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 2</span><span style="color: light-dark(#9D0006, #B6927B);">import</span><span> hashlib</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 3</span><span style="color: light-dark(#9D0006, #B6927B);">import</span><span> re</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 4</span><span style="color: light-dark(#9D0006, #B6927B);">from</span><span> pwnlib</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span>util</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span>iters</span><span style="color: light-dark(#9D0006, #B6927B);"> import</span><span> bruteforce</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span><span> mbruteforce</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 5</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 6</span><span>hash_patterns</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> [</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 7</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^d.0.....f5...5.6.7.1.30.6c.d9..0$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 8</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^1b.8.1.c........09.30.....64aa9.$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);"> 9</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^c.d.1.53..66.4.43bd.......59...8$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">10</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &#39;</span><span style="color: light-dark(#79740E, #8A9A7B);">^.d.d.076........eae.3.6.85.a2...$</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&#39;</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">11</span><span> </span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">12</span><span>hash_regexes</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #9E9B93);"> [</span><span>re</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">compile</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">x</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#9D0006, #8992A7);"> for</span><span> x</span><span style="color: light-dark(#9D0006, #8992A7);"> in</span><span> hash_patterns</span><span style="color: light-dark(#7C6F64, #9E9B93);">]</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">13</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">14</span><span>guess_len</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#8F3F71, #A292A3);"> 5</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">15</span><span>charset</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#7C6F64, #8A9A7B);"> &quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">abcdefghijklmnopqrstuvwxyz</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&quot;</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">16</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">17</span><span style="color: light-dark(#9D0006, #8992A7);">for</span><span> regex</span><span style="color: light-dark(#9D0006, #8992A7);"> in</span><span> hash_regexes</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">18</span><span style="color: light-dark(#AF3A03, #8BA4B0);">    print</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">Searching for match for </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">regex</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">...</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">19</span><span>    found</span><span style="color: light-dark(#427B58, #C4B28A);"> =</span><span style="color: light-dark(#076678, #8BA4B0);"> mbruteforce</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#AF3A03, #8992A7);">lambda</span><span style="color: light-dark(#076678, #C5C9C5);"> guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">20</span><span style="color: light-dark(#504945, #8BA4B0);">        regex</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">match</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">hashlib</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">md5</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">guess</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">encode</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">hexdigest</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">21</span><span style="color: light-dark(#076678, #C5C9C5);">        alphabet</span><span style="color: light-dark(#427B58, #C4B28A);">=</span><span style="color: light-dark(#504945, #8BA4B0);">charset</span><span style="color: light-dark(#7C6F64, #9E9B93);">,</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">22</span><span style="color: light-dark(#076678, #C5C9C5);">        length</span><span style="color: light-dark(#427B58, #C4B28A);">=</span><span style="color: light-dark(#504945, #8BA4B0);">guess_len</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">23</span><span style="color: light-dark(#7C6F64, #9E9B93);">    )</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">24</span><span style="color: light-dark(#9D0006, #8992A7);">    if</span><span> found</span><span style="color: light-dark(#9D0006, #C4B28A);"> is</span><span style="color: light-dark(#8F3F71, #B6927B);"> None</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">25</span><span style="color: light-dark(#AF3A03, #8BA4B0);">        print</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">No matches found</span><span style="color: light-dark(#7C6F64, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">26</span><span style="color: light-dark(#9D0006, #8992A7);">    else</span><span style="color: light-dark(#7C6F64, #9E9B93);">:</span></span>
+<span class="giallo-l"><span aria-hidden="true" class="giallo-ln" style="color: light-dark(#BDAE93, #625E5A);">27</span><span style="color: light-dark(#AF3A03, #8BA4B0);">        print</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#9D0006, #8992A7);">f</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#79740E, #8A9A7B);">FOUND: </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">found</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">, MD5: </span><span style="color: light-dark(#8F3F71, #B6927B);">{</span><span style="color: light-dark(#504945, #8BA4B0);">hashlib</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">md5</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#504945, #8BA4B0);">found</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">encode</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#7C6F64, #9E9B93);">.</span><span style="color: light-dark(#076678, #8BA4B0);">hexdigest</span><span style="color: light-dark(#7C6F64, #9E9B93);">(</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span><span style="color: light-dark(#8F3F71, #B6927B);">}</span><span style="color: light-dark(#79740E, #8A9A7B);">&quot;</span><span style="color: light-dark(#7C6F64, #9E9B93);">)</span></span></code></pre>
+<p>The program uses <a rel="external" href="https://docs.pwntools.com/en/stable/util/iters.html?highlight=mbruteforce#pwnlib.util.iters.mbruteforce">pwntools</a> to generate all the possible combinations given our set of lowercase alphabetic characters. It then generates the md5 hash using the <a rel="external" href="https://docs.python.org/3/library/hashlib.html#module-hashlib"><code>hashlib</code></a> library and compares it against the hash from the <code>hashes</code> list.</p>
+<pre class="giallo" style="color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);"><code data-lang="plain"><span class="giallo-l"><span>$ python brute.py</span></span>
+<span class="giallo-l"><span>Searching for match for re.compile(&#39;^d.0.....f5...5.6.7.1.30.6c.d9..0$&#39;)...</span></span>
+<span class="giallo-l"><span>FOUND: cvctf, MD5: d70146aef5a8e5364791d3006ccd9c00</span></span>
+<span class="giallo-l"><span>Searching for match for re.compile(&#39;^1b.8.1.c........09.30.....64aa9.$&#39;)...</span></span>
+<span class="giallo-l"><span>FOUND: hashi, MD5: 1bd8d1fc2b9ad2bb0943056ecf64aa97</span></span>
+<span class="giallo-l"><span>Searching for match for re.compile(&#39;^c.d.1.53..66.4.43bd.......59...8$&#39;)...</span></span>
+<span class="giallo-l"><span>FOUND: snotg, MD5: cdd01c536d66a4943bd8bf6f5d59c0c8</span></span>
+<span class="giallo-l"><span>Searching for match for re.compile(&#39;^.d.d.076........eae.3.6.85.a2...$&#39;)...</span></span>
+<span class="giallo-l"><span>FOUND: uessy, MD5: 8d1d70762f431cd9eaec3967859a2b4b</span></span></code></pre><h1 id="flag"><a class="zola-anchor" href="#flag" aria-label="Anchor link for: flag">Flag</a></h1>
+<p>Et voilà, we have our flag! <code>cvctf{hashisnotguessy}</code></p>
+</div>  
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read more</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    <span class="button previous">
+      <span class="button__icon">«&nbsp;</span>
+      <a href="https://www.cblanken.dev/blog/operationorchid/">
+        <span class="button__text">PicoCTF 2022 - Operation Orchid</span>
+      </a>
+    </span>
+     
+    <span class="button next">
+      <a href="https://www.cblanken.dev/blog/einpfundmails/">
+        <span class="button__text">KitCTF 2022 - ein-pfund-mails</span>
+      </a>
+      <span class="button__icon">&nbsp;»</span>
+    </span>
+    </div>
+</div>
+
+</div>
+
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright">
+                        <div>© 
+    2026
+ Cameron Blankenbuehler</div>
+                    <div class="copyright-theme">
+                        <div>Theme: <a href="https://github.com/cblanken/zola-theme-terminimal/">Terminimal</a></div>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
