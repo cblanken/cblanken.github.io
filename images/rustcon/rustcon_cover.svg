@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="783.36999969" height="447.99988800000006" font-family="Consolas, Menlo, 'Bitstream Vera Sans Mono', monospace, 'Powerline Symbols'" font-size="14px">
+  <style>
+    .br { font-weight: bold }
+    .fa { fill-opacity: 0.5 }
+    .it { font-style: italic }
+    .un { text-decoration: underline }
+  </style>
+
+  <rect width="100%" height="100%" style="fill: #121314" rx="4" ry="4"></rect>
+
+  <svg x="8.42333333" y="9.333331000000001" class="default-text-fill">
+    <g style="shape-rendering: optimizeSpeed">
+
+        <rect x="0.0" y="0.0" width="8.42333333" height="18.666662000000002" style="fill: rgb(51,51,51)"></rect><rect x="8.42333333" y="0.0" width="16.84666666" height="18.666662000000002" style="fill: rgb(51,51,51)"></rect>
+
+        <rect x="25.269999990000002" y="410.66656400000005" width="8.42333333" height="18.666662000000002" style="fill: #d9d9d9"></rect>
+
+
+
+          <polygon points="25.269999990000002 0.0, 33.69333332 9.333331000000001, 25.269999990000002 18.666662000000002" fill="rgb(51,51,51)"></polygon>
+
+
+    </g>
+
+    <text style="fill: #cccccc">
+      <tspan y="0.0">
+        <tspan dy="1em" x="8.42333333" class="br" style="fill: rgb(255,255,255)">
+~ 
+        </tspan><tspan x="42.11666665" style="fill: rgb(95,135,255)">
+./rustcon
+        </tspan><tspan x="126.34999995" style="fill: rgb(95,135,255)">
+-i
+        </tspan><tspan x="151.61999994" style="fill: rgb(95,135,255)">
+192.168.1.155
+        </tspan><tspan x="269.54666656" style="fill: rgb(95,135,255)">
+-p
+        </tspan><tspan x="294.81666655" style="fill: rgb(95,135,255)">
+26575
+        </tspan><tspan x="505.3999998" style="fill: rgb(85,85,85)">
+Tue 08 Oct 2024 12:19:09 PM EDT
+        </tspan>
+      </tspan><tspan y="18.666662000000002">
+        <tspan dy="1em" x="0.0">
+Connecting to host at 192.168.1.155:26575 ...
+        </tspan>
+      </tspan><tspan y="37.333324000000005">
+        <tspan dy="1em" x="0.0">
+Authenticating...
+        </tspan>
+      </tspan><tspan y="55.99998600000001">
+        <tspan dy="1em" x="0.0">
+RUSTCON_PASS env variable does not exist
+        </tspan>
+      </tspan><tspan y="74.66664800000001">
+        <tspan dy="1em" x="0.0">
+Password:
+        </tspan>
+      </tspan><tspan y="93.33331000000001">
+        <tspan dy="1em" x="0.0">
+Incorrect password. Please try again...
+        </tspan>
+      </tspan><tspan y="111.99997200000001">
+        <tspan dy="1em" x="0.0">
+Password:
+        </tspan>
+      </tspan><tspan y="130.66663400000002">
+        <tspan dy="1em" x="0.0">
+================================================================================
+        </tspan>
+      </tspan><tspan y="149.33329600000002">
+        <tspan dy="1em" x="0.0">
+λ: help
+        </tspan>
+      </tspan><tspan y="167.99995800000002">
+        <tspan dy="1em" x="0.0">
+Size: 468 bytes, ID: 3, Type: Response Data
+        </tspan>
+      </tspan><tspan y="186.66662000000002">
+        <tspan dy="1em" x="0.0">
+--------- Help: Index (1/10) --------------------
+        </tspan>
+      </tspan><tspan y="205.33328200000003">
+        <tspan dy="1em" x="0.0">
+Use /help [n] to get page n of help.
+        </tspan>
+      </tspan><tspan y="223.99994400000003">
+        <tspan dy="1em" x="0.0">
+Aliases: Lists command aliases
+        </tspan>
+      </tspan><tspan y="242.66660600000003">
+        <tspan dy="1em" x="0.0">
+Bukkit: All commands for Bukkit
+        </tspan>
+      </tspan><tspan y="261.33326800000003">
+        <tspan dy="1em" x="0.0">
+Minecraft: All commands for Minecraft
+        </tspan>
+      </tspan><tspan y="279.99993">
+        <tspan dy="1em" x="0.0">
+/advancement: A Mojang provided command.
+        </tspan>
+      </tspan><tspan y="298.66659200000004">
+        <tspan dy="1em" x="0.0">
+/attribute: A Mojang provided command.
+        </tspan>
+      </tspan><tspan y="317.333254">
+        <tspan dy="1em" x="0.0">
+/ban: A Mojang provided command.
+        </tspan>
+      </tspan><tspan y="335.99991600000004">
+        <tspan dy="1em" x="0.0">
+/ban-ip: A Mojang provided command.
+        </tspan>
+      </tspan><tspan y="354.666578">
+        <tspan dy="1em" x="0.0">
+/banlist: A Mojang provided command.
+        </tspan>
+      </tspan><tspan y="391.999902">
+        <tspan dy="1em" x="0.0">
+================================================================================
+        </tspan>
+      </tspan><tspan y="410.66656400000005">
+        <tspan dy="1em" x="0.0">
+λ: 
+        </tspan>
+      </tspan>
+    </text>
+  </svg>
+
+  <g transform="translate(-40 -40)">
+    <svg x="50%" y="50%" width="80" height="80">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000.0 1000.0" style="filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.4))">
+  <defs>
+    <mask id="small-triangle-mask">
+      <rect width="100%" height="100%" fill="white"></rect>
+      <polygon points="700.0 500.0, 400.00000000000006 326.7949192431122, 399.9999999999999 673.2050807568877" fill="black">
+      </polygon>
+    </mask>
+  </defs>
+  <polygon points="1000.0 500.0, 250.0000000000001 66.98729810778059, 249.99999999999977 933.0127018922192" mask="url(#small-triangle-mask)" fill="white">
+  </polygon>
+  <polyline points="673.2050807568878 400.0, 326.7949192431123 600.0" stroke="white" stroke-width="90">
+  </polyline>
+</svg>
+    </svg>
+  </g>
+</svg>

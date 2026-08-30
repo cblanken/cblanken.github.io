@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>cblanken.dev - TIL</title>
+    <link rel="self" type="application/atom+xml" href="https://www.cblanken.dev/til/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://www.cblanken.dev/til/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-06-19T00:00:00+00:00</updated>
+    <id>https://www.cblanken.dev/til/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Restore All Your Arch Packages</title>
+        <published>2026-06-19T00:00:00+00:00</published>
+        <updated>2026-06-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/til/arch-restore-all-packages/"/>
+        <id>https://www.cblanken.dev/til/arch-restore-all-packages/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/til/arch-restore-all-packages/">&lt;p&gt;About a week ago, I ran into some trouble with an update on my Arch Linux (btw) system. I ran a
+regular &lt;code&gt;pacman -Syu&lt;/code&gt; to sync all my packages via, but unfortunately, this update broke my desktop
+environment, KDE PLasma. It can be quite a hassle to rollback individual packages and I wasn’t have
+any luck at all. I even found someone with seemingly
+&lt;a rel=&quot;external&quot; href=&quot;https://discuss.kde.org/t/arch-linux-kde-plasma-crash-after-upgrade/46506&quot;&gt;the same issue&lt;/a&gt;. I
+suspend either there was in fact a breaking change for the newest version of KDE Plasma at the time
+or my update corrupted some files. Either way, the solutions discussed there weren’t able to fix
+whatever had broken my installation of KDE plasma.&lt;/p&gt;
+&lt;p&gt;Anyway, this little misadventure led me to discover that &lt;code&gt;pacman&lt;/code&gt; via the
+&lt;a rel=&quot;external&quot; href=&quot;https://archive.archlinux.org&quot;&gt;Arch Linux Archive&lt;/a&gt; allows you to restore &lt;em&gt;all&lt;/em&gt; of your packages to
+the state they would have been on a particular date in the past. Meaning, if you know the date of
+your last update when your system was functional, you can force &lt;code&gt;pacman&lt;/code&gt; to sync with all the
+packages on that date.&lt;/p&gt;
+&lt;p&gt;Basically, you set the target &lt;code&gt;Server&lt;/code&gt; in your &lt;code&gt;pacman.conf&lt;/code&gt; to point to the archive. Like this:&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);&quot; &gt;&lt;code data-lang=&quot;ini&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#9D0006, #B6927B);&quot;&gt;Server&lt;/span&gt;&lt;span style=&quot;color: light-dark(#7C6F64, #9E9B93);&quot;&gt; =&lt;/span&gt;&lt;span&gt; https://archive.archlinux.org/repos/2026/04/30/$repo/os/$arch&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That URL points to the package archive as it was on 2026-04-30. Then you run &lt;code&gt;sudo pacman -Syyuu&lt;/code&gt;
+and wait with fingers crossed. Of course please read through the
+&lt;a rel=&quot;external&quot; href=&quot;https://wiki.archlinux.org/title/Arch_Linux_Archive#Restore_all_packages_to_a_specific_date&quot;&gt;official directions&lt;/a&gt;
+on the wiki to get all the details.&lt;/p&gt;
+&lt;p&gt;Just be aware, the archive only maintains a few years of package history, but hopefully that will be
+enough for you to restore your system to a functioning state and figure the rest from there.&lt;/p&gt;
+&lt;p&gt;Happy hacking!&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Faillock</title>
+        <published>2026-05-15T00:00:00+00:00</published>
+        <updated>2026-05-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/til/faillock/"/>
+        <id>https://www.cblanken.dev/til/faillock/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/til/faillock/">&lt;p&gt;After over eight years of using primarily Linux as my OS of choice, today was the first time that my system has locked me out for failed password attempts. It wasn’t that I had forgotten by password. I was simply in a hurry and made a typo three times in row, and, &lt;em&gt;apparently&lt;/em&gt;, the &lt;a rel=&quot;external&quot; href=&quot;https://www.man7.org/linux/man-pages/man8/pam_faillock.8.html&quot;&gt;&lt;code&gt;pam_faillock.so&lt;/code&gt; PAM module&lt;/a&gt; is configured to lockout the user for &lt;em&gt;fifteen&lt;/em&gt; minutes after three failed login attempts. At least on Arch Linux (btw) anyway.&lt;/p&gt;
+&lt;p&gt;If you’re like me, and think that lockout policy is just a &lt;em&gt;little&lt;/em&gt; aggressive, then look no further. I’ll get you sorted. The default location for the &lt;code&gt;pam_faillock.so&lt;/code&gt; module config is &lt;code&gt;/etc/security/faillock.conf&lt;/code&gt;, and in that file you’ll find an entry titled &lt;code&gt;deny&lt;/code&gt; set to 3.&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);&quot; &gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# Deny access if the number of consecutive authentication failures&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# for this user during the recent interval exceeds n tries.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# The default is 3.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;deny = 3&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Swap that sucker to a more agreeable number. I picked 10. The next time you restart your system, the new default will be set! If you’ve somehow locked a user session, but you still have access on the system as a root user then you can reset the lockout with the following command without needing to restart.&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);&quot; &gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: light-dark(#B57614, #8EA4A2);&quot;&gt;faillock&lt;/span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #8A9A7B);&quot;&gt; -&lt;/span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #8A9A7B);&quot;&gt;-user&lt;/span&gt;&lt;span style=&quot;color: light-dark(#79740E, #8A9A7B);&quot;&gt; YourUsername&lt;/span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #8A9A7B);&quot;&gt; -&lt;/span&gt;&lt;span style=&quot;color: light-dark(#8F3F71, #8A9A7B);&quot;&gt;-reset&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Happy hacking!&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Bootstrapping pip</title>
+        <published>2026-05-08T00:00:00+00:00</published>
+        <updated>2026-05-08T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/til/ensurepip/"/>
+        <id>https://www.cblanken.dev/til/ensurepip/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/til/ensurepip/">&lt;p&gt;Today I needed to setup &lt;a rel=&quot;external&quot; href=&quot;https://pypi.org/project/pip/&quot;&gt;pip&lt;/a&gt; in a python virtual environment inside a Docker container to quickly install a couple dependencies for testing without doing a full rebuild. Unfortunately, &lt;code&gt;pip&lt;/code&gt; wasn’t included as a dependency for the docker container because additional python dependencies didn’t normally need to be installed during regular operation. But, luckily for us &lt;a rel=&quot;external&quot; href=&quot;https://xkcd.com/353/&quot;&gt;there’s a python package for that&lt;/a&gt;. Enter stage left, &lt;a rel=&quot;external&quot; href=&quot;https://docs.python.org/3/library/ensurepip.html&quot;&gt;ensurepip&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Activate your virtual environment wherever it resides e.g. &lt;code&gt;source ./.venv/bin/active&lt;/code&gt; and make a call to the &lt;code&gt;ensurepip&lt;/code&gt; module with &lt;code&gt;python -m ensurepip&lt;/code&gt;. You should get output that looks something like this:&lt;/p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);&quot; &gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Looking in links: /tmp/tmpznyyt9jn&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Processing /tmp/tmpznyyt9jn/pip-26.0.1-py3-none-any.whl&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Installing collected packages: pip&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Successfully installed pip-26.0.1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There you go, &lt;code&gt;pip&lt;/code&gt; ready and rarin’ to go&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>IANA Protocol Registry</title>
+        <published>2024-09-16T00:00:00+00:00</published>
+        <updated>2024-09-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/til/iana-protocols/"/>
+        <id>https://www.cblanken.dev/til/iana-protocols/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/til/iana-protocols/">&lt;p&gt;If you’ve ever found yourself browsing through RFCs published by the
+&lt;a rel=&quot;external&quot; href=&quot;https://www.ietf.org&quot;&gt;IETF&lt;/a&gt;, you know it can be a bit of a chore if you’re
+just researching some tag name or error code. You shouldn’t need to read
+through the entire spec for a protocol just to do some troubleshooting. Right?
+Well, here comes &lt;a rel=&quot;external&quot; href=&quot;https://www.iana.org&quot;&gt;IANA&lt;/a&gt; to the rescue. IANA has
+conveniently compiled a central repository for the many codes and numbers
+contained in Internet protocols. You can find it at their &lt;a rel=&quot;external&quot; href=&quot;https://www.iana.org/protocols&quot;&gt;protocol
+registry&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Personally I was just looking for a &lt;a rel=&quot;external&quot; href=&quot;https://www.iana.org/assignments/dmarc-parameters/dmarc-parameters.xhtml#tag&quot;&gt;simple
+breakdown&lt;/a&gt;
+of all the tags available for DMARC. Of course, there’s also a &lt;a rel=&quot;external&quot; href=&quot;https://www.rfc-editor.org/rfc/rfc7489.html#section-11.4&quot;&gt;DMARC tag
+registry table&lt;/a&gt;
+embedded in the &lt;a rel=&quot;external&quot; href=&quot;https://www.rfc-editor.org/rfc/rfc7489.html&quot;&gt;DMARC RFC (RFC
+7489)&lt;/a&gt;. But I was having trouble
+wading through all 73 pages of the spec. So, in this case, it wasn’t really
+necessary. However, for something like the &lt;a rel=&quot;external&quot; href=&quot;https://www.iana.org/assignments/mail-parameters/mail-parameters.xhtml#mail-parameters-2&quot;&gt;SMTP service
+extensions&lt;/a&gt;,
+it can be much more useful as the service extensions are spread across many
+different RFCs.&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>What is DMARC?</title>
+        <published>2024-09-03T00:00:00+00:00</published>
+        <updated>2024-09-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/til/learning-dmarc/"/>
+        <id>https://www.cblanken.dev/til/learning-dmarc/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/til/learning-dmarc/">&lt;p&gt;I’ve recently been trying to get a better handle on how email works and how
+it’s secured. If you want to do the same. Go try out the exercises at
+&lt;a rel=&quot;external&quot; href=&quot;https://www.learndmarc.com&quot;&gt;https://www.learndmarc.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It’s a great resource for visualizing how DMARC works in conjuction with
+&lt;a rel=&quot;external&quot; href=&quot;https://datatracker.ietf.org/doc/html/rfc7208&quot;&gt;Sender Policy Framework (SPF)&lt;/a&gt;
+and &lt;a rel=&quot;external&quot; href=&quot;https://datatracker.ietf.org/doc/html/rfc4686&quot;&gt;Domain Keys Identified mail
+(DKIM)&lt;/a&gt; to secure email and
+catch spam and phishing attempts.&lt;/p&gt;
+&lt;p&gt;There’s even a quiz you can try to see how well you can analyze email traffic
+and determine the DMARC results.&lt;/p&gt;
+</content>
+        
+    </entry>
+</feed>

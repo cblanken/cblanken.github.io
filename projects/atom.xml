@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>cblanken.dev - Projects</title>
+    <link rel="self" type="application/atom+xml" href="https://www.cblanken.dev/projects/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://www.cblanken.dev/projects/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-04-11T00:00:00+00:00</updated>
+    <id>https://www.cblanken.dev/projects/atom.xml</id>
+    <entry xml:lang="en">
+        <title>RustCON</title>
+        <published>2024-12-29T00:00:00+00:00</published>
+        <updated>2024-12-29T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/projects/rustcon/"/>
+        <id>https://www.cblanken.dev/projects/rustcon/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/projects/rustcon/">&lt;p&gt;RustCON is an
+&lt;a rel=&quot;external&quot; href=&quot;https://developer.valvesoftware.com/wiki/Source_RCON_Protocol&quot;&gt;RCON&lt;/a&gt; client
+written in Rust. RCON is a protocol primarily used for game server
+administration. Some examples of games that use RCON are
+&lt;a rel=&quot;external&quot; href=&quot;https://www.minecraft.net&quot;&gt;Minecraft&lt;/a&gt;, &lt;a rel=&quot;external&quot; href=&quot;https://store.steampowered.com/app/500/Left_4_Dead/&quot;&gt;Left 4
+Dead&lt;/a&gt;, &lt;a rel=&quot;external&quot; href=&quot;https://store.steampowered.com/app/550/Left_4_Dead_2/&quot;&gt;Left 4 Dead
+2&lt;/a&gt;, &lt;a rel=&quot;external&quot; href=&quot;https://gmod.facepunch.com&quot;&gt;Garry’s
+Mod&lt;/a&gt;, and &lt;a rel=&quot;external&quot; href=&quot;https://projectzomboid.com/blog/&quot;&gt;Project
+Zomboid&lt;/a&gt;, but there are many others.&lt;/p&gt;
+&lt;p&gt;This RCON client is quite simple and was my first foray into writing software
+with the Rust programming language. The source code can be found at
+&lt;a rel=&quot;external&quot; href=&quot;https://github.com/cblanken/rustcon&quot;&gt;https://github.com/cblanken/rustcon&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;usage&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#usage&quot; aria-label=&quot;Anchor link for: usage&quot;&gt;Usage&lt;/a&gt;&lt;/h2&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#3C3836, #C5C9C5); background-color: light-dark(#FBF1C7, #181616);&quot; &gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;rustcon 0.1.0&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;A simple RCON client written in Rust&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;USAGE:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    rustcon [OPTIONS]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;OPTIONS:&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    -h, --help           Print help information&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    -i, --ip &amp;lt;IP&amp;gt;        RCON server IPv4 address [default: 127.0.0.1]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    -p, --port &amp;lt;PORT&amp;gt;    RCON server PORT number [default: 27015]&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    -V, --version        Print version information&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;demo&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#demo&quot; aria-label=&quot;Anchor link for: demo&quot;&gt;Demo&lt;/a&gt;&lt;/h2&gt;
+&lt;script src=&quot;https://asciinema.org/a/lLmhAWmNQuXpPFXqkGeVpt2xa.js&quot; id=&quot;asciicast-lLmhAWmNQuXpPFXqkGeVpt2xa&quot; async=&quot;true&quot;&gt;&lt;/script&gt;
+&lt;p&gt;If you’re looking for other RCON libraries and clients, some can be found on
+the &lt;a rel=&quot;external&quot; href=&quot;https://developer.valvesoftware.com/wiki/Source_RCON_Protocol#Source_RCON_Libraries&quot;&gt;Valve
+wiki&lt;/a&gt;.&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The Wandering Inn (Statistics)</title>
+        <published>2024-10-01T00:00:00+00:00</published>
+        <updated>2026-04-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/projects/twi-stats/"/>
+        <id>https://www.cblanken.dev/projects/twi-stats/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/projects/twi-stats/">&lt;h2 id=&quot;project&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#project&quot; aria-label=&quot;Anchor link for: project&quot;&gt;Project&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;https://wanderinginn.com&quot;&gt;The Wandering Inn (TWI)&lt;/a&gt; is a webnovel or web serial
+if you prefer. In fact it’s one of the longest you’ll find. At the time of this
+writing, the word count clocks in at over 13 million. For the record, that’s
+over 27 times the length of &lt;a rel=&quot;external&quot; href=&quot;https://en.wikipedia.org/wiki/The_Lord_of_the_Rings&quot;&gt;The Lord of the
+Rings&lt;/a&gt; and almost 3 times
+the length of &lt;a rel=&quot;external&quot; href=&quot;https://en.wikipedia.org/wiki/The_Wheel_of_Time&quot;&gt;The Wheel of
+Time&lt;/a&gt;. Personally I love the
+story, but I’m not hear to talk about that today. Instead we’re going to take a
+look at a data visualization project I’ve been working on.&lt;/p&gt;
+&lt;p&gt;Due to its length, TWI has a vast collection of characters, locations, magical
+items etc. that are mentioned by name throughout the story. Not only that, the
+story also includes references to [Classes], [Skills], [Spells] and some other
+things in brackets. To understand why would require that we delve into the lore
+a bit, but suffice to say, all these references make up some interesting data
+points to analyze in terms of their frequency, location on the timeline, and
+relationships with one another.&lt;/p&gt;
+&lt;p&gt;TWI Stats is a project that aims to let anyone explore interesting stats
+related to all the items above via various tables and interactive charts and
+graphs.&lt;/p&gt;
+&lt;p&gt;The code can be found at &lt;a rel=&quot;external&quot; href=&quot;https://github.com/cblanken/wandering-inn-stats&quot;&gt;https://github.com/cblanken/wandering-inn-stats&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Check out the live deployment at &lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev&quot;&gt;https://twi-stats.cblanken.dev&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote class=&quot;markdown-alert-warning&quot;&gt;
+&lt;p&gt;&lt;del&gt;At the time of this writing, the application
+only includes statistics up through volume 9. No chapters of volume 10 have
+been analyzed yet. During development, the wiki underwent significant changes
+and development which broke much of the web scraping required to keep the
+database current with all the characters, [Classes], and [Skills] etc. The wiki
+data collection modules are currently being refactored to accommodate the new
+wiki and extract data via the MediaWiki API to be more robust in the future.&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;EDIT (2024/12/17): The refactor is complete. Data from &lt;a rel=&quot;external&quot; href=&quot;https://wiki.wanderinginn.com/The_Wandering_Inn_Wiki&quot;&gt;the
+wiki&lt;/a&gt; can now be
+correctly ingested into the database and the live application has been updated
+to include data up to chapter 10.28N of Volume 10.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;word-counts&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#word-counts&quot; aria-label=&quot;Anchor link for: word-counts&quot;&gt;Word counts&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Of course, we have word counts. Even if they aren’t particularly interesting,
+they’re fun to keep track of. That way we can at least compare the length to
+other works.&lt;/p&gt;
+&lt;h3 id=&quot;word-count-by-chapter&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#word-count-by-chapter&quot; aria-label=&quot;Anchor link for: word-count-by-chapter&quot;&gt;Word count by chapter&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/word-counts-by-chapter.svg&quot; alt=&quot;word count by chapter&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/overview/charts/word-counts-by-chapter&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;cumulative-word-count-over-time&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#cumulative-word-count-over-time&quot; aria-label=&quot;Anchor link for: cumulative-word-count-over-time&quot;&gt;Cumulative word count over time&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Amazingly, the author’s pace hasn’t flagged at any point over the last several
+years of writing.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/total-word-counts-over-time.svg&quot; alt=&quot;word count over time&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/overview/charts/total-word-counts-over-time&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;word-counts-by-book&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#word-counts-by-book&quot; aria-label=&quot;Anchor link for: word-counts-by-book&quot;&gt;Word counts by book&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;These books actually refer to the audiobook releases of the serial.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/word-counts-by-book.svg&quot; alt=&quot;word count by book&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/overview/charts/word-counts-by-book&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;word-counts-by-volume&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#word-counts-by-volume&quot; aria-label=&quot;Anchor link for: word-counts-by-volume&quot;&gt;Word counts by volume&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Volumes are the original demarcation of major plot points of the web serial. As
+you can see, they keep getting longer 👀.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/word-counts-by-volume.svg&quot; alt=&quot;word count by volume&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/overview/charts/word-counts-by-volume&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;mentions&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#mentions&quot; aria-label=&quot;Anchor link for: mentions&quot;&gt;Mentions&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are several important reference types that warrant tracking mentions. These include:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Characters&lt;/li&gt;
+&lt;li&gt;[Classes]&lt;/li&gt;
+&lt;li&gt;[Skills]&lt;/li&gt;
+&lt;li&gt;[Spells]&lt;/li&gt;
+&lt;li&gt;[Locations]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+&lt;p&gt;There are some other types that would be
+interesting to track as well, but they’re still under development. These will
+include things like named magical items and monsters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here’s an example of the chart for the most referenced [Classes].&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/class-mentions.svg&quot; alt=&quot;class mentions&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/classes/charts/most-mentions&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Additionally each of these reference types has a breakdown with a few more
+charts describing how often they’re mentioned across chapters and the chapters
+with the most references for each type.&lt;/p&gt;
+&lt;p&gt;For example, the [Mage] class has the following charts.&lt;/p&gt;
+&lt;h4 id=&quot;mage-mention-count-cumulative&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#mage-mention-count-cumulative&quot; aria-label=&quot;Anchor link for: mage-mention-count-cumulative&quot;&gt;[Mage] mention count (cumulative)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/mage-total-mentions.svg&quot; alt=&quot;mage cumulative mention count&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/classes/mage/charts/total-mentions&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;mage-mention-count-chronological&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#mage-mention-count-chronological&quot; aria-label=&quot;Anchor link for: mage-mention-count-chronological&quot;&gt;[Mage] mention count (chronological)&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/mage-mentions.svg&quot; alt=&quot;mage chronological mention count&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/classes/mage/charts/mentions-over-time&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;mage-most-mentioned-chapters&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#mage-most-mentioned-chapters&quot; aria-label=&quot;Anchor link for: mage-most-mentioned-chapters&quot;&gt;[Mage] most mentioned chapters&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/images/twi-stats/chapters-with-the-most-mentions.svg&quot; alt=&quot;mage most mentioned chapters&quot; /&gt;
+&lt;a rel=&quot;external&quot; href=&quot;https://twi-stats.cblanken.dev/classes/mage/charts/chapters-with-the-most-mentions&quot;&gt;&lt;code&gt;Current interactive version&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There are few more stats that are tracked as well, but they’re specific to each
+individual reference type and I won’t go into detail here. You can check them
+out on their respective pages of the application.&lt;/p&gt;
+&lt;h2 id=&quot;technology&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#technology&quot; aria-label=&quot;Anchor link for: technology&quot;&gt;Technology&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The TWI Stats project is built with the following open source software:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a rel=&quot;external&quot; href=&quot;https://www.djangoproject.com&quot;&gt;Django&lt;/a&gt; web framework&lt;/li&gt;
+&lt;li&gt;The &lt;a rel=&quot;external&quot; href=&quot;https://tailwindcss.com&quot;&gt;Tailwind&lt;/a&gt; CSS framework&lt;/li&gt;
+&lt;li&gt;The &lt;a rel=&quot;external&quot; href=&quot;https://plotly.com/python/&quot;&gt;Plotly&lt;/a&gt; graphing library&lt;/li&gt;
+&lt;li&gt;A &lt;a rel=&quot;external&quot; href=&quot;https://www.postgresql.org&quot;&gt;PostgreSQL&lt;/a&gt; database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;attributions&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#attributions&quot; aria-label=&quot;Anchor link for: attributions&quot;&gt;Attributions&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I couldn’t have done this on my own. Credit where credit is due.&lt;/p&gt;
+&lt;h3 id=&quot;author&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#author&quot; aria-label=&quot;Anchor link for: author&quot;&gt;Author&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A huge thanks to &lt;a rel=&quot;external&quot; href=&quot;https://www.patreon.com/pirateaba/posts&quot;&gt;Pirateaba&lt;/a&gt; for
+writing such a wonderful web serial and keeping all the ducks fed for so many
+years.&lt;/p&gt;
+&lt;h3 id=&quot;wiki&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#wiki&quot; aria-label=&quot;Anchor link for: wiki&quot;&gt;Wiki&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This project wouldn’t be possible without all the awesome folks maintaining the &lt;a rel=&quot;external&quot; href=&quot;https://wiki.wanderinginn.com/The_Wandering_Inn_Wiki&quot;&gt;TWI Wiki&lt;/a&gt; and tracking the thousands of various characters, [Classes], [Skills], [Spells], etc.&lt;/p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Boggler</title>
+        <published>2024-09-30T00:00:00+00:00</published>
+        <updated>2024-10-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>Cameron Blankenbuehler</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://www.cblanken.dev/projects/boggler-web/"/>
+        <id>https://www.cblanken.dev/projects/boggler-web/</id>
+        
+        <content type="html" xml:base="https://www.cblanken.dev/projects/boggler-web/">&lt;h1 id=&quot;project&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#project&quot; aria-label=&quot;Anchor link for: project&quot;&gt;Project&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;https://en.wikipedia.org/wiki/Boggle&quot;&gt;Boggle&lt;/a&gt; is an excellent little word
+game. If you haven’t played before, here are some details on &lt;a rel=&quot;external&quot; href=&quot;https://en.wikipedia.org/wiki/Boggle#Rules&quot;&gt;how to
+play&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Each round is played on a board of dice arranged in a square. Each player
+writes down as many words as they can composed of the connected letters on the
+board. Longer words are worth more points. Play lasts until a player reaches an
+agreed upon score or time limit is reached.&lt;/p&gt;
+&lt;p&gt;A board would look something like this.
+&lt;img src=&quot;/images/boggler/boggler_board.png&quot; alt=&quot;boggle board example&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Anyway, I enjoyed playing the game a lot with my family growing up and it was
+always fun finding new or absurdly long words. Unfortunately after a round
+ends, the board is re-rolled never to be seen again leaving all those potential
+words lost to time. This is where the Boggler comes in.&lt;/p&gt;
+&lt;p&gt;If you don’t care too much about the details, you can check out the live
+application at &lt;a rel=&quot;external&quot; href=&quot;https://boggler.cblanken.dev&quot;&gt;boggler.cblanken.dev&lt;/a&gt;. Have fun!&lt;/p&gt;
+&lt;h1 id=&quot;features&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#features&quot; aria-label=&quot;Anchor link for: features&quot;&gt;Features&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;The Boggler is first and foremost an application for solving Boggle boards.
+Just enter all the letters from your game board and click “solve”. The
+application will check several dictionaries to provide you with a
+searchable table of all the available words from the board. This is great for
+finding the longest words or words that used a particular set of letters that
+you’re interested in.&lt;/p&gt;
+&lt;p&gt;To follow along with the examples below, you can find the interactive board at
+&lt;a rel=&quot;external&quot; href=&quot;https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64&quot;&gt;https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;solved-board-table&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#solved-board-table&quot; aria-label=&quot;Anchor link for: solved-board-table&quot;&gt;Solved board table&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Each solved board has an interactive board page where you can peruse all the
+available words in a table and filter the results however you see fit.&lt;/p&gt;
+&lt;p&gt;For example the word table for the example board above looks like this.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/boggler/boggler_table.png&quot; alt=&quot;boggler table&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;You can see in this example that the table is sorted by word length. A great
+way to find some of the cool words you might have missed.&lt;/p&gt;
+&lt;h2 id=&quot;dictionaries&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#dictionaries&quot; aria-label=&quot;Anchor link for: dictionaries&quot;&gt;Dictionaries&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;You’ll notice there is also a series of dictionaries available to select from
+just above the table. If there are any you’d prefer not to use for your games,
+simply uncheck them from here.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/boggler/dicts.png&quot; alt=&quot;solved board dictionaries&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Personally, I’ve found them all to be relatively reliable with the exception of
+the &lt;em&gt;dwyl&lt;/em&gt; dictionary. It’s an open source English dictionary which you can
+read more about &lt;a rel=&quot;external&quot; href=&quot;https://github.com/dwyl/english-words&quot;&gt;here&lt;/a&gt;. Unfortunately,
+it also contains many words that are invalid for Boggle. To read more about the
+other dictionaries, please see the &lt;em&gt;Dictionary&lt;/em&gt; section on the
+&lt;a rel=&quot;external&quot; href=&quot;https://boggler.cblanken.dev/board&quot;&gt;homepage&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;heatmap&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#heatmap&quot; aria-label=&quot;Anchor link for: heatmap&quot;&gt;Heatmap&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;One of my favorite features is the heatmap. The heatmap displays how many
+times a letter was used by all the available words making it possible to pick
+out hotspots and identify some of the more useful letter combinations and
+patterns.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/boggler/boggler_heatmap.png&quot; alt=&quot;boggler board heatmap&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;filtering&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#filtering&quot; aria-label=&quot;Anchor link for: filtering&quot;&gt;Filtering&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;There are a few methods for filtering the results of the solved board. The
+first being the aforementioned dictionary list. Words are only shown if at
+least one of the enabled dictionaries contains the word.&lt;/p&gt;
+&lt;p&gt;Another is the search bar available above the word table.
+&lt;img src=&quot;/images/boggler/table_search_rod.png&quot; alt=&quot;table search&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;It isn’t necessary to search for full words, you might have noticed searching
+for “rod” also shows words like “trod” and “trode”. Words with the target
+letter sequence will be shown regardless of where the letters appear in the
+word.&lt;/p&gt;
+&lt;p&gt;And finally, the board itself also functions as a filter. To enable this, click
+on any letter in the board to filter for words that pass through that letter.
+&lt;img src=&quot;/images/boggler/letter_filter.png&quot; alt=&quot;board letter filter&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Clicking the red “filter” button below the board will remove the filter.&lt;/p&gt;
+&lt;p&gt;In this example, the letter “I” in the first row is selected, which is
+indicated by the red background color and blue border around the selected
+letter. The word table reflects all the words that pass through that “I”.&lt;/p&gt;
+&lt;p&gt;&lt;svg 
+  version=&quot;1.1&quot; 
+  xmlns=&quot;http://www.w3.org/2000/svg&quot;
+  xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+  style=&quot;display: none;&quot;&gt;
+&lt;style&gt;
+.info-text {
+font-size: 60px;
+font-weight: 600;
+font-family: ‘Atkinson Hyperlegible’, ‘Tahoma’, ‘Arial’;
+}
+&lt;/style&gt;
+&lt;symbol id=&quot;info&quot; viewBox=&quot;0 0 100 100&quot;&gt;
+&lt;circle
+           id=&quot;info-circle&quot;
+           stroke=&quot;currentColor&quot;
+           stroke-width=&quot;10&quot;
+           cx=&quot;50&quot;
+           cy=&quot;50&quot;
+           r=&quot;45&quot; /&gt;
+&lt;text class=&quot;info-text&quot; x=&quot;50&quot; y=&quot;50&quot; dy=&quot;.26rem&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; fill=&quot;currentColor&quot;&gt;i&lt;/text&gt;
+&lt;/symbol&gt;
+&lt;symbol id=&quot;warn&quot; viewBox=&quot;0 0 100 100&quot;&gt;
+&lt;circle
+          id=&quot;warning-circle&quot;
+          stroke=&quot;currentColor&quot;
+          stroke-width=&quot;10&quot;
+          cx=&quot;50&quot;
+          cy=&quot;50&quot;
+          r=&quot;45&quot; /&gt;
+&lt;text class=&quot;info-text&quot; x=&quot;50&quot; y=&quot;50&quot; dy=&quot;.26rem&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; fill=&quot;currentColor&quot;&gt;!&lt;/text&gt;
+&lt;/symbol&gt;
+&lt;symbol id=&quot;tip&quot; viewBox=&quot;0 0 285 285&quot;&gt;
+&lt;polygon
+          id=&quot;tip-star&quot;
+          stroke=&quot;#efefef&quot;
+          stroke-width=&quot;20&quot;
+          points=&quot;150,15 258,77 258,202 150,265 42,202 42,77&quot;
+          fill=&quot;currentColor&quot;
+        /&gt;
+&lt;/symbol&gt;
+&lt;/svg&gt;&lt;/p&gt;
+&lt;div class=&quot;callout note&quot;&gt;
+  &lt;div class=&quot;callout-head&quot;&gt;
+    &lt;svg class=&quot;icon&quot;&gt;&lt;use xlink:href=&quot;#info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;div&gt;Note&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;callout-text&quot;&gt;
+    &lt;p&gt;Only a single letter can be filtered with this
+method. To find more complex letter combinations, you’ll need to resort to
+using the table’s search bar. However, they can be used in tandem.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;path-tracing&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#path-tracing&quot; aria-label=&quot;Anchor link for: path-tracing&quot;&gt;Path tracing&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Each word has a unique path on the board and &lt;strong&gt;clicking a word in the table&lt;/strong&gt; will
+render that path. For example one of the longest words for this board is
+“indirect”. The first letter of the word is indicated by a darker background
+color. &lt;img src=&quot;/images/boggler/word_path.png&quot; alt=&quot;word path&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;saved-boards&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#saved-boards&quot; aria-label=&quot;Anchor link for: saved-boards&quot;&gt;Saved boards&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Solved boards are all saved in a database and can be viewed at
+&lt;a rel=&quot;external&quot; href=&quot;https://boggler.cblanken.dev/solved&quot;&gt;https://boggler.cblanken.dev/solved&lt;/a&gt;.
+This means you can easily share any solved boards. Each solved board has a
+unique URL and you can either copy the URL directly or click the “Share” button
+above the board to automatically copy it to your clipboard.&lt;/p&gt;
+&lt;p&gt;The example we’ve been looking at is available at
+&lt;a rel=&quot;external&quot; href=&quot;https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64&quot;&gt;https://boggler.cblanken.dev/board/solved/6dc8aaa7cb8bc0b12be3e8aeafcede64&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;technology&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#technology&quot; aria-label=&quot;Anchor link for: technology&quot;&gt;Technology&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Boggler uses HTML and Flask’s
+&lt;a rel=&quot;external&quot; href=&quot;https://flask.palletsprojects.com/en/2.3.x/templating/&quot;&gt;Jinja&lt;/a&gt; templating
+engine for composing content.&lt;/p&gt;
+&lt;p&gt;The board and dictionary data are backed by a &lt;a rel=&quot;external&quot; href=&quot;https://www.sqlite.org&quot;&gt;SQLite&lt;/a&gt; database.&lt;/p&gt;
+&lt;p&gt;The styling uses custom CSS and some &lt;a rel=&quot;external&quot; href=&quot;https://getbootstrap.com&quot;&gt;Bootstrap&lt;/a&gt; for a
+couple components.&lt;/p&gt;
+&lt;p&gt;Vanilla JavaScript is used in conjunction with the following JavaScript
+libraries for dynamic interaction with the board and tables.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https://datatables.net&quot;&gt;DataTables&lt;/a&gt; to display word and board tables&lt;/li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https://anseki.github.io/leader-line/&quot;&gt;LeaderLine&lt;/a&gt; to render the word path overlays&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        
+    </entry>
+</feed>
